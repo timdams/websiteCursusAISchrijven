@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Een cursus schrijven met AI</title>
+<meta name="description" content="Beantwoord een handvol vragen en krijg een plan op maat om AI in te schakelen bij het maken van je cursusmateriaal. Met naslagwerk, valkuilen en voorbeelden.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-binnen">
+    <a class="merk" href="#gids" data-tab="gids">Een cursus schrijven met AI</a>
+    <nav class="menu" aria-label="Onderdelen">
+      <a href="#gids" class="menulink" data-tab="gids">De gids</a>
+      <a href="#plan" class="menulink" data-tab="plan" id="menu-plan" hidden>Jouw plan</a>
+      <a href="#naslag" class="menulink" data-tab="naslag">Naslagwerk</a>
+      <a href="#valkuilen" class="menulink" data-tab="valkuilen">Valkuilen</a>
+      <a href="#voorbeelden" class="menulink" data-tab="voorbeelden">Voorbeelden</a>
+    </nav>
+    <div class="toolschakelaar">
+      <button type="button" id="toolchip" class="toolchip" aria-haspopup="listbox" aria-expanded="false" aria-controls="toolmenu"></button>
+      <div id="toolmenu" class="toolmenu" role="listbox" aria-label="Kies je AI-tool" hidden></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ DE GIDS (startpagina) ============ -->
+  <section class="paneel gids" data-panel="gids">
+    <div id="wizard" class="wizard" aria-live="polite"></div>
+  </section>
+
+  <!-- ============ JOUW PLAN ============ -->
+  <section class="paneel" data-panel="plan" hidden>
+    <div id="plan"></div>
+  </section>
+
+  <!-- ============ DE VIER WERKWIJZEN ============ -->
+  <section class="paneel" data-panel="werkwijzen" hidden>
+    <h2>De vier werkwijzen</h2>
+    <p class="noot">Het verschil zit in waar je bestanden staan en wie ze aanraakt. De rest van de site geldt voor alle vier.</p>
+    <div class="routetabs" id="routetabs" role="tablist" aria-label="De vier werkwijzen"></div>
+    <div id="routepagina"></div>
+
+    <h3 class="vergelijkkop">De vier naast elkaar</h3>
+    <div class="tabelwrap">
+      <table class="vergelijking" id="vergelijking"></table>
+    </div>
+  </section>
+
+  <!-- ============ NASLAGWERK ============ -->
+  <section class="paneel naslag" data-panel="naslag" hidden>
+    <h2>Naslagwerk</h2>
+    <p class="noot" id="naslag-noot">Klik een onderdeel open, of typ waar je naar zoekt.</p>
+    <input type="search" id="zoekalles" class="zoek" placeholder="bv. sjabloon, pptx, limiet, skill, huisstijl" autocomplete="off" aria-label="Zoek in alles">
+    <div id="zoekresultaat" class="zoekresultaat"></div>
+
+    <div id="naslaghub" class="hubraster"></div>
+
+    <div id="naslagvakken" hidden>
+      <button type="button" class="terugbalk" id="naslag-terug">Alle onderdelen</button>
+
+      <div class="naslagvak" data-vak="onderwerpen" hidden>
+        <h3>De onderwerpen</h3>
+        <p class="noot">De kern van het naslagwerk, in vijf stukken. Klik er een open voor de uitleg en de tips.</p>
+        <div class="blokrij" id="onderwerprij"></div>
+      </div>
+
+      <div class="naslagvak" data-vak="tool" hidden>
+        <h3>Met welke AI werk je?</h3>
+        <p class="noot">Kies er een, en de hele site zegt hoe het bij jou heet. Je kan altijd wisselen.</p>
+        <div class="toolrij" id="toolrij"></div>
+        <div id="tooldetail"></div>
+        <p class="noot" id="assistent-noot"></p>
+      </div>
+
+      <div class="naslagvak" data-vak="uitkomst" hidden>
+        <h3 id="uitkomst-kop">Wat moet eruit komen?</h3>
+        <p class="noot" id="output-noot"></p>
+        <div class="keuzeraster" id="output-keuzes"></div>
+        <div class="advies" id="output-advies" hidden></div>
+      </div>
+
+      <div class="naslagvak" data-vak="prompts" hidden>
+        <h3>Prompts om te plakken</h3>
+        <p class="noot">Vragen die je letterlijk kan overnemen. Ze werken in elk chatvenster, en ze horen bij het onderwerp dat erbij staat.</p>
+        <div class="promptlijst" id="promptlijst"></div>
+      </div>
+
+      <div class="naslagvak" data-vak="gereedschap" hidden>
+        <h3>De gereedschapskist</h3>
+        <p class="noot" id="kist-noot"></p>
+        <div class="kist-lijst" id="kist-lijst"></div>
+
+        <h3 class="alle-links-kop">Alle links op een rij</h3>
+        <div class="linkraster" id="linkraster"></div>
+      </div>
+
+      <div class="naslagvak" data-vak="randgevallen" hidden>
+        <h3>Bij mij ligt dat anders</h3>
+        <p class="noot">Situaties die niet in het standaardverhaal passen, en wat je er dan mee doet.</p>
+        <div class="randgevallen-lijst" id="randgevallen-lijst"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VALKUILEN ============ -->
+  <section class="paneel" data-panel="valkuilen" hidden>
+    <h2>Valkuilen: het ging mis, wat ontbreekt er?</h2>
+    <p class="noot">De meest voorkomende fouten bij AI in cursusontwikkeling. Elke klacht wijst naar een stap die overgeslagen is. Typ wat er misgaat, of kies uit de lijst. Klik op het onderwerp om te zien wat daar staat.</p>
+    <input type="search" id="zoek" class="zoek" placeholder="bv. klinkt niet als mij, limiet, pdf" autocomplete="off" aria-label="Zoek in de valkuilen">
+    <div class="probleemlijst" id="probleemlijst"></div>
+    <p class="geen-treffer" id="geen-treffer" hidden>Niks gevonden. Probeer een ander woord, of kijk in het naslagwerk.</p>
+  </section>
+
+  <!-- ============ VOORBEELDEN ============ -->
+  <section class="paneel" data-panel="voorbeelden" hidden>
+    <h2>Voorbeelden</h2>
+    <p class="noot" id="voorbeelden-noot"></p>
+    <div class="linkraster" id="voorbeeldenraster"></div>
+    <p class="noot">Ken je zelf een goed voorbeeld van een cursus, website of cursusmap die zo gemaakt is? De lijst staat in <code>data.js</code> en groeit graag.</p>
+  </section>
+
+</main>
+
+<dialog id="blokvenster" class="blokvenster" aria-label="Uitleg bij een onderwerp">
+  <div id="blokvenster-binnen"></div>
+</dialog>
+
+<footer class="voet">
+  <p>Alle inhoud van deze site staat in <code>data.js</code>. Een tip wijzigen of toevoegen is één regel in dat bestand.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
