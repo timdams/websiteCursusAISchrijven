@@ -1,9 +1,9 @@
-/* Licht papier, een rustige petrolblauwe accentkleur, neutraal voor elke school. */
+/* Licht papier, een rood accent dat aansluit bij de tekeningen, neutraal voor elke school. */
 
 :root {
-  --accent: #0E7490;
-  --accent-diep: #155E75;
-  --accent-zacht: #E1F1F6;
+  --accent: #B30000;
+  --accent-diep: #8F0000;
+  --accent-zacht: #FFE5E5;
   --papier: #fafaf7;
   --kaart: #ffffff;
   --inkt: #2b2b33;
@@ -13,8 +13,8 @@
   --lijn-hard: #cfcfc7;
   --groen: #2f6b3f;
   --oker: #8a6a00;
-  --knop: #0E7490;
-  --knop-hover: #0B5B72;
+  --knop: #B30000;
+  --knop-hover: #8F0000;
   --schaduw: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
   --radius: 10px;
   --breed: 60rem;
@@ -29,11 +29,11 @@
     --inkt-stil: #a2a2ac;
     --lijn: #33333b;
     --lijn-hard: #45454f;
-    --accent: #3EB6D4;
-    --accent-diep: #6FCBE2;
-    --accent-zacht: #13333d;
-    --knop: #0E7490;
-    --knop-hover: #1591AD;
+    --accent: #FF6E6E;
+    --accent-diep: #FF9A9A;
+    --accent-zacht: #3A1414;
+    --knop: #B30000;
+    --knop-hover: #D41414;
     --groen: #7fc08f;
     --oker: #d6ab3f;
     --schaduw: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
@@ -468,6 +468,87 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 .advieslijn.afweging { border-color: var(--lijn-hard); }
 .advieslijn.ok { border-color: var(--groen); }
 
+/* ---------- je bestanden gebruiksklaar zetten ---------- */
+
+.bronroutes {
+  display: grid;
+  gap: .7rem;
+  margin-top: 1.2rem;
+}
+
+@media (min-width: 46rem) {
+  .bronroutes { grid-template-columns: 1fr 1fr; }
+  /* blijft er maar één route over (wie in de browser blijft), dan hoeft die
+     niet op een halve kolom te blijven staan */
+  .bronroutes.een { grid-template-columns: 1fr; }
+}
+
+/* markdown, uitgelegd op de plek waar het woord voor het eerst valt */
+.markdownuitleg {
+  margin: .9rem 0 0;
+  padding: .7rem .9rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-zacht);
+  border-radius: 0 8px 8px 0;
+  font-size: .93rem;
+  line-height: 1.55;
+  max-width: 46rem;
+}
+
+.bronroute {
+  border: 1px solid var(--lijn);
+  border-radius: 8px;
+  padding: .8rem .9rem;
+  background: var(--papier);
+}
+
+.bronroutekop {
+  display: block;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--accent-diep);
+  margin-bottom: .35rem;
+}
+
+.bronroutetekst {
+  margin: 0;
+  font-size: .93rem;
+  line-height: 1.55;
+}
+
+.bronroutetekst code { word-break: break-word; }
+
+.advieslijn.letop { margin-top: 1.1rem; }
+
+.bronmap { margin-top: 1.6rem; }
+
+.bronmapkop {
+  margin: 0 0 .3rem;
+  font-size: 1.02rem;
+}
+
+.bronmapkern {
+  margin: 0 0 .8rem;
+  font-size: .95rem;
+  color: var(--inkt-stil);
+  max-width: 46rem;
+}
+
+.boom {
+  font-family: "Cascadia Code", Consolas, SFMono-Regular, Menlo, monospace;
+  font-size: .82rem;
+  line-height: 1.65;
+  background: var(--accent-zacht);
+  border: 1px solid var(--lijn);
+  border-radius: 8px;
+  padding: .85rem 1rem;
+  margin: 0 0 1rem;
+  overflow-x: auto;
+  white-space: pre;
+  color: var(--inkt);
+}
+
 /* ---------- resultaat ---------- */
 
 .resultaat[hidden] { display: none; }
@@ -716,6 +797,144 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 }
 
 .promptkaart .knop { padding: .35rem .8rem; font-size: .85rem; }
+
+/* de startprompts in het plan: zelfde kaarten, met een nummer ervoor */
+.planprompts { margin: 2rem 0 0; }
+.planprompts h3 { margin: 0 0 .3rem; }
+.planprompts > .noot { margin: 0; max-width: 46rem; }
+.planprompts .promptlijst { margin-top: 1rem; }
+.planprompts .tekstknop { margin-top: .9rem; }
+.promptkop .winstnr { flex: 0 0 auto; }
+
+/* ---------- het plan opent met jouw doel ---------- */
+
+.doelkaart {
+  border: 1px solid var(--lijn);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem 1.2rem;
+  background: var(--kaart);
+  margin-bottom: 1.1rem;
+}
+
+.doelkop { margin: 0 0 .5rem; font-size: 1.3rem; }
+.doelwat { margin: 0; line-height: 1.6; max-width: 46rem; }
+.doeleerst { margin: .8rem 0 0; font-size: .95rem; max-width: 46rem; }
+.doeleerst b { color: var(--accent-diep); }
+
+/* ---------- je eerste sessie ---------- */
+
+.sessiewijzer {
+  margin: 1.6rem 0 0;
+  padding: 1rem 1.2rem 1.1rem;
+  border: 1px dashed var(--lijn-hard);
+  border-radius: var(--radius);
+  background: var(--accent-zacht);
+}
+
+.sessiewijzer b { display: block; font-size: 1.05rem; }
+.sessiewijzer p { margin: .3rem 0 .8rem; font-size: .93rem; max-width: 42rem; }
+
+.sessiesituatie { margin-bottom: .9rem; }
+.sessieduur { color: var(--inkt-stil); font-size: .9rem; margin: 0 0 1.4rem; max-width: 46rem; }
+
+.sessielijst {
+  list-style: none;
+  counter-reset: sessie;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.sessiestap {
+  counter-increment: sessie;
+  position: relative;
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem 1.1rem 3.4rem;
+  background: var(--kaart);
+}
+
+.sessiestap::before {
+  content: counter(sessie);
+  position: absolute;
+  left: 1.1rem;
+  top: 1rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: .9rem;
+  display: grid;
+  place-items: center;
+}
+
+.sessiestapkop { display: block; font-size: 1.05rem; margin-bottom: .6rem; }
+
+.sessieregel { margin-top: .55rem; font-size: .93rem; line-height: 1.55; max-width: 46rem; }
+.sessieregel b {
+  display: block;
+  font-size: .74rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--inkt-stil);
+  margin-bottom: .1rem;
+}
+.sessie-let { color: var(--inkt-stil); }
+.sessie-let b { color: var(--accent-diep); }
+
+.sessieslot { margin: 1.2rem 0 0; max-width: 46rem; line-height: 1.6; }
+
+/* ---------- de ladder: als dit bevalt ---------- */
+
+.ladder {
+  margin: 2rem 0 0;
+  padding: 1.1rem 1.3rem 1.2rem;
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  background: var(--papier);
+}
+
+.ladder h3 { margin: 0 0 .4rem; }
+.ladder-wanneer { margin: 0 0 .5rem; color: var(--accent-diep); font-size: .95rem; max-width: 46rem; }
+.ladder-wat { margin: 0 0 .6rem; font-size: .95rem; line-height: 1.6; max-width: 46rem; }
+.ladder .noot { margin: 0 0 .7rem; max-width: 46rem; }
+
+/* ---------- nog geen tool: het keuzescherm ---------- */
+
+.toolkeuze {
+  display: grid;
+  gap: .7rem;
+  margin: 1.2rem 0 0;
+}
+
+.toolgeval {
+  border: 1px solid var(--lijn);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: .85rem 1rem;
+  background: var(--papier);
+}
+
+.toolgeval-als {
+  display: block;
+  font-size: .97rem;
+  margin-bottom: .35rem;
+}
+
+.toolgeval-waarom {
+  margin: 0;
+  font-size: .93rem;
+  line-height: 1.55;
+  color: var(--inkt-stil);
+}
+
+.toolgeval .knop { margin-top: .8rem; }
+
+.toolkeuzeslot { margin-top: 1.2rem; max-width: 46rem; }
 
 /* ---------- gereedschapskist ---------- */
 
@@ -1247,6 +1466,54 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
 .knop-klein { padding: .4rem .8rem; font-size: .88rem; }
 
+/* ---------- tekeningen ---------- */
+
+.figuur { margin: 1.4rem 0; }
+
+.figuur a {
+  display: block;
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  transition: border-color .15s;
+}
+
+.figuur a:hover,
+.figuur a:focus-visible { border-color: var(--accent); }
+
+.figuur img { display: block; width: 100%; height: auto; }
+
+.figuur figcaption {
+  margin-top: .5rem;
+  font-size: .88rem;
+  line-height: 1.45;
+  color: var(--inkt-stil);
+}
+
+.figuur-breed { margin: 1.6rem 0 1.4rem; }
+
+/* Een tekening is breed en laag: in een tekstkolom van 42rem wordt het handschrift
+   onleesbaar. Op een ruim scherm mag ze daarom buiten de kolom treden. */
+@media (min-width: 50rem) {
+  .figuur-breed {
+    width: min(72rem, calc(100vw - 2.5rem));
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Een brede tekening loopt buiten de tekstkolom; het bijschrift blijft leesbaar smal
+   en gecentreerd, zodat het niet links van de lopende tekst begint. */
+.figuur-breed figcaption {
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.figuur + .winstmini-kop { margin-top: 1.6rem; }
+
 /* ---------- smal scherm ---------- */
 
 @media (max-width: 40rem) {
@@ -1272,6 +1539,7 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   .top, .voet, .knoppenrij, .voortgang, .zoek { display: none !important; }
   body { background: #fff; font-size: 11pt; }
   .kaart, .routekaart, .blokje, .advies, .probleem, .kist-rij, .winstkaart, .wistjedat, .waarom { box-shadow: none; break-inside: avoid; }
+  .figuur { break-inside: avoid; }
   .probleem .binnen { display: block !important; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; color: #555; }
 }

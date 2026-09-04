@@ -10,7 +10,7 @@
   /* ---------------- state ---------------- */
 
   var state = {
-    antwoorden: {},     // ervaring, account, materiaal: [id], bestanden, bron, installatie, schrijven, duur
+    antwoorden: {},     // ervaring, account, materiaal: [id], bron, installatie, schrijven, duur
     tussenin: null,     // id van de stap waarvan het tussenadvies nu getoond wordt
     gestart: false,     // is de gids bezig
     assistent: "",      // claude, chatgpt, gemini, copilot, generiek of gratis
@@ -49,6 +49,10 @@
     return assistentBij(state.assistent || state.antwoorden.account);
   }
 
+  function mijnDoel() {
+    return D.doel.filter(function (d) { return d.id === state.antwoorden.doel; })[0] || null;
+  }
+
   /* Zonder toolkeuze komt hier een omschrijving te staan, nooit een merknaam.
      Zo blijft gedeelde tekst gedeeld, en zit het merk alleen in de toolkaart. */
   var NEUTRAAL = {
@@ -81,6 +85,23 @@
   }
 
   function tn(tekst) { return document.createTextNode(T(tekst)); }
+
+  /* Tekst met `iets tussen accenten` erin: dat stuk wordt een code-vakje,
+     de rest gewone tekst. Hangt alles onder node. */
+  function rijk(node, tekst) {
+    var stukken = String(T(tekst)).split("`");
+    for (var i = 0; i < stukken.length; i++) {
+      if (!stukken[i]) continue;
+      if (i % 2) {
+        var c = document.createElement("code");
+        c.textContent = stukken[i];
+        node.appendChild(c);
+      } else {
+        node.appendChild(document.createTextNode(stukken[i]));
+      }
+    }
+    return node;
+  }
 
   function leeg(node) { while (node.firstChild) node.removeChild(node.firstChild); }
 
@@ -180,6 +201,75 @@
     return wrap;
   }
 
+  /* Een tekening met bijschrift. Klikken opent ze op ware grootte in een nieuw tabblad. */
+  function figuurBlok(fig, klas) {
+    if (!fig || !fig.bestand) return null;
+    var f = el("figure", "figuur" + (klas ? " " + klas : ""));
+    var link = el("a");
+    link.href = fig.bestand;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.title = "Bekijk de tekening op ware grootte";
+    var img = el("img");
+    img.src = fig.bestand;
+    img.alt = fig.alt || "";
+    img.loading = "lazy";
+    link.appendChild(img);
+    f.appendChild(link);
+    if (fig.bijschrift) f.appendChild(el("figcaption", null, fig.bijschrift));
+    return f;
+  }
+
+  /* Links waar een installatie achter zit. Wie in de browser blijft, krijgt ze
+     niet te zien bij het klaarzetten van zijn bestanden; in het naslagwerk en
+     de gereedschapskist staan ze wel, met hun drempel erbij. */
+  var MOETJEINSTALLEREN = [
+    "quarto", "quarto-docx", "quarto-pptx", "quarto-html", "quarto-typst",
+    "quarto-revealjs", "quarto-book", "quarto-brand", "pandoc", "pandoc-refdoc",
+    "marp", "mermaid", "vscode", "obsidian", "typora", "typst", "git",
+    "gemini-cli", "claude-code", "copilot-instructions"
+  ];
+
+  /* Blijft deze gebruiker in de browser? Dan is een mappenboom op zijn schijf,
+     een commandoregel en een installatielink ruis: hij komt er niet aan toe.
+     Waar staat: bij de bronvraag weten we de werkwijze nog niet, behalve bij
+     wie "weinig of geen ervaring" antwoordde. Die zit altijd op werkwijze 1. */
+  function browserOnly() {
+    if (state.antwoorden.ervaring === "beginner") return true;
+    if (state.mijnWerkwijze === "1") return true;
+    var inst = D.installatie.filter(function (i) { return i.id === state.antwoorden.installatie; })[0];
+    return !!(inst && inst.werkwijze === "1");
+  }
+
+  /* De mapindeling: één bestand per hoofdstuk. Staat zowel bij de vraag
+     "waar staat je cursus" als in het onderwerp over platte tekst. Wie in de
+     browser blijft, krijgt dezelfde regels zonder de boom: die gaat over mappen
+     op een schijf die hij niet gaat aanmaken. */
+  function bronMapBlok() {
+    var m = D.bronMap;
+    if (!m) return null;
+    var browser = browserOnly() && m.browser;
+    var b = browser ? m.browser : m;
+    var wrap = el("section", "bronmap");
+    wrap.appendChild(el("h3", "bronmapkop", T(b.kop)));
+    wrap.appendChild(el("p", "bronmapkern", T(b.kern)));
+    if (!browser) {
+      var pre = el("pre", "boom");
+      pre.textContent = m.boom.join("\n");
+      wrap.appendChild(pre);
+    }
+    var lijst = el("div", "tussenadvies");
+    b.regels.forEach(function (r) {
+      var lijn = el("div", "advieslijn buiten");
+      lijn.appendChild(el("b", null, T(r[0])));
+      rijk(lijn, r[1]);
+      lijst.appendChild(lijn);
+    });
+    wrap.appendChild(lijst);
+    if (b.noot) wrap.appendChild(el("p", "noot", T(b.noot)));
+    return wrap;
+  }
+
   /* ---------------- de onderwerpen, als venster ---------------- */
 
   function onderwerpBij(id) {
@@ -234,6 +324,9 @@
     h.appendChild(tn(o.kern));
     binnen.appendChild(h);
 
+    var ofig = figuurBlok(o.figuur);
+    if (ofig) binnen.appendChild(ofig);
+
     if (o.tips.length) {
       binnen.appendChild(el("h3", null, "Tips"));
       var ul = el("ul", "bloktips");
@@ -247,6 +340,11 @@
       wrap.appendChild(bouwTabel(o.tabel.kop, o.tabel.rijen));
       binnen.appendChild(wrap);
       if (o.tabel.noot) binnen.appendChild(el("p", "noot", o.tabel.noot));
+    }
+
+    if (o.id === "plat") {
+      var mb = bronMapBlok();
+      if (mb) binnen.appendChild(mb);
     }
 
     if (o.gevorderd) {
@@ -337,6 +435,15 @@
   /* ---------------- de vragen van de gids ---------------- */
 
   var STAPPEN = {
+    doel: {
+      kort: "Je doel",
+      vraag: "Wat wil je met je cursus doen?",
+      hulp: D.doelNoot,
+      type: "single",
+      opties: D.doel.map(function (d) {
+        return { id: d.id, label: d.label, hulp: d.hulp || "" };
+      })
+    },
     ervaring: {
       kort: "Ervaring",
       vraag: "Hoeveel ervaring heb je met AI-chatbots?",
@@ -349,10 +456,10 @@
     account: {
       kort: "Tool",
       vraag: "Met welke AI werk je?",
-      hulp: "We beginnen hiermee, want de rest van de site past zich aan je keuze aan: waar je bestanden blijven staan, hoe je regelsbestand heet, en de juiste links. Wisselen kan altijd, met de knop rechtsboven.",
+      hulp: "De rest van de site past zich aan je keuze aan: waar je bestanden blijven staan, hoe je regelsbestand heet, en de juiste links. Weet je het nog niet, kies dan het laatste antwoord: het volgende scherm helpt je kiezen. Wisselen kan altijd, met de knop rechtsboven.",
       type: "single",
       opties: D.assistenten.map(function (a) {
-        return { id: a.id, label: a.naam, hulp: a.kort };
+        return { id: a.id, label: a.vraaglabel || a.naam, hulp: a.kort };
       })
     },
     materiaal: {
@@ -362,21 +469,10 @@
       type: "multi",
       opties: D.materiaal
     },
-    bestanden: {
-      kort: "Bron",
-      vraag: "Staat je cursus in bestanden die je zelf kan openen?",
-      hulp: "Een Word-bestand, een PowerPoint, een pdf op je schijf. Niet: een pagina in het leerplatform waar je geen bron meer van hebt.",
-      type: "single",
-      opties: [
-        { id: "ja", label: "ja, ik weet waar ze staan en in welke vorm" },
-        { id: "deels", label: "ja, maar in een lastige vorm of verspreid", hulp: "je krijgt eerst het omzetadvies" },
-        { id: "nee", label: "nee", hulp: "eerst een bron, dan pas AI" }
-      ]
-    },
     bron: {
-      kort: "Waar staat ze",
-      vraag: "Waar staat je cursus nu?",
-      hulp: "Kies wat het dichtst in de buurt komt.",
+      kort: "Je bestanden",
+      vraag: "In welke vorm staat je cursus nu?",
+      hulp: "Kies wat het dichtst in de buurt komt. Je krijgt daarna te zien hoe je die bestanden gebruiksklaar zet.",
       type: "single",
       opties: D.bron
     },
@@ -413,8 +509,12 @@
 
   function volgorde() {
     var a = state.antwoorden;
-    var rij = ["account", "ervaring", "materiaal", "bestanden"];
-    if (a.bestanden === "nee" || a.bestanden === "deels") rij.push("bron");
+    /* Doel eerst: het is de enige vraag die naar jouw plan vraagt in plaats van
+       naar je omstandigheden, en ze opent het plan straks met je eigen zin.
+       Daarna ervaring, want wie nog nooit met AI werkte kan de toolvraag niet
+       beantwoorden. Door die volgorde weet de site dat al voor ze naar een merk
+       vraagt, en wordt "nog geen" een keuzescherm in plaats van een muur. */
+    var rij = ["doel", "ervaring", "account", "materiaal", "bron"];
     if (a.ervaring === "beginner") return rij;
     rij.push("installatie");
     var inst = D.installatie.filter(function (i) { return i.id === a.installatie; })[0];
@@ -452,6 +552,9 @@
     var a = state.antwoorden;
     var lijst = [];
 
+    var d = mijnDoel();
+    if (d) lijst.push("Je wil " + d.label + ". " + d.eerst);
+
     if (a.ervaring === "beginner") {
       lijst.push("Je begint zonder installaties, in de browser. De andere werkwijzen staan klaar wanneer je meer wil.");
     }
@@ -476,7 +579,7 @@
 
     if (a.bron) {
       var b = D.bron.filter(function (x) { return x.id === a.bron; })[0];
-      if (b) lijst.push("Je bron: " + b.label + ". " + b.advies);
+      if (b) lijst.push("Je bestanden staan in: " + b.label + ". " + b.advies);
     }
 
     var inst = D.installatie.filter(function (i) { return i.id === a.installatie; })[0];
@@ -542,7 +645,7 @@
     if (state.mijnWerkwijze && huidigeStap() === null) {
       var r = D.werkwijzen[state.mijnWerkwijze];
       var a = mijnAssistent();
-      scherm.appendChild(el("p", "welkom-status", "Je plan staat klaar: werkwijze " + r.nr + ", " + r.naam + (a ? ", met " + a.naam : "") + "."));
+      scherm.appendChild(el("p", "welkom-status", "Je plan staat klaar: werkwijze " + r.nr + ", " + r.naam + (a && !a.geenaccount ? ", met " + a.naam : "") + "."));
       var naarPlan = el("button", "knop knop-groot", "Bekijk jouw plan");
       naarPlan.type = "button";
       naarPlan.addEventListener("click", function () { naarTab("plan"); });
@@ -578,6 +681,9 @@
     naarNaslag.addEventListener("click", function () { naarTab("naslag"); });
     naslagLijn.appendChild(naarNaslag);
     scherm.appendChild(naslagLijn);
+
+    var kern = figuurBlok(D.figuren && D.figuren.kernidee, "figuur-breed");
+    if (kern) scherm.appendChild(kern);
 
     /* de vier snelle winsten, als één rustige rij */
     var winstKop = el("p", "winstmini-kop", "Of spring meteen naar wat vandaag al loont:");
@@ -817,22 +923,90 @@
     kaart.appendChild(balk);
 
     if (id === "account") {
-      kaart.appendChild(el("p", "vraagnr", "Goed om te weten"));
-      kaart.appendChild(el("h2", "vraag", "Zonder een plek waar je bestanden blijven staan, loop je vast op de limieten"));
-      var ul = el("ul", "tussenlijst");
-      [
-        "Uitproberen lukt prima in een gratis chatvenster. Bij een hele cursus loop je tegen de limieten.",
-        "Vraag na of je school een AI-abonnement voorziet. Meestal betaal je zelf.",
-        "Toch al meedoen? Je regels kan je nu al opschrijven in een Word-bestand. Dat bestand werkt in elke tool die je later kiest."
-      ].forEach(function (t) { ul.appendChild(el("li", null, t)); });
-      kaart.appendChild(ul);
+      kaart.appendChild(el("p", "vraagnr", "Nog geen tool"));
+      kaart.appendChild(el("h2", "vraag", D.toolkeuzeKop));
+      kaart.appendChild(el("p", "vraaghulp", D.toolkeuzeNoot));
+
+      var keuzes = el("div", "toolkeuze");
+      D.toolkeuze.forEach(function (k) {
+        var geval = el("div", "toolgeval");
+        geval.appendChild(el("b", "toolgeval-als", k.als));
+        geval.appendChild(el("p", "toolgeval-waarom", k.waarom));
+        var doel = k.tool ? assistentBij(k.tool) : null;
+        if (doel && k.knop) {
+          var kies = el("button", "knop knop-klein", k.knop);
+          kies.type = "button";
+          kies.addEventListener("click", function () {
+            state.assistent = doel.id;
+            INDEX = null;
+            tekenToolChip();
+            state.antwoorden.account = doel.id;
+            state.tussenin = null;
+            bewaar();
+            updateMenu();
+            verderOfKlaar();
+            window.scrollTo({ top: 0, behavior: "auto" });
+          });
+          geval.appendChild(kies);
+        }
+        keuzes.appendChild(geval);
+      });
+      kaart.appendChild(keuzes);
+
+      if (D.toolkeuzeSlot) kaart.appendChild(el("p", "noot toolkeuzeslot", D.toolkeuzeSlot));
     }
 
     if (id === "bron") {
       var b = D.bron.filter(function (x) { return x.id === a.bron; })[0];
-      kaart.appendChild(el("p", "vraagnr", "Eerst een bron"));
+      kaart.appendChild(el("p", "vraagnr", "Zo zet je dit gebruiksklaar"));
       kaart.appendChild(el("h2", "vraag", b.label));
       kaart.appendChild(el("p", "routepitch", b.advies));
+
+      /* Blijf je in de browser, dan valt de route met een installatie weg, en
+         ook de commandoregel die erin staat. Die ene code-regel is genoeg om
+         iemand te doen denken dat deze site niet voor hem is. */
+      var inBrowser = browserOnly();
+      var routes = (b.routes || []).filter(function (r) {
+        return !(inBrowser && r[2] === "installeren");
+      });
+
+      if (routes.length) {
+        var rts = el("div", "bronroutes" + (routes.length === 1 ? " een" : ""));
+        routes.forEach(function (r) {
+          var krt = el("div", "bronroute");
+          krt.appendChild(el("b", "bronroutekop", r[0]));
+          var pp = el("p", "bronroutetekst");
+          rijk(pp, r[1]);
+          krt.appendChild(pp);
+          rts.appendChild(krt);
+        });
+        kaart.appendChild(rts);
+      }
+
+      /* het woord markdown valt hier voor het eerst; uitleggen op de plek zelf */
+      if (D.markdownUitleg && /markdown/i.test(routes.map(function (r) { return r[1]; }).join(" "))) {
+        var md = el("p", "markdownuitleg", D.markdownUitleg);
+        kaart.appendChild(md);
+      }
+
+      var letop = (inBrowser && b.letopBrowser) || b.letop;
+      if (letop) {
+        var lo = el("div", "advieslijn vragen letop");
+        lo.appendChild(el("b", null, "Let op"));
+        rijk(lo, letop);
+        kaart.appendChild(lo);
+      }
+
+      var bronlinks = toolLinks(b.links).filter(function (id) {
+        return !(inBrowser && MOETJEINSTALLEREN.indexOf(id) >= 0);
+      });
+      var lb2 = linkBlok(bronlinks, "Waarmee");
+      if (lb2) { lb2.style.marginTop = "1rem"; kaart.appendChild(lb2); }
+
+      var mapblok = bronMapBlok();
+      if (mapblok) kaart.appendChild(mapblok);
+
+      kaart.appendChild(el("h3", "bronmapkop", "Wat hier altijd geldt"));
       var tw = el("div", "tussenadvies");
       D.bronRegels.forEach(function (r) {
         var lijn = el("div", "advieslijn buiten");
@@ -841,12 +1015,13 @@
         tw.appendChild(lijn);
       });
       kaart.appendChild(tw);
-      var lb2 = linkBlok(toolLinks(b.links), "Waarmee");
-      if (lb2) { lb2.style.marginTop = "1rem"; kaart.appendChild(lb2); }
     }
 
     var rij = el("div", "knoppenrij");
-    var verder = el("button", "knop", "Verder");
+    /* op het toolkeuzescherm zijn de knoppen hierboven de echte keuze; deze is
+       "ik beslis later", en zegt dat ook */
+    var verder = el("button", id === "account" ? "knop knop-stil" : "knop",
+                    id === "account" ? "Ik beslis later, ga verder" : "Verder");
     verder.type = "button";
     verder.addEventListener("click", function () {
       state.tussenin = null;
@@ -892,7 +1067,24 @@
     var a = mijnAssistent();
 
     var kopwrap = el("div");
-    kopwrap.appendChild(el("p", "vraagnr", "Jouw plan" + (a ? " · met " + a.naam : "")));
+    kopwrap.appendChild(el("p", "vraagnr", "Jouw plan" + (a && !a.geenaccount ? " · met " + a.naam : "")));
+
+    /* Het plan opent met wat jij wil doen, niet met de werkwijze waar je in
+       terechtkwam. De werkwijze is het middel; dit is waarvoor je kwam. */
+    var doelnu = mijnDoel();
+    if (doelnu) {
+      var dk = el("div", "doelkaart");
+      dk.appendChild(el("h2", "doelkop", doelnu.planKop));
+      dk.appendChild(el("p", "doelwat", doelnu.wat));
+      if (doelnu.eerst) {
+        var eerst = el("p", "doeleerst");
+        eerst.appendChild(el("b", null, "Waar je vandaag begint: "));
+        eerst.appendChild(tn(doelnu.eerst));
+        dk.appendChild(eerst);
+      }
+      kopwrap.appendChild(dk);
+    }
+
     var kaart = el("div", "routekaart");
     var kop = el("div", "routekop");
     kop.appendChild(el("span", "routeletter", "Werkwijze " + r.nr));
@@ -934,6 +1126,37 @@
     });
     doel.appendChild(strip);
     doel.appendChild(waaromBlok());
+
+    /* De zinnen om te plakken, hier en niet alleen in het naslagwerk. Wie hier
+       zijn eerste gesprek gaat voeren, heeft geen reden om daar te klikken.
+       Koos je een doel, dan kiest dat doel de drie; anders de vaste starters. */
+    var starters = doelPrompts() || startPrompts();
+    if (starters.length) {
+      var pblok = el("section", "planprompts");
+      pblok.appendChild(el("h3", null, D.promptPlanKop || "Vandaag plakken"));
+      if (D.promptPlanNoot) pblok.appendChild(el("p", "noot", D.promptPlanNoot));
+      var plijst = el("div", "promptlijst");
+      starters.forEach(function (p, i) { plijst.appendChild(promptKaart(p, i + 1)); });
+      pblok.appendChild(plijst);
+      var allePrompts = el("button", "tekstknop", "Alle prompts in het naslagwerk");
+      allePrompts.type = "button";
+      allePrompts.addEventListener("click", function () { naarVak("prompts"); });
+      pblok.appendChild(allePrompts);
+      doel.appendChild(pblok);
+    }
+
+    /* Losse prompts zeggen nog niet hoe een sessie verloopt. Wie nog nooit een
+       gesprek voerde, heeft één doorlopend verhaal nodig, niet zes tips. */
+    if (D.voorbeeldgesprek) {
+      var sess = el("div", "sessiewijzer");
+      sess.appendChild(el("b", null, D.voorbeeldgesprek.kop));
+      sess.appendChild(el("p", null, "Nog nooit zo'n gesprek gevoerd? Dit is wat er letterlijk gebeurt, van je laptop openen tot een hoofdstuk waar je tevreden over bent."));
+      var naarSessie = el("button", "knop knop-klein", "Lees de zes stappen");
+      naarSessie.type = "button";
+      naarSessie.addEventListener("click", function () { naarVak("eerstekeer"); });
+      sess.appendChild(naarSessie);
+      doel.appendChild(sess);
+    }
 
     var blokjes = el("div", "blokjes");
 
@@ -979,6 +1202,25 @@
 
     doel.appendChild(blokjes);
 
+    /* Een ladder, geen plafond: waar je naartoe kan als dit bevalt, met erbij
+       wanneer dat de moeite is — en de geruststelling dat het nu niet hoeft. */
+    if (r.volgendestap) {
+      var v = r.volgendestap;
+      var vs = el("section", "ladder");
+      vs.appendChild(el("h3", null, "Als dit bevalt: de volgende stap"));
+      vs.appendChild(el("p", "ladder-wanneer", v.wanneer));
+      vs.appendChild(el("p", "ladder-wat", v.wat));
+      if (v.nognietnodig) vs.appendChild(el("p", "noot", v.nognietnodig));
+      var naarVolgende = el("button", "tekstknop", "Lees werkwijze " + v.naar + " →");
+      naarVolgende.type = "button";
+      naarVolgende.addEventListener("click", function () {
+        naarTab("werkwijzen");
+        tekenWerkwijzen(v.naar);
+      });
+      vs.appendChild(naarVolgende);
+      doel.appendChild(vs);
+    }
+
     var rij = el("div", "knoppenrij");
 
     var naarWw = el("button", "knop", "Lees alles over deze werkwijze");
@@ -1006,6 +1248,13 @@
     var actief = state.wwTab || state.mijnWerkwijze || "1";
     state.wwTab = actief;
     bewaar();
+
+    var figdoel = document.getElementById("werkwijzenfiguur");
+    if (figdoel) {
+      leeg(figdoel);
+      var wfig = figuurBlok(D.figuren && D.figuren.werkwijzen, "figuur-breed");
+      if (wfig) figdoel.appendChild(wfig);
+    }
 
     var tabs = document.getElementById("routetabs");
     leeg(tabs);
@@ -1189,6 +1438,7 @@
     tekenPlan();
     tekenWerkwijzen();
     tekenKist();
+    tekenSessie();
     tekenGids();
   }
 
@@ -1321,6 +1571,38 @@
       });
     });
 
+    if (D.voorbeeldgesprek) {
+      var g = D.voorbeeldgesprek;
+      ix.push({
+        titel: g.kop,
+        tekst: g.intro,
+        zoek: [g.kop, g.intro, g.situatie, g.valkuil, g.slot,
+               g.stappen.map(function (s) { return s.kop + " " + s.jij + " " + s.terug + " " + s.let; }).join(" "),
+               "eerste keer beginnen sessie gesprek voorbeeld stap voor stap hoe begin ik"].join(" "),
+        waar: "Je eerste sessie",
+        doe: function () { naarVak("eerstekeer"); }
+      });
+      g.stappen.forEach(function (s, i) {
+        ix.push({
+          titel: "Stap " + (i + 1) + ": " + s.kop,
+          tekst: s.jij,
+          zoek: s.kop + " " + s.jij + " " + s.terug + " " + s.let,
+          waar: "Je eerste sessie",
+          doe: function () { naarVak("eerstekeer"); }
+        });
+      });
+    }
+
+    D.doel.forEach(function (d) {
+      ix.push({
+        titel: d.planKop,
+        tekst: d.wat,
+        zoek: d.label + " " + d.hulp + " " + d.planKop + " " + d.wat + " " + d.eerst,
+        waar: "Wat wil je doen",
+        doe: function () { naarVak("eerstekeer"); }
+      });
+    });
+
     D.gereedschap.forEach(function (g) {
       ix.push({
         titel: g.waarvoor,
@@ -1342,14 +1624,33 @@
     });
 
     D.bron.forEach(function (b) {
+      var routetekst = (b.routes || []).map(function (r) { return r[0] + " " + r[1]; }).join(" ");
       ix.push({
         titel: "Mijn cursus staat in: " + b.label,
         tekst: b.advies,
-        zoek: b.label + " " + b.advies,
-        waar: "Waar staat je cursus",
-        doe: function () { state.gestart = true; bewaar(); naarTab("gids"); }
+        zoek: b.label + " " + b.advies + " " + routetekst + " " + (b.letop || ""),
+        waar: "Je bestanden klaarzetten",
+        doe: function () {
+          state.gestart = true;
+          state.antwoorden.bron = b.id;
+          state.tussenin = "bron";
+          bewaar();
+          naarTab("gids");
+        }
       });
     });
+
+    if (D.bronMap) {
+      ix.push({
+        titel: D.bronMap.kop,
+        tekst: D.bronMap.kern,
+        zoek: [D.bronMap.kop, D.bronMap.kern, D.bronMap.boom.join(" "),
+               D.bronMap.regels.map(function (r) { return r[0] + " " + r[1]; }).join(" "),
+               "map mappen mappenstructuur hoofdstuk hoofdstukken content contentfolder folder indeling bestandsnaam nummeren"].join(" "),
+        waar: "Je bestanden klaarzetten",
+        doe: function () { openOnderwerp("plat"); }
+      });
+    }
 
     D.materiaal.forEach(function (m) {
       ix.push({
@@ -1456,6 +1757,12 @@
   /* Het naslagwerk is een hub met zeven deuren. Je ziet altijd maar een vak
      tegelijk, zodat de pagina niet uitgroeit tot een muur tekst. */
   var AFDELINGEN = [
+    {
+      vak: "eerstekeer",
+      titel: "Je eerste sessie, stap voor stap",
+      kort: "Eén doorlopend verhaal: wat je typt, wat je terugkrijgt en waar je op let. Begin hier als je nog nooit met AI werkte.",
+      tel: function () { return D.voorbeeldgesprek.stappen.length + " stappen"; }
+    },
     {
       vak: "onderwerpen",
       titel: "De onderwerpen",
@@ -1641,33 +1948,101 @@
 
   /* ---------------- naslag: prompts en gereedschapskist ---------------- */
 
+  /* Eén promptkaart met kopieerknop. Staat in het naslagwerk én in het plan:
+     voor wie nog nooit een gesprek voerde is een zin die hij kan plakken de
+     hele oprit, en die mag niet achter een kaart in het naslagwerk blijven. */
+  function promptKaart(p, nr) {
+    var kaart = el("div", "promptkaart");
+    var kop = el("div", "promptkop");
+    if (nr) kop.appendChild(el("span", "winstnr", String(nr)));
+    kop.appendChild(el("b", null, p.titel));
+    var merk = p.onderwerp ? onderwerpMerk(p.onderwerp) : null;
+    if (merk) kop.appendChild(merk);
+    kaart.appendChild(kop);
+    kaart.appendChild(el("p", "promptwanneer", p.wanneer));
+    kaart.appendChild(el("blockquote", "prompttekst", p.tekst));
+
+    var knop = el("button", "knop knop-stil", "Kopieer");
+    knop.type = "button";
+    knop.addEventListener("click", function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(p.tekst).then(function () {
+          knop.textContent = "Gekopieerd";
+          setTimeout(function () { knop.textContent = "Kopieer"; }, 1800);
+        }, function () { knop.textContent = "Lukte niet"; });
+      }
+    });
+    kaart.appendChild(knop);
+    return kaart;
+  }
+
+  /* De prompts waarmee je begint, op volgorde. */
+  function startPrompts() {
+    return D.prompts.filter(function (p) { return p.start; }).sort(function (x, y) {
+      return x.start - y.start;
+    });
+  }
+
+  /* De drie prompts die bij je doel horen, in de volgorde waarin je ze stelt.
+     Geeft null als er geen doel gekozen is, zodat de vaste starters het overnemen. */
+  function doelPrompts() {
+    var d = mijnDoel();
+    if (!d || !d.prompts) return null;
+    var rij = d.prompts.map(function (id) {
+      return D.prompts.filter(function (p) { return p.id === id; })[0];
+    }).filter(Boolean);
+    return rij.length ? rij : null;
+  }
+
   function tekenPrompts() {
     var lijst = document.getElementById("promptlijst");
     leeg(lijst);
+    D.prompts.forEach(function (p) { lijst.appendChild(promptKaart(p)); });
+  }
 
-    D.prompts.forEach(function (p) {
-      var kaart = el("div", "promptkaart");
-      var kop = el("div", "promptkop");
-      kop.appendChild(el("b", null, p.titel));
-      var merk = p.onderwerp ? onderwerpMerk(p.onderwerp) : null;
-      if (merk) kop.appendChild(merk);
-      kaart.appendChild(kop);
-      kaart.appendChild(el("p", "promptwanneer", p.wanneer));
-      kaart.appendChild(el("blockquote", "prompttekst", p.tekst));
+  /* Eén sessie van begin tot eind. Per stap vier dingen: wat je doet, wat je
+     typt, wat je terugkrijgt en waar je op let. Die laatste twee kolommen zijn
+     waar het om gaat: zonder die is het weer een lijstje tips. */
+  function tekenSessie() {
+    var g = D.voorbeeldgesprek;
+    if (!g) return;
+    document.getElementById("sessie-kop").textContent = g.kop;
+    document.getElementById("sessie-intro").textContent = g.intro;
 
-      var knop = el("button", "knop knop-stil", "Kopieer");
-      knop.type = "button";
-      knop.addEventListener("click", function () {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(p.tekst).then(function () {
-            knop.textContent = "Gekopieerd";
-            setTimeout(function () { knop.textContent = "Kopieer"; }, 1800);
-          }, function () { knop.textContent = "Lukte niet"; });
-        }
-      });
-      kaart.appendChild(knop);
-      lijst.appendChild(kaart);
+    var doel = document.getElementById("sessie-inhoud");
+    leeg(doel);
+
+    if (g.situatie) {
+      var sit = el("div", "advieslijn buiten sessiesituatie");
+      sit.appendChild(el("b", null, "Waarmee je begint"));
+      rijk(sit, g.situatie);
+      doel.appendChild(sit);
+    }
+    if (g.duur) doel.appendChild(el("p", "sessieduur", g.duur));
+
+    var lijst = el("ol", "sessielijst");
+    g.stappen.forEach(function (s) {
+      var li = el("li", "sessiestap");
+      li.appendChild(el("b", "sessiestapkop", T(s.kop)));
+      [["Wat je doet", s.jij, "jij"], ["Wat je terugkrijgt", s.terug, "terug"], ["Waar je op let", s.let, "let"]]
+        .forEach(function (r) {
+          if (!r[1]) return;
+          var regel = el("div", "sessieregel sessie-" + r[2]);
+          regel.appendChild(el("b", null, r[0]));
+          rijk(regel, r[1]);
+          li.appendChild(regel);
+        });
+      lijst.appendChild(li);
     });
+    doel.appendChild(lijst);
+
+    if (g.valkuil) {
+      var vk = el("div", "advieslijn vragen letop");
+      vk.appendChild(el("b", null, "De fout die iedereen maakt"));
+      rijk(vk, g.valkuil);
+      doel.appendChild(vk);
+    }
+    if (g.slot) doel.appendChild(el("p", "sessieslot", g.slot));
   }
 
   function tekenKist() {
@@ -1761,6 +2136,7 @@
     if (naam === "naslag") {
       tekenToolkiezer();
       tekenNaslagVast();
+      tekenSessie();   /* staat vol {projectplek}: hertekenen met de tool van nu */
       tekenNaslagHub();
       toonVak(vak || "");
     } else {
@@ -1802,6 +2178,7 @@
   tekenOutputs();
   tekenValkuilen("");
   tekenPrompts();
+  tekenSessie();
   tekenKist();
   tekenRandgevallen();
   tekenVoorbeelden();

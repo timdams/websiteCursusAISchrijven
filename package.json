@@ -1,0 +1,11 @@
+{
+  "name": "cursus-schrijven-met-ai",
+  "private": true,
+  "description": "Generatorscripts voor de tekeningen van de site (Excalidraw-stijl, rough.js).",
+  "devDependencies": {
+    "@fontsource/caveat": "^5.0.0",
+    "@resvg/resvg-js": "^2.6.0",
+    "jsdom": "^24.0.0",
+    "roughjs": "^4.6.6"
+  }
+}
