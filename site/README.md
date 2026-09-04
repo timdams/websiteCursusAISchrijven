@@ -12,7 +12,7 @@ gekozen AI-tool. Daarnaast zit alles achter een klein menu:
 | Menu | Wat het is |
 |---|---|
 | De gids | het welkomstscherm en de vragen, één per scherm, met voortgangsbolletjes en een terugknop |
-| Jouw plan | verschijnt na de gids: jouw werkwijze, de vier snelle winsten in de termen van jouw tool, waarom je die doet, de eerste drie prompts om te plakken, wat je eerst doet, en wat er uit je antwoorden kwam |
+| Jouw plan | verschijnt na de gids: je doel bovenaan, je werkwijze in één regel, de vier snelle winsten in de termen van jouw tool, de eerste drie prompts om te plakken, en onder "Als je verder wil" de rest achter een vouw |
 | Naslagwerk | een zoekveld over alles, en daaronder de deuren in groepen, met boven elke groep de vraag die ze beantwoordt. Je ziet er altijd maar een onderdeel tegelijk |
 | Valkuilen | de meest voorkomende fouten, doorzoekbaar. Elke klacht wijst naar het onderwerp dat overgeslagen is |
 | Voorbeelden | de galerij met externe voorbeelden, met keywords per kaart. Groeit nog |
@@ -60,6 +60,34 @@ naslagwerk opent, dus die regeltjes lopen nooit achter.
 Een open vak staat in de adresbalk (`#naslag/prompts`), zodat je een onderdeel kan doorsturen.
 Het zoekveld staat boven de kaarten en zoekt door alles heen; een treffer opent het juiste vak.
 
+## Jouw plan: één lijn, en de rest achter een vouw
+
+Het plan was een stapel kaders: je doel in een kader, je werkwijze in een kader, de vier stappen als
+vier kaarten met een schaduw, en daaronder nog vijf blokjes naast elkaar. Alles stond open en alles
+riep even hard.
+
+Wat je nodig hebt om vandaag te beginnen, staat nu zonder kader op de pagina:
+
+1. de kop met je doel (`planKop`, `wat`, `eerst`). Alleen de zin "Waar je vandaag begint" krijgt
+   een streep in de accentkleur
+2. je werkwijze als één regel: nummer, naam, pitch en een knop naar de werkwijzenpagina. De
+   volledige kaart met haar punten en routes staat daar, en stond hier een tweede keer
+3. de vier stappen uit `snelwinst` als één kolom met een lijn ertussen, met de regel in de termen
+   van jouw tool eronder. Klikken opent het onderwerpvenster
+4. de drie prompts, en daaronder de twee doorverwijzingen op één regel: je eerste sessie, en alle
+   prompts in het naslagwerk
+
+De rest staat onder "Als je verder wil" in een rij `<details>`, dicht: hoe je je werkwijze opzet
+(met haar `routes` en links), hoe het bij jouw tool heet (met `wistjedat`), wat er uit je antwoorden
+kwam, waarom je dit doet, en de volgende werkwijze. `planVouw(titel, icoon)` in `app.js` maakt er
+een; het element krijgt zijn binnenkant mee als `.binnen`. De vouwen staan tegen elkaar aan in één
+kader, zodat het er één is en geen zes.
+
+Wat in zo'n vouw staat, kwam uit een eigen kader. Daarbinnen krijgt het er geen tweede:
+`.planvouw .blokje`, `.planvouw .waarom` en `.planvouw .wistjedat` halen de rand en de achtergrond
+weg. `assistentKaart(a, false)` en `waaromBlok(true)` laten om dezelfde reden hun kop weg, want de
+vouw draagt die titel al. Op papier staat elke vouw open (`@media print`).
+
 ## Tool-specifieke teksten
 
 De toolvraag kent zes antwoorden: **Claude, ChatGPT, Gemini, Microsoft Copilot, iets anders
@@ -76,8 +104,11 @@ De toolvraag kent zes antwoorden: **Claude, ChatGPT, Gemini, Microsoft Copilot, 
   bestanden, je regels en een skill (velden `plek`, `regels`, `skill` per assistent)
 - een assistent kan een optioneel blok `wistjedat` hebben: iets dat gebruikers van die tool
   waarschijnlijk al hebben maar niet kennen. Het verschijnt volledig (met schermafbeelding) in de
-  toolkiezer van het naslagwerk, en verkort in het plan met een knop ernaartoe. Microsoft Copilot
-  heeft er een: de aparte Copilot-app met de knop "Leren" en de hulpprogramma's voor onderwijs
+  toolkiezer van het naslagwerk, en verkort in het plan met een knop ernaartoe. Het veld mag ook
+  een lijst blokken zijn: in de toolkiezer staan ze dan alle onder elkaar, in het plan enkel het
+  eerste. Microsoft Copilot heeft er twee: de aparte Copilot-app met de knop "Leren" en de
+  hulpprogramma's voor onderwijs, en Copilot Notebooks. Een blok kan zijn eigen `links` dragen,
+  die onderaan het blok verschijnen (enkel in de toolkiezer, niet in het plan)
 
 - een assistent kan een `vraaglabel` hebben: het label dat in de toolvraag staat, waar de gewone
   `naam` te kort is om aan te klikken. "Nog geen" heet daar "Nog geen, of ik weet het nog niet".
@@ -170,7 +201,7 @@ hoort het feit gewoon in de zin: wie op 3 uitkomt, heeft 1 nooit gelezen.
 
 ## De kaders en hun pictogrammen
 
-Een kader is elk blok dat een eigen titel draagt: een adviesregel, een let-op, het doel bovenaan je
+Een kader is elk blok dat een eigen titel draagt: een adviesregel, een let-op, een vouw onderaan je
 plan, de blokjes met stappen, het waarom-blok, een randgeval. Elke titel opent met een pictogram, en
 dat pictogram zegt welk soort blok eronder staat: `verboden` bij wat je buiten laat, `waarschuwing`
 bij een valkuil, `weegschaal` bij een afweging, `vink` bij wat wel mag, `roos` bij de kern, `lamp`
@@ -187,8 +218,8 @@ De iconen zelf staan in `ICONEN` in `app.js`: vierentwintig paden op een raster 
 code en niet in een bestand, want het zijn pictogrammen en geen figuren. Ze nemen hun kleur over van
 het kader waar ze in staan. Elk kader zet daarvoor twee variabelen in `styles.css`: `--kk` is de
 lijnkleur, `--kz` de kleur van het vierkantje eronder. `.advieslijn.vragen` zet `--kk` op oker,
-`.advieslijn.ok` op groen, en een kader dat zelf op `--accent-zacht` staat (het waarom-blok, de
-sessiewijzer) zet `--kz` op `--kaart`, anders valt het vierkantje weg tegen zijn eigen achtergrond.
+`.advieslijn.ok` op groen, en een kader dat zelf op `--accent-zacht` staat (het waarom-blok op het
+welkomscherm) zet `--kz` op `--kaart`, anders valt het vierkantje weg tegen zijn eigen achtergrond.
 Alles staat in `em`, zodat het icoon meegroeit met de kop waar het naast staat: bij de kleine
 kopjes in een blokje wordt het vanzelf klein.
 
@@ -206,10 +237,12 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
 - een werkwijze krijgt haar pagina uit `voorwie`, `pitch`, `punten`, `installeren`, `stappen`,
   `overslaan` en `onderwerpen` (een zin per onderwerp)
 - een werkwijze kan daarnaast `routes` dragen: twee manieren om hetzelfde te doen, met `kop`,
-  `items` (`naam`, `wat`, `hoe`, `uitleg`), een `noot` en een `zonderterminal`. Alleen werkwijze 2
-  heeft ze, want daar beslist wat eruit moet komen of je pandoc of Quarto installeert.
-  `routesBlok()` in `app.js` tekent ze, op de werkwijzenpagina en in het plan; een werkwijze
-  zonder `routes` krijgt niets extra
+  `items` (`naam`, `wat`, `hoe`, `uitleg`), een `noot` en een `zonderterminal`. Werkwijze 2 en 3
+  hebben ze. Bij 2 beslist wat eruit moet komen of je pandoc of Quarto installeert; bij 3 beslist
+  of je een commandovenster wil of niet, want Cowork komt aan een map op je schijf vanuit de
+  Claude-app en Claude Code doet dat vanuit een commandovenster. `routesBlok()` in `app.js` tekent
+  ze, op de werkwijzenpagina en in de vouw "Zo zet je werkwijze N op"; een werkwijze zonder
+  `routes` krijgt niets extra
 - een onderwerp krijgt zijn venster uit `watis`, `kern`, `tips`, `gevorderd` en optioneel een `tabel`
 - elk formaat in `bron` (Word, PowerPoint, pdf, scan, leerplatform ...) krijgt naast `advies` twee
   `routes` (`[kop, tekst]`: een zonder installatie en een met pandoc) en een `letop` met
@@ -219,28 +252,40 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
   `kern`, `boom` (lijst regels, letterlijk getoond), `regels` (`[kop, uitleg]`) en `noot`. Functie
   `bronMapBlok()` tekent ze, zowel in die tussenstap als in het onderwerp "Werk in platte tekst"
 - een assistent krijgt zijn kaartjes uit `plek`, `regels`, `skill`, `inmap`, `waar` en
-  `termen.regelsbestand`, en eventueel `wistjedat` met `kop`, `tekst` (lijst alinea's),
-  `afbeelding` (een bestand uit `assets/`), `alt`, `bijschrift`, `slot` en `planregel`
+  `termen.regelsbestand`, en eventueel `wistjedat` (een blok of een lijst blokken) met `kop`,
+  `tekst` (lijst alinea's), `afbeelding` (een bestand uit `assets/`), `alt`, `bijschrift`, `slot`,
+  `planregel` en `links`
 - `waarom` is de opbrengst van de hele aanpak (jezelf niet herhalen, ver komen op een gratis
   account, werk dat achterblijft): een lijst `kop` + `tekst`, met `waaromKop` en `waaromNoot`
-  erboven. Functie `waaromBlok()` in `app.js` tekent ze, onderaan het welkomscherm en onder de
-  vier stappen in het plan. Elk item van `snelwinst` heeft daarnaast een eigen `waarom`-regel,
-  zodat de reden naast het ding staat waar ze over gaat
+  erboven. Functie `waaromBlok()` in `app.js` tekent ze, onderaan het welkomscherm en in het plan
+  achter de vouw "Waarom je dit doet"; `waaromBlok(true)` laat daar de kop weg, want de vouw draagt
+  die al. Elk item van `snelwinst` heeft daarnaast een eigen `waarom`-regel, zodat de reden naast
+  het ding staat waar ze over gaat
 - elke prompt heeft een `id`. Een prompt met een `start`-nummer (1, 2, 3) is de standaardoprit;
   koos je een doel, dan kiezen de `prompts`-id's van dat doel welke drie er in het plan staan
   (`doelPrompts()` valt terug op `startPrompts()`). Ze staan onder `promptPlanKop` en
   `promptPlanNoot`. Achter een kaart in het naslagwerk vindt een beginner ze niet.
   `promptKaart()` in `app.js` tekent één kaart, op beide plekken dezelfde
-- elk item in `doel` heeft `label` en `hulp` (voor de vraag), `planKop`, `wat` en `eerst` (de kaart
-  bovenaan het plan) en `prompts` (id's uit `prompts`). Een doel bijzetten is dus één item, zonder
+- elk item in `doel` heeft `label` en `hulp` (voor de vraag), `planKop`, `wat` en `eerst` (de kop
+  van het plan) en `prompts` (id's uit `prompts`). Een doel bijzetten is dus één item, zonder
   aan `app.js` te komen
 - `voorbeeldgesprek` is één sessie van begin tot eind: `intro`, `situatie`, `tweedekeer`,
   `stappen` (elk met `kop`, `jij`, `terug`, `let`), `valkuil` en `slot`. Het is er voor wie de losse
   onderdelen snapt maar niet weet hoe een gesprek verloopt, en het staat bewust als één verhaal
   met één hoofdstuk, niet als tips naast elkaar. `tekenSessie()` tekent het; omdat er
   `{projectplek}` in staat, hertekent `naarTab()` het telkens je het naslagwerk opent
-- een werkwijze kan een `volgendestap` hebben (`naar`, `wanneer`, `wat`, `nognietnodig`): de ladder
-  onderaan het plan. Werkwijze 4 heeft er geen, want daar houdt het op
+- een werkwijze kan een `volgendestap` hebben (`naar`, `wanneer`, `wat`, `nognietnodig`): de laatste
+  vouw onderaan het plan. Werkwijze 4 heeft er geen, want daar houdt het op
+- een valkuil draagt naast `klacht`, `fix` en `onderwerp` ook `verder`, `links` en `toollink`.
+  `verder` is de lijst wegwijzers naar een plek op deze site: `{ naar, id, wat }`, met `naar`
+  gelijk aan `onderwerp`, `prompt`, `werkwijze`, `vak` (een vak van het naslagwerk) of `tab`.
+  `interneBestemming()` in `app.js` haalt de naam van die bestemming uit de data, dus een onderwerp
+  dat hernoemd wordt verandert hier vanzelf mee; `wat` is de regel eronder en zegt wat je daar
+  vindt. Een prompt als bestemming springt naar de kaart zelf (`naarPrompt()`), die dan even
+  oplicht. `links` zijn de bladzijden van de makers. `toolLinks()` draait daar niet over:
+  dat vervangt één merklink door de zes van je eigen merk, en zes kaartjes onder één klacht is een
+  muur. De valkuil noemt met `toollink` een rol (`regels`, `project` of `skill`), en `rollen` bij
+  je assistent zegt welke bladzijde daarbij hoort. `verderBlok()` tekent de twee rijen
 - het zoekveld indexeert alles in `bouwIndex()` in `app.js`
 - `colofon` is het regelsbestand waarmee deze site geschreven is, plus wat er bij het maken
   misging: `intro`, `misliepKop` en `misliep` (lijst alinea's), `regelsKop` en `regelsIntro`

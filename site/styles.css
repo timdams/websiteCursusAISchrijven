@@ -900,6 +900,48 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
 .geen-treffer { color: var(--inkt-stil); font-style: italic; }
 
+/* ---------- wegwijzers onder een valkuil ---------- */
+
+.probleem .verder { margin-top: 1rem; }
+
+.probleem .verderkop {
+  margin: 0 0 .45rem;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--inkt-stil);
+  font-weight: 700;
+}
+
+.probleem .linkjes + .verderkop { margin-top: 1rem; }
+
+/* een knop die zich als linkje voordoet: zelfde kaartje, pijl naar rechts */
+button.linkje {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.linkje.intern { border-left: 3px solid var(--accent-zacht); }
+.linkje.intern:hover { border-left-color: var(--accent); }
+.linkje.intern b::after { content: " \2192"; }
+
+/* de promptkaart waar je vanuit een valkuil op uitkomt, licht even op */
+.promptkaart.aangewezen {
+  border-color: var(--accent);
+  animation: aanwijzen 2.4s ease-out 1;
+}
+
+@keyframes aanwijzen {
+  from { box-shadow: 0 0 0 4px var(--accent-zacht); }
+  to   { box-shadow: 0 0 0 4px rgba(0, 0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promptkaart.aangewezen { animation: none; box-shadow: 0 0 0 4px var(--accent-zacht); }
+}
+
 /* ---------- prompts ---------- */
 
 .promptlijst {
@@ -936,40 +978,184 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 .planprompts { margin: 2rem 0 0; }
 .planprompts h3 { margin: 0 0 .3rem; }
 .planprompts > .noot { margin: 0; max-width: 46rem; }
-.planprompts .promptlijst { margin-top: 1rem; }
-.planprompts .tekstknop { margin-top: .9rem; }
+.planprompts .promptlijst { margin-top: 1rem; align-items: stretch; }
+
+.planvoet {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .3rem 1.5rem;
+  margin-top: 1.1rem;
+}
+
+.planvoet .noot { flex: 1 1 100%; margin: 0 0 .3rem; }
 .promptkop .winstnr { flex: 0 0 auto; }
 
-/* ---------- het plan opent met jouw doel ---------- */
+/* ---------- jouw plan: één lijn, en de rest achter een vouw ---------- */
+/* Het plan was een stapel kaders die alle even hard riepen: je doel in een
+   kader, je werkwijze in een kader, vier kaarten, en daaronder nog vijf
+   blokjes. Wat je vandaag nodig hebt staat nu op papier zonder kader. Eén zin
+   krijgt een streep, en dat is de zin waar je vandaag mee begint. */
 
-.doelkaart {
-  border: 1px solid var(--lijn);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 1.1rem 1.3rem 1.2rem;
-  background: var(--kaart);
-  margin-bottom: 1.1rem;
+.plankop { margin: 0 0 .4rem; }
+.plandoel { font-size: 1.6rem; margin: 0 0 .5rem; letter-spacing: -.01em; }
+.plandoel-wat { margin: 0; line-height: 1.6; max-width: 46rem; }
+
+.planeerst {
+  margin: .9rem 0 0;
+  border-left: 3px solid var(--accent);
+  padding: .1rem 0 .1rem .9rem;
+  font-size: .97rem;
+  max-width: 46rem;
 }
 
-.doelkaart { --kk: var(--accent); }
-.doelkop { margin: 0 0 .5rem; font-size: 1.3rem; }
-.doelwat { margin: 0; line-height: 1.6; max-width: 46rem; }
-.doeleerst { margin: .8rem 0 0; font-size: .95rem; max-width: 46rem; }
-.doeleerst b { color: var(--accent-diep); }
+.planeerst b { color: var(--accent-diep); }
+
+/* De werkwijze in één regel: de naam, waar ze op neerkomt, en de deur naar de
+   volledige kaart. Die kaart staat op de werkwijzenpagina en hoeft hier niet
+   nog eens te staan. */
+.planww {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .4rem 1.5rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--lijn);
+  border-bottom: 1px solid var(--lijn);
+  padding: .9rem 0;
+  margin: 1.6rem 0 0;
+}
+
+.planww-tekst { flex: 1 1 22rem; min-width: 0; }
+.planww-naam { margin: 0; display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
+.planww-naam b { font-size: 1.05rem; color: var(--inkt-kop); }
+
+.planww-nr {
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent-diep);
+}
+
+.planww-pitch { margin: .1rem 0 0; font-size: .93rem; color: var(--inkt-stil); max-width: 46rem; }
+.planww .tekstknop { flex: 0 0 auto; }
+
+/* De vier stappen als één weg: een kolom met een lijn ertussen. Vier kaarten
+   naast elkaar met een schaduw eronder vechten om je aandacht, en dan lees je
+   er geen enkele. */
+.planstapkop { margin: 2.2rem 0 .2rem; }
+
+.planstappen { list-style: none; margin: 0; padding: 0; }
+
+.planstap {
+  display: flex;
+  align-items: flex-start;
+  gap: .9rem;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--lijn);
+  padding: .95rem .6rem .95rem 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.planstap:hover { background: var(--kaart); }
+.planstap:hover .planstap-pijl { color: var(--accent); transform: translateX(3px); }
+
+.planstap-tekst { flex: 1; min-width: 0; max-width: 46rem; }
+.planstap-tekst > b { display: block; color: var(--inkt-kop); font-size: 1.02rem; }
+.planstap-wat { display: block; color: var(--inkt-stil); font-size: .92rem; margin-top: .1rem; }
+.planstap-onder { display: block; margin-top: .35rem; }
+.planstap-onder .winstdetail { margin-top: 0; font-weight: 400; }
+.planstap-onder .winstdetail b { font-weight: 700; }
+
+.planstap-onder .winstwaarom {
+  display: block;
+  margin-top: .15rem;
+  color: var(--inkt-stil);
+  font-size: .88rem;
+  font-style: italic;
+}
+
+.planstap-pijl {
+  flex: none;
+  align-self: flex-start;
+  margin-top: .1rem;
+  color: var(--lijn-hard);
+  transition: transform .12s, color .12s;
+}
+
+/* ---------- als je verder wil: de vouwen onderaan het plan ---------- */
+/* Zes blokjes onder elkaar zijn zes dingen die je moet lezen. Dezelfde zes als
+   een titel met een pijltje zijn zes regels, en je klikt de regel open die op
+   jou slaat. Ze staan tegen elkaar aan, zodat het één blok is en geen zes. */
+
+.planmeer { margin: 2.6rem 0 0; }
+.planmeerkop { margin: 0 0 .6rem; }
+
+.planvouw {
+  border: 1px solid var(--lijn);
+  border-bottom: 0;
+  background: var(--kaart);
+}
+
+.planvouw:first-of-type { border-radius: var(--radius) var(--radius) 0 0; }
+
+.planvouw:last-of-type {
+  border-bottom: 1px solid var(--lijn);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.planvouw summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75rem 1.1rem;
+  list-style: none;
+}
+
+.planvouw summary::-webkit-details-marker { display: none; }
+.planvouw summary:hover { background: var(--papier); }
+.planvouw summary:hover .planvouw-pijl { color: var(--accent); }
+
+.planvouw-kop { font-weight: 600; font-size: .98rem; align-items: center; }
+.planvouw-pijl { flex: none; color: var(--inkt-stil); font-size: .8rem; transition: transform .12s, color .12s; }
+.planvouw[open] .planvouw-pijl { transform: rotate(180deg); }
+.planvouw[open] summary { border-bottom: 1px solid var(--lijn); }
+
+.planvouw-binnen { padding: 1rem 1.1rem 1.2rem; }
+.planvouw-binnen > *:first-child { margin-top: 0; }
+.planvouw-binnen p { max-width: 46rem; }
+.planvouw .tekstknop { margin-top: .9rem; }
+.planvouw .stappenlijst { margin: 0; }
+.planvouw .toolkaart.kaal { margin: 0; }
+
+/* Wat in een vouw staat, kwam uit een eigen kader. Daarbinnen is dat kader
+   overbodig: de vouw is het kader. */
+.planvouw .blokje,
+.planvouw .waarom,
+.planvouw .wistjedat {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 1.4rem 0 0;
+}
+
+.planvouw .wistjedat { border-left: 3px solid var(--accent); padding-left: .9rem; }
+.planvouw .wwroutes { margin-top: 1.2rem; }
+
+.planregel { margin: .9rem 0 0; font-size: .94rem; }
+.planregel b { color: var(--inkt-kop); }
+.planlijst { margin: 0; padding-left: 1.1rem; font-size: .94rem; }
+.planlijst li { margin-bottom: .35rem; }
 
 /* ---------- je eerste sessie ---------- */
-
-.sessiewijzer {
-  margin: 1.6rem 0 0;
-  padding: 1rem 1.2rem 1.1rem;
-  border: 1px dashed var(--lijn-hard);
-  border-radius: var(--radius);
-  background: var(--accent-zacht);
-}
-
-.sessiewijzer { --kk: var(--accent); --kz: var(--kaart); }
-.sessiewijzer .kaderkop { font-size: 1.05rem; }
-.sessiewijzer p { margin: .3rem 0 .8rem; font-size: .93rem; max-width: 42rem; }
 
 .sessiesituatie { margin-bottom: .9rem; }
 .sessieduur { color: var(--inkt-stil); font-size: .9rem; margin: 0 0 1.4rem; max-width: 46rem; }
@@ -1025,19 +1211,8 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
 /* ---------- de ladder: als dit bevalt ---------- */
 
-.ladder {
-  margin: 2rem 0 0;
-  padding: 1.1rem 1.3rem 1.2rem;
-  border: 1px solid var(--lijn);
-  border-radius: var(--radius);
-  background: var(--papier);
-}
-
-.ladder { --kk: var(--accent); }
-.ladder h3 { margin: 0 0 .4rem; }
 .ladder-wanneer { margin: 0 0 .5rem; color: var(--accent-diep); font-size: .95rem; max-width: 46rem; }
 .ladder-wat { margin: 0 0 .6rem; font-size: .95rem; line-height: 1.6; max-width: 46rem; }
-.ladder .noot { margin: 0 0 .7rem; max-width: 46rem; }
 
 /* ---------- nog geen tool: het keuzescherm ---------- */
 
@@ -1103,34 +1278,8 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
 .alle-links-kop { margin-top: 2.5rem; }
 
-/* ---------- snelle winst: de vier kaarten ---------- */
-
-.winst {
-  display: grid;
-  gap: .8rem;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  align-items: stretch;
-  margin: 1rem 0 2.5rem;
-}
-
-.winstkaart {
-  display: flex;
-  align-items: flex-start;
-  gap: .8rem;
-  text-align: left;
-  background: var(--kaart);
-  border: 1px solid var(--lijn);
-  border-top: 4px solid var(--accent);
-  border-radius: var(--radius);
-  box-shadow: var(--schaduw);
-  padding: 1.1rem 1.2rem;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-  transition: transform .12s, border-color .12s;
-}
-
-.winstkaart:hover { transform: translateY(-2px); border-color: var(--accent); }
+/* ---------- het nummer voor een stap ---------- */
+/* Staat in het plan, op het welkomscherm en voor een startprompt. */
 
 .winstnr {
   flex: 0 0 1.7rem;
@@ -1144,11 +1293,6 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   font-size: .95rem;
   margin-top: .1rem;
 }
-
-.winsttekst { flex: 1; }
-.winsttekst b { display: block; color: var(--inkt-kop); font-size: 1.02rem; margin-bottom: .25rem; }
-.winsttekst span { display: block; color: var(--inkt-stil); font-size: .9rem; }
-.winstwaarom { margin-top: .45rem; font-style: italic; }
 
 /* ---------- waarom je dit doet ---------- */
 
@@ -1771,6 +1915,7 @@ dialog.wwvenster { max-width: 34rem; }
 }
 
 .wistjedat .knop-klein { margin-top: .8rem; }
+.wistjedat .linkjes { margin-top: .9rem; }
 
 .knop-klein { padding: .4rem .8rem; font-size: .88rem; }
 
@@ -1889,7 +2034,9 @@ dialog.wwvenster { max-width: 34rem; }
 @media print {
   .top, .voet, .knoppenrij, .voortgang, .zoek { display: none !important; }
   body { background: #fff; font-size: 11pt; }
-  .kaart, .routekaart, .blokje, .advies, .probleem, .kist-rij, .winstkaart, .wistjedat, .waarom { box-shadow: none; break-inside: avoid; }
+  .kaart, .routekaart, .blokje, .advies, .probleem, .kist-rij, .planvouw, .wistjedat, .waarom { box-shadow: none; break-inside: avoid; }
+  .planvouw-binnen { display: block !important; }
+  .planvouw-pijl, .planstap-pijl { display: none; }
   .figuur { break-inside: avoid; }
   .probleem .binnen { display: block !important; }
   .kaderchip { background: none; padding: 0; }

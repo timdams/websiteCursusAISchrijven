@@ -292,7 +292,9 @@
   function assistentKaart(a, titel) {
     if (!a) return null;
     var wrap = el("div", "toolkaart");
-    wrap.appendChild(kaderKop("h3", null, titel || ("Bij " + a.naam), "vonk"));
+    /* titel false: de kop staat er al boven (in het plan is dat de vouw zelf),
+       en dan blijven alleen de drie regels over. */
+    if (titel !== false) wrap.appendChild(kaderKop("h3", null, titel || ("Bij " + a.naam), "vonk"));
     [
       ["je contextmap", a.plek],
       ["je regels", a.regels],
@@ -307,11 +309,26 @@
   }
 
   /* "Wist je dat" bij een tool: iets dat je waarschijnlijk al hebt maar niet kent.
-     Optioneel per assistent in data.js; staat er niets, dan komt er niets. */
-  function wistjedatBlok(a, compact) {
+     Optioneel per assistent in data.js, één blok of een lijst; staat er niets,
+     dan komt er niets. */
+  function wistjedatLijst(a) {
     var w = a && a.wistjedat;
-    if (!w) return null;
+    return w ? [].concat(w) : [];
+  }
 
+  /* In het plan staat alleen het eerste blok, en verkort: daar is de knop
+     "Lees hoe dat werkt" die naar de rest wijst. In het naslagwerk staan ze
+     allemaal, achter elkaar. */
+  function wistjedatBlok(a, compact) {
+    var lijst = wistjedatLijst(a);
+    if (!lijst.length) return null;
+    if (compact) return wistjedatKaart(lijst[0], true);
+    var frag = document.createDocumentFragment();
+    lijst.forEach(function (w) { frag.appendChild(wistjedatKaart(w, false)); });
+    return frag;
+  }
+
+  function wistjedatKaart(w, compact) {
     var wrap = el("div", "wistjedat" + (compact ? " compact" : ""));
     wrap.appendChild(kaderKop("p", "wistjedat-label", "Wist je dat", "vonk"));
     wrap.appendChild(el("h3", null, w.kop));
@@ -339,6 +356,15 @@
     }
 
     if (!compact && w.slot) wrap.appendChild(el("p", "wistjedat-slot", w.slot));
+
+    if (!compact && w.links && w.links.length) {
+      var linkjes = el("div", "linkjes");
+      w.links.forEach(function (id) {
+        var k = linkKaart(id);
+        if (k) linkjes.appendChild(k);
+      });
+      wrap.appendChild(linkjes);
+    }
     return wrap;
   }
 
@@ -866,9 +892,9 @@
   }
 
   /* waarom je die vier dingen doet; staat op het welkomscherm en onder je plan */
-  function waaromBlok() {
-    var vak = el("section", "waarom");
-    vak.appendChild(kaderKop("h3", "waarom-kop", D.waaromKop, "kompas", true));
+  function waaromBlok(zonderKop) {
+    var vak = el("section", "waarom" + (zonderKop ? " kaal" : ""));
+    if (!zonderKop) vak.appendChild(kaderKop("h3", "waarom-kop", D.waaromKop, "kompas", true));
     vak.appendChild(rijk(el("p", "waarom-noot"), D.waaromNoot));
     var lijst = el("ul", "waarom-lijst");
     D.waarom.forEach(function (w) {
@@ -1304,6 +1330,27 @@
 
   /* ---------------- jouw plan ---------------- */
 
+  /* Eén vouw uit de rij onderaan het plan: een titel met haar pictogram, en de
+     inhoud eronder pas als je klikt. Het element krijgt zijn binnenkant als
+     eigenschap mee, zodat de plek waar je in vult niet apart hoeft rond te
+     reizen. */
+  function planVouw(titel, icoon) {
+    var det = el("details", "planvouw");
+    var sum = el("summary");
+    sum.appendChild(kaderKop("span", "planvouw-kop", titel, icoon));
+    sum.appendChild(el("span", "planvouw-pijl", "▾"));
+    det.appendChild(sum);
+    det.binnen = el("div", "planvouw-binnen");
+    det.appendChild(det.binnen);
+    return det;
+  }
+
+  /* Het plan stond ooit als een stapel kaders onder elkaar: je doel in een
+     kader, je werkwijze in een kader, de vier stappen als vier kaarten, en
+     daaronder nog vijf blokjes die alle even hard riepen. Nu loopt er één lijn
+     door de pagina (je doel, je werkwijze in één regel, de vier stappen, de
+     zinnen om te plakken) en staat de rest in een rij vouwen onderaan. Er is
+     niets geschrapt; het staat alleen niet meer allemaal tegelijk open. */
   function tekenPlan() {
     var doel = document.getElementById("plan");
     leeg(doel);
@@ -1323,69 +1370,80 @@
 
     var r = D.werkwijzen[nr];
     var a = mijnAssistent();
-
-    var kopwrap = el("div");
-    kopwrap.appendChild(el("p", "vraagnr", "Jouw plan" + (a && !a.geenaccount ? " · met " + a.naam : "")));
+    var doelnu = mijnDoel();
 
     /* Het plan opent met wat jij wil doen, niet met de werkwijze waar je in
-       terechtkwam. De werkwijze is het middel; dit is waarvoor je kwam. */
-    var doelnu = mijnDoel();
+       terechtkwam. De werkwijze is het middel; dit is waarvoor je kwam. Geen
+       kader eromheen: dit is de kop van de pagina. */
+    var kop = el("header", "plankop");
+    kop.appendChild(el("p", "vraagnr", "Jouw plan" + (a && !a.geenaccount ? " · met " + a.naam : "")));
+    kop.appendChild(el("h2", "plandoel", doelnu ? doelnu.planKop : "Zo begin je"));
     if (doelnu) {
-      var dk = el("div", "doelkaart");
-      dk.appendChild(kaderKop("h2", "doelkop", doelnu.planKop, "vlag", true));
-      dk.appendChild(rijk(el("p", "doelwat"), doelnu.wat));
+      kop.appendChild(rijk(el("p", "plandoel-wat"), doelnu.wat));
       if (doelnu.eerst) {
-        var eerst = el("p", "doeleerst");
+        var eerst = el("p", "planeerst");
         eerst.appendChild(el("b", null, "Waar je vandaag begint: "));
         rijk(eerst, doelnu.eerst);
-        dk.appendChild(eerst);
+        kop.appendChild(eerst);
       }
-      kopwrap.appendChild(dk);
     }
+    doel.appendChild(kop);
 
-    var kaart = el("div", "routekaart");
-    var kop = el("div", "routekop");
-    kop.appendChild(el("span", "routeletter", "Werkwijze " + r.nr));
-    kop.appendChild(el("h2", "routenaam", r.naam));
-    kaart.appendChild(kop);
-    kaart.appendChild(rijk(el("p", "routepitch"), r.pitch));
-    kaart.appendChild(rijk(el("p", "routeuitleg"), r.uitleg));
-    var ul = el("ul");
-    r.punten.forEach(function (p) { ul.appendChild(rijk(el("li"), p)); });
-    kaart.appendChild(ul);
-    if (r.slot) kaart.appendChild(rijk(el("p", "routeslot"), r.slot));
-    var rb1 = routesBlok(r);
-    if (rb1) kaart.appendChild(rb1);
-    kopwrap.appendChild(kaart);
-    doel.appendChild(kopwrap);
+    /* De werkwijze als één regel. De volledige kaart met haar punten en routes
+       staat op de werkwijzenpagina, en de knop ernaartoe staat ernaast: twee
+       keer hetzelfde tonen is wat deze pagina druk maakte. */
+    var ws = el("div", "planww");
+    var wt = el("div", "planww-tekst");
+    var wnaam = el("p", "planww-naam");
+    wnaam.appendChild(el("span", "planww-nr", "Werkwijze " + r.nr));
+    wnaam.appendChild(el("b", null, r.naam));
+    wt.appendChild(wnaam);
+    wt.appendChild(rijk(el("p", "planww-pitch"), r.pitch));
+    ws.appendChild(wt);
+    var wknop = el("button", "tekstknop", "Lees alles over werkwijze " + r.nr + " →");
+    wknop.type = "button";
+    wknop.addEventListener("click", function () { naarTab("werkwijzen"); tekenWerkwijzen(r.nr); });
+    ws.appendChild(wknop);
+    doel.appendChild(ws);
 
-    /* de vier stappen om vandaag te beginnen, in de termen van jouw tool */
-    doel.appendChild(el("h3", null, "Vandaag beginnen: vier stappen"));
-    var strip = el("div", "winst");
+    /* de vier stappen om vandaag te beginnen, in de termen van jouw tool. Eén
+       kolom met een lijn ertussen: zo is het een weg, en geen vier kaarten die
+       om je aandacht vechten. */
+    doel.appendChild(el("h3", "planstapkop", "Wat je opzet: vier stappen"));
+    var stappen = el("ol", "planstappen");
     D.snelwinst.forEach(function (w, i) {
-      var knop = el("button", "winstkaart");
+      var li = el("li");
+      var knop = el("button", "planstap");
       knop.type = "button";
       knop.appendChild(el("span", "winstnr", String(i + 1)));
-      var tekst = el("span", "winsttekst");
+      var tekst = el("span", "planstap-tekst");
       tekst.appendChild(el("b", null, w.titel));
-      tekst.appendChild(el("span", null, w.tekst));
-      if (w.waarom) tekst.appendChild(el("span", "winstwaarom", w.waarom));
+      tekst.appendChild(el("span", "planstap-wat", w.tekst));
+      var onder = el("span", "planstap-onder");
       if (a && !w.valkuilen) {
-        var detail = "";
-        if (w.onderwerp === "contextmap") detail = "Bij " + a.naam + ": " + a.plek + ".";
-        if (w.onderwerp === "regels") detail = "Bij " + a.naam + ": " + a.regels + ".";
-        if (w.onderwerp === "skills") detail = "Bij " + a.naam + ": " + a.skill + ".";
-        if (detail) tekst.appendChild(el("span", "winstdetail", detail));
+        var plek = "";
+        if (w.onderwerp === "contextmap") plek = a.plek;
+        if (w.onderwerp === "regels") plek = a.regels;
+        if (w.onderwerp === "skills") plek = a.skill;
+        if (plek) {
+          var detail = el("span", "winstdetail");
+          detail.appendChild(el("b", null, "Bij " + a.naam + ": "));
+          detail.appendChild(tn(plek + "."));
+          onder.appendChild(detail);
+        }
       }
+      if (w.waarom) onder.appendChild(el("span", "winstwaarom", w.waarom));
+      if (onder.childNodes.length) tekst.appendChild(onder);
       knop.appendChild(tekst);
+      knop.appendChild(el("span", "planstap-pijl", "→"));
       knop.addEventListener("click", function () {
         if (w.valkuilen) naarTab("valkuilen");
         else openOnderwerp(w.onderwerp, nr);
       });
-      strip.appendChild(knop);
+      li.appendChild(knop);
+      stappen.appendChild(li);
     });
-    doel.appendChild(strip);
-    doel.appendChild(waaromBlok());
+    doel.appendChild(stappen);
 
     /* De zinnen om te plakken, hier en niet alleen in het naslagwerk. Wie hier
        zijn eerste gesprek gaat voeren, heeft geen reden om daar te klikken.
@@ -1398,97 +1456,98 @@
       var plijst = el("div", "promptlijst");
       starters.forEach(function (p, i) { plijst.appendChild(promptKaart(p, i + 1)); });
       pblok.appendChild(plijst);
-      var allePrompts = el("button", "tekstknop", "Alle prompts in het naslagwerk");
+
+      /* Losse prompts zeggen nog niet hoe een sessie verloopt. Wie nog nooit
+         een gesprek voerde, heeft één doorlopend verhaal nodig, en dat staat
+         een klik verderop. */
+      var voet = el("div", "planvoet");
+      if (D.voorbeeldgesprek) {
+        voet.appendChild(el("p", "noot", "Nog nooit zo'n gesprek gevoerd? In het naslagwerk staat wat er letterlijk gebeurt, van je laptop openen tot een hoofdstuk waar je tevreden over bent."));
+        var naarSessie = el("button", "tekstknop", "Lees de zes stappen →");
+        naarSessie.type = "button";
+        naarSessie.addEventListener("click", function () { naarVak("eerstekeer"); });
+        voet.appendChild(naarSessie);
+      }
+      var allePrompts = el("button", "tekstknop", "Alle prompts in het naslagwerk →");
       allePrompts.type = "button";
       allePrompts.addEventListener("click", function () { naarVak("prompts"); });
-      pblok.appendChild(allePrompts);
+      voet.appendChild(allePrompts);
+      pblok.appendChild(voet);
       doel.appendChild(pblok);
     }
 
-    /* Losse prompts zeggen nog niet hoe een sessie verloopt. Wie nog nooit een
-       gesprek voerde, heeft één doorlopend verhaal nodig, niet zes tips. */
-    if (D.voorbeeldgesprek) {
-      var sess = el("div", "sessiewijzer");
-      sess.appendChild(kaderKop("b", null, D.voorbeeldgesprek.kop, "gesprek", true));
-      sess.appendChild(el("p", null, "Nog nooit zo'n gesprek gevoerd? Dit is wat er letterlijk gebeurt, van je laptop openen tot een hoofdstuk waar je tevreden over bent."));
-      var naarSessie = el("button", "knop knop-klein", "Lees de zes stappen");
-      naarSessie.type = "button";
-      naarSessie.addEventListener("click", function () { naarVak("eerstekeer"); });
-      sess.appendChild(naarSessie);
-      doel.appendChild(sess);
+    /* Wat je niet nodig hebt om vandaag te beginnen, staat hieronder dicht: het
+       hoort bij je plan, maar niet allemaal tegelijk op je scherm. */
+    var meer = el("section", "planmeer");
+    meer.appendChild(el("h3", "planmeerkop", "Als je verder wil"));
+
+    var v1 = planVouw("Zo zet je werkwijze " + r.nr + " op", "trap");
+    var ol1 = el("ol", "stappenlijst");
+    r.stappen.forEach(function (t) { ol1.appendChild(rijk(el("li"), t)); });
+    v1.binnen.appendChild(ol1);
+    var inst = el("p", "planregel");
+    inst.appendChild(el("b", null, "Wat je installeert: "));
+    inst.appendChild(tn(r.installeren));
+    v1.binnen.appendChild(inst);
+    var rb = routesBlok(r);
+    if (rb) v1.binnen.appendChild(rb);
+    var lb = linkBlok(toolLinks(r.links), "Links bij deze werkwijze");
+    if (lb) v1.binnen.appendChild(lb);
+    meer.appendChild(v1);
+
+    if (a) {
+      var v2 = planVouw("Bij " + a.naam + " heet dat", "vonk");
+      var tk = assistentKaart(a, false);
+      tk.classList.add("kaal");
+      v2.binnen.appendChild(tk);
+      v2.binnen.appendChild(rijk(el("p", "toolinmap"), a.inmap));
+      var wjd = wistjedatBlok(a, true);
+      if (wjd) {
+        var wknop2 = el("button", "tekstknop", "Lees hoe dat werkt →");
+        wknop2.type = "button";
+        wknop2.addEventListener("click", function () { naarVak("tool"); });
+        wjd.appendChild(wknop2);
+        v2.binnen.appendChild(wjd);
+      }
+      meer.appendChild(v2);
     }
-
-    var blokjes = el("div", "blokjes");
-
-    var b1 = el("div", "blokje");
-    b1.appendChild(kaderKop("h3", null, "Zo zet je werkwijze " + r.nr + " op", "trap"));
-    var ol = el("ol", "stappenlijst");
-    r.stappen.forEach(function (t) { ol.appendChild(rijk(el("li"), t)); });
-    b1.appendChild(ol);
-    b1.appendChild(kaderKop("h3", null, "Wat je installeert", "kist"));
-    b1.appendChild(el("p", null, r.installeren));
-    blokjes.appendChild(b1);
 
     var nots = notities();
     if (nots.length) {
-      var b2 = el("div", "blokje");
-      b2.appendChild(kaderKop("h3", null, "Uit jouw antwoorden", "klembord"));
-      var ul3 = el("ul");
+      var v3 = planVouw("Uit jouw antwoorden", "klembord");
+      var ul3 = el("ul", "planlijst");
       nots.forEach(function (t) { ul3.appendChild(el("li", null, t)); });
-      b2.appendChild(ul3);
-      blokjes.appendChild(b2);
+      v3.binnen.appendChild(ul3);
+      meer.appendChild(v3);
     }
 
-    if (a) {
-      var b3 = el("div", "blokje");
-      var binnenkaart = assistentKaart(a, "Bij " + a.naam + " heet dat");
-      binnenkaart.classList.add("kaal");
-      b3.appendChild(binnenkaart);
-      b3.appendChild(rijk(el("p", "toolinmap"), a.inmap));
-      blokjes.appendChild(b3);
-    }
-
-    var wjd = wistjedatBlok(a, true);
-    if (wjd) {
-      var meer = el("button", "knop knop-klein", "Lees hoe dat werkt");
-      meer.type = "button";
-      meer.addEventListener("click", function () { naarVak("tool"); });
-      wjd.appendChild(meer);
-      blokjes.appendChild(wjd);
-    }
-
-    var lb = linkBlok(toolLinks(r.links), "Links bij deze werkwijze");
-    if (lb) blokjes.appendChild(lb);
-
-    doel.appendChild(blokjes);
+    var v4 = planVouw(D.waaromKop || "Waarom je dit doet", "kompas");
+    v4.binnen.appendChild(waaromBlok(true));
+    meer.appendChild(v4);
 
     /* Een ladder, geen plafond: waar je naartoe kan als dit bevalt, met erbij
-       wanneer dat de moeite is — en de geruststelling dat het nu niet hoeft. */
+       wanneer dat de moeite is, en de geruststelling dat het nu niet hoeft. */
     if (r.volgendestap) {
       var v = r.volgendestap;
-      var vs = el("section", "ladder");
-      vs.appendChild(kaderKop("h3", null, "Als dit bevalt: de volgende stap", "trap", true));
-      vs.appendChild(el("p", "ladder-wanneer", v.wanneer));
-      vs.appendChild(el("p", "ladder-wat", v.wat));
-      if (v.nognietnodig) vs.appendChild(el("p", "noot", v.nognietnodig));
+      var v5 = planVouw("Als dit bevalt: werkwijze " + v.naar, "raket");
+      v5.binnen.appendChild(el("p", "ladder-wanneer", v.wanneer));
+      v5.binnen.appendChild(el("p", "ladder-wat", v.wat));
+      if (v.nognietnodig) v5.binnen.appendChild(el("p", "noot", v.nognietnodig));
       var naarVolgende = el("button", "tekstknop", "Lees werkwijze " + v.naar + " →");
       naarVolgende.type = "button";
       naarVolgende.addEventListener("click", function () {
         naarTab("werkwijzen");
         tekenWerkwijzen(v.naar);
       });
-      vs.appendChild(naarVolgende);
-      doel.appendChild(vs);
+      v5.binnen.appendChild(naarVolgende);
+      meer.appendChild(v5);
     }
+
+    doel.appendChild(meer);
 
     var rij = el("div", "knoppenrij");
 
-    var naarWw = el("button", "knop", "Lees alles over deze werkwijze");
-    naarWw.type = "button";
-    naarWw.addEventListener("click", function () { naarTab("werkwijzen"); tekenWerkwijzen(r.nr); });
-    rij.appendChild(naarWw);
-
-    var naarNaslag = el("button", "knop knop-stil", "Naar het naslagwerk");
+    var naarNaslag = el("button", "knop", "Naar het naslagwerk");
     naarNaslag.type = "button";
     naarNaslag.addEventListener("click", function () { naarTab("naslag"); });
     rij.appendChild(naarNaslag);
@@ -1794,7 +1853,9 @@
         titel: a.naam,
         tekst: "Je contextmap: " + a.plek + ". Je regels: " + a.regels + ".",
         zoek: [a.naam, a.kort, a.plek, a.regels, a.skill, a.inmap, a.waar, a.betaald,
-          a.wistjedat ? [a.wistjedat.kop, (a.wistjedat.tekst || []).join(" "), a.wistjedat.slot].join(" ") : ""].join(" "),
+          wistjedatLijst(a).map(function (w) {
+            return [w.kop, (w.tekst || []).join(" "), w.slot].join(" ");
+          }).join(" ")].join(" "),
         waar: "Tool",
         doe: function () { if (state.assistent !== a.id) kiesAssistent(a.id); naarVak("tool"); }
       });
@@ -2300,6 +2361,109 @@
     }
   }
 
+  /* ---------------- wegwijzers onder een valkuil ---------------- */
+
+  /* Een valkuil wijst twee kanten op. "verder" gaat naar een plek op deze site,
+     "links" naar de handleiding van de makers. Een bestemming kent zichzelf: de
+     naam komt uit de data, zodat een hernoemd onderwerp of een hernoemde
+     werkwijze hier vanzelf meeverandert. */
+  function interneBestemming(v) {
+    if (v.naar === "onderwerp") {
+      var o = onderwerpBij(v.id);
+      if (!o) return null;
+      return { naam: "Onderwerp: " + o.titel, doe: function () { openOnderwerp(v.id); } };
+    }
+    if (v.naar === "prompt") {
+      var p = D.prompts.filter(function (x) { return x.id === v.id; })[0];
+      if (!p) return null;
+      return { naam: "Prompt: " + p.titel, doe: function () { naarPrompt(v.id); } };
+    }
+    if (v.naar === "werkwijze") {
+      var r = D.werkwijzen[v.id];
+      if (!r) return null;
+      return {
+        naam: "Werkwijze " + r.nr + ": " + r.naam,
+        doe: function () { openWerkwijzePeek([v.id]); }
+      };
+    }
+    if (v.naar === "vak") {
+      var a = AFDELINGEN.filter(function (x) { return x.vak === v.id; })[0];
+      if (!a) return null;
+      return { naam: a.titel, doe: function () { naarVak(v.id); } };
+    }
+    if (v.naar === "tab") {
+      var link = document.querySelector('.menulink[data-tab="' + v.id + '"]');
+      if (!link) return null;
+      return { naam: link.textContent, doe: function () { naarTab(v.id); } };
+    }
+    return null;
+  }
+
+  /* Ziet eruit als een linkje naar buiten, met een pijl naar rechts in plaats
+     van een pijl schuin omhoog. Wie klikt blijft op deze site. */
+  function interneKaart(v) {
+    var doel = interneBestemming(v);
+    if (!doel) return null;
+    var knop = el("button", "linkje intern");
+    knop.type = "button";
+    knop.appendChild(el("b", null, doel.naam));
+    if (v.wat) knop.appendChild(el("span", null, v.wat));
+    knop.addEventListener("click", function (e) {
+      e.preventDefault();
+      doel.doe();
+    });
+    return knop;
+  }
+
+  /* Naar de promptkaart zelf, en niet naar de bovenkant van een lijst met acht
+     prompts waar je de jouwe nog moet zoeken. De kaart licht even op. */
+  function naarPrompt(id) {
+    naarVak("prompts");
+    var kaart = document.querySelector('.promptkaart[data-prompt="' + id + '"]');
+    if (!kaart) return;
+    kaart.scrollIntoView({ block: "center", behavior: "auto" });
+    kaart.classList.remove("aangewezen");
+    void kaart.offsetWidth; /* de animatie opnieuw laten starten */
+    kaart.classList.add("aangewezen");
+  }
+
+  /* De twee rijen wegwijzers onder de fix. Geeft null als er niets te wijzen
+     valt, zodat een valkuil zonder verwijzingen eruitziet als voordien. */
+  function verderBlok(p) {
+    var intern = (p.verder || []).map(interneKaart).filter(Boolean);
+
+    /* Hier gaat toolLinks() niet op: onder een valkuil hoort de bladzijde die
+       het antwoord geeft, en geen zes links van je eigen merk. De valkuil noemt
+       de rol ("regels", "project", "skill"), en wie een tool koos krijgt er de
+       bladzijde bij die bij jouw tool hoort. */
+    var ids = (p.links || []).slice();
+    var a = mijnAssistent();
+    var rol = a && a.rollen && p.toollink ? a.rollen[p.toollink] : "";
+    if (rol && ids.indexOf(rol) < 0) ids.push(rol);
+
+    var extern = [];
+    ids.forEach(function (id) {
+      var k = linkKaart(id);
+      if (k) extern.push(k);
+    });
+    if (!intern.length && !extern.length) return null;
+
+    var wrap = el("div", "verder");
+    if (intern.length) {
+      wrap.appendChild(el("p", "verderkop", "Verder op deze site"));
+      var a = el("div", "linkjes");
+      intern.forEach(function (k) { a.appendChild(k); });
+      wrap.appendChild(a);
+    }
+    if (extern.length) {
+      wrap.appendChild(el("p", "verderkop", "Bij de makers zelf"));
+      var b = el("div", "linkjes");
+      extern.forEach(function (k) { b.appendChild(k); });
+      wrap.appendChild(b);
+    }
+    return wrap;
+  }
+
   /* ---------------- tab: valkuilen ---------------- */
 
   function tekenValkuilen(filter) {
@@ -2311,7 +2475,12 @@
 
     D.valkuilen.forEach(function (p) {
       var o = onderwerpBij(p.onderwerp);
-      var hooi = (p.klacht + " " + p.fix + " " + (o ? o.titel : "")).toLowerCase();
+      var wegwijzers = (p.verder || []).map(function (v) {
+        var doel = interneBestemming(v);
+        return (doel ? doel.naam : "") + " " + (v.wat || "");
+      }).join(" ");
+      var hooi = (p.klacht + " " + p.fix + " " + (o ? o.titel : "") + " " +
+                  wegwijzers).toLowerCase();
       if (f && hooi.indexOf(f) < 0) return;
       treffers++;
 
@@ -2325,15 +2494,8 @@
 
       var binnen = el("div", "binnen");
       binnen.appendChild(el("p", null, p.fix));
-      var plinks = toolLinks(p.links);
-      if (plinks.length) {
-        var links = el("div", "linkjes");
-        plinks.forEach(function (id) {
-          var k = linkKaart(id);
-          if (k) links.appendChild(k);
-        });
-        binnen.appendChild(links);
-      }
+      var verder = verderBlok(p);
+      if (verder) binnen.appendChild(verder);
       det.appendChild(binnen);
       lijst.appendChild(det);
     });
@@ -2348,6 +2510,7 @@
      hele oprit, en die mag niet achter een kaart in het naslagwerk blijven. */
   function promptKaart(p, nr) {
     var kaart = el("div", "promptkaart");
+    if (p.id) kaart.setAttribute("data-prompt", p.id);
     var kop = el("div", "promptkop");
     if (nr) kop.appendChild(el("span", "winstnr", String(nr)));
     kop.appendChild(el("b", null, p.titel));

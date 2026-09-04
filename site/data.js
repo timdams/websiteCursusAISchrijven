@@ -423,10 +423,33 @@ window.DATA = {
       punten: [
         "je regels staan in {regelsbestand} in die map",
         "vanaf hier lonen skills, want je geeft dezelfde uitleg vaker dan je denkt",
-        "zet je map in git (versiebeheer) voor je de AI erin laat schrijven. Anders zie je niet wat er veranderde"
+        "zet je map in git (versiebeheer) voor je de AI erin laat schrijven. Anders zie je niet wat er veranderde",
+        "een commandovenster hoeft niet meer: Cowork wijst een map op je schijf aan vanuit de Claude-app zelf"
       ],
       slot: "",
-      installeren: "een tool die in je map werkt, plus git",
+      /* Sinds Cowork is de terminal niet meer de enige weg naar je eigen map.
+         Dezelfde vorm als bij werkwijze 2: de route beslist wat je installeert,
+         de werkwijze zelf blijft dezelfde. */
+      routes: {
+        kop: "Twee routes, en of je een commandovenster wil beslist",
+        items: [
+          {
+            naam: "Zonder commandovenster",
+            wat: "Cowork, in de Claude-app",
+            hoe: "Nieuw project → “Use an existing folder on your computer”",
+            uitleg: "Je maakt een project aan, wijst je cursusmap aan, en vanaf dan leest en schrijft Claude daar rechtstreeks. Opladen hoeft niet meer. Zo’n Cowork-project draagt zelf instructies, een map en een geheugen van wat je er eerder liet doen. Let op welke Claude je open hebt: aan de map op je schijf kom je met de app op je laptop, want de Cowork in je browser draait op de servers van Anthropic. En let op het woord: een Cowork-project is iets anders dan het Project uit je zijbalk, waar je bestanden oplaadt."
+          },
+          {
+            naam: "In een commandovenster",
+            wat: "Claude Code, of Gemini CLI",
+            hoe: "cd Documenten/cursus/webontwikkeling, dan claude",
+            uitleg: "Twee regels typen, en daarna praat je gewoon Nederlands tegen een venster. Je regels staan in CLAUDE.md in die map, je skills in .claude/skills/naam/SKILL.md. Bij Gemini CLI heet dat regelsbestand GEMINI.md. Dit is de route die naast de rest van je gereedschap ligt: git, je editor, je sjabloon."
+          }
+        ],
+        noot: "Allebei moet je ze installeren. Mag dat niet op je laptop, dan blijft [[1]] je werkwijze. En zet in allebei de goedkeuring op vragen tot je gezien hebt wat er gebeurt: in Cowork heet die stand “Manually approve”, en “Skip all approvals” zet je pas aan als je map in git staat."
+      },
+
+      installeren: "Cowork of Claude Code, plus git",
       voorwie: "wie op zijn eigen laptop werkt en het heen en weer plakken beu is",
       stappen: [
         "Zet je cursusmap in git, voor je de AI er iets in laat schrijven.",
@@ -447,7 +470,7 @@ window.DATA = {
         "skills": "Vanaf hier lonen skills, want je geeft dezelfde uitleg vaker dan je denkt.",
         "lesmateriaal": "Slides en oefeningen komen uit dezelfde map. Zet de controle-afspraak (kloppen de slides nog bij de tekst?) in je regelsbestand."
       },
-      links: ["claude-md", "claude-code", "gemini-cli", "git", "vscode", "quarto"]
+      links: ["claude-cowork", "claude-cowork-projecten", "claude-md", "claude-code", "gemini-cli", "git", "vscode", "quarto"]
     },
     "4": {
       nr: "4",
@@ -509,19 +532,132 @@ window.DATA = {
   ],
   outputNoot: "Deze vraag stel je pas als je weet wat je moet aanleveren. Weet je het nog niet, vraag je tekst dan in markdown en stel de vraag uit.",
 
-  /* ---------- Valkuilen ---------- */
+  /* ---------- Valkuilen ----------
+     Een klacht herkennen is de helft. Daarom loopt elke valkuil in twee
+     richtingen door: "verder" wijst naar een plek op deze site (een onderwerp,
+     een prompt om te plakken, een werkwijze, een vak van het naslagwerk),
+     "links" naar de handleiding van de makers zelf. Zo hoeft niemand na het
+     lezen van de fix opnieuw op zoek. */
   valkuilen: [
-    { klacht: "het verzint dingen die niet bij mijn vak passen", fix: "Je contextmap is te dun. Zet er ook iets in dat niet in je cursus staat: je beginsituatie, wat studenten vorig jaar niet begrepen, de feedback van een collega.", onderwerp: "contextmap", links: [] },
-    { klacht: "het klinkt niet als mij", fix: "Je regels staan nergens opgeschreven. Geef twee stukken die je zelf schreef en vraag welke regels die tekst volgt. Beschrijf je toon niet zelf, want “vlot en toegankelijk” levert precies niks op.", onderwerp: "regels", links: ["claude-md"] },
-    { klacht: "ik moet elke keer hetzelfde corrigeren", fix: "Alles wat je een derde keer corrigeert, hoort in je regelsbestand.", onderwerp: "regels", links: ["claude-md"] },
-    { klacht: "ik moet dat alleen bij één soort taak zeggen", fix: "Dat wordt een skill. Je regelsbestand is voor wat altijd geldt.", onderwerp: "skills", links: ["skills"] },
-    { klacht: "het herschrijft ook wat al goed was", fix: "Kleinere stukken geven, en je bestanden in versiebeheer zetten zodat je ziet wat er veranderde.", onderwerp: "plat", links: ["git"] },
-    { klacht: "halverwege vergeet het wat we afgesproken hadden", fix: "Je gesprek is te lang. Nieuw gesprek, een bestand per hoofdstuk.", onderwerp: "plat", links: [] },
-    { klacht: "ik zit aan mijn limiet", fix: "Eén hoofdstuk per gesprek, en zet je afspraken in een bestand. Dan begint een nieuw gesprek niet van nul.", onderwerp: "regels", links: [] },
-    { klacht: "het antwoord is lang en zegt niets", fix: "Vraag wat eruit kan zonder dat er een feit verdwijnt. Dat levert bijna altijd een regel op.", onderwerp: "regels", links: [] },
-    { klacht: "de opmaak valt uiteen in de pdf", fix: "Dit blijft handwerk. Wat op een webpagina klopt, valt in een pdf uiteen op de plek waar je het niet verwacht: brede tabellen, code die over de rand loopt, een figuur die alleen op een lege bladzijde past. Kijk je pdf na per hoofdstuk, en begin bij de tabellen.", onderwerp: "lesmateriaal", links: ["quarto-typst"] },
-    { klacht: "ik weet niet meer wat er veranderd is", fix: "git (versiebeheer), of minstens een kopie met de datum in de naam.", onderwerp: "plat", links: ["git"] },
-    { klacht: "ik laadde iets op dat ik beter niet had gedeeld", fix: "Loop het materiaalfilter uit de keuzehulp vooraf af: werk van studenten of leerlingen blijft altijd buiten, materiaal van collega's vraag je eerst. Verwijder het bestand uit je project, en vraag bij twijfel na wat de afspraken op je school zijn.", onderwerp: "contextmap", links: [] }
+    {
+      klacht: "het verzint dingen die niet bij mijn vak passen",
+      fix: "Je contextmap is te dun. Zet er ook iets in dat niet in je cursus staat: je beginsituatie, wat studenten vorig jaar niet begrepen, de feedback van een collega.",
+      onderwerp: "contextmap",
+      verder: [
+        { naar: "onderwerp", id: "contextmap", wat: "wat er in die map hoort. Het selecteren is het werk" },
+        { naar: "prompt", id: "contextmap-beoordelen", wat: "de vraag die je ontbrekende document oplevert" },
+        { naar: "vak", id: "eerstekeer", wat: "een sessie van begin tot eind, met je contextmap als eerste stap" }
+      ],
+      links: []
+    },
+    {
+      klacht: "het klinkt niet als mij",
+      fix: "Je regels staan nergens opgeschreven. Geef twee stukken die je zelf schreef en vraag welke regels die tekst volgt. Beschrijf je toon niet zelf, want “vlot en toegankelijk” levert precies niks op.",
+      onderwerp: "regels",
+      verder: [
+        { naar: "onderwerp", id: "regels", wat: "hoe een regel eruitziet die je kan nakijken" },
+        { naar: "prompt", id: "stem", wat: "de vraag die je regels uit twee eigen teksten haalt" },
+        { naar: "vak", id: "colofon", wat: "het regelsbestand waarmee deze site geschreven is, om van te pikken" }
+      ],
+      toollink: "regels",
+      links: []
+    },
+    {
+      klacht: "ik moet elke keer hetzelfde corrigeren",
+      fix: "Alles wat je een derde keer corrigeert, hoort in je regelsbestand.",
+      onderwerp: "regels",
+      verder: [
+        { naar: "onderwerp", id: "regels", wat: "waar dat bestand staat en hoe kort een regel mag zijn" },
+        { naar: "prompt", id: "regels-testen", wat: "leg je regels naast een stuk tekst dat je afgekeurd hebt" }
+      ],
+      toollink: "regels",
+      links: []
+    },
+    {
+      klacht: "ik moet dat alleen bij één soort taak zeggen",
+      fix: "Dat wordt een skill. Je regelsbestand is voor wat altijd geldt.",
+      onderwerp: "skills",
+      verder: [
+        { naar: "onderwerp", id: "skills", wat: "wanneer een afspraak bij één soort taak hoort" },
+        { naar: "prompt", id: "skill-afleiden", wat: "schrijf de uitleg uit die je al drie keer gaf" }
+      ],
+      toollink: "skill",
+      links: ["skills"]
+    },
+    {
+      klacht: "het herschrijft ook wat al goed was",
+      fix: "Kleinere stukken geven, en je bestanden in versiebeheer zetten zodat je ziet wat er veranderde.",
+      onderwerp: "plat",
+      verder: [
+        { naar: "onderwerp", id: "plat", wat: "een bestand per hoofdstuk, en waarom dat het nalezen draaglijk maakt" },
+        { naar: "werkwijze", id: "3", wat: "je cursus staat in een map, en elke wijziging is zichtbaar en terug te draaien" }
+      ],
+      links: ["git"]
+    },
+    {
+      klacht: "halverwege vergeet het wat we afgesproken hadden",
+      fix: "Je gesprek is te lang. Nieuw gesprek, een bestand per hoofdstuk.",
+      onderwerp: "plat",
+      verder: [
+        { naar: "onderwerp", id: "contextmap", wat: "de vaste plek waar je bestanden blijven staan tussen twee gesprekken" },
+        { naar: "vak", id: "tool", wat: "hoe die plek bij jouw tool heet en waar je ze vindt" },
+        { naar: "vak", id: "eerstekeer", wat: "wat er in één gesprek gebeurt, stap per stap" }
+      ],
+      toollink: "project",
+      links: []
+    },
+    {
+      klacht: "ik zit aan mijn limiet",
+      fix: "Eén hoofdstuk per gesprek, en zet je afspraken in een bestand. Dan begint een nieuw gesprek niet van nul. Werk je met Cowork, hou het dan voor het werk waar bestanden aan te pas komen: daar gaat meer van je limiet naartoe dan bij een gewoon gesprek.",
+      onderwerp: "regels",
+      verder: [
+        { naar: "vak", id: "tool", wat: "wat je abonnement dekt, en waar je bestanden blijven staan" },
+        { naar: "onderwerp", id: "regels", wat: "je afspraken in een bestand, zodat een nieuw gesprek niet van nul begint" }
+      ],
+      toollink: "project",
+      links: []
+    },
+    {
+      klacht: "het antwoord is lang en zegt niets",
+      fix: "Vraag wat eruit kan zonder dat er een feit verdwijnt. Dat levert bijna altijd een regel op.",
+      onderwerp: "regels",
+      verder: [
+        { naar: "prompt", id: "schrappen", wat: "één zin die je bij elk stuk gegenereerde tekst plakt" },
+        { naar: "vak", id: "colofon", wat: "de lijst “niet doen” van deze site, met de zinnen die er telkens weer in kruipen" }
+      ],
+      links: []
+    },
+    {
+      klacht: "de opmaak valt uiteen in de pdf",
+      fix: "Dit blijft handwerk. Wat op een webpagina klopt, valt in een pdf uiteen op de plek waar je het niet verwacht: brede tabellen, code die over de rand loopt, een figuur die alleen op een lege bladzijde past. Kijk je pdf na per hoofdstuk, en begin bij de tabellen.",
+      onderwerp: "lesmateriaal",
+      verder: [
+        { naar: "werkwijze", id: "2", wat: "uit hetzelfde bestand rolt een Word-document in het sjabloon van je school, en met Quarto erbij een pdf" },
+        { naar: "vak", id: "uitkomst", wat: "wat je vraagt hangt af van wat je moet aanleveren" },
+        { naar: "onderwerp", id: "lesmateriaal", wat: "slides, oefeningen en toetsen uit dezelfde bron" }
+      ],
+      links: ["quarto-typst", "quarto-docx", "pandoc-refdoc"]
+    },
+    {
+      klacht: "ik weet niet meer wat er veranderd is",
+      fix: "git (versiebeheer), of minstens een kopie met de datum in de naam.",
+      onderwerp: "plat",
+      verder: [
+        { naar: "werkwijze", id: "3", wat: "hier hoort versiebeheer thuis, met je cursus in een map op je schijf" },
+        { naar: "onderwerp", id: "plat", wat: "in platte tekst zie je een wijziging regel per regel" }
+      ],
+      links: ["git"]
+    },
+    {
+      klacht: "ik laadde iets op dat ik beter niet had gedeeld",
+      fix: "Loop het materiaalfilter uit de keuzehulp vooraf af: werk van studenten of leerlingen blijft altijd buiten, materiaal van collega's vraag je eerst. Verwijder het bestand uit je project, en vraag bij twijfel na wat de afspraken op je school zijn.",
+      onderwerp: "contextmap",
+      verder: [
+        { naar: "tab", id: "gids", wat: "het materiaalfilter, met de vier gevallen die overal terugkomen" },
+        { naar: "vak", id: "randgevallen", wat: "je deelt het vak, of je directie wil hier voorlopig niets van weten" }
+      ],
+      links: []
+    }
   ],
 
   /* ---------- Randgevallen ---------- */
@@ -532,7 +668,8 @@ window.DATA = {
     { geval: "je hebt geen twee teksten waarvan je weet dat ze goed zijn", wat: "Een mail aan studenten en een stuk uit je slidenotities doen het ook. Twee registers is wat je nodig hebt." },
     { geval: "je bent tevreden over je cursus", wat: "Dan hoef je niets te herwerken. Gebruik dezelfde contextmap voor je oefeningen en toetsen." },
     { geval: "je probeerde het al eens en het viel tegen", wat: "Dan ben je precies waar deze site voor gemaakt is. Waarschijnlijk ontbrak je contextmap of je regelsbestand." },
-    { geval: "je directie of opleidingshoofd wil hier voorlopig niets van weten", wat: "Schrijf ondertussen je regels op. Dat bestand is van jou en werkt in elke tool." }
+    { geval: "je directie of opleidingshoofd wil hier voorlopig niets van weten", wat: "Schrijf ondertussen je regels op. Dat bestand is van jou en werkt in elke tool." },
+    { geval: "je hebt Copilot van je school, maar niemand weet welke", wat: "Copilot Chat en Microsoft 365 Copilot zien er hetzelfde uit en kunnen niet hetzelfde. Zonder de betalende licentie werkt Copilot met de bestanden die je zelf oplaadt of in een notebook zet, en komt hij niet aan je mail, je Teams-gesprekken of de rest van je SharePoint. In een notebook passen er dan 50 referenties in plaats van 300. Het model dat antwoordt is wel hetzelfde, al krijg je standaardtoegang in plaats van voorrang: op drukke momenten kan een functie wegvallen of kan er een ander model antwoorden. Kijk na welke van de twee je hebt, voordat je een hele olod in één notebook zet." }
   ],
 
   /* ---------- Nog geen tool? Zo kies je er een ----------
@@ -547,7 +684,7 @@ window.DATA = {
       als: "Je school werkt met Microsoft 365: Word, Teams, Outlook",
       tool: "copilot",
       knop: "Ik neem Copilot",
-      waarom: "Dan heb je Copilot waarschijnlijk al, zonder iets extra te betalen of te installeren. Er is ook een aparte Copilot-app met een knop “Leren”, met kant-en-klare opdrachten voor lesgevers. Vraag na wat de licentie van je school precies dekt, want dat verschilt."
+      waarom: "Dan heb je Copilot waarschijnlijk al, zonder iets extra te betalen of te installeren. In de aparte Copilot-app maak je een notebook aan: daar zet je je hoofdstukken in en je afspraken in de instructies, en beide blijven staan tussen twee gesprekken. In diezelfde app staat de knop “Leren”, met kant-en-klare opdrachten voor lesgevers. In dat venster draait GPT-5.6, hetzelfde voorkeursmodel dat Microsoft in Word en Excel zet; wie Copilot kent als het zwakke broertje, mag dat oordeel herzien. Vraag na wat de licentie van je school precies dekt, want dat verschilt."
     },
     {
       als: "Je wil vandaag iets proberen zonder te betalen, met je eigen hoofdstukken erbij",
@@ -565,7 +702,7 @@ window.DATA = {
       als: "Je school voorziet niets, en je wil er voorlopig geen geld aan uitgeven",
       tool: "gratis",
       knop: "Ik begin zonder abonnement",
-      waarom: "Ook goed. Uitproberen lukt prima in een gratis venster; bij een hele cursus loop je tegen de limieten. Begin ondertussen bij je afspraken: schrijf drie regels op die je al drie keer hebt moeten zeggen, in een gewoon Word-bestand. Dat bestand werkt in elke tool die je later kiest."
+      waarom: "Ook goed, en je krijgt er meer voor dan je denkt. Een gratis Claude-account geeft je al vijf Projects: je hoofdstukken en je instructies blijven daar staan tussen twee gesprekken, en dat is precies de vaste plek waar deze site op steunt. Bij een hele cursus loop je wel tegen de limieten van je gesprekken aan. Begin ondertussen bij je afspraken: schrijf drie regels op die je al drie keer hebt moeten zeggen, in een gewoon Word-bestand. Dat bestand werkt in elke tool die je later kiest."
     }
   ],
   toolkeuzeSlot: "Wat je ook kiest, de drie ideeën van deze site werken overal: een vaste plek voor je documenten, je afspraken in een bestand, en een document per terugkerende taak. Alleen de knopjes heten anders.",
@@ -580,16 +717,19 @@ window.DATA = {
       betaald: "Een betalend abonnement. Vraag na of je school iets voorziet; meestal betaal je zelf.",
       plek: "een Project",
       regels: "de projectinstructies. Werk je in een map, dan is het CLAUDE.md",
-      skill: "een document in het project. In een map: .claude/skills/naam/SKILL.md",
-      inmap: "Ja. Claude Code werkt in de map zelf. Op een strak beheerde schoollaptop raakt dat er meestal niet op.",
-      waar: "Projects staan in de zijbalk. Je maakt er een aan, sleept je documenten erin, en zet je regels in de projectinstructies.",
+      skill: "een echte Skill: je zet je SKILL.md in een map, maakt daar een zip van, en laadt die op. In een map op je schijf staat datzelfde bestand in .claude/skills/naam/SKILL.md",
+      inmap: "Ja, op twee manieren. Cowork zit in de Claude-app en vraagt geen commandovenster: je wijst je cursusmap aan en Claude schrijft erin. Claude Code doet hetzelfde vanuit een commandovenster. Allebei moet je ze installeren, en op een strak beheerde schoollaptop raakt dat er meestal niet op.",
+      waar: "Projects staan in de zijbalk. Je maakt er een aan, sleept je documenten erin, en zet je regels in de projectinstructies. Skills staan elders: onder Customize > Skills, met de knop “+ Create skill” en dan “Upload a skill”. Staan ze in het grijs, zet dan eerst “Code execution and file creation” aan bij Settings > Capabilities.",
       termen: {
         regelsbestand: "CLAUDE.md",
         regelsplek: "de projectinstructies",
         projectplek: "een Project",
         skillplek: "een document in je project"
       },
-      links: ["claude-projects", "claude-md", "claude-code", "skills"]
+      /* Welke bladzijde van de makers hoort bij welk idee. Een valkuil noemt
+         de rol ("regels"), niet het merk, en krijgt zo één link die klopt. */
+      rollen: { regels: "claude-md", project: "claude-projects", skill: "claude-skills" },
+      links: ["claude-projects", "claude-cowork", "claude-skills", "claude-md", "claude-code", "skills"]
     },
     {
       id: "chatgpt",
@@ -607,6 +747,7 @@ window.DATA = {
         projectplek: "een Project",
         skillplek: "een document in je project"
       },
+      rollen: { regels: "openai-help", project: "chatgpt", skill: "" },
       links: ["chatgpt", "openai-help"]
     },
     {
@@ -625,25 +766,27 @@ window.DATA = {
         projectplek: "een Gem",
         skillplek: "een tweede Gem"
       },
+      rollen: { regels: "gemini", project: "notebooklm", skill: "" },
       links: ["gemini", "notebooklm", "gemini-cli", "gemini-help"]
     },
     {
       id: "copilot",
       naam: "Microsoft Copilot",
       kort: "Copilot via je werk- of schoolaccount",
-      betaald: "Hangt aan je Microsoft 365-licentie. Vraag na wat je school daarvoor voorziet.",
-      plek: "een map op je OneDrive of SharePoint. Copilot kijkt naar de bestanden waar jij al bij kan",
-      regels: "een Word-bestand met je afspraken, waar je in je prompt naar verwijst",
-      skill: "hetzelfde: een apart Word-bestand per soort taak",
+      betaald: "Copilot Chat zit bij een gewoon werk- of schoolaccount, zonder dat er iets bij betaald wordt. De volledige Microsoft 365 Copilot-licentie is betalend en komt daarnaast aan je mail, je Teams-gesprekken en je SharePoint. Het model dat antwoordt is in allebei hetzelfde: de licentie koopt voorrang en toegang tot je eigen werkinhoud. Vraag na wat je school afnam.",
+      plek: "een Copilot Notebook. Je hoofdstukken zitten erin als referenties en blijven staan tussen twee gesprekken",
+      regels: "de instructies van dat notebook. Ze gelden voor elk gesprek dat je erin voert",
+      skill: "een tweede notebook, met dezelfde bestanden en andere instructies",
       inmap: "De Copilot in Word en PowerPoint werkt niet in een eigen map. De GitHub Copilot in VS Code is een andere: die leest .github/copilot-instructions.md en hoort bij [[3,4]].",
-      waar: "Copilot zit in Word, PowerPoint en Teams, maar er is ook een aparte Copilot-app (en copilot.microsoft.com) waar je gewoon een gesprek voert. Daar hoort de knop “Leren” bij, met kant-en-klare hulpprogramma’s voor onderwijs. Zet je documenten in één map op OneDrive en verwijs ernaar.",
+      waar: "Copilot zit in Word, PowerPoint en Teams, maar er is ook een aparte Copilot-app (en copilot.microsoft.com) waar je gewoon een gesprek voert. Daar staan de twee knoppen waar je iets aan hebt: “Notebooks”, waar je hoofdstukken en je afspraken blijven liggen, en “Leren”, met kant-en-klare hulpprogramma’s voor onderwijs.",
       termen: {
         regelsbestand: ".github/copilot-instructions.md",
-        regelsplek: "een Word-bestand met je afspraken",
-        projectplek: "een map op OneDrive of SharePoint",
-        skillplek: "een apart Word-bestand"
+        regelsplek: "de instructies van je notebook",
+        projectplek: "een Copilot Notebook",
+        skillplek: "een tweede notebook"
       },
-      wistjedat: {
+      rollen: { regels: "copilot-notebook-instructies", project: "copilot-notebooks", skill: "" },
+      wistjedat: [{
         kop: "Je hebt ook de Copilot-app zelf, met een knop “Leren”",
         tekst: [
           "Copilot via je werk of school is meer dan het zijbalkje in Word, Teams en Outlook. Er is ook een aparte Copilot-app (en copilot.microsoft.com) waar je gewoon een gesprek voert, bestanden oplaadt en een hele les uitschrijft. Veel mensen weten niet dat die bij hun licentie zit.",
@@ -656,7 +799,29 @@ window.DATA = {
         slot: "Een goed startpunt, maar zo’n kant-en-klare opdracht kent jouw cursus niet. Wat eruit komt wordt pas van jou als je er je eigen contextmap en je eigen regels naast legt, en als je het nakijkt.",
         planregel: "Open de Copilot-app (of copilot.microsoft.com) en klik links op “Leren”. Daar staan kant-en-klare hulpprogramma’s voor onderwijs: curriculumplanning, bestaande inhoud herwerken, huiswerk en evaluaties."
       },
-      links: ["copilot-m365", "copilot-web", "copilot-instructions"]
+      {
+        kop: "Er zit een topmodel in dat venster",
+        tekst: [
+          "Copilot heeft bij veel collega’s de reputatie van de mindere: goed genoeg om een mail samen te vatten, en voor het echte werk neem je er iets anders bij. Kijk eens na wat er in jouw venster antwoordt. Microsoft koos GPT-5.6 als voorkeursmodel voor Word, Excel, PowerPoint en de chat, en bij sommige scholen staat Claude Opus er als tweede keuze naast.",
+          "Bij je promptvenster staat een keuzeknop die op “Auto” staat, met daarnaast “Quick response” en “Think deeper”. Microsoft zet de modelnamen er niet meer bij, dus je kiest een manier van antwoorden. Laat hem op Auto voor een gewone vraag. Zet hem op Think deeper wanneer je een heel hoofdstuk laat herwerken of je contextmap laat beoordelen.",
+          "Voor je cursus betekent dat één ding: je hoeft er persoonlijk geen abonnement bij te nemen om met een goed model te werken. Wat je nog wel moet doen is dat model iets geven om mee te werken, en dat is je notebook en je instructies.",
+          "Zonder de betalende licentie werkt dit ook, met standaardtoegang in plaats van voorrang. Op drukke momenten kan een functie wegvallen of kan er tijdelijk een ander model antwoorden."
+        ],
+        slot: "Welke modellen erin zitten wisselt. Kijk na wat er bij jou in de keuzeknop staat voor je besluit dat Copilot iets niet kan.",
+        links: ["copilot-modellen", "copilot-toegang", "copilot-welke-licentie"]
+      },
+      {
+        kop: "En in een notebook blijven je bestanden en je afspraken staan",
+        tekst: [
+          "Naast “Leren” staat in diezelfde app de knop “Notebooks”, in een Nederlandstalige Copilot “Notitieblokken”. Je maakt er één aan per olod, je zet je hoofdstukken erin als referenties, en elk gesprek dat je in dat notebook voert vertrekt van die bestanden. Opnieuw opladen hoeft niet meer.",
+          "Referenties zoek je op naam, sleep je erin, of neem je als hele map uit OneDrive of SharePoint. Word, PowerPoint, Excel, pdf, txt en OneNote-pagina’s gaan erin; een link naar een website niet. Met Copilot Chat passen er 50 in een notebook, met de volledige Microsoft 365 Copilot-licentie 300.",
+          "Rechtsboven staat de knop “Meer opties” met de drie puntjes, en daaronder “Instructies”. Wat je daar typt geldt voor elk gesprek in dat notebook: je toon, je opbouw, wat je nooit wil zien. Dat is je regelsbestand, alleen dan in een tekstvak. Microsoft zet er zelf dit voorbeeld bij: “Reageer altijd in het Spaans en met opsommingstekens. De klant geeft er de voorkeur aan dat zijn naam in kleine letters wordt geschreven.” Schrijf de jouwe even concreet.",
+          "In een gewoon gesprek, buiten een notebook, tik je een schuine streep en dan de naam van een bestand. Heb je de volledige licentie, dan verwijs je op diezelfde manier ook naar een collega, een vergadering of een mail."
+        ],
+        slot: "Notebooks vraagt een Copilot- of Copilot Chat-licentie én een OneDrive- of SharePoint-licentie, dus het hangt aan wat je school afneemt. Hou daarom naast je notebook een kopie van je afspraken als gewoon Word- of tekstbestand op je eigen schijf.",
+        links: ["copilot-chat", "copilot-notebooks", "copilot-notebook-instructies", "copilot-referenties", "copilot-verwijzen", "copilot-licentie"]
+      }],
+      links: ["copilot-chat", "copilot-notebooks", "copilot-web", "copilot-instructions"]
     },
     {
       id: "generiek",
@@ -674,6 +839,7 @@ window.DATA = {
         projectplek: "een vaste map of project",
         skillplek: "een apart document per taak"
       },
+      rollen: { regels: "", project: "openrouter", skill: "" },
       links: ["openrouter"]
     },
     {
@@ -685,17 +851,18 @@ window.DATA = {
       kort: "kies dit gerust: het volgende scherm helpt je kiezen",
       geenaccount: true,
       betaald: "Uitproberen lukt prima gratis. Bij een hele cursus loop je tegen de limieten.",
-      plek: "niks dat blijft staan. Elk gesprek begint van nul, en je laadt je bestanden opnieuw op",
-      regels: "een Word-bestand dat je bovenaan je prompt plakt",
+      plek: "een Project, ook zonder te betalen. Een gratis Claude-account geeft je er vijf, en je bestanden blijven daar staan tussen twee gesprekken",
+      regels: "het instructieveld van dat Project, of anders een Word-bestand dat je bovenaan je prompt plakt",
       skill: "hetzelfde document, dat je erbij haalt als die taak langskomt",
-      inmap: "Nee. Zonder account werk je in een gewoon chatvenster, en dat komt niet aan je bestanden. [[1|Werkwijze 1]] is je werkwijze.",
-      waar: "Wat je nu al kan doen: schrijf drie regels op die je al drie keer hebt moeten zeggen. Dat bestand werkt in elke tool die je later kiest.",
+      inmap: "Nee. Cowork en Claude Code vragen allebei een betalend abonnement. In een gratis venster werk je met de bestanden die je oplaadt, en dat is [[1|Werkwijze 1]].",
+      waar: "Kijk in de tool die jij open hebt na of er zoiets als een Project in zit; bij Claude zitten er vijf in een gratis account. Wat je daarnaast nu al kan doen: schrijf drie regels op die je al drie keer hebt moeten zeggen. Dat bestand werkt in elke tool die je later kiest.",
       termen: {
         regelsbestand: "je regelsbestand",
-        regelsplek: "een Word-bestand dat je bovenaan je prompt plakt",
-        projectplek: "een map op je eigen schijf",
+        regelsplek: "het instructieveld van je Project, of bovenaan je prompt",
+        projectplek: "een Project, of een map op je eigen schijf",
         skillplek: "een document dat je erbij haalt"
       },
+      rollen: { regels: "", project: "claude-projects", skill: "" },
       links: []
     }
   ],
@@ -740,6 +907,7 @@ window.DATA = {
       kern: "Wat er *in* die map zit, bepaalt het resultaat meer dan hoe je de vraag stelt.",
       tips: [
         "*Toegegeven, het is verleidelijk om gewoon alles op te laden. Je hebt het toch al staan.* Vijf documenten, geen vijftig. Het selecteren is het werk. Bij dertig documenten weet het model niet meer wat het zwaarst weegt, en jij ook niet.",
+        "Vanaf het derde gesprek over hetzelfde hoofdstuk loont {projectplek}. Je merkt het vanzelf, want dan ben je je ECTS-fiche voor de derde keer aan het opladen.",
         "Denk aan: de vakbeschrijving of ECTS-fiche, het hoofdstuk zelf, je beginsituatie (wat kennen ze al), een goed en een slecht voorbeeld, en de feedback van vorig jaar.",
         "Zet er iets in dat niet in je cursus staat: je beginsituatie, wat studenten vorig jaar niet begrepen, de mail van een collega over wat er ontbrak.",
         "Zet er ook een slecht voorbeeld in, met een regel erbij waarom het slecht is. Een tegenvoorbeeld stuurt harder dan drie goede voorbeelden.",
@@ -807,7 +975,7 @@ window.DATA = {
         "De figuren zelf komen uit een script en niet uit een chatvenster. Een figuur bijsturen is dan een getal veranderen en opnieuw uitvoeren."
       ],
       gevorderd: "Hier merk je dat je afspraken in twee soorten uiteenvallen: wat altijd geldt tegenover wat bij één taak hoort. Zit een regel in de verkeerde stapel, dan krijg je hem terug op een moment dat je hem niet vroeg: je figurenregels midden in een oefening.",
-      links: ["skills"]
+      links: ["skills", "claude-skills"]
     },
     {
       id: "lesmateriaal",
@@ -907,7 +1075,7 @@ window.DATA = {
       onderwerp: "plat",
       start: 1,
       wanneer: "de eerste van de twee stappen",
-      tekst: "Zet dit hoofdstuk om naar markdown. Verander niets aan de inhoud en niets aan de volgorde. Zeg er onderaan bij wat er niet netjes over te zetten was."
+      tekst: "(voeg je document toe als bijlage) Zet dit hoofdstuk om naar markdown. Verander niets aan de inhoud en niets aan de volgorde. Zeg er onderaan bij wat er niet netjes over te zetten was."
     },
     {
       titel: "Je contextmap laten beoordelen",
@@ -958,13 +1126,14 @@ window.DATA = {
       id: "slides-sync",
       onderwerp: "lesmateriaal",
       wanneer: "zet deze vraag als regel in je regelsbestand",
-      tekst: "De tekst van dit hoofdstuk is veranderd. Welke slides kloppen nu niet meer, en wat moet daar anders?"
+      tekst: "Zorg ervoor dat de inhoud in de cursus steeds synchroon blijft met de inhoud van de slides. Bij twijfel, odnervraag me. "
     }
   ],
 
   /* ---------- Gereedschapskist ---------- */
   gereedschap: [
     { waarvoor: "een document omzetten, nu meteen", wat: "Google Docs importeert en exporteert markdown", drempel: "geen", link: "gdocs" },
+    { waarvoor: "een Copilot-gesprek naar Word krijgen", wat: "Copilot Pages: bewaar het antwoord als pagina, werk het daar bij en zet het om naar een Word-document", drempel: "geen", link: "copilot-pages" },
     { waarvoor: "markdown naar Word, met jouw sjabloon", wat: "pandoc, met --reference-doc=sjabloon.docx", drempel: "commandolijn", link: "pandoc-refdoc" },
     { waarvoor: "markdown naar PowerPoint, met jouw sjabloon", wat: "idem naar .pptx, met --reference-doc=sjabloon.pptx", drempel: "commandolijn", link: "quarto-pptx" },
     { waarvoor: "markdown in Word openen zonder commandolijn", wat: "Writage, een invoegtoepassing voor Word. Betalend na veertien dagen", drempel: "installatie", link: "writage" },
@@ -1002,6 +1171,13 @@ window.DATA = {
       wat: "Een cursus C# als website, gebouwd met Docusaurus. Knap detail: er zit een AI-assistent in de pagina zelf, die studenten verder helpt terwijl ze aan de oefeningen zitten.",
       url: "https://vincentvcap.github.io/graduaat-csharp-programmeren/",
       tech: ["Docusaurus", "markdown", "GitHub Pages", "Gemini"]
+    },
+    {
+      titel: "Slides naar sjabloon generator",
+      maker: "Ward De Ridder",
+      wat: "Resultaat van script (binnenkort beschikbaar) om je markdownbestanden om te zetten naar (in dit geval) de AP-layout (inclusief speakerview én pdfgenerator).",
+      url: "https://cursus.hermans.casa/sjabloon/componenten/",
+      tech: ["reveal.js", "markdown", "hugo", "github pages"]
     },
     {
       titel: "IT Essentials",
@@ -1240,11 +1416,23 @@ window.DATA = {
     "gemini-cli":           { naam: "Gemini CLI", url: "https://github.com/google-gemini/gemini-cli", noot: "Gemini in je eigen map, leest GEMINI.md" },
     "gemini-help":          { naam: "Hulp bij Gemini", url: "https://support.google.com/gemini", noot: "" },
     "openrouter":           { naam: "OpenRouter", url: "https://openrouter.ai", noot: "één account voor veel verschillende modellen" },
-    "copilot-m365":         { naam: "Microsoft 365 Copilot", url: "https://www.microsoft.com/microsoft-365/copilot", noot: "de Copilot in Word en PowerPoint, via je werkaccount" },
-    "copilot-web":          { naam: "Copilot-app en copilot.microsoft.com", url: "https://copilot.microsoft.com", noot: "hier zit de knop “Leren” met de hulpprogramma’s voor onderwijs" },
+    "copilot-chat":         { naam: "Aan de slag met Copilot Chat", url: "https://support.microsoft.com/nl-nl/microsoft-365-copilot/get-started-with-microsoft-365-copilot-chat", noot: "de handleiding van Microsoft zelf, met de knoppen erbij" },
+    "copilot-notebooks":    { naam: "Copilot Notebooks", url: "https://support.microsoft.com/nl-nl/microsoft-365-copilot/get-started-with-microsoft-365-copilot-notebooks", noot: "je bestanden blijven staan tussen twee gesprekken" },
+    "copilot-notebook-instructies": { naam: "Instructies voor je notebook", url: "https://support.microsoft.com/nl-nl/microsoft-365-copilot/provide-custom-instructions-for-your-microsoft-365-copilot-notebook", noot: "je afspraken, geldig in elk gesprek in dat notebook" },
+    "copilot-referenties":  { naam: "Referenties toevoegen", url: "https://support.microsoft.com/nl-nl/microsoft-365-copilot/add-references-to-your-microsoft-365-copilot-notebook", noot: "welke bestanden erin gaan, en hoeveel" },
+    "copilot-verwijzen":    { naam: "Verwijzen met een schuine streep", url: "https://support.microsoft.com/nl-nl/microsoft-365-copilot/refer-to-specific-files-and-more-in-microsoft-365-copilot", noot: "een / in het promptvenster, en dan de naam van je bestand" },
+    "copilot-licentie":     { naam: "Copilot Chat met en zonder licentie", url: "https://support.microsoft.com/nl-nl/microsoft-365-copilot/how-copilot-chat-works-with-and-without-a-microsoft-365-copilot-license", noot: "wat er wegvalt zonder de betalende licentie" },
+    "copilot-modellen":     { naam: "Welk model er in Copilot zit", url: "https://techcommunity.microsoft.com/blog/microsoft365copilotblog/available-today-openai%E2%80%99s-gpt-5-6-in-microsoft-365-copilot/4533152", noot: "Microsoft kondigt zelf aan wat er onder Word, Excel en de chat draait" },
+    "copilot-toegang":      { naam: "Standaardtoegang of voorrang", url: "https://support.microsoft.com/nl-nl/microsoft-365-copilot/standard-versus-priority-access-to-features-in-microsoft-365-copilot-chat", noot: "wat er op drukke momenten wegvalt zonder licentie" },
+    "copilot-welke-licentie": { naam: "Welke Copilot-licentie heb ik?", url: "https://support.microsoft.com/nl-nl/microsoft-365-copilot/what-copilot-license-do-i-have", noot: "zelf na te kijken, zonder je ICT-dienst" },
+    "copilot-pages":        { naam: "Copilot Pages", url: "https://support.microsoft.com/nl-nl/microsoft-365-copilot/get-started-with-microsoft-365-copilot-pages", noot: "een gesprek bewaren als pagina, en omzetten naar Word" },
+    "copilot-web":          { naam: "Copilot-app en copilot.microsoft.com", url: "https://copilot.microsoft.com", noot: "hier zitten de knoppen “Notebooks” en “Leren”" },
     "copilot-instructions": { naam: "GitHub Copilot instructions", url: "https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot", noot: "de Copilot in je editor, niet die in Word" },
     "claude-md":            { naam: "CLAUDE.md", url: "https://docs.claude.com/en/docs/claude-code/memory", noot: "je afspraken in een bestand" },
     "claude-code":          { naam: "Claude Code", url: "https://docs.claude.com/en/docs/claude-code/overview", noot: "de AI werkt in de map zelf" },
-    "skills":               { naam: "Agent Skills", url: "https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview", noot: "een instructie die bij één soort taak hoort" }
+    "skills":               { naam: "Agent Skills", url: "https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview", noot: "een instructie die bij één soort taak hoort" },
+    "claude-cowork":        { naam: "Aan de slag met Claude Cowork", url: "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork", noot: "de AI in je eigen map, zonder commandovenster" },
+    "claude-cowork-projecten": { naam: "Projecten in Cowork", url: "https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork", noot: "instructies, een map van je schijf en een geheugen per project" },
+    "claude-skills":        { naam: "Skills in Claude", url: "https://support.claude.com/en/articles/12512180-use-skills-in-claude", noot: "een zip met je SKILL.md, onder Customize > Skills" }
   }
 };
