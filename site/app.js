@@ -86,24 +86,142 @@
 
   function tn(tekst) { return document.createTextNode(T(tekst)); }
 
-  /* Tekst met `iets tussen accenten` erin: dat stuk wordt een code-vakje,
-     de rest gewone tekst. Hangt alles onder node. */
+  /* Tekst met opmaak erin, en verder niks: `tussen accenten` wordt een
+     code-vakje, *tussen sterretjes* cursief (het terzijde en het scharnierwoord)
+     en **tussen dubbele sterretjes** vet. [[2]] wordt een merkje dat een
+     kort venster over werkwijze 2 opent. Hangt alles onder node. */
   function rijk(node, tekst) {
-    var stukken = String(T(tekst)).split("`");
+    var stukken = String(T(tekst)).split(/(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|\[\[[^\]]+\]\])/);
     for (var i = 0; i < stukken.length; i++) {
-      if (!stukken[i]) continue;
-      if (i % 2) {
-        var c = document.createElement("code");
-        c.textContent = stukken[i];
-        node.appendChild(c);
+      var s = stukken[i];
+      if (!s) continue;
+      if (s.slice(0, 2) === "[[") {
+        var v = wwVerwijzing(s.slice(2, -2));
+        node.appendChild(werkwijzeMerk(v) || document.createTextNode(v.label));
+        continue;
+      }
+      var tag = null, kern = s;
+      if (s.charAt(0) === "`") { tag = "code"; kern = s.slice(1, -1); }
+      else if (s.slice(0, 2) === "**") { tag = "b"; kern = s.slice(2, -2); }
+      else if (s.charAt(0) === "*") { tag = "em"; kern = s.slice(1, -1); }
+      if (tag) {
+        var n = document.createElement(tag);
+        n.textContent = kern;
+        node.appendChild(n);
       } else {
-        node.appendChild(document.createTextNode(stukken[i]));
+        node.appendChild(document.createTextNode(s));
       }
     }
     return node;
   }
 
-  function leeg(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+  function leeg(node) { while (node.firstChild) node.removeChild(node.firstChild); return node; }
+
+  /* Dezelfde tekst zonder de markeringen die rijk() leest. Voor de plekken waar
+     alleen platte tekst past: de zoekresultaten en de samenvatting in je plan. */
+  function plat(tekst) {
+    return String(T(tekst)).replace(/`([^`]+)`/g, "$1")
+                           .replace(/\*\*([^*]+)\*\*/g, "$1")
+                           .replace(/\*([^*]+)\*/g, "$1")
+                           .replace(/\[\[([^\]]+)\]\]/g, function (heel, kern) {
+                             return wwVerwijzing(kern).label;
+                           });
+  }
+
+  /* ---------------- pictogrammen en kaderkoppen ---------------- */
+
+  /* Wegwijzertjes op een raster van 24 bij 24. Ze staan in code en niet in een
+     bestand: het zijn geen figuren maar pictogrammen, en ze nemen de kleur van
+     het kader waar ze in staan over. */
+  var ICONEN = {
+    trap: ["M3.5 20.5h5.5V15h5.5V9.5H20"],
+    blokken: ["M4 4h6v6H4z", "M14 4h6v6h-6z", "M4 14h6v6H4z", "M14 14h6v6h-6z"],
+    map: ["M3 8a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"],
+    klembord: [
+      "M9 4h6v3H9z",
+      "M9 5.5H6.5A1.5 1.5 0 005 7v12.5A1.5 1.5 0 006.5 21h11a1.5 1.5 0 001.5-1.5V7a1.5 1.5 0 00-1.5-1.5H15",
+      "M8.5 12.5h7",
+      "M8.5 16.5h4"
+    ],
+    vonk: [
+      "M11 3l1.7 4.8L17.5 9.5 12.7 11.2 11 16 9.3 11.2 4.5 9.5l4.8-1.7z",
+      "M18 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"
+    ],
+    uitvoer: ["M12 3v10", "M8.5 9.5L12 13l3.5-3.5", "M4 15v4a2 2 0 002 2h12a2 2 0 002-2v-4"],
+    kist: [
+      "M3 9h18v10a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 19z",
+      "M9 9V6.5A1.5 1.5 0 0110.5 5h3A1.5 1.5 0 0115 6.5V9",
+      "M3 13.5h18"
+    ],
+    haakjes: ["M9 8l-4 4 4 4", "M15 8l4 4-4 4", "M13.5 5.5l-3 13"],
+    splitsing: ["M12 21v-6", "M12 15L6.5 9.5V5", "M12 15l5.5-5.5V5", "M4.5 7l2-2 2 2", "M15.5 7l2-2 2 2"],
+    raket: [
+      "M12 3.2c2 2.4 3 5.3 3 8.1V16H9v-4.7c0-2.8 1-5.7 3-8.1z",
+      "M9 12l-3 2.6v3.9l3-2.4",
+      "M15 12l3 2.6v3.9l-3-2.4",
+      "M12 7.9a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4",
+      "M10.6 17.6c.3 1.7 1.4 3.2 1.4 3.2s1.1-1.5 1.4-3.2"
+    ],
+
+    /* de tweede reeks: de kaders in de lopende tekst */
+    waarschuwing: ["M10.3 4.6L2.7 17.9a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 4.6a2 2 0 00-3.4 0z", "M12 9.6v4.2", "M12 17.2h.01"],
+    verboden: ["M12 3.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17z", "M6 6l12 12"],
+    weegschaal: ["M12 4.5v14", "M7.5 18.5h9", "M3.8 7.2h16.4", "M3.8 7.2L1 13.8h5.6z", "M20.2 7.2L17.4 13.8h5.6z"],
+    vink: ["M12 3.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17z", "M8.2 12.2l2.5 2.5 5.1-5.4"],
+    roos: ["M12 3.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17z", "M12 8a4 4 0 100 8 4 4 0 000-8z", "M12 11.9h.01"],
+    lamp: [
+      "M12 3.5a5.5 5.5 0 00-3.2 9.9c.6.5.9 1.2.9 1.9v.2h4.6v-.2c0-.7.3-1.4.9-1.9A5.5 5.5 0 0012 3.5z",
+      "M9.7 18h4.6",
+      "M10.6 20.7h2.8"
+    ],
+    moersleutel: ["M20.3 4.9a4.5 4.5 0 01-5.8 5.8l-8 8a2 2 0 01-2.8-2.8l8-8a4.5 4.5 0 015.8-5.8l-2.6 2.6.9 2.9 2.9.9z"],
+    gesprek: [
+      "M4 6a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2h-8l-4 3.5V16a2 2 0 01-2-2z",
+      "M8.5 10h.01", "M12 10h.01", "M15.5 10h.01"
+    ],
+    vlag: ["M6 21V4", "M6 4.8h11.5l-2.2 3.7 2.2 3.7H6"],
+    klik: ["M6.5 3.2l11 6.6-4.8 1.1 2.4 5-2.3 1.1-2.4-5-3.4 3.2z"],
+    terminal: [
+      "M3.5 5.5A1.5 1.5 0 015 4h14a1.5 1.5 0 011.5 1.5v13A1.5 1.5 0 0119 20H5a1.5 1.5 0 01-1.5-1.5z",
+      "M7.5 9.5l2.5 2.5-2.5 2.5", "M13 15h4"
+    ],
+    vraagteken: ["M12 3.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17z", "M9.8 9.6a2.3 2.3 0 014.4.8c0 1.6-2.2 2-2.2 3.4", "M12 16.8h.01"],
+    oog: ["M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z", "M12 9a3 3 0 100 6 3 3 0 000-6z"],
+    kompas: ["M12 3.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17z", "M15.3 8.7l-1.9 4.7-4.7 1.9 1.9-4.7z"],
+    schakel: ["M10 13.6a3.6 3.6 0 005.1 0l3-3a3.6 3.6 0 00-5.1-5.1l-1 1", "M14 10.4a3.6 3.6 0 00-5.1 0l-3 3a3.6 3.6 0 005.1 5.1l1-1"]
+  };
+
+  function icoonSvg(naam) {
+    var NS = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+    (ICONEN[naam] || []).forEach(function (d) {
+      var p = document.createElementNS(NS, "path");
+      p.setAttribute("d", d);
+      svg.appendChild(p);
+    });
+    return svg;
+  }
+
+  /* Elk kader in de lopende tekst opent met een pictogram naast zijn titel. Het
+     icoon zegt welk soort blok eronder staat (de kern, een valkuil, een
+     afweging, een extraatje), de titel zegt waarover het gaat. Een kader met
+     een echte kop krijgt "chip" mee: dan staat het icoon in een gekleurd
+     vierkantje, zoals op de deuren van het naslagwerk. */
+  function kaderKop(tag, klas, tekst, icoon, chip) {
+    var kop = el(tag, (klas ? klas + " " : "") + "kaderkop" + (chip ? " kaderkop-chip" : ""));
+    var vak = el("span", chip ? "kadericoon kaderchip" : "kadericoon");
+    vak.appendChild(icoonSvg(icoon));
+    kop.appendChild(vak);
+    kop.appendChild(rijk(el("span", "kadertitel"), tekst));
+    return kop;
+  }
+
+  /* Het materiaalfilter kleurt zijn adviezen per vlag; het icoon zegt hetzelfde
+     nog eens, voor wie kleur niet ziet. */
+  var VLAGICOON = { buiten: "verboden", vragen: "waarschuwing", afweging: "weegschaal", ok: "vink" };
 
   function linkKaart(id) {
     var l = D.links[id];
@@ -117,10 +235,33 @@
     return a;
   }
 
+  /* Werkwijze 2 draagt als enige twee routes: pandoc voor wie enkel Word nodig
+     heeft, Quarto voor wie er meer uit wil. Een werkwijze zonder routes krijgt
+     hier niets, en de kaart ziet er dan uit als voordien. */
+  function routesBlok(r) {
+    if (!r.routes || !r.routes.items || !r.routes.items.length) return null;
+    var R = r.routes;
+    var wrap = el("div", "wwroutes");
+    if (R.kop) wrap.appendChild(el("h3", "wwrouteskop", R.kop));
+    var rij = el("div", "wwrouterij");
+    R.items.forEach(function (it) {
+      var k = el("div", "wwroute");
+      k.appendChild(el("b", "wwroutenaam", it.naam));
+      k.appendChild(el("span", "wwroutewat", it.wat));
+      if (it.hoe) k.appendChild(el("pre", "wwroutehoe", it.hoe));
+      k.appendChild(rijk(el("p", "wwrouteuitleg"), it.uitleg));
+      rij.appendChild(k);
+    });
+    wrap.appendChild(rij);
+    if (R.noot) wrap.appendChild(rijk(el("p", "wwroutenoot"), R.noot));
+    if (R.zonderterminal) wrap.appendChild(rijk(el("p", "wwrouteterminal"), R.zonderterminal));
+    return wrap;
+  }
+
   function linkBlok(ids, titel) {
     if (!ids || !ids.length) return null;
     var wrap = el("div", "blokje");
-    wrap.appendChild(el("h3", null, titel || "Links"));
+    wrap.appendChild(kaderKop("h3", null, titel || "Links", "schakel"));
     var lijst = el("div", "linkjes");
     ids.forEach(function (id) {
       var k = linkKaart(id);
@@ -151,7 +292,7 @@
   function assistentKaart(a, titel) {
     if (!a) return null;
     var wrap = el("div", "toolkaart");
-    wrap.appendChild(el("h3", null, titel || ("Bij " + a.naam)));
+    wrap.appendChild(kaderKop("h3", null, titel || ("Bij " + a.naam), "vonk"));
     [
       ["je contextmap", a.plek],
       ["je regels", a.regels],
@@ -172,7 +313,7 @@
     if (!w) return null;
 
     var wrap = el("div", "wistjedat" + (compact ? " compact" : ""));
-    wrap.appendChild(el("p", "wistjedat-label", "Wist je dat"));
+    wrap.appendChild(kaderKop("p", "wistjedat-label", "Wist je dat", "vonk"));
     wrap.appendChild(el("h3", null, w.kop));
 
     if (compact) {
@@ -226,7 +367,7 @@
   var MOETJEINSTALLEREN = [
     "quarto", "quarto-docx", "quarto-pptx", "quarto-html", "quarto-typst",
     "quarto-revealjs", "quarto-book", "quarto-brand", "pandoc", "pandoc-refdoc",
-    "marp", "mermaid", "vscode", "obsidian", "typora", "typst", "git",
+    "marp", "mermaid", "vscode", "obsidian", "typora", "typst", "git", "writage",
     "gemini-cli", "claude-code", "copilot-instructions"
   ];
 
@@ -251,7 +392,7 @@
     var browser = browserOnly() && m.browser;
     var b = browser ? m.browser : m;
     var wrap = el("section", "bronmap");
-    wrap.appendChild(el("h3", "bronmapkop", T(b.kop)));
+    wrap.appendChild(kaderKop("h3", "bronmapkop", T(b.kop), "map", true));
     wrap.appendChild(el("p", "bronmapkern", T(b.kern)));
     if (!browser) {
       var pre = el("pre", "boom");
@@ -261,7 +402,7 @@
     var lijst = el("div", "tussenadvies");
     b.regels.forEach(function (r) {
       var lijn = el("div", "advieslijn buiten");
-      lijn.appendChild(el("b", null, T(r[0])));
+      lijn.appendChild(kaderKop("b", null, T(r[0]), "map"));
       rijk(lijn, r[1]);
       lijst.appendChild(lijn);
     });
@@ -314,28 +455,47 @@
 
     if (o.watis) {
       var w = el("div", "advieslijn ok");
-      w.appendChild(el("b", null, "Wat is het"));
-      w.appendChild(tn(o.watis));
+      w.appendChild(kaderKop("b", null, "Wat is het", "lamp"));
+      rijk(w, o.watis);
       binnen.appendChild(w);
     }
 
     var h = el("div", "advieslijn buiten");
-    h.appendChild(el("b", null, "De kern"));
-    h.appendChild(tn(o.kern));
+    h.appendChild(kaderKop("b", null, "De kern", "roos"));
+    rijk(h, o.kern);
     binnen.appendChild(h);
 
     var ofig = figuurBlok(o.figuur);
     if (ofig) binnen.appendChild(ofig);
 
     if (o.tips.length) {
-      binnen.appendChild(el("h3", null, "Tips"));
+      binnen.appendChild(kaderKop("h3", null, "Tips", "vink", true));
       var ul = el("ul", "bloktips");
-      o.tips.forEach(function (t) { ul.appendChild(el("li", null, t)); });
+      o.tips.forEach(function (t) { ul.appendChild(rijk(el("li"), t)); });
       binnen.appendChild(ul);
     }
 
+    if (o.voorbeeld) {
+      var vb = el("section", "regelvoorbeeld");
+      vb.appendChild(kaderKop("h3", null, o.voorbeeld.kop, "klembord", true));
+      vb.appendChild(rijk(el("p", "noot"), o.voorbeeld.intro));
+      var vul = el("ul", "regellijst kaal");
+      o.voorbeeld.regels.forEach(function (r) {
+        vul.appendChild(rijk(el("li", "regelitem"), r));
+      });
+      vb.appendChild(vul);
+      var naarColofon = el("button", "knop knop-klein", o.voorbeeld.knop);
+      naarColofon.type = "button";
+      naarColofon.addEventListener("click", function () {
+        venster.close();
+        naarVak("colofon");
+      });
+      vb.appendChild(naarColofon);
+      binnen.appendChild(vb);
+    }
+
     if (o.tabel) {
-      binnen.appendChild(el("h3", null, "Waar dat bestand staat"));
+      binnen.appendChild(kaderKop("h3", null, "Waar dat bestand staat", "map", true));
       var wrap = el("div", "tabelwrap");
       wrap.appendChild(bouwTabel(o.tabel.kop, o.tabel.rijen));
       binnen.appendChild(wrap);
@@ -348,9 +508,9 @@
     }
 
     if (o.gevorderd) {
-      binnen.appendChild(el("h3", null, "Voor wie al bezig is"));
+      binnen.appendChild(kaderKop("h3", null, "Voor wie al bezig is", "moersleutel", true));
       var gev = [].concat(o.gevorderd);
-      gev.forEach(function (t) { binnen.appendChild(el("p", "gevorderd", t)); });
+      gev.forEach(function (t) { binnen.appendChild(rijk(el("p", "gevorderd"), t)); });
     }
 
     /* wat dit onderwerp betekent op de werkwijze die je leest, anders die van jezelf */
@@ -358,8 +518,8 @@
     var r = welke && D.werkwijzen[welke];
     if (r && r.onderwerpen[o.id]) {
       var rb = el("div", "blokroute");
-      rb.appendChild(el("b", null, "Bij werkwijze " + r.nr + ", " + r.naam));
-      rb.appendChild(tn(r.onderwerpen[o.id]));
+      rb.appendChild(kaderKop("b", null, "Bij werkwijze " + r.nr + ", " + r.naam, "splitsing"));
+      rijk(rb, r.onderwerpen[o.id]);
       binnen.appendChild(rb);
     }
 
@@ -403,6 +563,94 @@
     binnen.scrollTop = 0;
   }
 
+  /* ---------------- verwijzen naar een andere werkwijze ---------------- */
+
+  /* "[[2]]" in een tekst wordt een merkje in de zin, "[[3,4]]" noemt er twee,
+     en "[[1|Werkwijze 1]]" zet er je eigen opschrift bij, voor waar de zin met
+     de verwijzing begint. Een onbekend nummer valt weg. */
+  function wwVerwijzing(kern) {
+    var stuk = String(kern).split("|");
+    var nrs = stuk[0].split(",").map(function (n) { return n.trim(); })
+      .filter(function (n) { return D.werkwijzen[n]; });
+    return { nrs: nrs, label: (stuk[1] || "").trim() || wwOpschrift(nrs) };
+  }
+
+  function wwOpschrift(nrs) {
+    if (!nrs.length) return "";
+    if (nrs.length === 1) return "werkwijze " + nrs[0];
+    return "werkwijze " + nrs.slice(0, -1).join(", ") + " en " + nrs[nrs.length - 1];
+  }
+
+  /* Een verwijzing in de lopende tekst opent een klein venster en niet de tab.
+     Wie leest waar hij zit, staat na het sluiten weer waar hij zat, en wie de
+     lagere werkwijze niet wil doornemen, klikt niet. */
+  function werkwijzeMerk(v) {
+    if (!v.nrs.length) return null;
+    var namen = v.nrs.map(function (n) { return D.werkwijzen[n].naam; }).join(", ");
+    var knop = el("button", "wwmerk", v.label);
+    knop.type = "button";
+    knop.title = namen + ". Klik voor de kern ervan.";
+    knop.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openWerkwijzePeek(v.nrs);
+    });
+    return knop;
+  }
+
+  /* Het kijkvenster: de pitch, wat je installeert en voor wie het is. Genoeg om
+     te beslissen of je erheen wil. Het staat in een eigen dialog, zodat het ook
+     boven op een openstaand onderwerp kan komen. */
+  function openWerkwijzePeek(nrs) {
+    var venster = document.getElementById("wwvenster");
+    var binnen = document.getElementById("wwvenster-binnen");
+    leeg(binnen);
+
+    var kop = el("div", "blokkop");
+    var titels = el("div");
+    titels.appendChild(el("p", "vraagnr", "Even meekijken"));
+    var t = wwOpschrift(nrs);
+    titels.appendChild(el("h2", "vraag", t.charAt(0).toUpperCase() + t.slice(1)));
+    kop.appendChild(titels);
+    var sluit = el("button", "sluitknop", "×");
+    sluit.type = "button";
+    sluit.setAttribute("aria-label", "Sluiten");
+    sluit.addEventListener("click", function () { venster.close(); });
+    kop.appendChild(sluit);
+    binnen.appendChild(kop);
+
+    nrs.forEach(function (n) {
+      var r = D.werkwijzen[n];
+      var kaart = el("section", "wwpeek");
+      var naam = el("h3", "wwpeek-naam", "Werkwijze " + r.nr + ": " + r.naam);
+      if (state.mijnWerkwijze === n) naam.appendChild(el("span", "jouwroute", "jouw werkwijze"));
+      kaart.appendChild(naam);
+      kaart.appendChild(rijk(el("p", "wwpeek-pitch"), r.pitch));
+
+      var dl = el("dl", "wwpeek-feiten");
+      dl.appendChild(el("dt", null, "Wat je installeert"));
+      dl.appendChild(el("dd", null, r.installeren));
+      dl.appendChild(el("dt", null, "Voor wie"));
+      dl.appendChild(el("dd", null, r.voorwie));
+      kaart.appendChild(dl);
+
+      var lees = el("button", "tekstknop", "Lees werkwijze " + r.nr + " helemaal →");
+      lees.type = "button";
+      lees.addEventListener("click", function () {
+        venster.close();
+        var blok = document.getElementById("blokvenster");
+        if (blok.open) blok.close();
+        naarTab("werkwijzen");
+        tekenWerkwijzen(r.nr);
+      });
+      kaart.appendChild(lees);
+      binnen.appendChild(kaart);
+    });
+
+    if (!venster.open) venster.showModal();
+    binnen.scrollTop = 0;
+  }
+
   function bouwTabel(kop, rijen) {
     var tabel = el("table", "vergelijking");
     var thead = el("thead");
@@ -425,10 +673,12 @@
   }
 
   function bindVenster() {
-    var venster = document.getElementById("blokvenster");
-    /* klik naast het venster sluit het */
-    venster.addEventListener("click", function (e) {
-      if (e.target === venster) venster.close();
+    /* klik naast een venster sluit het */
+    ["blokvenster", "wwvenster"].forEach(function (id) {
+      var venster = document.getElementById(id);
+      venster.addEventListener("click", function (e) {
+        if (e.target === venster) venster.close();
+      });
     });
   }
 
@@ -585,7 +835,7 @@
     var inst = D.installatie.filter(function (i) { return i.id === a.installatie; })[0];
     if (inst) lijst.push("Laptop: " + inst.label + ".");
 
-    return lijst;
+    return lijst.map(plat);
   }
 
   /* ---------------- de gids tekenen ---------------- */
@@ -618,13 +868,13 @@
   /* waarom je die vier dingen doet; staat op het welkomscherm en onder je plan */
   function waaromBlok() {
     var vak = el("section", "waarom");
-    vak.appendChild(el("h3", "waarom-kop", D.waaromKop));
-    vak.appendChild(el("p", "waarom-noot", D.waaromNoot));
+    vak.appendChild(kaderKop("h3", "waarom-kop", D.waaromKop, "kompas", true));
+    vak.appendChild(rijk(el("p", "waarom-noot"), D.waaromNoot));
     var lijst = el("ul", "waarom-lijst");
     D.waarom.forEach(function (w) {
       var li = el("li");
       li.appendChild(el("b", null, w.kop));
-      li.appendChild(el("span", null, w.tekst));
+      li.appendChild(rijk(el("span"), w.tekst));
       lijst.appendChild(li);
     });
     vak.appendChild(lijst);
@@ -636,8 +886,10 @@
 
     scherm.appendChild(el("p", "vraagnr", "Voor leerkrachten, lectoren en docenten"));
     scherm.appendChild(el("h1", "welkom-kop", D.rodedraad));
-    scherm.appendChild(el("p", "welkom-tekst",
-      "Deze site helpt je AI in te schakelen bij het schrijven van je cursusmateriaal, ook als je nog nooit met een AI-chatbot werkte. " +
+    scherm.appendChild(rijk(el("p", "welkom-tekst"),
+      "*Je hebt het al eens geprobeerd. Je plakte een hoofdstuk in een chatvenster, vroeg om het wat vlotter te maken, " +
+      "en kreeg iets terug dat las als een folder.* De AI wist niets van je vak, niets van je studenten, en niets van de " +
+      "afspraken die al twintig jaar in je hoofd zitten. Op deze site zet je die drie in bestanden die bij elke vraag meegaan. " +
       "Beantwoord een handvol vragen en je krijgt een plan op maat: welke werkwijze bij jou past, en waar je vandaag mee begint."));
 
     var rij = el("div", "knoppenrij welkom-knoppen");
@@ -669,7 +921,7 @@
       start.type = "button";
       start.addEventListener("click", function () { state.gestart = true; bewaar(); tekenGids(); });
       rij.appendChild(start);
-      var duurtje = el("span", "welkom-duur", "een handvol vragen, klaar in twee minuten");
+      var duurtje = el("span", "welkom-duur", "een handvol vragen, en je hoeft niets te installeren");
       rij.appendChild(duurtje);
     }
     scherm.appendChild(rij);
@@ -903,7 +1155,7 @@
       var m = D.materiaal.filter(function (x) { return x.id === mid; })[0];
       if (!m) return;
       var lijn = el("div", "advieslijn " + m.vlag);
-      lijn.appendChild(el("b", null, m.label));
+      lijn.appendChild(kaderKop("b", null, m.label, VLAGICOON[m.vlag] || "roos"));
       lijn.appendChild(tn(m.advies));
       wrap.appendChild(lijn);
     });
@@ -930,7 +1182,7 @@
       var keuzes = el("div", "toolkeuze");
       D.toolkeuze.forEach(function (k) {
         var geval = el("div", "toolgeval");
-        geval.appendChild(el("b", "toolgeval-als", k.als));
+        geval.appendChild(kaderKop("b", "toolgeval-als", k.als, "splitsing"));
         geval.appendChild(el("p", "toolgeval-waarom", k.waarom));
         var doel = k.tool ? assistentBij(k.tool) : null;
         if (doel && k.knop) {
@@ -960,7 +1212,7 @@
       var b = D.bron.filter(function (x) { return x.id === a.bron; })[0];
       kaart.appendChild(el("p", "vraagnr", "Zo zet je dit gebruiksklaar"));
       kaart.appendChild(el("h2", "vraag", b.label));
-      kaart.appendChild(el("p", "routepitch", b.advies));
+      rijk(kaart.appendChild(el("p", "routepitch")), b.advies);
 
       /* Blijf je in de browser, dan valt de route met een installatie weg, en
          ook de commandoregel die erin staat. Die ene code-regel is genoeg om
@@ -972,9 +1224,10 @@
 
       if (routes.length) {
         var rts = el("div", "bronroutes" + (routes.length === 1 ? " een" : ""));
-        routes.forEach(function (r) {
+        routes.forEach(function (r, i) {
           var krt = el("div", "bronroute");
-          krt.appendChild(el("b", "bronroutekop", r[0]));
+          krt.appendChild(kaderKop("b", "bronroutekop", r[0],
+            r[2] === "installeren" ? "terminal" : (i === 0 ? "klik" : "moersleutel")));
           var pp = el("p", "bronroutetekst");
           rijk(pp, r[1]);
           krt.appendChild(pp);
@@ -985,14 +1238,18 @@
 
       /* het woord markdown valt hier voor het eerst; uitleggen op de plek zelf */
       if (D.markdownUitleg && /markdown/i.test(routes.map(function (r) { return r[1]; }).join(" "))) {
-        var md = el("p", "markdownuitleg", D.markdownUitleg);
+        var md = el("p", "markdownuitleg");
+        var mdicoon = el("span", "kadericoon");
+        mdicoon.appendChild(icoonSvg("haakjes"));
+        md.appendChild(mdicoon);
+        md.appendChild(rijk(el("span"), D.markdownUitleg));
         kaart.appendChild(md);
       }
 
       var letop = (inBrowser && b.letopBrowser) || b.letop;
       if (letop) {
         var lo = el("div", "advieslijn vragen letop");
-        lo.appendChild(el("b", null, "Let op"));
+        lo.appendChild(kaderKop("b", null, "Let op", "waarschuwing"));
         rijk(lo, letop);
         kaart.appendChild(lo);
       }
@@ -1006,11 +1263,11 @@
       var mapblok = bronMapBlok();
       if (mapblok) kaart.appendChild(mapblok);
 
-      kaart.appendChild(el("h3", "bronmapkop", "Wat hier altijd geldt"));
+      kaart.appendChild(kaderKop("h3", "bronmapkop", "Wat hier altijd geldt", "vink", true));
       var tw = el("div", "tussenadvies");
       D.bronRegels.forEach(function (r) {
         var lijn = el("div", "advieslijn buiten");
-        lijn.appendChild(el("b", null, r[0]));
+        lijn.appendChild(kaderKop("b", null, r[0], "vink"));
         lijn.appendChild(tn(r[1]));
         tw.appendChild(lijn);
       });
@@ -1037,6 +1294,7 @@
   document.addEventListener("keydown", function (e) {
     if (document.querySelector('[data-panel="gids"]').hidden) return;
     if (document.getElementById("blokvenster").open) return;
+    if (document.getElementById("wwvenster").open) return;
     if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
     var n = parseInt(e.key, 10);
     if (!n || n < 1 || n > 9) return;
@@ -1074,12 +1332,12 @@
     var doelnu = mijnDoel();
     if (doelnu) {
       var dk = el("div", "doelkaart");
-      dk.appendChild(el("h2", "doelkop", doelnu.planKop));
-      dk.appendChild(el("p", "doelwat", doelnu.wat));
+      dk.appendChild(kaderKop("h2", "doelkop", doelnu.planKop, "vlag", true));
+      dk.appendChild(rijk(el("p", "doelwat"), doelnu.wat));
       if (doelnu.eerst) {
         var eerst = el("p", "doeleerst");
         eerst.appendChild(el("b", null, "Waar je vandaag begint: "));
-        eerst.appendChild(tn(doelnu.eerst));
+        rijk(eerst, doelnu.eerst);
         dk.appendChild(eerst);
       }
       kopwrap.appendChild(dk);
@@ -1090,12 +1348,14 @@
     kop.appendChild(el("span", "routeletter", "Werkwijze " + r.nr));
     kop.appendChild(el("h2", "routenaam", r.naam));
     kaart.appendChild(kop);
-    kaart.appendChild(el("p", "routepitch", r.pitch));
-    kaart.appendChild(el("p", "routeuitleg", r.uitleg));
+    kaart.appendChild(rijk(el("p", "routepitch"), r.pitch));
+    kaart.appendChild(rijk(el("p", "routeuitleg"), r.uitleg));
     var ul = el("ul");
-    r.punten.forEach(function (p) { ul.appendChild(el("li", null, p)); });
+    r.punten.forEach(function (p) { ul.appendChild(rijk(el("li"), p)); });
     kaart.appendChild(ul);
-    if (r.slot) kaart.appendChild(el("p", "routeslot", r.slot));
+    if (r.slot) kaart.appendChild(rijk(el("p", "routeslot"), r.slot));
+    var rb1 = routesBlok(r);
+    if (rb1) kaart.appendChild(rb1);
     kopwrap.appendChild(kaart);
     doel.appendChild(kopwrap);
 
@@ -1149,7 +1409,7 @@
        gesprek voerde, heeft één doorlopend verhaal nodig, niet zes tips. */
     if (D.voorbeeldgesprek) {
       var sess = el("div", "sessiewijzer");
-      sess.appendChild(el("b", null, D.voorbeeldgesprek.kop));
+      sess.appendChild(kaderKop("b", null, D.voorbeeldgesprek.kop, "gesprek", true));
       sess.appendChild(el("p", null, "Nog nooit zo'n gesprek gevoerd? Dit is wat er letterlijk gebeurt, van je laptop openen tot een hoofdstuk waar je tevreden over bent."));
       var naarSessie = el("button", "knop knop-klein", "Lees de zes stappen");
       naarSessie.type = "button";
@@ -1161,18 +1421,18 @@
     var blokjes = el("div", "blokjes");
 
     var b1 = el("div", "blokje");
-    b1.appendChild(el("h3", null, "Zo zet je werkwijze " + r.nr + " op"));
+    b1.appendChild(kaderKop("h3", null, "Zo zet je werkwijze " + r.nr + " op", "trap"));
     var ol = el("ol", "stappenlijst");
-    r.stappen.forEach(function (t) { ol.appendChild(el("li", null, t)); });
+    r.stappen.forEach(function (t) { ol.appendChild(rijk(el("li"), t)); });
     b1.appendChild(ol);
-    b1.appendChild(el("h3", null, "Wat je installeert"));
+    b1.appendChild(kaderKop("h3", null, "Wat je installeert", "kist"));
     b1.appendChild(el("p", null, r.installeren));
     blokjes.appendChild(b1);
 
     var nots = notities();
     if (nots.length) {
       var b2 = el("div", "blokje");
-      b2.appendChild(el("h3", null, "Uit jouw antwoorden"));
+      b2.appendChild(kaderKop("h3", null, "Uit jouw antwoorden", "klembord"));
       var ul3 = el("ul");
       nots.forEach(function (t) { ul3.appendChild(el("li", null, t)); });
       b2.appendChild(ul3);
@@ -1184,7 +1444,7 @@
       var binnenkaart = assistentKaart(a, "Bij " + a.naam + " heet dat");
       binnenkaart.classList.add("kaal");
       b3.appendChild(binnenkaart);
-      b3.appendChild(el("p", "toolinmap", a.inmap));
+      b3.appendChild(rijk(el("p", "toolinmap"), a.inmap));
       blokjes.appendChild(b3);
     }
 
@@ -1207,7 +1467,7 @@
     if (r.volgendestap) {
       var v = r.volgendestap;
       var vs = el("section", "ladder");
-      vs.appendChild(el("h3", null, "Als dit bevalt: de volgende stap"));
+      vs.appendChild(kaderKop("h3", null, "Als dit bevalt: de volgende stap", "trap", true));
       vs.appendChild(el("p", "ladder-wanneer", v.wanneer));
       vs.appendChild(el("p", "ladder-wat", v.wat));
       if (v.nognietnodig) vs.appendChild(el("p", "noot", v.nognietnodig));
@@ -1281,28 +1541,30 @@
     if (state.mijnWerkwijze === actief) kop.appendChild(el("span", "jouwroute", "jouw werkwijze"));
     kaart.appendChild(kop);
     kaart.appendChild(el("p", "voorwie", "Voor " + r.voorwie + "."));
-    kaart.appendChild(el("p", "routepitch", r.pitch));
-    kaart.appendChild(el("p", "routeuitleg", r.uitleg));
+    kaart.appendChild(rijk(el("p", "routepitch"), r.pitch));
+    kaart.appendChild(rijk(el("p", "routeuitleg"), r.uitleg));
     var ul = el("ul");
-    r.punten.forEach(function (p) { ul.appendChild(el("li", null, p)); });
+    r.punten.forEach(function (p) { ul.appendChild(rijk(el("li"), p)); });
     kaart.appendChild(ul);
-    if (r.slot) kaart.appendChild(el("p", "routeslot", r.slot));
+    if (r.slot) kaart.appendChild(rijk(el("p", "routeslot"), r.slot));
+    var rb2 = routesBlok(r);
+    if (rb2) kaart.appendChild(rb2);
     doel.appendChild(kaart);
 
     /* blokjes: installeren, eerst doen, jouw tool */
     var blokjes = el("div", "blokjes");
 
     var b1 = el("div", "blokje");
-    b1.appendChild(el("h3", null, "Wat je installeert"));
+    b1.appendChild(kaderKop("h3", null, "Wat je installeert", "kist"));
     b1.appendChild(el("p", null, r.installeren));
-    b1.appendChild(el("h3", null, "Wat je overslaat"));
+    b1.appendChild(kaderKop("h3", null, "Wat je overslaat", "verboden"));
     b1.appendChild(el("p", null, r.overslaan));
     blokjes.appendChild(b1);
 
     var b2 = el("div", "blokje");
-    b2.appendChild(el("h3", null, "Wat je eerst doet"));
+    b2.appendChild(kaderKop("h3", null, "Wat je eerst doet", "trap"));
     var ol = el("ol", "stappenlijst");
-    r.stappen.forEach(function (t) { ol.appendChild(el("li", null, t)); });
+    r.stappen.forEach(function (t) { ol.appendChild(rijk(el("li"), t)); });
     b2.appendChild(ol);
     blokjes.appendChild(b2);
 
@@ -1312,7 +1574,7 @@
       var binnenkaart = assistentKaart(mijnTool, "Bij " + mijnTool.naam);
       binnenkaart.classList.add("kaal");
       tkaart.appendChild(binnenkaart);
-      tkaart.appendChild(el("p", "toolinmap", mijnTool.inmap));
+      tkaart.appendChild(rijk(el("p", "toolinmap"), mijnTool.inmap));
       blokjes.appendChild(tkaart);
     }
 
@@ -1322,7 +1584,7 @@
     doel.appendChild(blokjes);
 
     /* de vijf onderwerpen, vertaald naar deze werkwijze */
-    doel.appendChild(el("h3", "blokkenkop", "De vijf onderwerpen bij werkwijze " + r.nr));
+    doel.appendChild(kaderKop("h3", "blokkenkop", "De vijf onderwerpen bij werkwijze " + r.nr, "blokken", true));
     doel.appendChild(el("p", "noot", "Zelfde onderwerpen, andere plek waar je bestanden staan. Klik een onderwerp open voor de tips zelf."));
     var lijst = el("div", "blokvertaling");
     D.onderwerpen.forEach(function (o) {
@@ -1408,7 +1670,7 @@
 
     var inmap = el("p", "toolinmap");
     inmap.appendChild(el("b", null, "In je eigen map schrijven"));
-    inmap.appendChild(tn(gekozen.inmap));
+    rijk(inmap, gekozen.inmap);
     kaart.appendChild(inmap);
 
     var wjd = wistjedatBlok(gekozen);
@@ -1519,7 +1781,9 @@
       ix.push({
         titel: "Werkwijze " + n + ". " + r.naam,
         tekst: T(r.pitch + " Installeren: " + r.installeren + "."),
-        zoek: T([r.naam, r.pitch, r.uitleg, r.voorwie, r.punten.join(" "), r.stappen.join(" "), r.overslaan].join(" ")),
+        zoek: T([r.naam, r.pitch, r.uitleg, r.voorwie, r.punten.join(" "), r.stappen.join(" "), r.overslaan,
+          r.routes ? [r.routes.kop, r.routes.items.map(function (it) { return [it.naam, it.wat, it.hoe, it.uitleg].join(" "); }).join(" "),
+            r.routes.noot, r.routes.zonderterminal].join(" ") : ""].join(" ")),
         waar: "Werkwijze",
         doe: function () { naarTab("werkwijzen"); tekenWerkwijzen(n); }
       });
@@ -1662,6 +1926,26 @@
       });
     });
 
+    if (D.colofon) {
+      var c = D.colofon;
+      ix.push({
+        titel: c.kop,
+        tekst: c.intro,
+        zoek: [c.kop, c.intro, (c.misliep || []).join(" "), (c.regelsIntro || []).join(" "), c.slot].join(" "),
+        waar: "Colofon",
+        doe: function () { naarVak("colofon"); }
+      });
+      [].concat(c.wel, c.niet).forEach(function (r) {
+        ix.push({
+          titel: r.kop,
+          tekst: r.tekst || c.regelsKop,
+          zoek: r.kop + " " + (r.tekst || "") + " regel regels regelsbestand schrijfstijl",
+          waar: "Het regelsbestand",
+          doe: function () { naarVak("colofon"); }
+        });
+      });
+    }
+
     D.randgevallen.forEach(function (g) {
       ix.push({
         titel: g.geval,
@@ -1679,7 +1963,7 @@
       if (tech.length) staart.push(tech.join(", "));
       ix.push({
         titel: v.titel,
-        tekst: staart.length ? v.wat + " — " + staart.join(" · ") : v.wat,
+        tekst: staart.length ? v.wat + " · " + staart.join(" · ") : v.wat,
         zoek: v.titel + " " + v.wat + " " + (v.maker || "") + " " + tech.join(" "),
         waar: "Voorbeeld",
         url: v.url
@@ -1718,7 +2002,7 @@
 
     var woorden = f.split(/\s+/);
     var treffers = INDEX.filter(function (item) {
-      var hooi = (item.titel + " " + item.zoek).toLowerCase();
+      var hooi = plat(item.titel + " " + item.zoek).toLowerCase();
       return woorden.every(function (w) { return hooi.indexOf(w) >= 0; });
     });
 
@@ -1743,7 +2027,7 @@
       kop.appendChild(el("b", null, item.titel));
       kop.appendChild(el("span", "blokmerk", item.waar));
       kaart.appendChild(kop);
-      kaart.appendChild(el("span", "treffertekst", item.tekst));
+      kaart.appendChild(el("span", "treffertekst", plat(item.tekst)));
       doel.appendChild(kaart);
     });
 
@@ -1752,79 +2036,190 @@
     }
   }
 
-  /* ---------------- naslag: de hub en de zes vakken ---------------- */
+  /* ---------------- naslag: de hub en de vakken ---------------- */
 
-  /* Het naslagwerk is een hub met zeven deuren. Je ziet altijd maar een vak
-     tegelijk, zodat de pagina niet uitgroeit tot een muur tekst. */
-  var AFDELINGEN = [
+  /* Het naslagwerk is een hub met deuren. Je ziet altijd maar een vak tegelijk,
+     zodat de pagina niet uitgroeit tot een muur tekst. De deuren staan in
+     groepen, en boven elke groep staat de vraag die je stelt op het moment dat
+     je hier terechtkomt. Wie zijn vraag herkent, leest de andere groepen niet. */
+  var HUBGROEPEN = [
     {
-      vak: "eerstekeer",
-      titel: "Je eerste sessie, stap voor stap",
-      kort: "Eén doorlopend verhaal: wat je typt, wat je terugkrijgt en waar je op let. Begin hier als je nog nooit met AI werkte.",
-      tel: function () { return D.voorbeeldgesprek.stappen.length + " stappen"; }
+      id: "start",
+      vraag: "Waar begin ik?",
+      noot: "Nog nooit met AI aan je cursus gewerkt? Dan is dit de enige deur die je nu nodig hebt.",
+      items: [
+        {
+          vak: "eerstekeer",
+          icoon: "trap",
+          groot: true,
+          titel: "Je eerste sessie, stap voor stap",
+          kort: "Eén doorlopend verhaal: wat je typt, wat je terugkrijgt en waar je op let.",
+          tel: function () { return D.voorbeeldgesprek.stappen.length + " stappen"; }
+        }
+      ]
     },
     {
-      vak: "onderwerpen",
-      titel: "De onderwerpen",
-      kort: "Platte tekst, de contextmap, je eigen regels, skills en lesmateriaal. Dit is de kern.",
-      tel: function () { return D.onderwerpen.length + " onderwerpen"; }
+      id: "kern",
+      vraag: "Hoe werkt dit dan?",
+      noot: "De twee stukken waar de rest van de site op staat: wat je klaarzet, en waar die bestanden staan.",
+      items: [
+        {
+          vak: "onderwerpen",
+          icoon: "blokken",
+          titel: "De onderwerpen",
+          kort: "Platte tekst, de contextmap, je eigen regels, skills en lesmateriaal.",
+          tel: function () { return D.onderwerpen.length + " onderwerpen"; }
+        },
+        {
+          tab: "werkwijzen",
+          icoon: "map",
+          titel: "De vier werkwijzen",
+          kort: "Van een chatvenster tot een map op je laptop, en wie er in je bestanden schrijft.",
+          tel: function () { return "4 werkwijzen"; },
+          merk: function () {
+            var r = state.mijnWerkwijze && D.werkwijzen[state.mijnWerkwijze];
+            return r ? "jouw werkwijze: " + r.naam : "";
+          }
+        }
+      ]
     },
     {
-      tab: "werkwijzen",
-      titel: "De vier werkwijzen",
-      kort: "Waar je bestanden staan en wie ze aanraakt: van een chatvenster tot een map op je laptop.",
-      tel: function () { return "4 werkwijzen"; }
+      id: "maat",
+      vraag: "Wat geldt er bij mij?",
+      noot: "Hier zet je vast wat de rest van de site over jou moet weten: je tool, wat je moet aanleveren, en het geval dat buiten het standaardverhaal valt.",
+      items: [
+        {
+          vak: "tool",
+          icoon: "vonk",
+          titel: "Met welke AI werk je?",
+          kort: "Hoe je contextmap, je regels en je skills bij jouw tool heten, en waar ze staan.",
+          tel: function () { return D.assistenten.length + " tools"; },
+          merk: function () {
+            var a = mijnAssistent();
+            return a ? "nu ingesteld: " + a.naam : "";
+          }
+        },
+        {
+          vak: "uitkomst",
+          icoon: "uitvoer",
+          titel: "Wat moet eruit komen?",
+          kort: "Word, PowerPoint, leerplatform of pdf: wat je vraagt hangt af van wat je moet aanleveren.",
+          tel: function () { return D.outputs.length + " formaten"; },
+          merk: function () {
+            var o = D.outputs.filter(function (x) { return x.id === state.output; })[0];
+            return o ? "gekozen: " + o.label : "";
+          }
+        },
+        {
+          vak: "randgevallen",
+          icoon: "splitsing",
+          titel: "Bij mij ligt dat anders",
+          kort: "Je deelt het vak, je cursus zit vol formules, je directie wil er niets van weten.",
+          tel: function () { return D.randgevallen.length + " situaties"; }
+        }
+      ]
     },
     {
-      vak: "prompts",
-      titel: "Prompts om te plakken",
-      kort: "Vragen die je letterlijk kan overnemen. Ze werken in elk chatvenster.",
-      tel: function () { return D.prompts.length + " prompts"; }
+      id: "pak",
+      vraag: "Wat kan ik nu meteen gebruiken?",
+      noot: "Tekst om te kopiëren, en de programma's waarin het gebeurt.",
+      items: [
+        {
+          vak: "prompts",
+          icoon: "klembord",
+          titel: "Prompts om te plakken",
+          kort: "Vragen die je letterlijk kan overnemen. Ze werken in elk chatvenster.",
+          tel: function () { return D.prompts.length + " prompts"; }
+        },
+        {
+          vak: "gereedschap",
+          icoon: "kist",
+          titel: "Gereedschap en links",
+          kort: "Programma's op volgorde van drempel, en alle links die op deze site staan.",
+          tel: function () { return D.gereedschap.length + " programma's"; }
+        }
+      ]
     },
     {
-      vak: "tool",
-      titel: "Met welke AI werk je?",
-      kort: "Hoe je contextmap, je regels en je skills bij jouw tool heten, en waar ze staan.",
-      tel: function () { return D.assistenten.length + " tools"; }
-    },
-    {
-      vak: "uitkomst",
-      titel: "Wat moet eruit komen?",
-      kort: "Word, PowerPoint, leerplatform of pdf: wat je vraagt hangt af van wat je moet aanleveren.",
-      tel: function () { return D.outputs.length + " formaten"; }
-    },
-    {
-      vak: "gereedschap",
-      titel: "Gereedschap en links",
-      kort: "Programma's op volgorde van drempel, en alle links die op deze site staan.",
-      tel: function () { return D.gereedschap.length + " programma's"; }
-    },
-    {
-      vak: "randgevallen",
-      titel: "Bij mij ligt dat anders",
-      kort: "Je deelt het vak, je cursus zit vol formules, je directie wil er niets van weten.",
-      tel: function () { return D.randgevallen.length + " situaties"; }
+      id: "achter",
+      vraag: "Achter de schermen",
+      noot: "",
+      items: [
+        {
+          vak: "colofon",
+          icoon: "haakjes",
+          smal: true,
+          titel: "Hoe deze site gemaakt is",
+          kort: "Het regelsbestand waarmee deze site geschreven is, en wat er ondertussen misging.",
+          tel: function () { return (D.colofon.wel.length + D.colofon.niet.length) + " regels"; }
+        }
+      ]
     }
   ];
+
+  var AFDELINGEN = HUBGROEPEN.reduce(function (alles, g) { return alles.concat(g.items); }, []);
 
   var VAKKEN = AFDELINGEN.filter(function (a) { return a.vak; }).map(function (a) { return a.vak; });
 
   var huidigVak = "";
 
+  /* Wat je gekozen hebt kan een hele zin zijn ("Word in het sjabloon van je
+     school"). Op een kaart past een halve regel: afkappen op een woordgrens,
+     de volledige tekst blijft in de titel staan. */
+  function kortMerk(tekst, max) {
+    if (tekst.length <= max) return tekst;
+    var kort = tekst.slice(0, max);
+    var spatie = kort.lastIndexOf(" ");
+    if (spatie > max * 0.6) kort = kort.slice(0, spatie);
+    return kort + "…";
+  }
+
+  function hubKaart(a) {
+    var knop = el("button", "hubkaart" + (a.groot ? " hubkaart-groot" : "") + (a.smal ? " hubkaart-smal" : ""));
+    knop.type = "button";
+
+    var vak = el("span", "hubicoon");
+    vak.appendChild(icoonSvg(a.icoon));
+    knop.appendChild(vak);
+
+    var tekst = el("span", "hubtekst");
+    tekst.appendChild(el("b", null, a.titel));
+    tekst.appendChild(el("span", "hubkort", a.kort));
+
+    var voet = el("span", "hubvoet");
+    voet.appendChild(el("span", "hubtel", a.tel()));
+    var eigen = a.merk ? a.merk() : "";
+    if (eigen) {
+      var chip = el("span", "hubjouw", kortMerk(eigen, 46));
+      chip.title = eigen;
+      voet.appendChild(chip);
+    }
+    tekst.appendChild(voet);
+
+    knop.appendChild(tekst);
+    knop.addEventListener("click", function () {
+      if (a.tab) naarTab(a.tab);
+      else naarVak(a.vak);
+    });
+    return knop;
+  }
+
   function tekenNaslagHub() {
     var hub = document.getElementById("naslaghub");
     leeg(hub);
-    AFDELINGEN.forEach(function (a) {
-      var knop = el("button", "hubkaart");
-      knop.type = "button";
-      knop.appendChild(el("b", null, a.titel));
-      knop.appendChild(el("span", "hubkort", a.kort));
-      knop.appendChild(el("span", "hubtel", a.tel()));
-      knop.addEventListener("click", function () {
-        if (a.tab) naarTab(a.tab);
-        else naarVak(a.vak);
-      });
-      hub.appendChild(knop);
+    HUBGROEPEN.forEach(function (g) {
+      var groep = el("section", "hubgroep hubgroep-" + g.id);
+
+      var kop = el("div", "hubkop");
+      kop.appendChild(el("h3", "hubvraag", g.vraag));
+      if (g.noot) kop.appendChild(rijk(el("p", "hubnoot"), g.noot));
+      groep.appendChild(kop);
+
+      var raster = el("div", "hubkaarten");
+      g.items.forEach(function (a) { raster.appendChild(hubKaart(a)); });
+      groep.appendChild(raster);
+
+      hub.appendChild(groep);
     });
   }
 
@@ -1892,7 +2287,7 @@
     advies.hidden = !gekozen;
     if (!gekozen) return;
 
-    advies.appendChild(el("h3", null, gekozen.label));
+    advies.appendChild(kaderKop("h3", null, gekozen.label, "uitvoer", true));
     advies.appendChild(el("p", null, gekozen.advies));
     var olinks = toolLinks(gekozen.links);
     if (olinks.length) {
@@ -2007,28 +2402,28 @@
     var g = D.voorbeeldgesprek;
     if (!g) return;
     document.getElementById("sessie-kop").textContent = g.kop;
-    document.getElementById("sessie-intro").textContent = g.intro;
+    rijk(leeg(document.getElementById("sessie-intro")), g.intro);
 
     var doel = document.getElementById("sessie-inhoud");
     leeg(doel);
 
     if (g.situatie) {
       var sit = el("div", "advieslijn buiten sessiesituatie");
-      sit.appendChild(el("b", null, "Waarmee je begint"));
+      sit.appendChild(kaderKop("b", null, "Waarmee je begint", "map"));
       rijk(sit, g.situatie);
       doel.appendChild(sit);
     }
-    if (g.duur) doel.appendChild(el("p", "sessieduur", g.duur));
+    if (g.tweedekeer) doel.appendChild(rijk(el("p", "sessieduur"), g.tweedekeer));
 
     var lijst = el("ol", "sessielijst");
     g.stappen.forEach(function (s) {
       var li = el("li", "sessiestap");
       li.appendChild(el("b", "sessiestapkop", T(s.kop)));
-      [["Wat je doet", s.jij, "jij"], ["Wat je terugkrijgt", s.terug, "terug"], ["Waar je op let", s.let, "let"]]
+      [["Wat je doet", s.jij, "jij", "klik"], ["Wat je terugkrijgt", s.terug, "terug", "gesprek"], ["Waar je op let", s.let, "let", "oog"]]
         .forEach(function (r) {
           if (!r[1]) return;
           var regel = el("div", "sessieregel sessie-" + r[2]);
-          regel.appendChild(el("b", null, r[0]));
+          regel.appendChild(kaderKop("b", null, r[0], r[3]));
           rijk(regel, r[1]);
           li.appendChild(regel);
         });
@@ -2038,11 +2433,50 @@
 
     if (g.valkuil) {
       var vk = el("div", "advieslijn vragen letop");
-      vk.appendChild(el("b", null, "De fout die iedereen maakt"));
+      vk.appendChild(kaderKop("b", null, "De fout die iedereen maakt", "waarschuwing"));
       rijk(vk, g.valkuil);
       doel.appendChild(vk);
     }
-    if (g.slot) doel.appendChild(el("p", "sessieslot", g.slot));
+    if (g.slot) doel.appendChild(rijk(el("p", "sessieslot"), g.slot));
+  }
+
+  /* Het colofon: het regelsbestand van deze site, en wat er misging. Staat er
+     omdat het onderwerp "je regels" wel zegt dat een regel testbaar moet zijn
+     en er tot nu toe geen enkele liet zien. */
+  function tekenColofon() {
+    var c = D.colofon;
+    if (!c) return;
+    document.getElementById("colofon-kop").textContent = c.kop;
+    document.getElementById("colofon-intro").textContent = c.intro;
+
+    var doel = document.getElementById("colofon-inhoud");
+    leeg(doel);
+
+    if (c.misliep && c.misliep.length) {
+      var mis = el("div", "advieslijn vragen colofon-misliep");
+      mis.appendChild(kaderKop("b", null, c.misliepKop, "waarschuwing"));
+      c.misliep.forEach(function (t) { mis.appendChild(rijk(el("p"), t)); });
+      doel.appendChild(mis);
+    }
+
+    doel.appendChild(kaderKop("h3", null, c.regelsKop, "klembord", true));
+    (c.regelsIntro || []).forEach(function (t) {
+      doel.appendChild(rijk(el("p", "noot"), t));
+    });
+
+    [[c.welKop, c.wel, "vink"], [c.nietKop, c.niet, "verboden"]].forEach(function (paar) {
+      doel.appendChild(kaderKop("h4", "regelkopje", paar[0] + " (" + paar[1].length + ")", paar[2]));
+      var ul = el("ul", "regellijst");
+      paar[1].forEach(function (r) {
+        var li = el("li", "regelitem");
+        li.appendChild(el("b", "regelkop", r.kop));
+        if (r.tekst) li.appendChild(rijk(el("span", "regeltekst"), r.tekst));
+        ul.appendChild(li);
+      });
+      doel.appendChild(ul);
+    });
+
+    if (c.slot) doel.appendChild(rijk(el("p", "sessieslot"), c.slot));
   }
 
   function tekenKist() {
@@ -2086,8 +2520,8 @@
     leeg(wrap);
     D.randgevallen.forEach(function (r) {
       var d = el("div", "randgeval");
-      d.appendChild(el("b", null, r.geval));
-      d.appendChild(el("span", null, r.wat));
+      d.appendChild(kaderKop("b", null, r.geval, "vraagteken"));
+      d.appendChild(rijk(el("span"), r.wat));
       wrap.appendChild(d);
     });
   }
@@ -2096,6 +2530,27 @@
 
   function tekenVoorbeelden() {
     document.getElementById("voorbeelden-noot").textContent = D.voorbeeldenNoot;
+
+    /* Dichtgeklapt is de kop de hele boodschap. Wie wil weten welke projecten
+       bedoeld zijn, klapt open. */
+    var haak = document.getElementById("voorbeelden-waarschuwing");
+    leeg(haak);
+    if (D.voorbeeldenWaarschuwing) {
+      var w = D.voorbeeldenWaarschuwing;
+      var det = el("details", "voorbeeldwaarschuwing");
+      var sum = el("summary");
+      var ic = el("span", "vw-icoon");
+      ic.appendChild(icoonSvg(w.icoon || "raket"));
+      sum.appendChild(ic);
+      sum.appendChild(el("span", "vw-kop", w.kop));
+      sum.appendChild(el("span", "vw-pijl", "▾"));
+      det.appendChild(sum);
+      var binnen = el("div", "vw-binnen");
+      w.tekst.forEach(function (t) { binnen.appendChild(rijk(el("p"), t)); });
+      det.appendChild(binnen);
+      haak.appendChild(det);
+    }
+
     var raster = document.getElementById("voorbeeldenraster");
     leeg(raster);
     D.voorbeelden.forEach(function (v) {
@@ -2180,6 +2635,7 @@
   tekenPrompts();
   tekenSessie();
   tekenKist();
+  tekenColofon();
   tekenRandgevallen();
   tekenVoorbeelden();
 

@@ -56,7 +56,7 @@
   <!-- ============ NASLAGWERK ============ -->
   <section class="paneel naslag" data-panel="naslag" hidden>
     <h2>Naslagwerk</h2>
-    <p class="noot" id="naslag-noot">Klik een onderdeel open, of typ waar je naar zoekt.</p>
+    <p class="noot" id="naslag-noot">Zoek hieronder de vraag die je nu stelt, en klik de deur eronder open. Of typ waar je naar zoekt.</p>
     <input type="search" id="zoekalles" class="zoek" placeholder="bv. sjabloon, pptx, limiet, skill, huisstijl" autocomplete="off" aria-label="Zoek in alles">
     <div id="zoekresultaat" class="zoekresultaat"></div>
 
@@ -107,6 +107,12 @@
         <div class="linkraster" id="linkraster"></div>
       </div>
 
+      <div class="naslagvak" data-vak="colofon" hidden>
+        <h3 id="colofon-kop"></h3>
+        <p class="noot" id="colofon-intro"></p>
+        <div id="colofon-inhoud"></div>
+      </div>
+
       <div class="naslagvak" data-vak="randgevallen" hidden>
         <h3>Bij mij ligt dat anders</h3>
         <p class="noot">Situaties die niet in het standaardverhaal passen, en wat je er dan mee doet.</p>
@@ -128,6 +134,7 @@
   <section class="paneel" data-panel="voorbeelden" hidden>
     <h2>Voorbeelden</h2>
     <p class="noot" id="voorbeelden-noot"></p>
+    <div id="voorbeelden-waarschuwing"></div>
     <div class="linkraster" id="voorbeeldenraster"></div>
     <p class="noot">Ken je zelf een goed voorbeeld van een cursus, website of cursusmap die zo gemaakt is? De lijst staat in <code>data.js</code> en groeit graag.</p>
   </section>
@@ -136,6 +143,12 @@
 
 <dialog id="blokvenster" class="blokvenster" aria-label="Uitleg bij een onderwerp">
   <div id="blokvenster-binnen"></div>
+</dialog>
+
+<!-- Het kijkvenster bij een verwijzing naar een andere werkwijze. Apart van het
+     venster hierboven, zodat het er ook bovenop kan komen te staan. -->
+<dialog id="wwvenster" class="blokvenster wwvenster" aria-label="Kort over een andere werkwijze">
+  <div id="wwvenster-binnen"></div>
 </dialog>
 
 <footer class="voet">

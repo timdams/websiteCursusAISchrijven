@@ -13,7 +13,7 @@ gekozen AI-tool. Daarnaast zit alles achter een klein menu:
 |---|---|
 | De gids | het welkomstscherm en de vragen, één per scherm, met voortgangsbolletjes en een terugknop |
 | Jouw plan | verschijnt na de gids: jouw werkwijze, de vier snelle winsten in de termen van jouw tool, waarom je die doet, de eerste drie prompts om te plakken, wat je eerst doet, en wat er uit je antwoorden kwam |
-| Naslagwerk | een zoekveld over alles, en daaronder zeven kaarten die elk een eigen onderdeel opendoen. Je ziet er altijd maar een tegelijk |
+| Naslagwerk | een zoekveld over alles, en daaronder de deuren in groepen, met boven elke groep de vraag die ze beantwoordt. Je ziet er altijd maar een onderdeel tegelijk |
 | Valkuilen | de meest voorkomende fouten, doorzoekbaar. Elke klacht wijst naar het onderwerp dat overgeslagen is |
 | Voorbeelden | de galerij met externe voorbeelden, met keywords per kaart. Groeit nog |
 
@@ -23,22 +23,40 @@ maar is bereikbaar vanuit het plan, het naslagwerk en het zoekveld.
 ## Het naslagwerk: een hub met deuren
 
 Het naslagwerk stond ooit als een lange lijst op een pagina. Dat leest niemand. Nu is het een hub:
-zeven kaarten met een titel, een zin en een teller. Je klikt er een open, ziet alleen dat onderdeel,
-en gaat met "Alle onderdelen" terug.
+negen kaarten met een pictogram, een titel, een zin en een teller. Je klikt er een open, ziet alleen
+dat onderdeel, en gaat met "Alle onderdelen" terug.
 
-| Kaart | Vak (`data-vak`) | Wat erin staat |
-|---|---|---|
-| Je eerste sessie, stap voor stap | `eerstekeer` | één doorlopend verhaal van zes stappen |
-| De onderwerpen | `onderwerpen` | de vijf onderwerpen, elk in een venster |
-| De vier werkwijzen | (geen vak) | springt naar de werkwijzenpagina |
-| Prompts om te plakken | `prompts` | de prompts met een kopieerknop |
-| Met welke AI werk je? | `tool` | de toolkiezer en het kaartje van de gekozen tool |
-| Wat moet eruit komen? | `uitkomst` | de formaatkiezer en het advies erbij |
-| Gereedschap en links | `gereedschap` | de gereedschapskist en alle links van de site |
-| Bij mij ligt dat anders | `randgevallen` | de situaties die buiten het standaardverhaal vallen |
+Negen kaarten op een hoop zijn negen kaarten die je alle negen moet lezen. Ze staan daarom in vijf
+groepen, met boven elke groep de vraag die je stelt op het moment dat je hier terechtkomt. Wie zijn
+vraag herkent, leest de andere groepen niet. De hiërarchie zit in de opmaak: de eerste deur is een
+brede kaart in de accentkleur, het colofon is een smalle kaart zonder schaduw, de rest zit
+ertussenin.
 
-De kaarten staan in `AFDELINGEN` in `app.js`; de vakken zelf zijn `<div class="naslagvak"
-data-vak="...">` in `index.html`. Een vak bijzetten is dus een item in `AFDELINGEN` plus een div.
+| Groep (`hubgroep-`) | Vraag erboven | Kleur | Kaarten |
+|---|---|---|---|
+| `start` | Waar begin ik? | rood accent | Je eerste sessie, stap voor stap (`eerstekeer`, brede kaart) |
+| `kern` | Hoe werkt dit dan? | blauw | De onderwerpen (`onderwerpen`), De vier werkwijzen (geen vak: springt naar de werkwijzenpagina) |
+| `maat` | Wat geldt er bij mij? | oker | Met welke AI werk je? (`tool`), Wat moet eruit komen? (`uitkomst`), Bij mij ligt dat anders (`randgevallen`) |
+| `pak` | Wat kan ik nu meteen gebruiken? | groen | Prompts om te plakken (`prompts`), Gereedschap en links (`gereedschap`) |
+| `achter` | Achter de schermen | grijs | Hoe deze site gemaakt is (`colofon`, smalle kaart) |
+
+De groepen staan in `HUBGROEPEN` in `app.js`, met per kaart een `icoon`, een `tel()` en soms een
+`merk()`. `AFDELINGEN` is de platgeslagen lijst daarvan, zodat de rest van de code niets van de
+groepen hoeft te weten. De vakken zelf zijn `<div class="naslagvak" data-vak="...">` in
+`index.html`. Een vak bijzetten is dus een item in een groep plus een div.
+
+De kleur zit in twee variabelen die de groep zet, `--gk` en `--gz`; de kaarten, pictogrammen en
+tellers eronder halen die op. Een nieuwe groep is één regel in `styles.css`.
+
+De pictogrammen staan als paden in `ICONEN` in `app.js`, op een raster van 24 bij 24, en nemen de
+kleur van hun groep over. Het zijn geen figuren maar wegwijzers; de echte tekeningen staan als png
+in `assets/`.
+
+Wat je al gekozen hebt, staat op de kaart zelf: `merk()` zet er een regeltje onder ("nu ingesteld:
+Claude", "jouw werkwijze: Alles in de browser", "gekozen: Word in het sjabloon van je school"). Zo
+zie je zonder klikken in welke stand de site staat. `naarTab()` hertekent de hub telkens je het
+naslagwerk opent, dus die regeltjes lopen nooit achter.
+
 Een open vak staat in de adresbalk (`#naslag/prompts`), zodat je een onderdeel kan doorsturen.
 Het zoekveld staat boven de kaarten en zoekt door alles heen; een treffer opent het juiste vak.
 
@@ -115,18 +133,86 @@ npx serve .                    # idem
 `index.html` rechtstreeks openen met dubbelklik werkt ook, alleen bewaart de browser dan je
 antwoorden niet tussen twee bezoeken.
 
+## Opmaak in de tekst zelf
+
+`rijk()` in `app.js` leest vier markeringen: `` `tussen accenten` `` wordt een code-vakje,
+`*tussen sterretjes*` cursief, `**tussen dubbele sterretjes**` vet en `[[2]]` een verwijzing naar
+een andere werkwijze (zie de volgende sectie). Cursief is voor het terzijde waarmee een stuk
+opent, en voor het scharnierwoord van een zin; zie de sectie Schrijfstijl in
+`CLAUDE.md`. Niet elk veld gaat door `rijk()`: het werkt in `waaromNoot`, `waarom[].tekst`, de
+`watis`, `kern`, `tips` en `gevorderd` van een onderwerp, `doel[].wat` en `doel[].eerst`, de
+`pitch`, `uitleg` en `slot` van een werkwijze, `bron[].advies`, `bron[].routes` en `bron[].letop`,
+de regels van `bronMap`, `punten` en `stappen` van een werkwijze, `routes[].uitleg` met de `noot`
+en `zonderterminal` ernaast, alles in `voorbeeldgesprek`, en sinds de verwijzingen ook
+`randgevallen[].wat`, `assistenten[].inmap` en de `onderwerpen` van een werkwijze (het blok
+"Bij werkwijze N" onderaan een onderwerp). Zet je een sterretje in een ander veld, dan staat het
+sterretje op het scherm. Waar dezelfde tekst ook als platte tekst moet verschijnen (de
+zoekresultaten en het blok "Uit jouw antwoorden"), haalt `plat()` de markeringen er weer uit.
+
+## Verwijzen naar een andere werkwijze
+
+`[[2]]` in een tekst wordt "werkwijze 2": een merkje in de lopende zin dat een klein venster
+opent met de pitch van die werkwijze, wat je ervoor installeert en voor wie ze is. `[[3,4]]`
+noemt er twee en toont ze allebei. `[[1|Werkwijze 1]]` zet er je eigen opschrift bij, voor een
+zin die met de verwijzing begint en dus een hoofdletter vraagt. Een nummer dat niet in
+`werkwijzen` staat, valt weg en laat enkel de tekst achter.
+
+Het venster is `#wwvenster` in `index.html`, los van `#blokvenster`, zodat het ook boven op een
+openstaand onderwerp kan komen. Sluiten zet de lezer terug waar hij zat; enkel de knop "Lees
+werkwijze N helemaal" wisselt echt van tab.
+
+Zet zo'n merkje alleen waar de lezer iets concreets zoekt dat een stap hoger ligt: het randgeval
+over formules en code, het verplichte sjabloon van je school, het automatische deel van skills.
+Waar de tekst zegt dat je iets *niet* nodig hebt (`overslaan`, `nognietnodig`, het `slot` van
+werkwijze 1), blijft de verwijzing plat: die zin geeft de lezer net toestemming om niet te gaan
+kijken. En waar een hogere werkwijze naar een lagere terugwijst ("zelfde als werkwijze 1"),
+hoort het feit gewoon in de zin: wie op 3 uitkomt, heeft 1 nooit gelezen.
+
+## De kaders en hun pictogrammen
+
+Een kader is elk blok dat een eigen titel draagt: een adviesregel, een let-op, het doel bovenaan je
+plan, de blokjes met stappen, het waarom-blok, een randgeval. Elke titel opent met een pictogram, en
+dat pictogram zegt welk soort blok eronder staat: `verboden` bij wat je buiten laat, `waarschuwing`
+bij een valkuil, `weegschaal` bij een afweging, `vink` bij wat wel mag, `roos` bij de kern, `lamp`
+bij een uitleg, `moersleutel` bij het stuk voor wie al bezig is.
+
+`kaderKop(tag, klas, tekst, icoon, chip)` in `app.js` tekent er een. Waar vroeger
+`el("b", null, "Let op")` stond, staat nu `kaderKop("b", null, "Let op", "waarschuwing")`. Het vijfde
+argument is de enige keuze die je nog moet maken: laat je het weg, dan staat het icoon kaal naast de
+tekst (voor labels in een tekstblok), zet je het op `true`, dan staat het in een gekleurd vierkantje
+zoals op de deuren van het naslagwerk (voor kaders met een echte kop). De titel gaat door `rijk()`,
+dus sterretjes en accenten werken er ook.
+
+De iconen zelf staan in `ICONEN` in `app.js`: vierentwintig paden op een raster van 24 bij 24, in
+code en niet in een bestand, want het zijn pictogrammen en geen figuren. Ze nemen hun kleur over van
+het kader waar ze in staan. Elk kader zet daarvoor twee variabelen in `styles.css`: `--kk` is de
+lijnkleur, `--kz` de kleur van het vierkantje eronder. `.advieslijn.vragen` zet `--kk` op oker,
+`.advieslijn.ok` op groen, en een kader dat zelf op `--accent-zacht` staat (het waarom-blok, de
+sessiewijzer) zet `--kz` op `--kaart`, anders valt het vierkantje weg tegen zijn eigen achtergrond.
+Alles staat in `em`, zodat het icoon meegroeit met de kop waar het naast staat: bij de kleine
+kopjes in een blokje wordt het vanzelf klein.
+
+Een icoon bijzetten is een regel in `ICONEN` en een naam meegeven aan `kaderKop`. Test een nieuw
+pad op zeventien pixels en niet op zesenvijftig: dat is de maat waarop het in een adviesregel
+terechtkomt, en een pad met vijf onderdelen wordt daar een vlek.
+
 ## Waar de tekst staat
 
 Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: `waarom`,
 `snelwinst`, `materiaal`, `bron`, `bronRegels`, `bronMap`, `werkwijzen`, `installatie`, `ervaring`,
 `onderwerpen`, `vergelijking`, `outputs`, `valkuilen`, `randgevallen`, `prompts`, `assistenten`,
-`gereedschap`, `voorbeelden` en `links`. Een tip toevoegen is een regel bijzetten in dat bestand.
+`gereedschap`, `voorbeelden`, `colofon` en `links`. Een tip toevoegen is een regel bijzetten in dat bestand.
 
 - een werkwijze krijgt haar pagina uit `voorwie`, `pitch`, `punten`, `installeren`, `stappen`,
   `overslaan` en `onderwerpen` (een zin per onderwerp)
+- een werkwijze kan daarnaast `routes` dragen: twee manieren om hetzelfde te doen, met `kop`,
+  `items` (`naam`, `wat`, `hoe`, `uitleg`), een `noot` en een `zonderterminal`. Alleen werkwijze 2
+  heeft ze, want daar beslist wat eruit moet komen of je pandoc of Quarto installeert.
+  `routesBlok()` in `app.js` tekent ze, op de werkwijzenpagina en in het plan; een werkwijze
+  zonder `routes` krijgt niets extra
 - een onderwerp krijgt zijn venster uit `watis`, `kern`, `tips`, `gevorderd` en optioneel een `tabel`
 - elk formaat in `bron` (Word, PowerPoint, pdf, scan, leerplatform ...) krijgt naast `advies` twee
-  `routes` (`[kop, tekst]`: een zonder installatie en een met Quarto of pandoc) en een `letop` met
+  `routes` (`[kop, tekst]`: een zonder installatie en een met pandoc) en een `letop` met
   wat er stilletjes sneuvelt. Tekst `tussen accenten` wordt een code-vakje; functie `rijk()` in
   `app.js` doet dat. Die tussenstap komt na de vraag "in welke vorm staat je cursus nu"
 - `bronMap` is de mapindeling (één bestand per hoofdstuk, `content/` naast `context/`): `kop`,
@@ -148,17 +234,33 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
 - elk item in `doel` heeft `label` en `hulp` (voor de vraag), `planKop`, `wat` en `eerst` (de kaart
   bovenaan het plan) en `prompts` (id's uit `prompts`). Een doel bijzetten is dus één item, zonder
   aan `app.js` te komen
-- `voorbeeldgesprek` is één sessie van begin tot eind: `intro`, `situatie`, `duur`, `stappen`
-  (elk met `kop`, `jij`, `terug`, `let`), `valkuil` en `slot`. Het is er voor wie de losse
+- `voorbeeldgesprek` is één sessie van begin tot eind: `intro`, `situatie`, `tweedekeer`,
+  `stappen` (elk met `kop`, `jij`, `terug`, `let`), `valkuil` en `slot`. Het is er voor wie de losse
   onderdelen snapt maar niet weet hoe een gesprek verloopt, en het staat bewust als één verhaal
   met één hoofdstuk, niet als tips naast elkaar. `tekenSessie()` tekent het; omdat er
   `{projectplek}` in staat, hertekent `naarTab()` het telkens je het naslagwerk opent
 - een werkwijze kan een `volgendestap` hebben (`naar`, `wanneer`, `wat`, `nognietnodig`): de ladder
   onderaan het plan. Werkwijze 4 heeft er geen, want daar houdt het op
 - het zoekveld indexeert alles in `bouwIndex()` in `app.js`
+- `colofon` is het regelsbestand waarmee deze site geschreven is, plus wat er bij het maken
+  misging: `intro`, `misliepKop` en `misliep` (lijst alinea's), `regelsKop` en `regelsIntro`
+  (lijst alinea's), `welKop` + `wel` en `nietKop` + `niet` (elk een lijst `kop` + `tekst`), en
+  `slot`. `tekenColofon()` tekent het, en de teller op de hubkaart telt `wel` en `niet` op, zodat
+  het getal nooit uit de pas loopt met de lijst. Het onderwerp "Je regels in een bestand" heeft
+  daarnaast een `voorbeeld` (`kop`, `intro`, `regels`, `knop`): zes van die regels in het
+  onderwerpvenster zelf, met een knop naar het volledige bestand. Die zes staan bewust apart, want
+  de selectie is een keuze en geen kopie
+- de alinea's van `misliep` horen in Tims eigen woorden te staan. Wat er nu staat is een voorzet op
+  basis van wat er bij het nakijken van deze site gevonden werd (negen em-dashes, acht
+  tijdsaanduidingen), en mag vervangen worden
 - een voorbeeld toevoegen aan de galerij is een item bijzetten onder `voorbeelden`, met
   `titel`, `wat`, `url`, `tech` (de keywords die als bolletjes op de kaart komen) en
   optioneel `maker` (de naam onder de titel, zodat collega's weten bij wie ze terecht kunnen)
+- boven de galerij staat `voorbeeldenWaarschuwing` (`kop`, `icoon` en `tekst`, een array
+  alinea's) als een uitklapbaar blokje: een paar projecten in de lijst zijn eigen
+  webapplicaties, en zonder dat blok leest de galerij als een lat. Dichtgeklapt is de `kop` de
+  hele boodschap, dus die moet op zichzelf staan. `icoon` is een naam uit `ICONEN` in `app.js`.
+  De tekst noemt twee kaarten bij naam, dus ze mee aanpassen als die eruit gaan
 
 ## De tekeningen
 

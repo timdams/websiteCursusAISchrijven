@@ -12,7 +12,11 @@
   --lijn: #e3e3dd;
   --lijn-hard: #cfcfc7;
   --groen: #2f6b3f;
+  --groen-zacht: #E3F0E6;
   --oker: #8a6a00;
+  --oker-zacht: #F6EEDA;
+  --blauw: #1f5b78;
+  --blauw-zacht: #E4F0F6;
   --knop: #B30000;
   --knop-hover: #8F0000;
   --schaduw: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
@@ -35,7 +39,11 @@
     --knop: #B30000;
     --knop-hover: #D41414;
     --groen: #7fc08f;
+    --groen-zacht: #16261A;
     --oker: #d6ab3f;
+    --oker-zacht: #2B2413;
+    --blauw: #8CC6E0;
+    --blauw-zacht: #14252E;
     --schaduw: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   }
 }
@@ -69,6 +77,59 @@ code {
   padding: .1em .35em;
   border-radius: 4px;
 }
+
+/* ---------- kaders: elk kader opent met zijn pictogram ---------- */
+/* Het icoon zegt welk soort blok eronder staat (de kern, een valkuil, een
+   afweging, een extraatje), de titel zegt waarover het gaat. De kleur komt uit
+   --kk, het vlakje eronder uit --kz; elk kader zet die zelf, en zonder keuze is
+   het het rood van de rest van de site. Alles staat in em, zodat het icoon
+   meegroeit met de kop waar het naast staat. */
+
+.kaderkop {
+  display: flex;
+  align-items: flex-start;
+  gap: .4em;
+}
+
+/* Een titel die over twee regels loopt (een randgeval, een regel uit het
+   materiaalfilter) hoort haar icoon naast de eerste regel te hebben en niet
+   halverwege de tweede. Een kop met een vierkantje is kort genoeg om wel te
+   centreren. */
+.kaderkop-chip { align-items: center; }
+
+.kadericoon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.35em;
+  height: 1.35em;
+  margin-top: .16em;
+  color: var(--kk, var(--accent));
+}
+
+.kadericoon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Een kader met een echte kop draagt het icoon in een gekleurd vierkantje,
+   zoals de deuren van het naslagwerk. Zo zie je van ver welk blok een kop
+   heeft en welk niet. */
+.kaderchip {
+  width: 1.9em;
+  height: 1.9em;
+  margin-top: 0;
+  padding: .28em;
+  border-radius: 7px;
+  background: var(--kz, var(--accent-zacht));
+}
+
+.kadertitel { min-width: 0; }
 
 /* ---------- topbalk en menu ---------- */
 
@@ -462,11 +523,11 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   font-size: .93rem;
 }
 
-.advieslijn b { display: block; }
-.advieslijn.buiten { border-color: var(--accent); }
-.advieslijn.vragen { border-color: var(--oker); }
-.advieslijn.afweging { border-color: var(--lijn-hard); }
-.advieslijn.ok { border-color: var(--groen); }
+.advieslijn .kaderkop { margin-bottom: .1rem; }
+.advieslijn.buiten { border-color: var(--accent); --kk: var(--accent); }
+.advieslijn.vragen { border-color: var(--oker); --kk: var(--oker); }
+.advieslijn.afweging { border-color: var(--lijn-hard); --kk: var(--inkt-stil); }
+.advieslijn.ok { border-color: var(--groen); --kk: var(--groen); }
 
 /* ---------- je bestanden gebruiksklaar zetten ---------- */
 
@@ -485,6 +546,10 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
 /* markdown, uitgelegd op de plek waar het woord voor het eerst valt */
 .markdownuitleg {
+  display: flex;
+  align-items: flex-start;
+  gap: .55rem;
+  --kk: var(--accent-diep);
   margin: .9rem 0 0;
   padding: .7rem .9rem;
   border-left: 3px solid var(--accent);
@@ -496,6 +561,7 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 }
 
 .bronroute {
+  --kk: var(--accent-diep);
   border: 1px solid var(--lijn);
   border-radius: 8px;
   padding: .8rem .9rem;
@@ -503,7 +569,6 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 }
 
 .bronroutekop {
-  display: block;
   font-size: .8rem;
   text-transform: uppercase;
   letter-spacing: .05em;
@@ -604,6 +669,7 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   padding: 1.1rem 1.2rem;
 }
 
+.blokje { --kk: var(--accent-diep); }
 .blokje h3 { margin: 0 0 .5rem; font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; color: var(--accent-diep); }
 .blokje p { margin: 0 0 .5rem; font-size: .94rem; }
 .blokje ul { margin: 0; padding-left: 1.1rem; font-size: .94rem; }
@@ -672,6 +738,75 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
 #voorbeeldenraster { grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr)); }
 
+/* ---------- disclaimer boven de galerij ---------- */
+
+.voorbeeldwaarschuwing {
+  background: var(--kaart);
+  border: 1px solid var(--lijn);
+  border-left: 4px solid var(--oker);
+  border-radius: var(--radius);
+  margin: 0 0 1rem;
+  max-width: 46rem;
+  overflow: hidden;
+}
+
+.voorbeeldwaarschuwing summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .55rem .9rem;
+}
+
+.voorbeeldwaarschuwing summary::-webkit-details-marker { display: none; }
+
+.vw-icoon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 8px;
+  background: var(--oker-zacht);
+  color: var(--oker);
+  transition: transform .18s ease;
+}
+
+.vw-icoon svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.voorbeeldwaarschuwing summary:hover .vw-icoon { transform: translateY(-2px) rotate(-8deg); }
+
+.vw-kop { font-weight: 600; font-size: .95rem; line-height: 1.35; }
+
+.vw-pijl {
+  margin-left: auto;
+  flex: none;
+  color: var(--inkt-stil);
+  font-size: .8rem;
+  transition: transform .18s ease;
+}
+
+.voorbeeldwaarschuwing[open] .vw-pijl { transform: rotate(180deg); }
+.voorbeeldwaarschuwing[open] summary { border-bottom: 1px solid var(--lijn); }
+
+.vw-binnen { padding: .8rem .9rem .9rem 3.5rem; }
+.vw-binnen p { margin: 0 0 .7rem; font-size: .93rem; line-height: 1.6; color: var(--inkt-stil); }
+.vw-binnen p:last-child { margin-bottom: 0; }
+.vw-binnen em { font-style: italic; color: var(--inkt); }
+
+@media (max-width: 34rem) {
+  .vw-binnen { padding-left: .9rem; }
+}
+
 /* ---------- randgevallen ---------- */
 
 .randgevallen {
@@ -685,8 +820,7 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 .randgevallen summary::marker { color: var(--accent); }
 .randgevallen-lijst { margin-top: .9rem; display: grid; gap: .8rem; }
 
-.randgeval { border-left: 3px solid var(--lijn-hard); padding-left: .9rem; }
-.randgeval b { display: block; }
+.randgeval { border-left: 3px solid var(--lijn-hard); padding-left: .9rem; --kk: var(--inkt-stil); }
 .randgeval span { color: var(--inkt-stil); font-size: .93rem; }
 
 /* ---------- keuzeraster (outputs) ---------- */
@@ -817,6 +951,7 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   margin-bottom: 1.1rem;
 }
 
+.doelkaart { --kk: var(--accent); }
 .doelkop { margin: 0 0 .5rem; font-size: 1.3rem; }
 .doelwat { margin: 0; line-height: 1.6; max-width: 46rem; }
 .doeleerst { margin: .8rem 0 0; font-size: .95rem; max-width: 46rem; }
@@ -832,7 +967,8 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   background: var(--accent-zacht);
 }
 
-.sessiewijzer b { display: block; font-size: 1.05rem; }
+.sessiewijzer { --kk: var(--accent); --kz: var(--kaart); }
+.sessiewijzer .kaderkop { font-size: 1.05rem; }
 .sessiewijzer p { margin: .3rem 0 .8rem; font-size: .93rem; max-width: 42rem; }
 
 .sessiesituatie { margin-bottom: .9rem; }
@@ -874,17 +1010,16 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
 .sessiestapkop { display: block; font-size: 1.05rem; margin-bottom: .6rem; }
 
-.sessieregel { margin-top: .55rem; font-size: .93rem; line-height: 1.55; max-width: 46rem; }
-.sessieregel b {
-  display: block;
+.sessieregel { margin-top: .55rem; font-size: .93rem; line-height: 1.55; max-width: 46rem; --kk: var(--inkt-stil); }
+.sessieregel .kaderkop {
   font-size: .74rem;
   text-transform: uppercase;
   letter-spacing: .05em;
   color: var(--inkt-stil);
   margin-bottom: .1rem;
 }
-.sessie-let { color: var(--inkt-stil); }
-.sessie-let b { color: var(--accent-diep); }
+.sessie-let { color: var(--inkt-stil); --kk: var(--accent-diep); }
+.sessie-let .kaderkop { color: var(--accent-diep); }
 
 .sessieslot { margin: 1.2rem 0 0; max-width: 46rem; line-height: 1.6; }
 
@@ -898,6 +1033,7 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   background: var(--papier);
 }
 
+.ladder { --kk: var(--accent); }
 .ladder h3 { margin: 0 0 .4rem; }
 .ladder-wanneer { margin: 0 0 .5rem; color: var(--accent-diep); font-size: .95rem; max-width: 46rem; }
 .ladder-wat { margin: 0 0 .6rem; font-size: .95rem; line-height: 1.6; max-width: 46rem; }
@@ -912,6 +1048,7 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 }
 
 .toolgeval {
+  --kk: var(--accent);
   border: 1px solid var(--lijn);
   border-left: 3px solid var(--accent);
   border-radius: 8px;
@@ -920,7 +1057,6 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 }
 
 .toolgeval-als {
-  display: block;
   font-size: .97rem;
   margin-bottom: .35rem;
 }
@@ -1024,6 +1160,7 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   border-radius: var(--radius);
 }
 
+.waarom { --kk: var(--accent); --kz: var(--kaart); }
 .waarom-kop { margin: 0 0 .3rem; font-size: 1.05rem; }
 .waarom-noot { margin: 0 0 1rem; color: var(--inkt-stil); font-size: .94rem; max-width: 40rem; }
 
@@ -1112,6 +1249,7 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 }
 
 .toolkaart.kaal { background: transparent; border: none; padding: 0; margin: 1rem 0 .6rem; }
+.toolkaart { --kk: var(--accent-diep); }
 .toolkaart h3 { margin: 0 0 .5rem; font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; color: var(--accent-diep); }
 
 .toollijn { margin: 0 0 .35rem; font-size: .93rem; }
@@ -1126,25 +1264,60 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 .naslagvak > h3:first-child { margin-top: 1.2rem; }
 .naslagvak[hidden] { display: none; }
 
-/* de hub: elk onderdeel van het naslagwerk achter een eigen deur */
+/* de hub: elk onderdeel van het naslagwerk achter een eigen deur, en de deuren
+   in groepen. Elke groep zet haar eigen kleur in --gk en --gz; de kaarten,
+   pictogrammen en tellers eronder halen die op. Zo hoef je voor een nieuwe
+   groep maar één regel bij te zetten. */
 .hubraster {
   display: grid;
-  gap: .7rem;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  margin-top: 1.2rem;
+  gap: 2.1rem;
+  margin-top: 1.4rem;
 }
 
 .hubraster[hidden] { display: none; }
 
+.hubgroep { --gk: var(--accent); --gz: var(--accent-zacht); }
+.hubgroep-kern { --gk: var(--blauw); --gz: var(--blauw-zacht); }
+.hubgroep-maat { --gk: var(--oker); --gz: var(--oker-zacht); }
+.hubgroep-pak { --gk: var(--groen); --gz: var(--groen-zacht); }
+.hubgroep-achter { --gk: var(--inkt-stil); --gz: var(--lijn); }
+
+.hubkop {
+  border-left: 3px solid var(--gk);
+  padding-left: .75rem;
+  margin: 0 0 .75rem;
+}
+
+.hubkop .hubvraag {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--inkt-kop);
+}
+
+.hubnoot {
+  margin: .1rem 0 0;
+  color: var(--inkt-stil);
+  font-size: .9rem;
+  line-height: 1.5;
+  max-width: 46rem;
+}
+
+.hubkaarten {
+  display: grid;
+  gap: .7rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
 .hubkaart {
-  display: flex;
-  flex-direction: column;
-  gap: .3rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .85rem;
+  align-items: start;
   text-align: left;
   background: var(--kaart);
   border: 1px solid var(--lijn);
   border-radius: var(--radius);
-  padding: 1.1rem 1.2rem;
+  padding: 1rem 1.1rem;
   font: inherit;
   color: inherit;
   cursor: pointer;
@@ -1152,23 +1325,101 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   transition: border-color .12s ease, transform .12s ease;
 }
 
-.hubkaart:hover { border-color: var(--accent); transform: translateY(-2px); }
-.hubkaart b { font-size: 1.05rem; color: var(--inkt-kop); }
-.hubkaart b::after { content: " \2192"; color: var(--accent); font-weight: 400; }
-.hubkort { color: var(--inkt-stil); font-size: .92rem; line-height: 1.5; }
+.hubkaart:hover { border-color: var(--gk); transform: translateY(-2px); }
+.hubkaart:focus-visible { outline: 2px solid var(--gk); outline-offset: 2px; }
+.hubkaart b { font-size: 1rem; color: var(--inkt-kop); }
+.hubkaart b::after { content: " \2192"; color: var(--gk); font-weight: 400; }
+.hubkort { color: var(--inkt-stil); font-size: .9rem; line-height: 1.5; }
+
+.hubicoon {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 9px;
+  background: var(--gz);
+  color: var(--gk);
+}
+
+.hubicoon svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hubtekst {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  min-width: 0;
+}
+
+.hubvoet {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .35rem;
+}
 
 .hubtel {
-  align-self: flex-start;
-  margin-top: .35rem;
   padding: .1rem .55rem;
   border-radius: 999px;
-  background: var(--accent-zacht);
-  color: var(--accent-diep);
+  background: var(--gz);
+  color: var(--gk);
   font-size: .74rem;
   font-weight: 700;
   letter-spacing: .05em;
   text-transform: uppercase;
 }
+
+/* Wat jij al hebt gekozen staat op de kaart zelf, zodat je niet moet klikken om
+   te zien wat er nu ingesteld staat. */
+.hubjouw {
+  flex-basis: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: .4rem;
+  color: var(--inkt-stil);
+  font-size: .8rem;
+}
+
+.hubjouw::before {
+  content: "";
+  flex: none;
+  width: .42rem;
+  height: .42rem;
+  margin-top: .5em;
+  border-radius: 50%;
+  background: var(--gk);
+}
+
+/* De eerste deur is de grootste: wie hier voor het eerst komt, ziet ze staan
+   voor hij de rest gelezen heeft. */
+.hubkaart-groot {
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.35rem 1.4rem;
+  background: var(--gz);
+  border-color: transparent;
+}
+
+.hubkaart-groot .hubicoon { width: 3.1rem; height: 3.1rem; background: var(--kaart); }
+.hubkaart-groot .hubicoon svg { width: 1.8rem; height: 1.8rem; }
+.hubkaart-groot b { font-size: 1.22rem; }
+.hubkaart-groot .hubkort { color: var(--inkt); font-size: .95rem; }
+.hubkaart-groot .hubtel { background: var(--kaart); }
+
+/* Het colofon hoort erbij maar stuurt niemand: kleiner, en zonder schaduw. */
+.hubgroep-achter .hubkaarten { grid-template-columns: minmax(0, 28rem); }
+.hubkaart-smal { padding: .8rem .9rem; box-shadow: none; }
+.hubkaart-smal .hubicoon { width: 2rem; height: 2rem; }
+.hubkaart-smal .hubicoon svg { width: 1.2rem; height: 1.2rem; }
+.hubkaart-smal b { font-size: .96rem; }
 
 .terugbalk {
   display: inline-flex;
@@ -1327,6 +1578,60 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
 .vergelijkkop { margin-top: 2.8rem; }
 
+/* ---------- verwijzen naar een andere werkwijze ---------- */
+
+/* Een stippellijn en geen volle onderlijn: hier valt iets bij te lezen, je
+   wordt niet weggestuurd. */
+.wwmerk {
+  font: inherit;
+  color: var(--accent-diep);
+  background: none;
+  border: 0;
+  border-bottom: 1px dotted var(--accent);
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.wwmerk:hover { background: var(--accent-zacht); border-bottom-style: solid; }
+.wwmerk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* dialog erbij, want .blokvenster staat verderop en zet 46rem */
+dialog.wwvenster { max-width: 34rem; }
+
+#wwvenster-binnen {
+  padding: 1.6rem;
+  overflow-y: auto;
+  max-height: calc(86vh - 8px);
+}
+
+.wwpeek + .wwpeek {
+  margin-top: 1.3rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--lijn);
+}
+
+.wwpeek-naam { margin: 0 0 .4rem; font-size: 1.02rem; color: var(--inkt-kop); }
+.wwpeek-naam .jouwroute { margin-left: .5rem; }
+.wwpeek-pitch { margin: 0 0 .8rem; line-height: 1.6; }
+
+.wwpeek-feiten {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .25rem .9rem;
+  margin: 0 0 .9rem;
+  font-size: .93rem;
+}
+
+.wwpeek-feiten dt { color: var(--inkt-stil); }
+.wwpeek-feiten dd { margin: 0; }
+
+@media (max-width: 32rem) {
+  .wwpeek-feiten { grid-template-columns: 1fr; gap: 0 0; }
+  .wwpeek-feiten dd { margin: 0 0 .5rem; }
+}
+
 /* ---------- blokvenster ---------- */
 
 .blokknop {
@@ -1396,7 +1701,8 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   font-size: .94rem;
 }
 
-.blokroute b { display: block; color: var(--accent-diep); }
+.blokroute { --kk: var(--accent-diep); }
+.blokroute .kaderkop { color: var(--accent-diep); }
 
 /* ---------- "wist je dat" bij een tool ---------- */
 
@@ -1414,6 +1720,8 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   border-color: var(--lijn);
   border-left: 3px solid var(--accent);
 }
+
+.wistjedat { --kk: var(--accent-diep); }
 
 .wistjedat-label {
   margin: 0 0 .2rem;
@@ -1520,8 +1828,12 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   body { font-size: 16px; }
   .kaart, .routekaart, .advies { padding: 1.1rem; }
   .kist-rij { grid-template-columns: 1fr; gap: .3rem; }
-  .hubraster { grid-template-columns: 1fr; }
-  .hubkaart { padding: .9rem 1rem; }
+  .hubraster { gap: 1.6rem; }
+  .hubkaarten, .hubgroep-achter .hubkaarten { grid-template-columns: 1fr; }
+  .hubkaart { padding: .9rem 1rem; gap: .7rem; }
+  .hubkaart-groot { padding: 1.1rem; }
+  .hubkaart-groot .hubicoon { width: 2.6rem; height: 2.6rem; }
+  .hubkaart-groot b { font-size: 1.1rem; }
   .blokrij-item { grid-template-columns: 1fr; gap: .4rem; }
   .routeletter { font-size: 1.9rem; }
   h1, .welkom-kop { font-size: 1.55rem; }
@@ -1533,6 +1845,45 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   .wistjedat { padding: 1rem; }
 }
 
+/* ---------- het colofon: het regelsbestand van deze site ---------- */
+
+.colofon-misliep { margin-bottom: 1.8rem; }
+.colofon-misliep p { margin: .5rem 0 0; }
+
+.regelkopje {
+  --kk: var(--inkt-stil);
+  margin: 1.8rem 0 .2rem;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--inkt-stil);
+}
+
+.regellijst {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: .1rem;
+}
+.regelitem {
+  padding: .7rem 0 .7rem 1rem;
+  border-left: 3px solid var(--lijn-hard);
+  font-size: .93rem;
+}
+.regelitem:hover { border-left-color: var(--accent); }
+.regelkop { display: block; margin-bottom: .2rem; }
+.regeltekst { color: var(--inkt-stil); }
+
+/* de zes regels in het onderwerpvenster staan zonder kop-in-vet */
+.regelvoorbeeld { margin-top: 1.6rem; }
+.regellijst.kaal .regelitem { border-left-color: var(--accent); }
+.regelvoorbeeld .knop { margin-top: 1rem; }
+
+@media print {
+  .regelitem { break-inside: avoid; }
+}
+
 /* ---------- print ---------- */
 
 @media print {
@@ -1541,5 +1892,75 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   .kaart, .routekaart, .blokje, .advies, .probleem, .kist-rij, .winstkaart, .wistjedat, .waarom { box-shadow: none; break-inside: avoid; }
   .figuur { break-inside: avoid; }
   .probleem .binnen { display: block !important; }
+  .kaderchip { background: none; padding: 0; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; color: #555; }
+}
+
+/* ---------- twee routes binnen één werkwijze ----------
+   Alleen werkwijze 2 heeft ze: pandoc als er enkel Word uit moet, Quarto als er
+   meer uit moet. Naast elkaar zolang het scherm het toelaat, daaronder gestapeld. */
+
+.wwroutes { margin: 0 0 .3rem; }
+
+.wwrouteskop {
+  margin: 0 0 .7rem;
+  font-size: .78rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--accent-diep);
+}
+
+.wwrouterij {
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  align-items: start;
+}
+
+.wwroute {
+  border: 1px solid var(--lijn);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--papier);
+  padding: .8rem .9rem;
+}
+
+.wwroutenaam { display: block; font-size: .98rem; line-height: 1.4; }
+
+.wwroutewat {
+  display: inline-block;
+  margin: .3rem 0 .5rem;
+  padding: .1rem .45rem;
+  border-radius: 4px;
+  background: var(--accent-zacht);
+  color: var(--accent-diep);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.wwroutehoe {
+  font-family: "Cascadia Code", Consolas, SFMono-Regular, Menlo, monospace;
+  font-size: .78rem;
+  line-height: 1.6;
+  background: var(--kaart);
+  border: 1px solid var(--lijn);
+  border-radius: 6px;
+  padding: .5rem .6rem;
+  margin: 0 0 .55rem;
+  overflow-x: auto;
+  white-space: pre;
+  color: var(--inkt);
+}
+
+.wwrouteuitleg { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--inkt-stil); }
+
+.wwroutenoot { margin: .8rem 0 0; font-size: .93rem; }
+
+.wwrouteterminal {
+  margin: .5rem 0 0;
+  font-size: .9rem;
+  color: var(--inkt-stil);
+  border-top: 1px dashed var(--lijn-hard);
+  padding-top: .5rem;
 }

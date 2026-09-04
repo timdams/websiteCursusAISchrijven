@@ -18,21 +18,21 @@ window.DATA = {
     werkwijzen: {
       bestand: "assets/vierwerkwijzen.png",
       alt: "Tekening. De vier werkwijzen naast elkaar. Per werkwijze staat waar je bestanden staan, wie erin schrijft en wat je installeert. Bij 1 en 2 schrijf jij, bij 3 en 4 de AI. Werkwijze 1 is aangeduid.",
-      bijschrift: "Bij 1 en 2 hou je je bestanden zelf vast, bij 3 en 4 laat je de AI erin schrijven. De meeste lesgevers blijven bij 1, en daar valt al het meeste te halen."
+      bijschrift: "Bij 1 en 2 hou je je bestanden zelf vast, bij 3 en 4 laat je de AI erin schrijven. De meeste lesgevers blijven bij 1."
     }
   },
 
   /* ---------- Waarom je dit doet: de winst achter de vier stappen ---------- */
   waaromKop: "Waarom je dit doet",
-  waaromNoot: "Je afspraken en je materiaal één keer op orde zetten kost een namiddag. Dat is de moeite, want:",
+  waaromNoot: "*Dit is het saaie stuk:* je afspraken en je materiaal één keer op orde zetten, voor je iets vraagt. Wat je ervoor terugkrijgt:",
   waarom: [
     {
       kop: "Je herhaalt jezelf niet meer.",
-      tekst: "Wat één keer opgeschreven staat, hoef je niet in elk nieuw gesprek opnieuw uit te leggen. Dat scheelt telkens de eerste tien minuten."
+      tekst: "Wat één keer opgeschreven staat, hoef je niet in elk nieuw gesprek opnieuw uit te leggen. Anders begin je elke keer weer bij wie je studenten zijn en wat ze al kennen."
     },
     {
       kop: "Het werkt ook op een gratis of goedkoop account.",
-      tekst: "Wat je meegeeft weegt zwaarder dan wat je betaalt. Wie zijn materiaal en zijn afspraken klaar heeft staan, moet minder vaak iets overdoen — en loopt dus veel later tegen zijn limiet aan."
+      tekst: "Wat je meegeeft weegt zwaarder dan wat je betaalt. Wie zijn materiaal en zijn afspraken klaar heeft staan, moet minder vaak iets overdoen, en loopt dus veel later tegen zijn limiet aan."
     },
     {
       kop: "Je hoofdstukken klinken hetzelfde.",
@@ -95,7 +95,7 @@ window.DATA = {
       label: "mijn bestaande cursus opfrissen en herwerken",
       hulp: "de tekst staat er al, en je wil hem beter",
       planKop: "Je bestaande cursus opfrissen",
-      wat: "Je begint niet bij je cursus maar bij één hoofdstuk: dat waar je zelf het minst tevreden over bent, want daar zie je het verschil. Dat zet je om, je legt je afspraken ernaast, en pas dan laat je herwerken.",
+      wat: "Begin bij één hoofdstuk: dat waar je zelf het minst tevreden over bent, want daar zie je het verschil. Dat zet je om, je legt je afspraken ernaast, en pas dan laat je herwerken.",
       eerst: "Kies vandaag één hoofdstuk. Niet de hele cursus: één.",
       prompts: ["omzetten", "contextmap-beoordelen", "stem"]
     },
@@ -122,7 +122,7 @@ window.DATA = {
       label: "slides en lesmateriaal uit mijn cursustekst halen",
       hulp: "de tekst is er, de slides lopen achter",
       planKop: "Slides en lesmateriaal uit je cursustekst",
-      wat: "De winst zit niet in het maken maar in het gelijk houden. Slides die achterlopen op je tekst zijn het probleem dat elk jaar terugkomt, en daar bestaat een afspraak voor die je één keer opschrijft.",
+      wat: "Slides maken lukt wel. Ze *gelijk houden* met je tekst is het probleem dat elk jaar terugkomt, en daar bestaat één afspraak voor die je één keer opschrijft.",
       eerst: "Neem het hoofdstuk waarvan je nu al weet dat de slides niet meer kloppen.",
       prompts: ["omzetten", "slides-sync", "oefeningen"]
     },
@@ -131,7 +131,7 @@ window.DATA = {
       label: "een cursus die er nog niet is, van nul beginnen",
       hulp: "je begint met een leeg blad",
       planKop: "Een nieuwe cursus opzetten",
-      wat: "Vraag niet om hoofdstuk 1. Begin bij de inhoudsopgave: hoofdstukken, met per hoofdstuk wat de student erna kan. Dat blad keur jij goed of niet, het kost tien minuten, en het bepaalt al de rest.",
+      wat: "Vraag niet om hoofdstuk 1. Begin bij de inhoudsopgave: hoofdstukken, met per hoofdstuk wat de student erna kan. Dat blad keur jij goed of niet, en het bepaalt al de rest.",
       eerst: "Verzamel wat er wél is: je vakbeschrijving, de vakken ervoor en erna, het handboek dat je volgt.",
       prompts: ["contextmap-beoordelen", "stem", "oefeningen"]
     }
@@ -191,10 +191,10 @@ window.DATA = {
       advies: "De makkelijkste start: Word is het enige veelgebruikte formaat dat netjes omzet. Doe het per hoofdstuk, en kijk de omzetting na voor je iets laat herwerken.",
       routes: [
         ["Zonder iets te installeren", "Laad één hoofdstuk op en vraag: geef dit terug als markdown, letterlijk, zonder iets te herschrijven. Of open het in Google Docs en kies Bestand → Downloaden → Markdown."],
-        ["Met Quarto of pandoc", "`pandoc hoofdstuk.docx -o hoofdstuk.md --wrap=none --extract-media=media`", "installeren"]
+        ["Met pandoc", "`pandoc hoofdstuk.docx -o hoofdstuk.md --wrap=none --extract-media=media`", "installeren"]
       ],
-      letop: "Twee dingen die je vooraf goedzet, schelen achteraf uren. Heb je je titels vet gemaakt in plaats van als “Kop 1” opgemaakt, dan komen er geen titels uit en krijg je één lange lap tekst: zet die stijlen eerst juist. En je afbeeldingen belanden in de map `media` met namen als `rId10.png`, dus hernoem ze meteen.",
-      letopBrowser: "Eén ding dat je vooraf goedzet, scheelt achteraf uren. Heb je je titels vet gemaakt in plaats van als “Kop 1” opgemaakt, dan komen er geen titels uit en krijg je één lange lap tekst. Zet die stijlen eerst juist in Word, en zet dan pas om.",
+      letop: "Twee dingen die je hier best niet vergeet. Heb je je titels vet gemaakt in plaats van als “Kop 1” opgemaakt, dan komen er geen titels uit en krijg je één lange lap tekst: zet die stijlen eerst juist in Word. En je afbeeldingen belanden in de map `media` met namen als `rId10.png`, dus hernoem ze meteen.",
+      letopBrowser: "Eén ding dat je hier best niet vergeet. Heb je je titels vet gemaakt in plaats van als “Kop 1” opgemaakt, dan komen er geen titels uit en krijg je één lange lap tekst. Zet die stijlen eerst juist in Word, en zet dan pas om.",
       links: ["pandoc", "quarto-docx", "gdocs"]
     },
     {
@@ -203,7 +203,7 @@ window.DATA = {
       advies: "In je slides staan trefwoorden, de lopende tekst zit in je notities of in je hoofd. Haal die twee apart op: de slides geven je de structuur, de notities de tekst.",
       routes: [
         ["Zonder iets te installeren", "Exporteren → Hand-outs maken → in Word. Je krijgt je slides met de notities ernaast in een tabel. Dat is de gewone export die je notities wél meeneemt."],
-        ["Met Quarto of pandoc", "`pandoc les.pptx -o les.md` — dit pakt ook de losse tekstvakken en je tabellen mee. Je hebt er wel pandoc 3.8.3 of nieuwer voor nodig; oudere versies kunnen pptx helemaal niet lezen.", "installeren"]
+        ["Met pandoc", "`pandoc les.pptx -o les.md` pakt ook de losse tekstvakken en je tabellen mee. Je hebt er wel pandoc 3.8.3 of nieuwer voor nodig; oudere versies kunnen pptx helemaal niet lezen.", "installeren"]
       ],
       letop: "Opslaan als → Overzicht/RTF bestaat en werkt, maar neemt alleen de tekst mee die in de tekstvakken van de dia-indeling staat. Wat je zelf als los tekstvak op een dia zette, plus je tabellen, SmartArt en al je notities, blijft achter zonder dat je een waarschuwing krijgt. Prima als je slides netjes in de indeling zijn opgebouwd, riskant bij slides die door de jaren heen bij elkaar gegroeid zijn. Ook pandoc laat je notities vallen: wil je die mee, ga dan via Hand-outs maken, en kijk na of ze er staan.",
       letopBrowser: "Opslaan als → Overzicht/RTF bestaat en werkt, maar neemt alleen de tekst mee die in de tekstvakken van de dia-indeling staat. Wat je zelf als los tekstvak op een dia zette, plus je tabellen, SmartArt en al je notities, blijft achter zonder dat je een waarschuwing krijgt. Ga daarom via Hand-outs maken, en kijk na of je notities er echt bij staan.",
@@ -212,10 +212,10 @@ window.DATA = {
     {
       id: "pdf-tekst",
       label: "pdf waar je tekst in kan selecteren",
-      advies: "Zoek eerst het Word- of LaTeX-bestand waar die pdf uit gemaakt is. Een pdf is een eindformaat, geen bron: hij bewaart hoe de bladzijde eruitziet, niet hoe ze in elkaar zit.",
+      advies: "Zoek eerst het Word- of LaTeX-bestand waar die pdf uit gemaakt is. Een pdf is een eindformaat: hij bewaart hoe de bladzijde er *uitziet*, niet hoe ze in elkaar zit.",
       routes: [
         ["Zonder iets te installeren", "Open de pdf gewoon in Word (Bestand → Openen). Word maakt er een bewerkbaar document van; bewaar dat als .docx en volg dan het Word-advies. Of laad de pdf op in je project en vraag het hoofdstuk terug als markdown."],
-        ["Met Quarto of pandoc", "Werkt hier niet: pandoc kan pdf wel maken, maar niet lezen. Ga eerst langs Word of langs je AI-tool.", "installeren"]
+        ["Met pandoc", "Werkt hier niet: pandoc kan pdf wel maken, maar niet lezen. Ga eerst langs Word of langs je AI-tool.", "installeren"]
       ],
       letop: "Kolommen, kaderteksten, kop- en voetteksten komen door elkaar te staan, en formules en tabellen sneuvelen het eerst. Kijk de omzetting na met de pdf ernaast, hoofdstuk per hoofdstuk.",
       links: ["pandoc"]
@@ -237,7 +237,7 @@ window.DATA = {
       advies: "Exporteer per pagina, en test meteen hoe je het er terug in krijgt. Die weg terug is de stap die achteraf tegenvalt, niet het eruit halen.",
       routes: [
         ["Zonder iets te installeren", "Bewaar de pagina als webpagina (Ctrl+S) of kopieer ze naar Word. Kijk ook of je leerplatform zelf een exportknop heeft: veel platformen kunnen een heel vak in één keer uitvoeren."],
-        ["Met Quarto of pandoc", "`pandoc pagina.html -o pagina.md` — uit html komt de nettere markdown van de twee, want de koppen en lijsten zitten er al in.", "installeren"]
+        ["Met pandoc", "`pandoc pagina.html -o pagina.md`. Uit html komt de nettere markdown van de twee, want de koppen en lijsten zitten er al in.", "installeren"]
       ],
       letop: "Doe eerst één pagina helemaal rond: eruit, omzetten, herwerken, en er weer in. Pas als dat rondje werkt, begin je aan de andere twintig.",
       links: ["pandoc"]
@@ -245,7 +245,7 @@ window.DATA = {
     {
       id: "verspreid",
       label: "verspreid over jaren en versies",
-      advies: "Kies één versie als de echte voor je iets oplaadt. Dat is hier het echte werk, en het is werk dat alleen jij kan doen.",
+      advies: "Kies één versie als de echte voor je iets oplaadt. Welke dat is, weet alleen jij, en dit is de enige stap hier waar de AI je niet bij helpt.",
       routes: [
         ["Zonder iets te installeren", "Maak een map met de gekozen versie erin, en zet al de rest in een map “oud” die je verder met rust laat. Twijfel je tussen twee versies, neem dan de recentste en noteer in je contextmap wat er in de oude beter was."],
         ["Met versiebeheer", "Zet de gekozen versie in git voor je begint. Dan is elke wijziging die daarna komt zichtbaar en terug te draaien.", "installeren"]
@@ -272,7 +272,7 @@ window.DATA = {
         ["Eerst dit", "Zet die documenten samen in je contextmap en laat er een inhoudsopgave uit maken: hoofdstukken, met per hoofdstuk wat de student erna kan. Dat blad keur jij goed of niet, en het is nog geen cursus."],
         ["Dan pas", "Maak per goedgekeurd hoofdstuk een bestand aan, en schrijf ze één voor één."]
       ],
-      letop: "De verleiding is om meteen om hoofdstuk 1 te vragen. Doe eerst die inhoudsopgave: ze kost tien minuten en ze bepaalt al de rest.",
+      letop: "De verleiding is om meteen om hoofdstuk 1 te vragen. Doe eerst die inhoudsopgave. Ze past op één blad en ze bepaalt al de rest.",
       links: []
     }
   ],
@@ -311,7 +311,7 @@ window.DATA = {
        boom nodig. Hetzelfde principe, in de woorden van zijn eigen tool. */
     browser: {
       kop: "Zet je cursus per hoofdstuk klaar",
-      kern: "Eén document per hoofdstuk, samen op één plek: {projectplek}. Dat is de vorm waar al de rest op steunt — je contextmap, je afspraken, en elke vraag die je later stelt.",
+      kern: "Eén document per hoofdstuk, samen op één plek: {projectplek}. Dat is de vorm waar al de rest op steunt: je contextmap, je afspraken, en elke vraag die je later stelt.",
       regels: [
         ["Eén document per hoofdstuk.", "Een hoofdstuk past in één keer. Een hele cursus in één document komt er half doorgelezen weer uit, en je ziet niet welk stuk overgeslagen is."],
         ["Nummer je documenten: 01-, 02-, 03-.", "Dan staat de volgorde vast, en kan je vragen naar “hoofdstuk 02” zonder uit te leggen welk document je bedoelt."],
@@ -333,7 +333,7 @@ window.DATA = {
         "een skill is hier “het document dat ik erbij haal als ik figuren maak”",
         "wat je hier mist: versiebeheer, en de zekerheid dat je huisstijl klopt"
       ],
-      slot: "Wie bij werkwijze 1 blijft, haalt nog altijd het meeste van wat er te halen valt.",
+      slot: "Werkwijze 2, 3 en 4 zetten hier bovenop. Ze vervangen niks van wat je hier doet.",
       installeren: "niks",
       voorwie: "de meeste lesgevers, en iedereen met een laptop waar je niks op mag installeren",
       stappen: [
@@ -344,8 +344,8 @@ window.DATA = {
       volgendestap: {
         naar: "2",
         wanneer: "Als het heen en weer plakken begint te wegen, of als je in het sjabloon van je school moet aanleveren.",
-        wat: "Werkwijze 2 is dezelfde werkwijze met één installatie erbij: Quarto. Uit hetzelfde bestand rolt dan een Word-document in jouw sjabloon, een pdf of slides. Je bestanden blijven van jou, de AI schrijft er nog altijd niet in.",
-        nognietnodig: "Niet nu. Doe eerst één hoofdstuk helemaal rond in de browser. Pas als je dat twee of drie keer gedaan hebt, weet je of dit je tijd waard is."
+        wat: "Werkwijze 2 is dezelfde werkwijze met één installatie erbij. Uit hetzelfde bestand rolt dan een Word-document in het sjabloon van je school, en met Quarto erbij ook een pdf of slides. Je bestanden blijven van jou, de AI schrijft er nog altijd niet in.",
+        nognietnodig: "Niet nu. Doe eerst één hoofdstuk helemaal rond in de browser. Pas als je dat twee of drie keer gedaan hebt, weet je waar je hier iets tekortkomt."
       },
       overslaan: "Alles over installaties, versiebeheer en een AI die zelf in je bestanden schrijft, hoort bij werkwijze 2 tot 4. Dat heb je hier niet nodig.",
       onderwerpen: {
@@ -359,19 +359,43 @@ window.DATA = {
     },
     "2": {
       nr: "2",
-      naam: "Browser plus Quarto",
+      naam: "Browser plus één installatie",
       pitch: "Zelfde als werkwijze 1, met één installatie erbij.",
-      uitleg: "Uit hetzelfde markdown-bestand komt een Word-document, een pdf, een webpagina of slides. Pandoc zit in Quarto ingebakken.",
+      uitleg: "Wat je installeert hangt af van wat er uit moet komen. Voor een Word-document in het sjabloon van je school volstaat pandoc. Wil je er ook een pdf, slides of een webpagina uit, dan neem je Quarto: pandoc zit erin.",
       punten: [
-        "moet je verplicht in het sjabloon van je school aanleveren, dan is dit je werkwijze. Quarto en pandoc nemen een bestaand .docx of .pptx over als referentie",
-        "slides komen uit dezelfde bron als je cursustekst",
+        "moet je verplicht in het sjabloon van je school aanleveren, dan is dit je werkwijze. Met `--reference-doc=sjabloon.docx` haalt pandoc de stijlen uit een bestaand Word-document",
+        "zet je Quarto erbij, dan komen je slides en je pdf uit dezelfde bron als je cursustekst",
         "je bestanden blijven van jou. De AI ziet ze, ze schrijft er niet in"
       ],
       slot: "",
-      installeren: "Quarto",
+
+      /* Deze werkwijze heette eerst “Browser plus Quarto”. Het omzetten zelf doet
+         pandoc; Quarto is pandoc met een projectlaag erover. Wie enkel Word nodig
+         heeft, installeert dus de kleinste van de twee. */
+      routes: {
+        kop: "Twee routes, en wat er uit moet komen beslist",
+        items: [
+          {
+            naam: "Alleen Word, in het sjabloon van je school",
+            wat: "pandoc",
+            hoe: "pandoc 01-hoofdstuk.md -o 01-hoofdstuk.docx --reference-doc=sjabloon.docx",
+            uitleg: "Die laatste optie is waar het hier om draait: pandoc haalt de stijlen uit dat bestaande .docx, dus jouw Kop 1 blijft jouw Kop 1. Quarto hoeft hier niet. Het omzetten zelf doet pandoc, en Quarto is pandoc met een projectlaag erover."
+          },
+          {
+            naam: "Ook een pdf, slides of een webpagina",
+            wat: "Quarto",
+            hoe: "quarto render 01-hoofdstuk.md --to docx   (of --to pdf, of --to revealjs)",
+            uitleg: "Nu betaalt die projectlaag zich terug: nummering en kruisverwijzingen die over hoofdstukken heen kloppen, een pdf via typst zonder dat je LaTeX installeert, en slides uit hetzelfde bestand als je tekst. Je sjabloon raak je niet kwijt: dat zet je in de kop van je bestand, met `reference-doc: sjabloon.docx`. Pandoc zit in Quarto, apart installeren hoeft niet."
+          }
+        ],
+        noot: "Twijfel je, begin bij pandoc. Quarto installeer je erbij op de dag dat er een tweede formaat uit moet; je markdown-bestanden veranderen daar niet van.",
+        zonderterminal: "Allebei vragen ze dat je één regel in een commandovenster typt. Wil je dat echt niet, dan bestaat Writage: een invoegtoepassing die .md-bestanden rechtstreeks in Word opent en opslaat, met je eigen stijlenset. Ze kost 29 dollar na een proefperiode van veertien dagen, en je moet ze mogen installeren, wat op een schoollaptop net het punt is."
+      },
+
+      installeren: "pandoc. Quarto als er meer dan Word uit moet",
       voorwie: "wie in een verplicht sjabloon moet aanleveren, en wie formules of code in zijn cursus heeft",
       stappen: [
-        "Installeer Quarto. Pandoc zit erin, dat hoef je niet apart te doen.",
+        "Installeer pandoc. Moet er ook een pdf of slides uit, installeer dan meteen Quarto: pandoc zit erin.",
         "Zet een hoofdstuk om naar markdown en render het naar .docx met je eigen sjabloon als referentiedocument.",
         "Zet je drie regels in een .md-bestand naast dat hoofdstuk, en haal het erbij in elk gesprek."
       ],
@@ -383,13 +407,13 @@ window.DATA = {
       },
       overslaan: "Alles over de AI die in je map schrijft, hoort bij werkwijze 3 en 4. Jij houdt je bestanden zelf vast.",
       onderwerpen: {
-        "plat": "Uit hetzelfde markdown-bestand komt Word, pdf, html of slides. Dit is de stap waarvoor je Quarto installeert.",
+        "plat": "Uit hetzelfde markdown-bestand komt een Word-document, en met Quarto erbij ook pdf, html of slides. Dit is de stap waarvoor je pandoc installeert.",
         "contextmap": "Zelfde als werkwijze 1: je documenten staan in {projectplek}.",
         "regels": "Je regels staan in {regelsplek} en als .md-bestand naast je cursus, zodat ze bij je bestanden blijven.",
-        "skills": "Een skill is nog altijd een document dat je erbij haalt. Het automatische deel begint bij werkwijze 3.",
-        "lesmateriaal": "Hier zit je winst: een referentiedocument neemt het sjabloon van je school over, en typst maakt je pdf zonder LaTeX."
+        "skills": "Een skill is nog altijd een document dat je erbij haalt. Het automatische deel begint bij [[3]].",
+        "lesmateriaal": "Hier zit je winst: een referentiedocument neemt het sjabloon van je school over. Moet er ook een pdf uit, dan is dat Quarto met typst, zonder LaTeX."
       },
-      links: ["quarto", "quarto-docx", "quarto-pptx", "quarto-typst", "pandoc-refdoc", "vscode", "mermaid"]
+      links: ["pandoc", "pandoc-refdoc", "quarto", "quarto-docx", "quarto-pptx", "quarto-typst", "writage", "vscode", "mermaid"]
     },
     "3": {
       nr: "3",
@@ -413,7 +437,7 @@ window.DATA = {
         naar: "4",
         wanneer: "Als er meer dan één formaat uit je cursus moet, en ze uit elkaar beginnen te lopen.",
         wat: "Bij werkwijze 4 komen je website, je syllabus, je slides en je oefeningen uit dezelfde bestanden, met je huisstijl één keer vastgelegd in _brand.yml.",
-        nognietnodig: "Zet de opbouw klaar op een dag dat er nog niets in staat. Achteraf overschakelen is een bouwdag."
+        nognietnodig: "Zet de opbouw klaar op de dag dat er nog niets in staat. Staan je tien hoofdstukken er al, dan pas je ze alle tien opnieuw in."
       },
       overslaan: "De volledig automatische verwerking uit werkwijze 4 hoeft niet. Hier blijft het bij de bestanden die je al had.",
       onderwerpen: {
@@ -431,7 +455,7 @@ window.DATA = {
       pitch: "Eén map met versiebeheer, waar website, syllabus, slides en oefeningen uit dezelfde bestanden komen.",
       uitleg: "Elke wijziging in de tekst kan meteen doorwerken in alle formaten, met een geschiedenis erbij.",
       punten: [
-        "zet de opbouw klaar op de dag dat er nog niets in staat. Anders wordt de laatste dag een bouwdag",
+        "maak je website en je pdf één keer met een leeg hoofdstuk erin. Daarna zet je er tekst in, en de rendering staat er al",
         "de afspraak die dit sluitend maakt: zet in je regelsbestand dat de slides gecontroleerd worden als de tekst van een hoofdstuk verandert",
         "elf regels in _brand.yml leggen je kleuren en lettertypes één keer vast, voor je website, je slides en je pdf samen"
       ],
@@ -441,9 +465,9 @@ window.DATA = {
       stappen: [
         "Zet de map en de rendering klaar met een leeg hoofdstuk erin, en maak website en pdf voor er inhoud in staat.",
         "Zet je {regelsbestand} en _brand.yml in de hoofdmap.",
-        "Schrijf pas daarna je eerste hoofdstuk. Anders wordt de laatste dag een bouwdag."
+        "Schrijf pas daarna je eerste hoofdstuk. Anders raak je bij elke wijziging aan de opbouw elk bestand dat er al staat aan."
       ],
-      overslaan: "Niks. Alles uit het naslagwerk geldt hier, en de controle-afspraak voor de slides is wat het sluitend maakt.",
+      overslaan: "Niks. Alles uit het naslagwerk geldt hier, en de controle-afspraak voor de slides staat in je regelsbestand.",
       onderwerpen: {
         "plat": "Een bestand per hoofdstuk, en de omzetting gebeurt automatisch in plaats van in een gesprek.",
         "contextmap": "Je contextmap staat mee in de map, en de chat waarin je het bedacht hebt ook.",
@@ -458,9 +482,9 @@ window.DATA = {
   /* ---------- Vraag: mag je iets installeren ---------- */
   installatie: [
     { id: "geen-rechten", label: "een laptop van school waar ik niks op mag installeren", gevolg: "Werkwijze 1. Alles wat je nodig hebt, gebeurt in je browser.", werkwijze: "1" },
-    { id: "softwarecentrum", label: "een laptop van school met een softwarecentrum", gevolg: "Kijk of Quarto en VS Code erin staan. Zo ja, dan ligt werkwijze 2 open en beslist de volgende vraag.", vervolg: true },
+    { id: "softwarecentrum", label: "een laptop van school met een softwarecentrum", gevolg: "Kijk of pandoc, Quarto en VS Code erin staan. Zo ja, dan ligt werkwijze 2 open en beslist de volgende vraag.", vervolg: true },
     { id: "eigen-laptop", label: "mijn eigen laptop", gevolg: "Werkwijze 2, 3 of 4. De volgende vraag beslist.", vervolg: true },
-    { id: "wil-niet", label: "ik mag installeren maar ik wil er niet aan", gevolg: "Werkwijze 1. Daar blijven de meeste lesgevers, en daar valt het meeste te halen.", werkwijze: "1" }
+    { id: "wil-niet", label: "ik mag installeren maar ik wil er niet aan", gevolg: "Werkwijze 1. Daar blijven de meeste lesgevers; je mist versiebeheer en de zekerheid dat je huisstijl klopt.", werkwijze: "1" }
   ],
   installatieNoot: "Programma's die rechtstreeks in je map schrijven, raken op een strak beheerde schoollaptop meestal niet geïnstalleerd. In de browser kan je altijd terecht.",
 
@@ -473,13 +497,13 @@ window.DATA = {
 
   /* ---------- Wat moet eruit komen ---------- */
   outputs: [
-    { id: "docx", label: "Word in het sjabloon van je school", advies: "pandoc of Quarto, met jouw sjabloon als referentiedocument (--reference-doc=sjabloon.docx).", links: ["pandoc-refdoc", "quarto-docx"] },
+    { id: "docx", label: "Word in het sjabloon van je school", advies: "pandoc, met jouw sjabloon als referentiedocument: --reference-doc=sjabloon.docx. Quarto hoef je hier niet voor te installeren.", links: ["pandoc-refdoc", "quarto-docx"] },
     { id: "pptx", label: "PowerPoint in het sjabloon van je school", advies: "Idem, naar pptx. Wat je terugkrijgt is tekst en beeld op sjabloonlay-outs. Animaties en fijne plaatsing doe je nog altijd in PowerPoint zelf.", links: ["pandoc-refdoc", "quarto-pptx"] },
     { id: "moodle-html", label: "een pagina op het leerplatform, de editor slikt html", advies: "Zet je markdown om naar html en plak dat.", links: ["quarto-html", "pandoc"] },
     { id: "moodle-geen-html", label: "een pagina op het leerplatform, de editor slikt geen html", advies: "Via Word, en aanvaard dat de opmaak daar deels sneuvelt.", links: ["quarto-docx"] },
     { id: "pdf", label: "een pdf om te printen", advies: "Quarto met typst als motor. Je moet geen LaTeX installeren.", links: ["quarto-typst", "typst"] },
     { id: "slides", label: "slides", advies: "Marp als extensie in VS Code, of Quarto met reveal.js.", links: ["marp", "quarto-revealjs"] },
-    { id: "oefeningen", label: "oefeningen en examens", advies: "Zelfde contextmap, andere vraag. Vraag de foute antwoorden erbij met een reden per fout, en vraag drie moeilijkheidsgraden in één keer. Je gooit er twee weg en dat is prima.", links: [] },
+    { id: "oefeningen", label: "oefeningen en examens", advies: "Zelfde contextmap, andere vraag. Vraag de foute antwoorden erbij met een reden per fout, en vraag drie moeilijkheidsgraden in één keer. Je gooit er twee weg. Welke twee, dat zie je pas als ze naast elkaar staan.", links: [] },
     { id: "schema", label: "een schema of een tijdlijn", advies: "mermaid: tekst die een figuur wordt, en die meeverandert met je cursus. Snel iets uittekenen met de hand gaat met Excalidraw, zonder installatie.", links: ["mermaid", "mermaid-live", "excalidraw"] },
     { id: "weet-ik-niet", label: "weet ik nog niet", advies: "Vraag je tekst in markdown. Dan blijft alles hierboven mogelijk.", links: [] }
   ],
@@ -495,7 +519,7 @@ window.DATA = {
     { klacht: "halverwege vergeet het wat we afgesproken hadden", fix: "Je gesprek is te lang. Nieuw gesprek, een bestand per hoofdstuk.", onderwerp: "plat", links: [] },
     { klacht: "ik zit aan mijn limiet", fix: "Eén hoofdstuk per gesprek, en zet je afspraken in een bestand. Dan begint een nieuw gesprek niet van nul.", onderwerp: "regels", links: [] },
     { klacht: "het antwoord is lang en zegt niets", fix: "Vraag wat eruit kan zonder dat er een feit verdwijnt. Dat levert bijna altijd een regel op.", onderwerp: "regels", links: [] },
-    { klacht: "de opmaak valt uiteen in de pdf", fix: "Dit blijft handwerk. Wat op een webpagina klopt, valt in een pdf uiteen op de plek waar je het niet verwacht.", onderwerp: "lesmateriaal", links: ["quarto-typst"] },
+    { klacht: "de opmaak valt uiteen in de pdf", fix: "Dit blijft handwerk. Wat op een webpagina klopt, valt in een pdf uiteen op de plek waar je het niet verwacht: brede tabellen, code die over de rand loopt, een figuur die alleen op een lege bladzijde past. Kijk je pdf na per hoofdstuk, en begin bij de tabellen.", onderwerp: "lesmateriaal", links: ["quarto-typst"] },
     { klacht: "ik weet niet meer wat er veranderd is", fix: "git (versiebeheer), of minstens een kopie met de datum in de naam.", onderwerp: "plat", links: ["git"] },
     { klacht: "ik laadde iets op dat ik beter niet had gedeeld", fix: "Loop het materiaalfilter uit de keuzehulp vooraf af: werk van studenten of leerlingen blijft altijd buiten, materiaal van collega's vraag je eerst. Verwijder het bestand uit je project, en vraag bij twijfel na wat de afspraken op je school zijn.", onderwerp: "contextmap", links: [] }
   ],
@@ -503,7 +527,7 @@ window.DATA = {
   /* ---------- Randgevallen ---------- */
   randgevallen: [
     { geval: "je deelt het vak met twee collega's", wat: "Begin met je eigen hoofdstukken. Het regelsbestand is wat je later samen aanvult." },
-    { geval: "je cursus is grotendeels formules of code", wat: "Markdown houdt die intact, Word verkleutert ze. Dit is het argument voor werkwijze 2." },
+    { geval: "je cursus is grotendeels formules of code", wat: "Markdown houdt die intact, Word verkleutert ze. Dit is het argument voor [[2]]." },
     { geval: "je cursus zit vol afbeeldingen", wat: "Haal ze uit de tekst en verwijs ernaar. Ingebedde afbeeldingen gaan bij elke omzetting een beetje meer kapot." },
     { geval: "je hebt geen twee teksten waarvan je weet dat ze goed zijn", wat: "Een mail aan studenten en een stuk uit je slidenotities doen het ook. Twee registers is wat je nodig hebt." },
     { geval: "je bent tevreden over je cursus", wat: "Dan hoef je niets te herwerken. Gebruik dezelfde contextmap voor je oefeningen en toetsen." },
@@ -611,7 +635,7 @@ window.DATA = {
       plek: "een map op je OneDrive of SharePoint. Copilot kijkt naar de bestanden waar jij al bij kan",
       regels: "een Word-bestand met je afspraken, waar je in je prompt naar verwijst",
       skill: "hetzelfde: een apart Word-bestand per soort taak",
-      inmap: "De Copilot in Word en PowerPoint werkt niet in een eigen map. De GitHub Copilot in VS Code is een andere: die leest .github/copilot-instructions.md en hoort bij werkwijze 3 en 4.",
+      inmap: "De Copilot in Word en PowerPoint werkt niet in een eigen map. De GitHub Copilot in VS Code is een andere: die leest .github/copilot-instructions.md en hoort bij [[3,4]].",
       waar: "Copilot zit in Word, PowerPoint en Teams, maar er is ook een aparte Copilot-app (en copilot.microsoft.com) waar je gewoon een gesprek voert. Daar hoort de knop “Leren” bij, met kant-en-klare hulpprogramma’s voor onderwijs. Zet je documenten in één map op OneDrive en verwijs ernaar.",
       termen: {
         regelsbestand: ".github/copilot-instructions.md",
@@ -629,7 +653,7 @@ window.DATA = {
         afbeelding: "assets/copilot-leren.png",
         alt: "Schermafbeelding van de Copilot-app. In de zijbalk staat “Leren” aangeklikt; rechts staan de hulpprogramma’s voor onderwijs: curriculumplanning, bestaande inhoud wijzigen, huiswerk en evaluaties en trainingsactiviteiten.",
         bijschrift: "De knop “Leren” in de Copilot-app. Klik op de afbeelding om ze groter te bekijken.",
-        slot: "Een goed startpunt, maar zo’n kant-en-klare opdracht kent jouw cursus niet. Wat eruit komt wordt pas van jou als je er je eigen contextmap en je eigen regels naast legt — en als je het nakijkt.",
+        slot: "Een goed startpunt, maar zo’n kant-en-klare opdracht kent jouw cursus niet. Wat eruit komt wordt pas van jou als je er je eigen contextmap en je eigen regels naast legt, en als je het nakijkt.",
         planregel: "Open de Copilot-app (of copilot.microsoft.com) en klik links op “Leren”. Daar staan kant-en-klare hulpprogramma’s voor onderwijs: curriculumplanning, bestaande inhoud herwerken, huiswerk en evaluaties."
       },
       links: ["copilot-m365", "copilot-web", "copilot-instructions"]
@@ -658,13 +682,13 @@ window.DATA = {
       /* in de vraag staat er meer dan de naam: wie het niet weet, moet dit
          antwoord durven aanklikken. Daarna volgt het keuzescherm. */
       vraaglabel: "Nog geen, of ik weet het nog niet",
-      kort: "kies dit gerust — het volgende scherm helpt je kiezen",
+      kort: "kies dit gerust: het volgende scherm helpt je kiezen",
       geenaccount: true,
       betaald: "Uitproberen lukt prima gratis. Bij een hele cursus loop je tegen de limieten.",
       plek: "niks dat blijft staan. Elk gesprek begint van nul, en je laadt je bestanden opnieuw op",
       regels: "een Word-bestand dat je bovenaan je prompt plakt",
       skill: "hetzelfde document, dat je erbij haalt als die taak langskomt",
-      inmap: "Werkwijze 1 is je werkwijze, en daar valt het meeste te halen.",
+      inmap: "Nee. Zonder account werk je in een gewoon chatvenster, en dat komt niet aan je bestanden. [[1|Werkwijze 1]] is je werkwijze.",
       waar: "Wat je nu al kan doen: schrijf drie regels op die je al drie keer hebt moeten zeggen. Dat bestand werkt in elke tool die je later kiest.",
       termen: {
         regelsbestand: "je regelsbestand",
@@ -687,18 +711,18 @@ window.DATA = {
       },
       titel: "Werk in platte tekst",
       kort: "platte tekst",
-      watis: "Je vraagt de tekst zonder opmaak (markdown), en je doet de opmaak op het einde, in één keer.",
-      kern: "Het formaat waarin je de AI laat schrijven, bepaalt hoeveel werk al de rest is.",
+      watis: "*Markdown klinkt als iets voor programmeurs. Het is een hekje voor een titel en twee sterretjes rond een woord, en daarmee ken je het zowat.* Je vraagt de tekst zonder opmaak, en je doet de opmaak op het einde, in één keer.",
+      kern: "Het *formaat* waarin je de AI laat schrijven, bepaalt hoeveel werk al de rest is.",
       tips: [
         "Vraag alles in markdown, ook als je resultaat een Word-document of een pdf wordt. Markdown is platte tekst met een paar tekens erin voor titels en vet. Het opent in Kladblok.",
         "Van markdown naar Word, pdf, html of slides gaat automatisch. Van Word terug naar iets anders gaat met de hand.",
         "Werk in een bestand per hoofdstuk. Een chatvenster met vijf hoofdstukken erin verliest de draad, en jij vindt er achteraf niks meer in terug.",
         "Laat afbeeldingen buiten de tekst staan, met een verwijzing ernaar. Ingebedde afbeeldingen gaan bij elke omzetting een beetje meer kapot.",
         "Doe de omzetting in twee stappen: eerst omzetten naar markdown, dat nakijken, en pas dan laten herwerken.",
-        "En hoe krijg je er weer opmaak op? Drie niveaus: niks installeren (de AI zet dat ene document om, of Google Docs), één installatie (Quarto), en de motor eronder (pandoc)."
+        "En hoe krijg je er weer opmaak op? Dat kan op drie manieren: niks installeren (de AI zet dat ene document om, of Google Docs), pandoc als er een Word-document in jouw sjabloon uit moet, en Quarto als er ook een pdf of slides uit moet."
       ],
       gevorderd: [
-        "Moet je in het sjabloon van je school aanleveren? Pandoc en Quarto nemen een bestaande PowerPoint of een bestaand Word-document over als referentie, met --reference-doc=sjabloon.pptx. Dat is werkwijze 2 en verder.",
+        "Moet je in het sjabloon van je school aanleveren? Pandoc neemt een bestaande PowerPoint of een bestaand Word-document over als referentie, met --reference-doc=sjabloon.pptx. Dat is [[2]] en verder, en Quarto heb je er pas bij nodig als er meer dan één formaat uit moet.",
         "Zet je bestanden in git (versiebeheer) voor je de AI eraan laat werken. Dan is elke wijziging zichtbaar en terug te draaien, en dat is precies wat het nalezen draaglijk maakt."
       ],
       links: ["pandoc-refdoc", "quarto", "gdocs"]
@@ -713,9 +737,9 @@ window.DATA = {
       titel: "De contextmap",
       kort: "contextmap",
       watis: "De map met documenten die je zou meegeven aan een collega die je vak overneemt.",
-      kern: "Wat er in die map zit, bepaalt het resultaat meer dan hoe je de vraag stelt.",
+      kern: "Wat er *in* die map zit, bepaalt het resultaat meer dan hoe je de vraag stelt.",
       tips: [
-        "Vijf documenten, geen vijftig. Het selecteren is het werk. Bij dertig documenten weet het model niet meer wat het zwaarst weegt, en jij ook niet.",
+        "*Toegegeven, het is verleidelijk om gewoon alles op te laden. Je hebt het toch al staan.* Vijf documenten, geen vijftig. Het selecteren is het werk. Bij dertig documenten weet het model niet meer wat het zwaarst weegt, en jij ook niet.",
         "Denk aan: de vakbeschrijving of ECTS-fiche, het hoofdstuk zelf, je beginsituatie (wat kennen ze al), een goed en een slecht voorbeeld, en de feedback van vorig jaar.",
         "Zet er iets in dat niet in je cursus staat: je beginsituatie, wat studenten vorig jaar niet begrepen, de mail van een collega over wat er ontbrak.",
         "Zet er ook een slecht voorbeeld in, met een regel erbij waarom het slecht is. Een tegenvoorbeeld stuurt harder dan drie goede voorbeelden.",
@@ -730,7 +754,7 @@ window.DATA = {
       titel: "Je regels in een bestand",
       kort: "je regels",
       watis: "Het blad met huisafspraken dat je zou meegeven aan iemand die iets voor jou uittypt. Elke AI-tool heeft er een plek voor; onderaan staat hoe het bij de jouwe heet.",
-      kern: "Je kan je eigen stijl niet beschrijven, maar je kan hem wel laten afleiden uit wat je vroeger geschreven hebt.",
+      kern: "Je kan je eigen stijl niet *beschrijven*, maar je kan hem wel laten *afleiden* uit wat je vroeger geschreven hebt.",
       tips: [
         "Beschrijf je toon niet zelf. “Vlot en toegankelijk met een vleugje humor” levert precies niks op. Geef twee stukken die je zelf schreef en vraag: wat zijn de regels die deze tekst volgt?",
         "Twee ijkpunten: een lesstuk en een stuk waar je losser schrijft. Met één voorbeeld krijg je één register terug, en dan klinkt je hele cursus als je strengste bladzijde.",
@@ -748,6 +772,19 @@ window.DATA = {
         ],
         noot: "Het idee is niet aan één tool gebonden. De naam verschilt, de plek verschilt, het principe is hetzelfde."
       },
+      voorbeeld: {
+        kop: "Zes regels uit een echt bestand",
+        intro: "Dit zijn er zes uit het regelsbestand waarmee deze site geschreven is. Let op hoe smal ze staan: elke regel noemt het geval waar ze over gaat.",
+        regels: [
+          "Geen em-dashes. Gebruik een gewoon streepje, een dubbele punt, haakjes of een nieuwe zin.",
+          "Test elke zin met een ontkenning erin: staat er een feit in de ontkende helft? Zo nee, schrappen.",
+          "Geen tijdsaanduidingen. Geen \u201creken op een namiddag\u201d, en geen belofte over tijdwinst.",
+          "Getallen tot twintig voluit.",
+          "Vet is voor de zin die je in de les twee keer zou zeggen, niet voor trefwoorden.",
+          "Elke bewering krijgt onmiddellijk een concreet geval, en alles heeft een eigennaam."
+        ],
+        knop: "Bekijk het hele bestand"
+      },
       gevorderd: "Laat je regelsbestand nakijken tegen een stuk tekst dat je afgekeurd hebt. Regels die die fout niet vangen, staan er te vaag in.",
       links: ["claude-md", "gemini-cli"]
     },
@@ -761,7 +798,7 @@ window.DATA = {
       titel: "Skills: vaste uitleg per taak",
       kort: "skills",
       watis: "Een receptenkaart die je erbij neemt voor één soort taak, en die de rest van de tijd in de la ligt.",
-      kern: "Een instructie die maar bij één soort taak hoort, hoort niet in je algemene regelsbestand.",
+      kern: "Een instructie die maar bij *één* soort taak hoort, hoort niet in je algemene regelsbestand.",
       tips: [
         "Je regelsbestand is voor wat altijd geldt. Wordt een instructie lang en geldt ze maar voor één taak, dan wordt het een aparte skill.",
         "Schrijf een skill nooit vooraf. Je schrijft hem nadat je dezelfde uitleg drie keer hebt gegeven, en je laat hem afleiden uit die drie gesprekken.",
@@ -769,14 +806,14 @@ window.DATA = {
         "Het duidelijkste voorbeeld zijn de figuren: een skill die de stijl, de kleuren en het lettertype vastlegt, met regels als “geen titel boven de figuur” en “tekst overlapt nooit met een lijn of een pijl”.",
         "De figuren zelf komen uit een script en niet uit een chatvenster. Een figuur bijsturen is dan een getal veranderen en opnieuw uitvoeren."
       ],
-      gevorderd: "Hier merk je dat je afspraken in twee soorten uiteenvallen: wat altijd geldt tegenover wat bij één taak hoort. Dat onderscheid is de enige reden dat skills bestaan.",
+      gevorderd: "Hier merk je dat je afspraken in twee soorten uiteenvallen: wat altijd geldt tegenover wat bij één taak hoort. Zit een regel in de verkeerde stapel, dan krijg je hem terug op een moment dat je hem niet vroeg: je figurenregels midden in een oefening.",
       links: ["skills"]
     },
     {
       id: "lesmateriaal",
       titel: "Van tekst naar lesmateriaal",
       kort: "lesmateriaal",
-      watis: "Uit één tekstbestand komen je slides, je syllabus en je oefeningen, zonder drie keer dezelfde zin te verbeteren.",
+      watis: "*De slides van vorig jaar kloppen al niet meer met je tekst. Dat weet je, en je gaat het dit jaar weer niet rechtzetten.* Uit één tekstbestand komen je slides, je syllabus en je oefeningen, zonder drie keer dezelfde zin te verbeteren.",
       kern: "Zodra je tekst plat is en je contextmap gevuld, is elk volgend formaat nog één vraag.",
       tips: [
         "Je mag in PowerPoint blijven aanleveren. De vraag is waar de tekst op die slides vandaan komt.",
@@ -788,7 +825,7 @@ window.DATA = {
       ],
       gevorderd: [
         "Je huisstijl leg je één keer vast met elf regels in _brand.yml, en de fijnere afwerking in een .scss. Het resultaat benadert het sjabloon van je school en is er geen kopie van.",
-        "Zet je opbouw klaar op de dag dat er nog niks in staat. Anders wordt de laatste dag een bouwdag."
+        "Zet je opbouw klaar op de dag dat er nog niks in staat. Staat je cursus er al, dan moet elk hoofdstuk opnieuw door de rendering."
       ],
       links: ["quarto-brand", "quarto-revealjs", "marp", "mermaid", "excalidraw"]
     }
@@ -800,10 +837,10 @@ window.DATA = {
     rijen: [
       ["waar je bestanden staan", "in {projectplek}", "op je schijf", "op je schijf", "in een map met versiebeheer"],
       ["wie erin schrijft", "jij", "jij", "de AI", "de AI"],
-      ["wat je installeert", "niks", "Quarto", "een tool in je map, plus git", "Quarto, git, een editor"],
+      ["wat je installeert", "niks", "pandoc, plus Quarto voor meer dan Word", "een tool in je map, plus git", "Quarto, git, een editor"],
       ["waar je regels staan", "{regelsplek}", "{regelsplek}, en een .md ernaast", "{regelsbestand} in de map", "{regelsbestand} in de hoofdmap"],
       ["hoe je ziet wat veranderde", "een kopie met de datum in de naam", "idem", "git", "git"],
-      ["hoeveel formaten eruit komen", "één, met de hand", "alle, uit één bron", "alle, als je Quarto erbij zet", "alle, bij elke wijziging"],
+      ["hoeveel formaten eruit komen", "één, met de hand", "Word; alle als je Quarto erbij zet", "alle, als je Quarto erbij zet", "alle, bij elke wijziging"],
       ["skills", "{skillplek}", "idem", "een bestand per skill", "een bestand per skill, bij de cursus"]
     ]
   },
@@ -818,11 +855,11 @@ window.DATA = {
     kop: "Zo ziet je eerste sessie eruit",
     intro: "Je hebt nog nooit met een AI gewerkt en je cursus staat in Word. Dit is wat er dan letterlijk gebeurt, van het openen van je laptop tot een hoofdstuk waar je tevreden over bent. Alles hieronder gebeurt in je browser; je hoeft niets te installeren.",
     situatie: "Eén hoofdstuk, niet je hele cursus. Neem dat waar je zelf het minst tevreden over bent: daar zie je het verschil, en als het tegenvalt heb je één hoofdstuk verloren en geen cursus.",
-    duur: "Reken op een uur voor de eerste keer. De tweede keer ben je er in twintig minuten, want stap 1, 2 en 5 hoef je dan niet meer te doen.",
+    tweedekeer: "Stap 1, 2 en 5 doe je maar één keer. Bij het volgende hoofdstuk staat je plek er, staan je afspraken er, en begin je meteen bij stap 3.",
     stappen: [
       {
         kop: "Zet een plek klaar en leg er drie documenten in",
-        jij: "Maak {projectplek} aan en sleep er drie dingen in: het hoofdstuk zelf, je vakbeschrijving of ECTS-fiche, en een half blaadje over je beginsituatie — wat kennen je studenten al als ze aan dit hoofdstuk beginnen.",
+        jij: "Maak {projectplek} aan en sleep er drie dingen in: het hoofdstuk zelf, je vakbeschrijving of ECTS-fiche, en een half blaadje over je beginsituatie: wat kennen je studenten al als ze aan dit hoofdstuk beginnen.",
         terug: "Nog niets. Dit is voorbereiding, en het is het enige stuk waar je zelf moet nadenken.",
         let: "Dat derde document is het belangrijkste en het is het enige dat nog niet bestaat. Vijf zinnen volstaan. Zonder dat krijg je uitleg voor de verkeerde groep."
       },
@@ -840,7 +877,7 @@ window.DATA = {
       },
       {
         kop: "Laat je eigen schrijfstijl afleiden",
-        jij: "Geef twee teksten die je zelf schreef en waarvan je weet dat ze goed zijn — een stuk cursus en iets waar je losser schrijft, een mail aan studenten bijvoorbeeld. Vraag: “Wat zijn de regels die deze teksten volgen? Geef ze als een lijst waar ik het mee oneens kan zijn, en maak elke regel zo dat ik ze kan nakijken.”",
+        jij: "Geef twee teksten die je zelf schreef en waarvan je weet dat ze goed zijn (een stuk cursus, en iets waar je losser schrijft: een mail aan studenten bijvoorbeeld). Vraag: “Wat zijn de regels die deze teksten volgen? Geef ze als een lijst waar ik het mee oneens kan zijn, en maak elke regel zo dat ik ze kan nakijken.”",
         terug: "Tien à vijftien regels over je toon, je zinslengte, hoe je voorbeelden gebruikt. Sommige kloppen, sommige niet.",
         let: "Schrap wat niet klopt. Wat overblijft plak je in een Word-bestand dat je afspraken.md of afspraken.docx noemt. Dít bestand is wat je overhoudt aan vandaag: het werkt in elke tool die je later kiest."
       },
@@ -857,8 +894,8 @@ window.DATA = {
         let: "Alles wat je nu corrigeert, is een regel die nog niet in je afsprakenbestand stond. Schrijf ze erbij. Dat is de hele truc: de derde keer dat je iets corrigeert, hoort het in dat bestand en komt het er niet meer uit."
       }
     ],
-    slot: "Na deze zes stappen heb je één herwerkt hoofdstuk, een contextmap van vier of vijf documenten, en een afsprakenbestand. Dat laatste is het waardevolste: het volgende hoofdstuk begint niet meer van nul, en over drie maanden klinkt het nog altijd als jou.",
-    valkuil: "De meest gemaakte fout is stap 2 en 6 tegelijk vragen — omzetten en herwerken in één keer. Dan weet je achteraf niet welke wijziging van de omzetting komt en welke van de AI, en je vertrouwt het resultaat niet meer."
+    slot: "Na deze zes stappen staan er drie dingen klaar: één herwerkt hoofdstuk, een contextmap van vier of vijf documenten, en een afsprakenbestand met tien à vijftien regels erin. Dat afsprakenbestand open je bij het volgende hoofdstuk opnieuw, en je vult het aan met wat je daar corrigeert.",
+    valkuil: "De meest gemaakte fout is stap 2 en 6 tegelijk vragen: omzetten en herwerken in één keer. Dan weet je achteraf niet welke wijziging van de omzetting komt en welke van de AI, en je vertrouwt het resultaat niet meer."
   },
 
   promptPlanKop: "Vandaag plakken: je eerste drie vragen",
@@ -928,10 +965,11 @@ window.DATA = {
   /* ---------- Gereedschapskist ---------- */
   gereedschap: [
     { waarvoor: "een document omzetten, nu meteen", wat: "Google Docs importeert en exporteert markdown", drempel: "geen", link: "gdocs" },
-    { waarvoor: "markdown naar PowerPoint, met jouw sjabloon", wat: "pandoc of Quarto naar .pptx, met --reference-doc=sjabloon.pptx", drempel: "commandolijn", link: "quarto-pptx" },
-    { waarvoor: "markdown naar Word, met jouw sjabloon", wat: "idem, met --reference-doc=sjabloon.docx", drempel: "commandolijn", link: "pandoc-refdoc" },
-    { waarvoor: "markdown naar pdf, html, slides", wat: "Quarto. Pandoc zit erin", drempel: "een installatie", link: "quarto" },
-    { waarvoor: "pdf zonder LaTeX te installeren", wat: "Quarto met typst als motor", drempel: "een installatie", link: "quarto-typst" },
+    { waarvoor: "markdown naar Word, met jouw sjabloon", wat: "pandoc, met --reference-doc=sjabloon.docx", drempel: "commandolijn", link: "pandoc-refdoc" },
+    { waarvoor: "markdown naar PowerPoint, met jouw sjabloon", wat: "idem naar .pptx, met --reference-doc=sjabloon.pptx", drempel: "commandolijn", link: "quarto-pptx" },
+    { waarvoor: "markdown in Word openen zonder commandolijn", wat: "Writage, een invoegtoepassing voor Word. Betalend na veertien dagen", drempel: "installatie", link: "writage" },
+    { waarvoor: "markdown naar pdf, html, slides", wat: "Quarto. Pandoc zit erin", drempel: "commandolijn", link: "quarto" },
+    { waarvoor: "pdf zonder LaTeX te installeren", wat: "Quarto met typst als motor", drempel: "commandolijn", link: "quarto-typst" },
     { waarvoor: "markdown schrijven", wat: "VS Code, Obsidian, Typora", drempel: "installatie", link: "obsidian" },
     { waarvoor: "slides zonder PowerPoint", wat: "Marp (extensie in VS Code) of reveal.js via Quarto", drempel: "extensie", link: "marp" },
     { waarvoor: "stroomschema's en tijdlijnen", wat: "mermaid", drempel: "geen", link: "mermaid-live" },
@@ -943,7 +981,20 @@ window.DATA = {
   gereedschapNoot: "De volgorde is op drempel, niet op voorkeur. De bovenste rijen zijn voor wie vandaag nog iets wil proberen.",
 
   /* ---------- Voorbeelden (galerij, groeit nog) ---------- */
-  voorbeeldenNoot: "Cursussen, websites en cursusmappen die op deze manier gemaakt zijn, zodat je kan zien waar je naartoe werkt. De bolletjes onderaan elke kaart zeggen met welke techniek het gebouwd is. Deze galerij groeit nog.",
+  voorbeeldenNoot: "Cursussen, websites en cursusmappen die op deze manier gemaakt zijn, zodat je kan zien waar je naartoe werkt. Deze galerij groeit nog.",
+
+  /* Waarschuwing boven de galerij. Een paar van deze projecten liggen ver
+     boven wat een lector met een dag goesting maakt; zonder dit blok leest de
+     galerij als een lat waar je niet over geraakt. */
+  voorbeeldenWaarschuwing: {
+    kop: "Een paar van deze mensen zijn doorgeslagen",
+    icoon: "raket",
+    tekst: [
+      "*En dat is een compliment.* Cloudsystemen van David Verhulst is een eigen webapplicatie met oefenterminals die in de pagina zelf draaien. In Circuit Crawler van Andie Similon schrijft een student een lus van drie stappen, en zet een robot op het scherm drie stappen. Knap gedaan, maar daar zit een technische achtergrond achter die de meesten van ons niet hebben.",
+      "Je hoeft daar niet naartoe om hier iets aan te hebben. Onder elk van deze projecten liggen dezelfde twee bestanden als in werkwijze 1, Alles in de browser: een contextmap per hoofdstuk, en een regelsbestand met je eigen afspraken. Die twee maak je zonder één installatie.",
+      "Kijk daarom eerst naar de bolletjes onderaan elke kaart. Die zeggen met welke techniek het gebouwd is. Staat er *markdown* bij, dan is de tekst het werk en komt de website er achteraf uit. Staat er *eigen webapplicatie*, dan is er iemand beginnen programmeren."
+    ]
+  },
   voorbeelden: [
     {
       titel: "Programmeren & OOP",
@@ -964,12 +1015,12 @@ window.DATA = {
       maker: "David Verhulst",
       wat: "Interactieve leerstof over webinfrastructuur, met oefenterminals in de pagina en stukken die pas opengaan als je het vorige afgewerkt hebt. Niet uit een documentgenerator, maar als een eigen webapplicatie gebouwd.",
       url: "https://webinfrastructuur-interactive.vercel.app/",
-      tech: ["Next.js of React", "Vercel"]
+      tech: ["Next.js of React", "Vercel", "eigen webapplicatie"]
     },
     {
       titel: "Zie Scherp Scherper",
       maker: "Tim Dams",
-      wat: "Een cursus C# waarbij het handboek, de slides en de website allemaal uit dezelfde markdown-bestanden gemaakt worden. Je schrijft één keer, en de rest rolt eruit.",
+      wat: "Een cursus C# waarbij het handboek, de slides en de website uit dezelfde markdown-bestanden komen. Verbeter je een zin in het hoofdstuk over casting, dan staat ze in alle drie.",
       url: "https://timdams.github.io/ziescherpscherper/",
       tech: ["Quarto", "markdown", "GitHub Pages"]
     },
@@ -983,14 +1034,14 @@ window.DATA = {
     {
       titel: "Circuit Crawler",
       maker: "Andie Similon",
-      wat: "Het oefenplatform bij de eerste lessen TypeScript. Studenten schrijven code in de pagina en zien een robot hun instructies stap voor stap uitvoeren. Zo wordt een concept iets dat je ziet gebeuren in plaats van iets dat je moet voorstellen.",
+      wat: "Het oefenplatform bij de eerste lessen TypeScript. Studenten schrijven code in de pagina en zien een robot hun instructies stap voor stap uitvoeren. Schrijft een student een lus van drie stappen, dan zet de robot drie stappen.",
       url: "https://cc.assimilate.be/",
       tech: ["TypeScript", "eigen webapplicatie"]
     },
     {
       titel: "Git Quest",
       maker: "Jannes Peeters",
-      wat: "Leer git op interactieve wijze én gamified.",
+      wat: "Git leren als een spel, met opdrachten die je een voor een afwerkt.",
       url: "https://jplectorap.github.io/git-quest/",
       tech: ["Gemini", "react"]
     },
@@ -1008,6 +1059,155 @@ window.DATA = {
     }
   ],
 
+  /* ---------- Colofon: hoe deze site gemaakt is ----------
+     Twee dingen die bij elkaar horen: het regelsbestand waarmee deze site
+     geschreven is, en wat er ondertussen misging. Het maakt de belofte uit
+     "waarom" waar ("Je kan tonen hoe het gemaakt is"), en het geeft de lezer
+     een echt regelsbestand te zien in plaats van het advies er een te maken.
+
+     LET OP: "misliep" hieronder is een voorzet, op basis van wat er bij het
+     nakijken van deze site effectief gevonden is. Vervang of vul aan met wat
+     er bij jou misging; het hoort in jouw woorden te staan, met een cijfer
+     erbij waar dat kan. */
+  colofon: {
+    kop: "Hoe deze site gemaakt is",
+    intro: "Deze site is gemaakt zoals ze het zelf voorschrijft: met een contextmap, met een regelsbestand, en met een AI die in de map zelf werkte. Hieronder staat dat regelsbestand, en wat er ondertussen misging.",
+
+    misliepKop: "Wat er misging",
+    misliep: [
+      "Het regelsbestand hieronder stond er al voor de eerste zin van deze site geschreven werd. Bij het nakijken stonden er negen em-dashes in de tekst, acht beloftes over hoe lang iets zou duren, en drie keer dezelfde zin over waar het meeste te halen valt. Alle drie staan ze met zoveel woorden in de niet-doen-lijst, een paar centimeter lager op deze pagina.",
+      "De AI die het bestand leest, is dezelfde die eroverheen schrijft. Wat je opschrijft, kijk je nadien nog altijd zelf na, met de lijst ernaast."
+    ],
+
+    regelsKop: "Het regelsbestand van deze site",
+    regelsIntro: [
+      "Achtentwintig regels, waarvan er elf onder Niet doen staan. Die verhouding is geen toeval: je weet beter wat je stoort dan wat je wil.",
+      "Neem het niet over. Jouw regels gaan over jouw vak en jouw studenten, en ze zullen er anders uitzien. Wat je hier wel kan zien, is hoe specifiek een regel moet zijn voor ze iets doet."
+    ],
+
+    welKop: "Zo moet het klinken",
+    wel: [
+      {
+        kop: "Open met een terzijde of met een vlakke feitenzin, nooit met een definitie.",
+        tekst: "Het terzijde is een grap, een verwijzing of een bekentenis, in cursief, en dan meteen weer aan het werk: “*Aah, Data, een geliefkoosd personage uit Star Trek.* Maar daar ga ik het niet over hebben.” De andere opening is een kale zin met een belofte erachter. Wissel af: twee modules na elkaar dezelfde opening en het is een formule geworden."
+      },
+      {
+        kop: "Het terzijde staat ook midden in de zin, tussen haakjes.",
+        tekst: "Daar zeg je wat eerlijker of grappiger is dan de zin toeliet: “technisch rommelige (lees: slechte) overgangen”. De “lees:”-variant zet het harde woord naast het beleefde woord dat eraan voorafgaat. Twee tot drie per module, anders wordt het een tic."
+      },
+      {
+        kop: "De schrijver is aanwezig.",
+        tekst: "“Laten we eens onderzoeken”, “het wordt tijd dat we onze werkkledij aantrekken”. Voor de instructie schakel je naar de je-vorm: “Test dit eens”, “Bekijk eens het volgende voorbeeld”."
+      },
+      {
+        kop: "Stel de vraag die de lezer denkt, en antwoord meteen.",
+        tekst: "“Wat zou je verwachten als resultaat? Inderdaad: 22,5.” Een kopje mag die vraag zijn: “Wat is casting”, “Casting, conversie of parsing?”"
+      },
+      {
+        kop: "Het beeld komt uit een vak waar je zelf in zit, en je zegt erbij waar je het haalt.",
+        tekst: "“Een proces dat wat aanvoelt als het plotten van een verhaal”, “de Steve Jobs-presentatietechniek die ik ook in mijn lessen toepas”. Het keert terug zolang het klopt: appelen en peren, een zwarte doos, de collega die je olod overneemt."
+      },
+      {
+        kop: "Vet is voor de zin die je in de les twee keer zou zeggen, niet voor trefwoorden.",
+        tekst: "Hele zinnen mogen vet. Een nieuwe term is vet bij zijn eerste vermelding, daarna plat."
+      },
+      {
+        kop: "Cursief markeert het scharnierwoord van een zin.",
+        tekst: "*tijdens*, *waarde*, *niet inpast*, *versmallen*."
+      },
+      {
+        kop: "Noem de verleidelijke fout voor je ze afschiet.",
+        tekst: "“Toegegeven, het is verleidelijk om vanaf nu alles met de Convert.To-methoden te doen.” Uit hetzelfde register: “Merk op dat”, “Let echter op dat”."
+      },
+      {
+        kop: "Elke bewering krijgt onmiddellijk een concreet geval, en alles heeft een eigennaam.",
+        tekst: "Echte waarden, echt scherm, echte foutboodschap, en ook echte merken en plaatsen. De zaal heet De Zure op de Dageraadplaats, het mengpaneel is een Pioneer FLx/4. 20 en 25 geven 22, niet 22,5. Waar een getal of een schermafbeelding kan staan, staat geen abstracte formulering."
+      },
+      {
+        kop: "Mensen praten in de tekst, letterlijk geciteerd.",
+        tekst: "“Drie aparte dames kwamen om rnb vragen, *dan konden ze er aan beginnen*.” Citeer wat een collega zei, wat een student vroeg, wat de AI terugstuurde."
+      },
+      {
+        kop: "Leg hetzelfde in lagen uit.",
+        tekst: "Eerst de regel, dan waarom ze bestaat, dan een geval uit de praktijk. Verwijs daarbij hardop terug (“zoals eerder vermeld”)."
+      },
+      {
+        kop: "Laat de lezer nooit alleen bij een fout.",
+        tekst: "Wat misgaat, dan de foutboodschap of het foute resultaat, dan de fix. Er staat niemand naast hem."
+      },
+      {
+        kop: "Je noemt je eigen miskleun eerst, en je redt jezelf niet.",
+        tekst: "Met een cijfer erbij waar dat kan: “de tot in de puntjes voorbereide set bleek achteraf slechts voor zo’n 30% bruikbaar.” Er komt geen “maar achteraf bekeken” achter."
+      },
+      {
+        kop: "Callouts en kaderblokken zijn voor de uitzondering, de valkuil en het extraatje.",
+        tekst: "Nooit voor een samenvatting."
+      },
+      {
+        kop: "Een onderschrift bij een figuur is een feit, geen titel.",
+        tekst: "“Casting naar `int` gooit alles na de komma weg, ook bij `20.9`. Er wordt niet afgerond.”"
+      },
+      {
+        kop: "Spreektaal mag, en af en toe moet ze.",
+        tekst: "“Eens”, “een dikke foutboodschap”, “goed testen is de boodschap”, “toegegeven”, “better safe than sorry”. Vlaams register, geen Hollands, en volkse woorden zonder verontschuldiging: “gepruts”, “op z’n gat gevallen”, “goesting”, “afwimpelen”. Engels jargon blijft onvertaald: prompt, context, skill, repo."
+      },
+      {
+        kop: "Korte zinnen, en af en toe een hele korte om iets te laten landen.",
+        tekst: "“Dit zal niet gaan.”"
+      }
+    ],
+
+    nietKop: "Niet doen",
+    niet: [
+      {
+        kop: "Geen em-dashes.",
+        tekst: "Gebruik een gewoon streepje, een dubbele punt, haakjes of een nieuwe zin."
+      },
+      {
+        kop: "Geen samenvattende wijze slotzin.",
+        tekst: "Stop na het laatste feit. Eindigen op een praktische instructie of op een terzijde mag wel. De hardnekkigste vorm is de afronder die een waardeoordeel geeft en geen feit: “alles daarna is bonus”, “dat is het hele idee”. Schrap de zin en kijk of er een feit verdwijnt."
+      },
+      {
+        kop: "Geen abstract woord op de plek van het ding zelf.",
+        tekst: "“Je hebt er iets tastbaars aan het eind”, “daar maak je iets dat je aan een collega kan tonen”: er staan vijf documenten met een regel bij elk, of er staat niets."
+      },
+      {
+        kop: "Geen symmetrische antithese, waar ze ook staat.",
+        tekst: "De vormen die telkens terugkeren: “Dat is geen X, dat is Y”, “Het gaat niet over X, het gaat over Y”, “X, en niet Y”. “In plaats van” is dezelfde figuur in vermomming. Contrast dat een mechanisme uitlegt (“in het eerste geval gebeurt X, in het tweede Y”) mag wel."
+      },
+      {
+        kop: "Test elke zin met een ontkenning erin: staat er een feit in de ontkende helft?",
+        tekst: "Zo nee, schrappen en enkel de bevestigende helft houden. “Dat is geen ergernis, dat is een signaal” wordt “Alles wat je een derde keer corrigeert, is een afspraak die je nooit hebt opgeschreven”. Haalt de ontkende helft de test wel, dan mag ze blijven staan: “begin met drie regels en niet met twintig” blijft, want twintig is precies wat de lezer zou doen."
+      },
+      {
+        kop: "Geen tel-formules als stijlbloempje.",
+        tekst: "“Drie tools, hetzelfde idee.” Een aangekondigde opsomming (“dit kan op drie manieren”) is geen tel-formule en mag wel."
+      },
+      {
+        kop: "Geen bullets over “de kracht van AI”.",
+        tekst: ""
+      },
+      {
+        kop: "Geen emoji in de cursustekst.",
+        tekst: "In de slides mag ze wel."
+      },
+      {
+        kop: "Getallen tot twintig voluit.",
+        tekst: "“3 aparte dames” is blogsnelheid en leest in een cursus als slordigheid."
+      },
+      {
+        kop: "Geen tijdsaanduidingen, waar dan ook.",
+        tekst: "Geen duur boven een module, geen minuten in de tekst, geen “reken op een namiddag”, en geen belofte over tijdwinst. Ook niet in het negatief (“verspilde tijd”) en niet als vergelijking (“dan ben je in Word sneller klaar”). Wat de aanpak vraagt aan materiaal mag je wel benoemen: er lag twintig jaar cursusmateriaal klaar, en zonder dat begint het werk vroeger."
+      },
+      {
+        kop: "De matrix niveau x module niet volschrijven.",
+        tekst: "Waar een hoger niveau een zin oplevert, schrijf je die zin onderaan de hoofdtekst en geen apart blok."
+      }
+    ],
+
+    slot: "Dit bestand is niet vooraf geschreven. De meeste regels staan erin omdat dezelfde correctie een derde keer langskwam, en de regel over em-dashes staat er omdat er negen in de tekst stonden."
+  },
+
   /* ---------- Links ---------- */
 
   links: {
@@ -1020,6 +1220,7 @@ window.DATA = {
     "quarto-book":          { naam: "Quarto book", url: "https://quarto.org/docs/books/", noot: "één bron, website en pdf" },
     "quarto-brand":         { naam: "Quarto brand.yml", url: "https://quarto.org/docs/authoring/brand.html", noot: "kleuren en fonts één keer opschrijven" },
     "pandoc":               { naam: "pandoc", url: "https://pandoc.org", noot: "de motor onder de omzetting" },
+    "writage":              { naam: "Writage", url: "https://www.writage.com", noot: "markdown in Word, betalend na veertien dagen" },
     "pandoc-refdoc":        { naam: "pandoc, optie reference-doc", url: "https://pandoc.org/MANUAL.html#option--reference-doc", noot: "jouw bestaande .docx of .pptx als sjabloon" },
     "marp":                 { naam: "Marp", url: "https://marp.app", noot: "slides uit markdown, extensie in VS Code" },
     "mermaid":              { naam: "mermaid", url: "https://mermaid.js.org", noot: "tekst die een figuur wordt" },
