@@ -386,6 +386,8 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 .startplan-stapkop { display: block; font-size: 1rem; margin-bottom: .2rem; }
 .startplan-tekst { display: block; color: var(--inkt-stil); font-size: .95rem; line-height: 1.6; }
 .startplan-naar { display: inline-block; margin-top: .35rem; font-size: .9rem; }
+/* Een stap mag meer dan een deur hebben; twee knoppen mogen niet aan elkaar plakken. */
+.startplan-naar + .startplan-naar { margin-left: 1.1rem; }
 
 .startplan-naast { margin-top: 1.4rem; }
 .startplan-naastregel { margin: .45rem 0 0; font-size: .92rem; line-height: 1.55; color: var(--inkt-stil); }

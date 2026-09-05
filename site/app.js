@@ -77,6 +77,11 @@
 
   /* ---------------- hulpjes ---------------- */
 
+  /* De site schrijft getallen tot twintig voluit, ook wanneer de code ze telt. */
+  var VOLUIT = ["nul", "een", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht",
+    "negen", "tien", "elf", "twaalf", "dertien", "veertien", "vijftien", "zestien",
+    "zeventien", "achttien", "negentien", "twintig"];
+
   function el(tag, klas, tekst) {
     var n = document.createElement(tag);
     if (klas) n.className = klas;
@@ -409,17 +414,22 @@
   }
 
   /* De mapindeling: één bestand per hoofdstuk. Staat zowel bij de vraag
-     "waar staat je cursus" als in het onderwerp over platte tekst. Wie in de
-     browser blijft, krijgt dezelfde regels zonder de boom: die gaat over mappen
-     op een schijf die hij niet gaat aanmaken. */
-  function bronMapBlok() {
+     "waar staat je cursus" als in het onderwerp "Zet je cursus per hoofdstuk
+     klaar". Daar komt ze zonder eigen kop binnen, want die staat er al. Wie in
+     de browser blijft, krijgt dezelfde regels zonder de boom: die gaat over
+     mappen op een schijf die hij niet gaat aanmaken. */
+  function bronMapBlok(zonderKop) {
     var m = D.bronMap;
     if (!m) return null;
     var browser = browserOnly() && m.browser;
     var b = browser ? m.browser : m;
     var wrap = el("section", "bronmap");
-    wrap.appendChild(kaderKop("h3", "bronmapkop", T(b.kop), "map", true));
-    wrap.appendChild(el("p", "bronmapkern", T(b.kern)));
+    /* In het onderwerp staan die kop en die kern al bovenaan het venster. Daar
+       hoeft alleen de boom met de regels eronder te komen. */
+    if (!zonderKop) {
+      wrap.appendChild(kaderKop("h3", "bronmapkop", T(b.kop), "map", true));
+      wrap.appendChild(el("p", "bronmapkern", T(b.kern)));
+    }
     if (!browser) {
       var pre = el("pre", "boom");
       pre.textContent = m.boom.join("\n");
@@ -542,6 +552,11 @@
     var ofig = figuurBlok(o.figuur);
     if (ofig) binnen.appendChild(ofig);
 
+    if (o.id === "mapindeling") {
+      var mb = bronMapBlok(true);
+      if (mb) binnen.appendChild(mb);
+    }
+
     if (o.tips.length) {
       binnen.appendChild(kaderKop("h3", null, "Tips", "vink", true));
       var ul = el("ul", "bloktips");
@@ -579,11 +594,6 @@
       if (o.tabel.noot) binnen.appendChild(el("p", "noot", o.tabel.noot));
     }
 
-    if (o.id === "plat") {
-      var mb = bronMapBlok();
-      if (mb) binnen.appendChild(mb);
-    }
-
     if (o.gevorderd) {
       binnen.appendChild(kaderKop("h3", null, "Voor wie al bezig is", "moersleutel", true));
       var gev = [].concat(o.gevorderd);
@@ -614,6 +624,19 @@
           "Je hebt nog niet gezegd met welke AI je werkt. Kies je tool bovenaan, dan zet de hele site de juiste namen erbij."));
         binnen.appendChild(nudge);
       }
+    }
+
+    /* Wat hier vroeger stond maar ergens anders thuishoort, staat nu daar, met
+       hier een deur ernaartoe. */
+    var vd = (o.verder || []).map(interneKaart).filter(Boolean);
+    if (vd.length) {
+      var vblok = el("div", "blokje");
+      vblok.appendChild(kaderKop("h3", null, "Waar het verder gaat", "splitsing"));
+      var vrij = el("div", "linkjes");
+      vd.forEach(function (k) { vrij.appendChild(k); });
+      vblok.appendChild(vrij);
+      vblok.style.marginTop = "1.2rem";
+      binnen.appendChild(vblok);
     }
 
     var lb = linkBlok(toolLinks(o.links), "Links bij dit onderwerp");
@@ -842,7 +865,11 @@
        beantwoorden. Door die volgorde weet de site dat al voor ze naar een merk
        vraagt, en wordt "nog geen" een keuzescherm in plaats van een muur. */
     var rij = ["doel", "ervaring", "account", "materiaal", "bron"];
-    if (a.ervaring === "beginner") return rij;
+    /* De vraag over installeren komt er alleen bij voor wie geen beginner is.
+       Zolang we dat niet weten, tellen we ze niet mee: anders staat er "vraag 2
+       van 6" en daarna "vraag 3 van 5", en een teller die krimpt terwijl je
+       vooruitgaat leest als een fout. Erbij komen mag wel. */
+    if (a.ervaring === undefined || a.ervaring === "beginner") return rij;
     rij.push("installatie");
     var inst = D.installatie.filter(function (i) { return i.id === a.installatie; })[0];
     if (inst && inst.vervolg) {
@@ -973,8 +1000,11 @@
       var li = el("li", "startplan-stap");
       li.appendChild(el("b", "startplan-stapkop", st.kop));
       li.appendChild(rijk(el("span", "startplan-tekst"), st.tekst));
-      var knop = wegwijzerKnop(st);
-      if (knop) li.appendChild(knop);
+      var wijzers = st.wegwijzers || [st];
+      wijzers.forEach(function (w) {
+        var knop = wegwijzerKnop(w);
+        if (knop) li.appendChild(knop);
+      });
       ol.appendChild(li);
     });
     wrap.appendChild(ol);
@@ -1744,8 +1774,10 @@
 
     doel.appendChild(blokjes);
 
-    /* de vijf onderwerpen, vertaald naar deze werkwijze */
-    doel.appendChild(kaderKop("h3", "blokkenkop", "De vijf onderwerpen bij werkwijze " + r.nr, "blokken", true));
+    /* de onderwerpen, vertaald naar deze werkwijze */
+    doel.appendChild(kaderKop("h3", "blokkenkop",
+      "De " + (VOLUIT[D.onderwerpen.length] || D.onderwerpen.length) + " onderwerpen bij werkwijze " + r.nr,
+      "blokken", true));
     doel.appendChild(el("p", "noot", "Zelfde onderwerpen, andere plek waar je bestanden staan. Klik een onderwerp open voor de tips zelf."));
     var lijst = el("div", "blokvertaling");
     D.onderwerpen.forEach(function (o) {
@@ -2230,7 +2262,7 @@
           vak: "onderwerpen",
           icoon: "blokken",
           titel: "De onderwerpen",
-          kort: "Platte tekst, de contextmap, je eigen regels, skills en lesmateriaal.",
+          kort: "Van platte tekst en je mapindeling tot je eigen regels, je skills en je figuren.",
           tel: function () { return D.onderwerpen.length + " onderwerpen"; }
         },
         {

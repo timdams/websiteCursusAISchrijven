@@ -258,7 +258,9 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
 
 - `startplan` is de volgorde op de startpagina: per stap een `kop`, een `tekst` en optioneel een
   `wegwijzer` (`{ naar, id }`, dezelfde vorm als de `verder` onder een valkuil) met een eigen `knop`
-  als opschrift. `startplanKop` en `startplanNoot` staan erboven, `startplanNaastKop` en
+  als opschrift. Wijst een stap twee kanten op, dan zet je `wegwijzers` in de plaats: een lijst van
+  `{ wegwijzer, knop }`. Stap 2 doet dat, want droge tekst en je mapindeling zijn twee
+  bladzijden. `startplanKop` en `startplanNoot` staan erboven, `startplanNaastKop` en
   `startplanNaast` eronder. Een stap bijzetten is dus een item in die lijst, zonder aan `app.js` te
   komen; `startplanBlok()` tekent ze
 - een werkwijze krijgt haar pagina uit `voorwie`, `pitch`, `punten`, `installeren`, `stappen`,
@@ -271,18 +273,26 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
   ze, op de werkwijzenpagina en in de vouw "Zo zet je werkwijze N op"; een werkwijze zonder
   `routes` krijgt niets extra
 - een onderwerp krijgt zijn venster uit `watis`, `kern`, `tips`, `gevorderd` en optioneel een `tabel`
+- een onderwerp kan een `verder` dragen: wegwijzers naar een andere plek op deze site, met dezelfde
+  kaartjes als onder een valkuil. Dat is waar uitleg heen ging die op deze bladzijde stond maar er
+  niet over ging: de opmaak hoort bij "Van tekst naar lesmateriaal" en niet bij "Werk in platte
+  tekst"
 - een onderwerp kan daarnaast `keuzes` dragen: groepen manieren om hetzelfde te doen, met per
   groep een `kop`, een `noot` en een `slot`, en per optie `naam`, `wanneer` (het merkje), `hoe`,
   een `code` die letterlijk in een codeblok komt, `letop` en `links`. Tips zeggen wat je moet
-  doen, keuzes zeggen wat je moet kiezen. "Van tekst naar lesmateriaal" heeft er twee, over
-  figuren en over slides; `keuzeBlokken()` in `app.js` tekent ze, na de tips
+  doen, keuzes zeggen wat je moet kiezen. "Van tekst naar lesmateriaal" en "Figuren bij je tekst"
+  hebben er elk een; die twee stonden ooit in één venster van 7600 tekens, ruim vier keer een
+  ander onderwerp. `keuzeBlokken()` in `app.js` tekent ze, na de tips
 - elk formaat in `bron` (Word, PowerPoint, pdf, scan, leerplatform ...) krijgt naast `advies` twee
   `routes` (`[kop, tekst]`: een zonder installatie en een met pandoc) en een `letop` met
   wat er stilletjes sneuvelt. Tekst `tussen accenten` wordt een code-vakje; functie `rijk()` in
   `app.js` doet dat. Die tussenstap komt na de vraag "in welke vorm staat je cursus nu"
-- `bronMap` is de mapindeling (één bestand per hoofdstuk, `content/` naast `context/`): `kop`,
-  `kern`, `boom` (lijst regels, letterlijk getoond), `regels` (`[kop, uitleg]`) en `noot`. Functie
-  `bronMapBlok()` tekent ze, zowel in die tussenstap als in het onderwerp "Werk in platte tekst"
+- `bronMap` is de mapindeling (een map per hoofdstuk, daarin een bestand per onderwerp, en
+  `content/` naast `context/`): `kop`, `kern`, `boom` (lijst regels, letterlijk getoond), `regels`
+  (`[kop, uitleg]`) en `noot`. Functie `bronMapBlok()` tekent ze, zowel in die tussenstap als in
+  het onderwerp "Zet je cursus per hoofdstuk klaar". Daar krijgt ze `zonderKop`, want die kop en
+  die kern staan al bovenaan het venster. `bronMap.browser` is dezelfde inhoud zonder boom, voor
+  wie in de browser blijft en dus geen mappen op zijn schijf heeft
 - een assistent krijgt zijn kaartjes uit `plek`, `regels`, `skill`, `inmap`, `waar` en
   `termen.regelsbestand`. `sessieplek` is de lijst klikstappen die bij stap 1 van
   `voorbeeldgesprek` verschijnt (letterlijke knopnamen, `**vet**` en `` `code` `` mogen erin), en
