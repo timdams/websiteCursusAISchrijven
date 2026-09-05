@@ -1207,6 +1207,22 @@ button.linkje {
 .sessie-let { color: var(--inkt-stil); --kk: var(--accent-diep); }
 .sessie-let .kaderkop { color: var(--accent-diep); }
 
+/* het klikpad bij stap 1: waar die plek bij jouw tool zit */
+.sessieplek { margin-top: 1rem; }
+.sessieplek .kaderkop {
+  font-size: .74rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: .4rem;
+}
+.plekstappen { margin: 0; padding-left: 1.15rem; font-size: .92rem; line-height: 1.55; max-width: 46rem; }
+.plekstappen li { margin-bottom: .35rem; }
+.plekzonder { margin: 0; font-size: .92rem; line-height: 1.55; max-width: 46rem; }
+.plekboomkop { margin: .8rem 0 .35rem; font-size: .88rem; color: var(--inkt-stil); }
+.sessieplek .boom { font-size: .78rem; margin: 0 0 .6rem; max-width: 46rem; }
+.pleknoot { margin: 0; font-size: .88rem; color: var(--inkt-stil); line-height: 1.55; max-width: 46rem; }
+.sessieplek .linkjes { margin-top: .7rem; max-width: 26rem; }
+
 .sessieslot { margin: 1.2rem 0 0; max-width: 46rem; line-height: 1.6; }
 
 /* ---------- de ladder: als dit bevalt ---------- */

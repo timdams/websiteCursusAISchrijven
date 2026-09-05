@@ -252,7 +252,10 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
   `kern`, `boom` (lijst regels, letterlijk getoond), `regels` (`[kop, uitleg]`) en `noot`. Functie
   `bronMapBlok()` tekent ze, zowel in die tussenstap als in het onderwerp "Werk in platte tekst"
 - een assistent krijgt zijn kaartjes uit `plek`, `regels`, `skill`, `inmap`, `waar` en
-  `termen.regelsbestand`, en eventueel `wistjedat` (een blok of een lijst blokken) met `kop`,
+  `termen.regelsbestand`. `sessieplek` is de lijst klikstappen die bij stap 1 van
+  `voorbeeldgesprek` verschijnt (letterlijke knopnamen, `**vet**` en `` `code` `` mogen erin), en
+  `sessieplekLink` overschrijft daar de link die anders uit `rollen.project` komt (een lege string
+  laat de link weg). Verder eventueel `wistjedat` (een blok of een lijst blokken) met `kop`,
   `tekst` (lijst alinea's), `afbeelding` (een bestand uit `assets/`), `alt`, `bijschrift`, `slot`,
   `planregel` en `links`
 - `waarom` is de opbrengst van de hele aanpak (jezelf niet herhalen, ver komen op een gratis
@@ -270,7 +273,11 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
   van het plan) en `prompts` (id's uit `prompts`). Een doel bijzetten is dus één item, zonder
   aan `app.js` te komen
 - `voorbeeldgesprek` is één sessie van begin tot eind: `intro`, `situatie`, `tweedekeer`,
-  `stappen` (elk met `kop`, `jij`, `terug`, `let`), `valkuil` en `slot`. Het is er voor wie de losse
+  `stappen` (elk met `kop`, `jij`, `terug`, `let`), `plek`, `valkuil` en `slot`. `plek` hangt onder
+  stap 1 en beantwoordt de vraag "waar zet ik die map dan": `kop` en `zonderTool` voor wie nog geen
+  tool koos, `boomKop` + `boom` (lijst regels, letterlijk getoond zoals bij `bronMap`) en `schijf`
+  voor wie er toch een map op zijn eigen schijf bij wil. Het klikpad zelf staat per assistent in
+  `sessieplek`; `sessiePlekBlok()` in `app.js` zet die twee samen. Het is er voor wie de losse
   onderdelen snapt maar niet weet hoe een gesprek verloopt, en het staat bewust als één verhaal
   met één hoofdstuk, niet als tips naast elkaar. `tekenSessie()` tekent het; omdat er
   `{projectplek}` in staat, hertekent `naarTab()` het telkens je het naslagwerk opent

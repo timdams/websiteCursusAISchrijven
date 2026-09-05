@@ -720,6 +720,11 @@ window.DATA = {
       skill: "een echte Skill: je zet je SKILL.md in een map, maakt daar een zip van, en laadt die op. In een map op je schijf staat datzelfde bestand in .claude/skills/naam/SKILL.md",
       inmap: "Ja, op twee manieren. Cowork zit in de Claude-app en vraagt geen commandovenster: je wijst je cursusmap aan en Claude schrijft erin. Claude Code doet hetzelfde vanuit een commandovenster. Allebei moet je ze installeren, en op een strak beheerde schoollaptop raakt dat er meestal niet op.",
       waar: "Projects staan in de zijbalk. Je maakt er een aan, sleept je documenten erin, en zet je regels in de projectinstructies. Skills staan elders: onder Customize > Skills, met de knop “+ Create skill” en dan “Upload a skill”. Staan ze in het grijs, zet dan eerst “Code execution and file creation” aan bij Settings > Capabilities.",
+      sessieplek: [
+        "Ga naar claude.ai en klik links in de zijbalk op **Projects**, en dan rechtsboven op **New project**.",
+        "Geef het de naam van je olod: `Databanken 2`. Het veld voor de beschrijving mag leeg blijven.",
+        "In het project staat rechts het kader **Project knowledge**, met een knop om bestanden toe te voegen. Sleep je drie documenten daarin. Ze blijven staan, ook als je het venster sluit en morgen terugkomt."
+      ],
       termen: {
         regelsbestand: "CLAUDE.md",
         regelsplek: "de projectinstructies",
@@ -741,6 +746,12 @@ window.DATA = {
       skill: "een document in het project dat je erbij haalt, of een aparte GPT voor die taak",
       inmap: "Voor werkwijze 3 en 4 is dit niet je eenvoudigste keuze. Je bestanden gaan op en neer tussen je schijf en het venster. Werk je toch in een map (met Codex), dan is AGENTS.md je regelsbestand.",
       waar: "Projects staan in de zijbalk. Elk project heeft een eigen lijst bestanden en een eigen instructieveld.",
+      sessieplek: [
+        "Ga naar chatgpt.com. Links in de zijbalk staat **Projects**, met een plusje om er een aan te maken.",
+        "Geef het de naam van je olod: `Databanken 2`.",
+        "Klik in dat project op de paperclip of op **Files** en sleep je drie documenten erin.",
+        "Let op waar je typt: enkel een gesprek dat je **binnen** dat project start, ziet die bestanden. Begin je er een gewoon gesprek naast, dan zit je weer met een leeg venster."
+      ],
       termen: {
         regelsbestand: "AGENTS.md",
         regelsplek: "de projectinstructies",
@@ -760,12 +771,19 @@ window.DATA = {
       skill: "een tweede Gem, eentje per soort taak",
       inmap: "Ja, met de Gemini CLI, al is dat een programma voor de opdrachtregel. In de browser gaan je bestanden op en neer.",
       waar: "Gems maak je aan in de zijbalk van Gemini. Laad je cursus liever op als bronnen in NotebookLM: alles wat daar uitkomt verwijst naar de bron waar het vandaan komt, en dat is precies wat je bij cursusmateriaal wil.",
+      sessieplek: [
+        "Ga naar gemini.google.com. Links in de zijbalk staat **Gems**, met een knop om een nieuwe Gem te maken.",
+        "Geef de Gem de naam van je olod: `Databanken 2`. Het instructieveld laat je nu nog leeg; daar komen in stap 4 je afspraken in.",
+        "Onder de instructies staat een vak voor kennisbestanden. Daar laad je je drie documenten op. Kijk na hoeveel bestanden er in mogen, want dat zijn er minder dan je cursus telt.",
+        "Wil je dat elk antwoord verwijst naar de bron waar het vandaan komt, maak dan in de plaats een notitieblok op notebooklm.google.com en zet je documenten daar als bronnen in."
+      ],
       termen: {
         regelsbestand: "GEMINI.md",
         regelsplek: "de instructies van je Gem",
         projectplek: "een Gem",
         skillplek: "een tweede Gem"
       },
+      sessieplekLink: "gemini",
       rollen: { regels: "gemini", project: "notebooklm", skill: "" },
       links: ["gemini", "notebooklm", "gemini-cli", "gemini-help"]
     },
@@ -779,6 +797,12 @@ window.DATA = {
       skill: "een tweede notebook, met dezelfde bestanden en andere instructies",
       inmap: "De Copilot in Word en PowerPoint werkt niet in een eigen map. De GitHub Copilot in VS Code is een andere: die leest .github/copilot-instructions.md en hoort bij [[3,4]].",
       waar: "Copilot zit in Word, PowerPoint en Teams, maar er is ook een aparte Copilot-app (en copilot.microsoft.com) waar je gewoon een gesprek voert. Daar staan de twee knoppen waar je iets aan hebt: “Notebooks”, waar je hoofdstukken en je afspraken blijven liggen, en “Leren”, met kant-en-klare hulpprogramma’s voor onderwijs.",
+      sessieplek: [
+        "Zet je drie documenten eerst in je OneDrive of op SharePoint, in een map met de naam van je olod. Een bestand dat enkel op je C-schijf staat, vindt Copilot niet.",
+        "Open de Copilot-app of ga naar copilot.microsoft.com, en meld je aan met je school- of werkaccount. Met je persoonlijke account krijg je een andere Copilot, zonder notebooks.",
+        "Klik links op **Notebooks** (**Notitieblokken** in een Nederlandstalige Copilot) en maak er een aan.",
+        "Voeg je drie documenten toe als referenties: je zoekt ze op naam, of je neemt de hele map uit OneDrive of SharePoint in een keer."
+      ],
       termen: {
         regelsbestand: ".github/copilot-instructions.md",
         regelsplek: "de instructies van je notebook",
@@ -833,12 +857,18 @@ window.DATA = {
       skill: "hetzelfde: een apart document per soort taak, dat je erbij haalt",
       inmap: "Sommige tools werken rechtstreeks in een map op je schijf (zoals Claude Code of open alternatieven). Kijk in de documentatie van jouw tool.",
       waar: "De drie principes werken overal: een vaste plek voor je bestanden, je regels in een bestand, en een document per terugkerende taak. Alles op deze site geldt dus ook voor jou; alleen de knopjes heten anders.",
+      sessieplek: [
+        "Zoek in je tool naar **Projects**, **Spaces**, **Assistants** of **Collections**: een plek waar bestanden blijven staan tussen twee gesprekken.",
+        "Staat er zoiets niet in, maak dan een map op je eigen schijf: `Documenten\\Databanken 2\\`. Je laadt die drie bestanden dan bij elk nieuw gesprek opnieuw op.",
+        "Draait je model op je eigen machine, dan is diezelfde map ook de map die je aanwijst."
+      ],
       termen: {
         regelsbestand: "het regelsbestand van je tool",
         regelsplek: "het instructieveld van je tool",
         projectplek: "een vaste map of project",
         skillplek: "een apart document per taak"
       },
+      sessieplekLink: "",
       rollen: { regels: "", project: "openrouter", skill: "" },
       links: ["openrouter"]
     },
@@ -856,6 +886,11 @@ window.DATA = {
       skill: "hetzelfde document, dat je erbij haalt als die taak langskomt",
       inmap: "Nee. Cowork en Claude Code vragen allebei een betalend abonnement. In een gratis venster werk je met de bestanden die je oplaadt, en dat is [[1|Werkwijze 1]].",
       waar: "Kijk in de tool die jij open hebt na of er zoiets als een Project in zit; bij Claude zitten er vijf in een gratis account. Wat je daarnaast nu al kan doen: schrijf drie regels op die je al drie keer hebt moeten zeggen. Dat bestand werkt in elke tool die je later kiest.",
+      sessieplek: [
+        "Maak een gratis account op claude.ai. Daar zitten vijf Projects bij zonder dat je iets betaalt.",
+        "Klik links in de zijbalk op **Projects** en dan op **New project**. Geef het de naam van je olod: `Databanken 2`.",
+        "Sleep je drie documenten in het kader **Project knowledge**. Loop je halfweg tegen de limiet van je gesprek aan, dan staan ze er bij je volgende gesprek nog."
+      ],
       termen: {
         regelsbestand: "je regelsbestand",
         regelsplek: "het instructieveld van je Project, of bovenaan je prompt",
@@ -1022,18 +1057,30 @@ window.DATA = {
   voorbeeldgesprek: {
     kop: "Zo ziet je eerste sessie eruit",
     intro: "Je hebt nog nooit met een AI gewerkt en je cursus staat in Word. Dit is wat er dan letterlijk gebeurt, van het openen van je laptop tot een hoofdstuk waar je tevreden over bent. Alles hieronder gebeurt in je browser; je hoeft niets te installeren.",
+    plek: {
+      kop: "Waar staat die plek dan?",
+      zonderTool: "Klik rechtsboven op **Met welke AI werk je?** en hier staat het klikpad van jouw tool, met de knoppen zoals ze daar heten. Elke chattool heeft zo’n plek waar je bestanden blijven staan; alleen de naam verschilt.",
+      boomKop: "Als stap 1 klaar is, staat dit er:",
+      boom: [
+        "Databanken 2/                  ← zo noem je de plek: naar je olod",
+        "  03-normalisatie.docx         ← het hoofdstuk waar je aan werkt",
+        "  ects-fiche-databanken2.pdf   ← zoals ze goedgekeurd is",
+        "  beginsituatie.docx           ← vijf zinnen, en dit bestaat nog niet"
+      ],
+      schijf: "Die plek zit bij je AI-tool en je komt er via je browser aan. Op je eigen schijf hoef je daar niets voor aan te maken en installeren hoef je ook niets. Wil je er toch een map bij, zet ze dan in `Documenten\\Databanken 2\\` en niet op je bureaublad, waar ze tussen vijftien andere bestanden verdwijnt. Op een Mac is dat `Documenten/Databanken 2/`."
+    },
     situatie: "Eén hoofdstuk, niet je hele cursus. Neem dat waar je zelf het minst tevreden over bent: daar zie je het verschil, en als het tegenvalt heb je één hoofdstuk verloren en geen cursus.",
     tweedekeer: "Stap 1, 2 en 5 doe je maar één keer. Bij het volgende hoofdstuk staat je plek er, staan je afspraken er, en begin je meteen bij stap 3.",
     stappen: [
       {
         kop: "Zet een plek klaar en leg er drie documenten in",
-        jij: "Maak {projectplek} aan en sleep er drie dingen in: het hoofdstuk zelf, je vakbeschrijving of ECTS-fiche, en een half blaadje over je beginsituatie: wat kennen je studenten al als ze aan dit hoofdstuk beginnen.",
+        jij: "Maak {projectplek} aan met de naam van je olod, en zet er drie bestanden in: het hoofdstuk waar je aan werkt, je vakbeschrijving of ECTS-fiche, en een half blaadje over je beginsituatie. Hieronder staat waar die plek bij jouw tool zit en op welke knop je klikt.",
         terug: "Nog niets. Dit is voorbereiding, en het is het enige stuk waar je zelf moet nadenken.",
-        let: "Dat derde document is het belangrijkste en het is het enige dat nog niet bestaat. Vijf zinnen volstaan. Zonder dat krijg je uitleg voor de verkeerde groep."
+        let: "Dat derde document is het belangrijkste en het is het enige dat nog niet bestaat. Vijf zinnen volstaan: wat kennen je studenten al als ze aan dit hoofdstuk beginnen. Zonder dat krijg je uitleg voor de verkeerde groep."
       },
       {
         kop: "Zet je hoofdstuk om, zonder iets te laten veranderen",
-        jij: "Vraag: “Zet dit hoofdstuk om naar markdown. Verander niets aan de inhoud en niets aan de volgorde. Zeg er onderaan bij wat er niet netjes over te zetten was.”",
+        jij: "Start een gesprek bínnen de plek die je net gemaakt hebt, zodat je drie documenten meekomen. Vraag: “Zet hoofdstuk 3 om naar markdown. Verander niets aan de inhoud en niets aan de volgorde. Zeg er onderaan bij wat er niet netjes over te zetten was.”",
         terug: "Je hoofdstuk als platte tekst, met onderaan een lijstje van wat niet meekon: een tabel, een formule, een afbeelding.",
         let: "Lees die omzetting na met je Word-bestand ernaast voor je verder gaat. Dit is de saaiste stap en de enige die je later niet meer kan rechtzetten: fouten die hier binnensluipen, herschrijf je in stap 6 mee."
       },

@@ -2558,6 +2558,46 @@
     D.prompts.forEach(function (p) { lijst.appendChild(promptKaart(p)); });
   }
 
+  /* De vraag die na de eerste versie van deze bladzijde het vaakst terugkwam:
+     waar zet ik die map dan? "Een Project" is een naam en geen plek, dus staat
+     hier het klikpad van de tool die bovenaan gekozen is, met de knoppen zoals
+     ze daar heten, en eronder wat er in die plek ligt als de stap klaar is. */
+  function sessiePlekBlok() {
+    var p = D.voorbeeldgesprek && D.voorbeeldgesprek.plek;
+    if (!p) return null;
+    var a = mijnAssistent();
+    var wrap = el("div", "advieslijn buiten sessieplek");
+    wrap.appendChild(kaderKop("b", null, a ? "Bij " + a.naam + ", klik voor klik" : p.kop, "map"));
+
+    var stappen = (a && a.sessieplek) || null;
+    if (stappen && stappen.length) {
+      var ol = el("ol", "plekstappen");
+      stappen.forEach(function (t) { ol.appendChild(rijk(el("li"), t)); });
+      wrap.appendChild(ol);
+    } else {
+      wrap.appendChild(rijk(el("p", "plekzonder"), p.zonderTool));
+    }
+
+    if (p.boom && p.boom.length) {
+      if (p.boomKop) wrap.appendChild(el("p", "plekboomkop", p.boomKop));
+      var pre = el("pre", "boom");
+      pre.textContent = p.boom.join("\n");
+      wrap.appendChild(pre);
+    }
+    if (p.schijf) wrap.appendChild(rijk(el("p", "pleknoot"), p.schijf));
+
+    /* de bladzijde van de makers zelf: daar staan de schermafbeeldingen die
+       hier niet passen, en die blijven kloppen als een knop verhuist */
+    var lid = a ? (a.sessieplekLink !== undefined ? a.sessieplekLink : (a.rollen || {}).project) : "";
+    var kaart = lid ? linkKaart(lid) : null;
+    if (kaart) {
+      var lijstje = el("div", "linkjes");
+      lijstje.appendChild(kaart);
+      wrap.appendChild(lijstje);
+    }
+    return wrap;
+  }
+
   /* Eén sessie van begin tot eind. Per stap vier dingen: wat je doet, wat je
      typt, wat je terugkrijgt en waar je op let. Die laatste twee kolommen zijn
      waar het om gaat: zonder die is het weer een lijstje tips. */
@@ -2579,7 +2619,7 @@
     if (g.tweedekeer) doel.appendChild(rijk(el("p", "sessieduur"), g.tweedekeer));
 
     var lijst = el("ol", "sessielijst");
-    g.stappen.forEach(function (s) {
+    g.stappen.forEach(function (s, i) {
       var li = el("li", "sessiestap");
       li.appendChild(el("b", "sessiestapkop", T(s.kop)));
       [["Wat je doet", s.jij, "jij", "klik"], ["Wat je terugkrijgt", s.terug, "terug", "gesprek"], ["Waar je op let", s.let, "let", "oog"]]
@@ -2590,6 +2630,10 @@
           rijk(regel, r[1]);
           li.appendChild(regel);
         });
+      if (i === 0) {
+        var plek = sessiePlekBlok();
+        if (plek) li.appendChild(plek);
+      }
       lijst.appendChild(li);
     });
     doel.appendChild(lijst);
