@@ -56,7 +56,73 @@ window.DATA = {
     }
   ],
 
-  /* ---------- Snel resultaat: de vier dingen die meteen lonen ---------- */
+  /* ---------- Hoe begin je eraan: de volgorde, op de startpagina ----------
+     Dit is het antwoord dat een collega krijgt als hij die vraag stelt. Het
+     stond hier ooit als vier gelijke knoppen naast elkaar (de contextmap, je
+     regels, skills, de valkuilen). Vier knoppen zijn een menu, en een menu
+     zegt niet wat er eerst komt. Nu staat het als zeven stappen in de volgorde
+     waarin je ze zet; die vier zitten er als stap 4 tot 7 nog altijd in. */
+  startplanKop: "Hoe begin je eraan?",
+  startplanNoot: "Zeven stappen, in deze volgorde. De eerste drie gaan nog niet over AI.",
+  startplan: [
+    {
+      kop: "Schrijf eerst als schrijver.",
+      tekst: "Een outline, een eerste versie, nalezen, herschrijven. Die volgorde verandert niet omdat er een AI bij komt. Begin je zonder plan te vragen, dan krijg je hoofdstukken die elk apart kloppen en samen nergens naartoe gaan."
+    },
+    {
+      kop: "Zet je cursus in droge tekst.",
+      tekst: "Een map per hoofdstuk, daarin een bestand per onderwerp, en verder geen opmaak. Zo geef je één hoofdstuk aan de AI zonder de andere twaalf mee te sturen.",
+      wegwijzer: { naar: "onderwerp", id: "plat" },
+      knop: "Werk in platte tekst"
+    },
+    {
+      kop: "Trek je nog niets aan van je layout.",
+      tekst: "Geen sjabloon, geen pdf, geen slides. Wie zijn opmaak eerst in orde brengt, doet ze opnieuw bij elke zin die daarna nog verandert. De opmaak komt op het einde, in één keer.",
+      wegwijzer: { naar: "onderwerp", id: "lesmateriaal" },
+      knop: "Wanneer de opmaak dan wel komt"
+    },
+    {
+      kop: "Maak een contextmap, en hou ze sec.",
+      tekst: "Je cursusidee en je opbouw, je ECTS-fiche of je leerdoelen, twee of drie stukken tekst die jij zelf schreef, en het lesmateriaal dat al bestaat, gesplitst per hoofdstuk. Niet meer dan een handvol. Elk document dat er zonder reden bij komt, maakt de andere minder zwaar.",
+      wegwijzer: { naar: "onderwerp", id: "contextmap" },
+      knop: "Wat er in je contextmap hoort"
+    },
+    {
+      kop: "Zet je regels in een bestand.",
+      tekst: "Je toon, je opbouw, wat je nooit wil zien. Zet er ook in wat elk document in je contextmap is, in één regel per bestand, anders zit de AI dat elke keer opnieuw te raden.",
+      wegwijzer: { naar: "onderwerp", id: "regels" },
+      knop: "Hoe je die regels vindt"
+    },
+    {
+      kop: "Laat de AI bijhouden wat je corrigeert.",
+      tekst: "Vraag in dat regelsbestand om tijdens het gesprek een `improve.md` bij te houden: alles wat jij terugstuurt, komt daarin. Na een paar sessies staat daar een lijst die je zelf nooit had bijgehouden, en daaruit komen je skills: een apart document per taak die terugkeert.",
+      wegwijzer: { naar: "onderwerp", id: "skills" },
+      knop: "Wat een skill is"
+    },
+    {
+      kop: "Kijk na.",
+      tekst: "Een bronvermelding die niet bestaat, een definitie die net naast de jouwe ligt, een opsomming waar een redenering hoorde. Lees elk stuk dat je overneemt, met je regels ernaast.",
+      wegwijzer: { naar: "tab", id: "valkuilen" },
+      knop: "De valkuilen op een rij"
+    }
+  ],
+  startplanNaastKop: "Twee dingen die ernaast lopen",
+  startplanNaast: [
+    {
+      tekst: "**Je afbeeldingen.** Beslis nog niet waarmee je ze maakt. Schrijf per figuur één zin op over wat erop moet staan, en zet die zin bij het hoofdstuk. Later kies je waarmee: een mermaid-schema, een tekening in Excalidraw, een vrij te gebruiken beeld van Wikimedia Commons, een grafiek uit je eigen cijfers of een generator.",
+      wegwijzer: { naar: "onderwerp", id: "lesmateriaal" },
+      knop: "Figuren en slides, manier per manier"
+    },
+    {
+      tekst: "**Git.** Staan je bestanden op je eigen schijf, zet er dan versiebeheer op vanaf de eerste dag, en niet pas wanneer de AI er iets in kapot heeft geschreven. Blijf je in de browser, dan sla je dit over.",
+      wegwijzer: { naar: "werkwijze", id: "3" },
+      knop: "Werkwijze 3"
+    }
+  ],
+
+  /* ---------- Snel resultaat: de vier dingen die meteen lonen ----------
+     Staan sinds de volgorde hierboven alleen nog in je plan, niet meer op de
+     startpagina: daar zeiden vier gelijke knoppen niet wat er eerst komt. */
   snelwinst: [
     {
       onderwerp: "contextmap",
@@ -525,7 +591,7 @@ window.DATA = {
     { id: "moodle-html", label: "een pagina op het leerplatform, de editor slikt html", advies: "Zet je markdown om naar html en plak dat.", links: ["quarto-html", "pandoc"] },
     { id: "moodle-geen-html", label: "een pagina op het leerplatform, de editor slikt geen html", advies: "Via Word, en aanvaard dat de opmaak daar deels sneuvelt.", links: ["quarto-docx"] },
     { id: "pdf", label: "een pdf om te printen", advies: "Quarto met typst als motor. Je moet geen LaTeX installeren.", links: ["quarto-typst", "typst"] },
-    { id: "slides", label: "slides", advies: "Marp als extensie in VS Code, of Quarto met reveal.js.", links: ["marp", "quarto-revealjs"] },
+    { id: "slides", label: "slides", advies: "Vraag de AI een .pptx als je vandaag iets wil, of maak je slides uit je markdown met Marp of Quarto. Die twee hebben ook een speakerview met je notities erin.", links: ["marp", "quarto-revealjs", "quarto-presenting"] },
     { id: "oefeningen", label: "oefeningen en examens", advies: "Zelfde contextmap, andere vraag. Vraag de foute antwoorden erbij met een reden per fout, en vraag drie moeilijkheidsgraden in één keer. Je gooit er twee weg. Welke twee, dat zie je pas als ze naast elkaar staan.", links: [] },
     { id: "schema", label: "een schema of een tijdlijn", advies: "mermaid: tekst die een figuur wordt, en die meeverandert met je cursus. Snel iets uittekenen met de hand gaat met Excalidraw, zonder installatie.", links: ["mermaid", "mermaid-live", "excalidraw"] },
     { id: "weet-ik-niet", label: "weet ik nog niet", advies: "Vraag je tekst in markdown. Dan blijft alles hierboven mogelijk.", links: [] }
@@ -964,6 +1030,7 @@ window.DATA = {
         "De niet-doen-lijst weegt zwaarder dan de wel-doen-lijst. Geen em-dashes, geen wijze slotzin, geen “het gaat niet over X, het gaat over Y”. Daaraan herkent een lezer AI-tekst.",
         "Maak elke regel testbaar. “Schrijf helder” kan je niet nakijken. “Test elke zin met een ontkenning erin: staat er een feit in de ontkende helft?” kan je wel nakijken, en de AI ook.",
         "De lijst schrijf je niet vooraf. Alles wat je een derde keer corrigeert, is een afspraak die je nooit hebt opgeschreven.",
+        "Laat de AI dat bijhouden in plaats van jezelf. Zet in je regelsbestand dat ze tijdens het gesprek een `improve.md` moet bijwerken met elke correctie die jij geeft, letterlijk en zonder samen te vatten. Wat daar een derde keer in opduikt, verhuist naar je regels.",
         "Zet er ook je structuurafspraken in: hoe een hoofdstuk begint, wat er altijd in staat, wat vet mag zijn."
       ],
       tabel: {
@@ -1009,6 +1076,19 @@ window.DATA = {
         "Het duidelijkste voorbeeld zijn de figuren: een skill die de stijl, de kleuren en het lettertype vastlegt, met regels als “geen titel boven de figuur” en “tekst overlapt nooit met een lijn of een pijl”.",
         "De figuren zelf komen uit een script en niet uit een chatvenster. Een figuur bijsturen is dan een getal veranderen en opnieuw uitvoeren."
       ],
+      voorbeeld: {
+        kop: "Zes regels uit een echte skill",
+        intro: "Dit zijn er zes uit de skill waarmee de figuren van deze site getekend worden. Let op wat voor soort regels het zijn: geen uitleg over wat een goede figuur is, wel wat er telkens moet gebeuren en waar het telkens misgaat.",
+        regels: [
+          "Staat er niet welke figuur het moet worden, vraag het dan eerst. Nooit zelf kiezen.",
+          "Bij het aanpassen van een bestaande figuur: bekijk eerst de oude png. Je zet om wat er staat, je verzint niets bij.",
+          "Geen titel boven de figuur. Het bijschrift staat al onder de figuur in de cursus.",
+          "Tekst overlapt nooit met de lijn van een box of met een pijl.",
+          "Bekijk de gerenderde png voor je hem oplevert. rough.js geeft geen foutmelding bij lelijke output, dus je moet echt kijken.",
+          "Verwerk de figuur niet zelf in de cursus. Toon eerst de png, met het pad erbij."
+        ],
+        knop: "Bekijk de hele skill"
+      },
       gevorderd: "Hier merk je dat je afspraken in twee soorten uiteenvallen: wat altijd geldt tegenover wat bij één taak hoort. Zit een regel in de verkeerde stapel, dan krijg je hem terug op een moment dat je hem niet vroeg: je figurenregels midden in een oefening.",
       links: ["skills", "claude-skills"]
     },
@@ -1020,17 +1100,94 @@ window.DATA = {
       kern: "Zodra je tekst plat is en je contextmap gevuld, is elk volgend formaat nog één vraag.",
       tips: [
         "Je mag in PowerPoint blijven aanleveren. De vraag is waar de tekst op die slides vandaan komt.",
-        "Pandoc en Quarto maken een .pptx uit je markdown, met een bestaande presentatie als sjabloon. Wat je terugkrijgt is tekst en beeld op sjabloonlay-outs: animaties en fijne plaatsing doe je nog in PowerPoint zelf.",
-        "Wil je op termijn van PowerPoint af: Marp is een extensie in VS Code, Quarto geeft je slides in de browser.",
         "De afspraak die dit sluitend maakt: zet in je regelsbestand dat de slides gecontroleerd worden als de tekst van een hoofdstuk verandert.",
-        "Figuren: mermaid voor stroomschema's en tijdlijnen, Excalidraw om snel iets uit te tekenen, een script per figuur als je een eigen stijl over veel figuren heen wil.",
-        "Oefeningen en examens: zelfde contextmap, andere vraag. Vraag de foute antwoorden met een reden per fout, en drie moeilijkheidsgraden in één keer."
+        "Oefeningen en examens: zelfde contextmap, andere vraag. Vraag de foute antwoorden met een reden per fout, en drie moeilijkheidsgraden in één keer.",
+        "Laat een figuur en een slide nooit tekst dragen die nergens anders staat. Wat enkel op je slide staat, staat volgend jaar niet meer in je cursus."
+      ],
+      keuzes: [
+        {
+          kop: "Figuren: vijf manieren, en waar elk van de vijf op stukloopt",
+          noot: "Begin bij de figuur die je al hebt. In je slides van vorig jaar staat er meestal een, en die exporteer je gewoon en zet je bij je hoofdstuk. Wat hieronder staat, gaat over de figuren die er nog niet zijn.",
+          opties: [
+            {
+              naam: "Een bestaande afbeelding laten zoeken",
+              wanneer: "een foto, een kaart, een historisch beeld",
+              hoe: "Vraag: “Zoek me drie afbeeldingen over dit onderwerp op Wikimedia Commons of Openverse. Geef per afbeelding de directe link, de licentie, en de bronvermelding zoals ik ze onder de figuur moet zetten.”",
+              letop: "Klik elke link zelf open voor je ze gebruikt. Een AI die een link verzint, verzint de licentie erbij. CC BY vraagt een naamsvermelding onder je figuur, CC BY-SA vraagt er ook een voor je eigen cursus, en “gevonden via Google Afbeeldingen” is geen licentie.",
+              links: ["commons", "openverse"]
+            },
+            {
+              naam: "Een schema als tekst: mermaid",
+              wanneer: "alles met vakjes en pijlen",
+              hoe: "Vraag: “Geef dit proces als een mermaid-diagram, met de code in een codeblok.” Plak die code op mermaid.live om te zien of ze klopt, en exporteer daar je png.",
+              letop: "De AI kent mermaid goed, maar ze plaatst niet: een diagram met vijftien vakjes wordt een kluwen. Splits dan in twee figuren. In Quarto, GitHub en VS Code rendert de code vanzelf, in Word plak je de png.",
+              links: ["mermaid", "mermaid-live"]
+            },
+            {
+              naam: "Een tekening als code, met een skill erbij",
+              wanneer: "je eigen stijl, over al je figuren heen",
+              hoe: "Je legt de stijl één keer vast in een skill: de kleuren, het lettertype, de lijndikte, en wat er nooit op een figuur mag staan. Daarna vraag je per figuur een script dat de tekening opbouwt met rough.js en er een png van maakt. Bijsturen is dan een getal veranderen en het script opnieuw uitvoeren. De figuren op deze site zijn zo gemaakt, en die skill kan je hieronder openen.",
+              letop: "Excalidraw is hier de stijl en niet het gereedschap: op excalidraw.com hoef je nooit te komen. Wil je toch één figuur met de hand tekenen, dan kan dat daar in je browser zonder installatie. Het scriptspoor vraagt Node op je machine en hoort bij [[3,4]]. Het loont vanaf een figuur of tien, want vanaf dan volgt elke figuur mee wanneer je de stijl aanpast.",
+              links: ["skill-afbeelding", "roughjs", "excalidraw"]
+            },
+            {
+              naam: "Een beeldgenerator",
+              wanneer: "een sfeerbeeld of een cartoon",
+              hoe: "De beeldgenerator zit in {toolnaam} zelf: je vraagt gewoon om een afbeelding. Beschrijf het kader, de stijl en wat er niet op mag staan.",
+              letop: "Voor een schema van je leerstof is dit de slechtste van de vijf. Tekst in het beeld komt verkeerd gespeld terug, assen en labels kloppen niet, en je student ziet niet dat er iets fout staat. Zet er ook bij dat het beeld gegenereerd is."
+            },
+            {
+              naam: "Een grafiek uit je eigen cijfers",
+              wanneer: "je hebt getallen en je wil er een figuur van",
+              hoe: "Geef je tabel of je csv-bestand mee en vraag om de grafiek plus het script dat ze maakt. Verandert er een cijfer, dan draai je het script opnieuw in plaats van de figuur te hertekenen.",
+              letop: "Laat nooit een grafiek tekenen op cijfers die de AI zelf heeft ingevuld. Geef je eigen getallen mee, en tel er drie na in het resultaat."
+            }
+          ],
+          slot: "Bij elke figuur horen twee dingen die je in dezelfde vraag kan meenemen: “Schrijf er een onderschrift bij van één zin dat zegt wat er te zien is, en een alt-tekst die de figuur beschrijft voor iemand die ze niet ziet.” Op een leerplatform is die alt-tekst niet vrijblijvend."
+        },
+        {
+          kop: "Slides: vier manieren",
+          noot: "In de laatste drie vertrekt de tekst uit hetzelfde markdownbestand als je syllabus. Een zin die je in je hoofdstuk verbetert, staat bij de volgende render ook op je slide.",
+          opties: [
+            {
+              naam: "De AI een .pptx laten maken",
+              wanneer: "je wil vandaag iets, zonder nieuw programma",
+              hoe: "Geef je hoofdstuk en vraag: “Maak hier een PowerPoint van. Eén slide per kernidee, hoogstens vijf regels per slide, en zet de sprekersnotities in het notitieveld.”",
+              letop: "Bij Claude en ChatGPT moet het maken van bestanden aanstaan, bij Copilot doe je dit in PowerPoint zelf. Wat eruit komt staat in een standaardsjabloon en niet in dat van je school, en het is een eenmalige export: verandert je tekst, dan begin je opnieuw."
+            },
+            {
+              naam: "pandoc met je eigen sjabloon",
+              wanneer: "je moet aanleveren in het sjabloon van je school",
+              code: "pandoc hoofdstuk.md -o slides.pptx \\\n  --reference-doc=sjabloon.pptx",
+              hoe: "Een bestaande presentatie van je school is je sjabloon. Pandoc neemt daar de lay-outs, de lettertypes en de kleuren uit over.",
+              letop: "Je krijgt tekst en beeld op sjabloonlay-outs. Animaties en fijne plaatsing doe je nadien in PowerPoint zelf. Pandoc moet je installeren, en op een strak beheerde schoollaptop raakt dat er niet altijd op.",
+              links: ["pandoc", "pandoc-refdoc"]
+            },
+            {
+              naam: "Quarto met reveal.js",
+              wanneer: "slides én syllabus uit hetzelfde bestand",
+              code: "---\ntitle: Normalisatie\nformat: revealjs\n---",
+              hoe: "Zet dat bovenaan je bestand en draai `quarto render`. Je sprekersnotities zet je onder een slide in een blok `::: {.notes}`.",
+              letop: "**Hier zit een speakerview in.** Druk tijdens je presentatie op `s` en er opent een tweede venster met je notities, de volgende slide en een klok. Je publiek ziet dat venster niet, dus zet je laptop op dupliceren noch spiegelen.",
+              links: ["quarto-revealjs", "quarto-presenting"]
+            },
+            {
+              naam: "Marp",
+              wanneer: "je werkt toch al in VS Code",
+              code: "---\nmarp: true\n---",
+              hoe: "Installeer de Marp-extensie in VS Code, zet dat bovenaan je bestand, en exporteer naar pdf of pptx. Drie streepjes op een lege regel beginnen een nieuwe slide.",
+              letop: "Marp heeft ook een presentatiemodus met je notities ernaast. Minder mogelijkheden dan Quarto, en ook een stuk minder om in te stellen.",
+              links: ["marp", "vscode"]
+            }
+          ],
+          slot: "Vraag je sprekersnotities altijd mee wanneer je je slides laat maken. Zonder die notities is de speakerview een leeg venster met een klok erin."
+        }
       ],
       gevorderd: [
         "Je huisstijl leg je één keer vast met elf regels in _brand.yml, en de fijnere afwerking in een .scss. Het resultaat benadert het sjabloon van je school en is er geen kopie van.",
         "Zet je opbouw klaar op de dag dat er nog niks in staat. Staat je cursus er al, dan moet elk hoofdstuk opnieuw door de rendering."
       ],
-      links: ["quarto-brand", "quarto-revealjs", "marp", "mermaid", "excalidraw"]
+      links: ["quarto-brand", "quarto-revealjs", "quarto-presenting", "marp", "mermaid", "mermaid-live", "excalidraw", "roughjs", "commons", "openverse"]
     }
   ],
 
@@ -1153,6 +1310,13 @@ window.DATA = {
       onderwerp: "",
       wanneer: "bij elk stuk gegenereerde tekst; levert bijna altijd een regel op",
       tekst: "Wat kan hier weg zonder dat er een feit verdwijnt?"
+    },
+    {
+      titel: "De AI je correcties laten bijhouden",
+      id: "improve",
+      onderwerp: "regels",
+      wanneer: "deze zin hoort in je regelsbestand, niet in je gesprek",
+      tekst: "Hou tijdens dit gesprek een bestand improve.md bij. Zet daarin elke correctie die ik op je antwoord geef: de zin die ik afkeurde, en wat ik er in de plaats van vroeg. Noteer letterlijk en vat niet samen. Toon me dat bestand als ik erom vraag."
     },
     {
       titel: "Een skill laten afleiden",
@@ -1428,6 +1592,24 @@ window.DATA = {
       }
     ],
 
+    skill: {
+      kop: "En de skill waarmee de figuren getekend zijn",
+      intro: [
+        "Deze site heeft één skill, en het is die voor de figuren. Ze staat hier om dezelfde reden als het regelsbestand hierboven: het onderwerp zegt wel dat een skill groeit uit een taak die je drie keer deed, en tot nu was er geen enkele te zien.",
+        "De figuren op deze site zijn geen tekeningen die iemand met de muis heeft gemaakt. Elke figuur is een Node-script dat met rough.js een svg tekent en daar een png van maakt. Het script blijft staan, dus een figuur bijsturen is een getal veranderen en opnieuw uitvoeren. Excalidraw is daarbij de stijl en niet het gereedschap.",
+        "Neem ze niet letterlijk over: de kleuren en het lettertype zijn die van deze cursus. Wat je wel kan overnemen is de vorm. Een skill zegt wat er telkens moet gebeuren, in welke volgorde, en waar het telkens misgaat."
+      ],
+      bestandenKop: "De vier bestanden",
+      bestanden: [
+        ["SKILL.md", "het bestand dat het werk stuurt: de werkwijze in zes stappen, de naamgeving, de vaste inhoudsregels en de stijl", "skill-afbeelding"],
+        ["sjabloon.js", "waar elk figuurscript van vertrekt, met de commentaarregels erin die zeggen wat waar hoort", "skill-sjabloon"],
+        ["api.md", "wat de helpers kunnen: `c.rect`, `c.arrow`, `c.txt`, en de kleuren als constanten", "skill-api"],
+        ["checklist.md", "wat je nakijkt op de gerenderde png. Van de vier is dit het bestand dat het meeste oplevert, want elke regel erin is al eens misgelopen", "skill-checklist"]
+      ],
+      slot: "De helper waarop die scripts steunen en de vijf echte figuurscripts van deze site staan ernaast in `assets/imagegen/`. Wil je zien wat een figuur uiteindelijk is: `vijfdocumenten.js` tekent de dertig lege documentjes links en de vijf met een reden rechts, in tweeënvijftig regels.",
+      links: ["imagegen-excal", "imagegen-vijfdocumenten"]
+    },
+
     slot: "Dit bestand is niet vooraf geschreven. De meeste regels staan erin omdat dezelfde correctie een derde keer langskwam, en de regel over em-dashes staat er omdat er negen in de tekst stonden."
   },
 
@@ -1448,11 +1630,21 @@ window.DATA = {
     "marp":                 { naam: "Marp", url: "https://marp.app", noot: "slides uit markdown, extensie in VS Code" },
     "mermaid":              { naam: "mermaid", url: "https://mermaid.js.org", noot: "tekst die een figuur wordt" },
     "mermaid-live":         { naam: "mermaid live editor", url: "https://mermaid.live", noot: "plakken en meteen zien, zonder installatie" },
+    "commons":              { naam: "Wikimedia Commons", url: "https://commons.wikimedia.org", noot: "vrij te gebruiken beeld, met de licentie erbij" },
+    "openverse":            { naam: "Openverse", url: "https://openverse.org", noot: "zoekt over meerdere bronnen met een open licentie" },
+    "roughjs":              { naam: "rough.js", url: "https://roughjs.com", noot: "figuren uit code, met de hand-getekende look" },
+    "quarto-presenting":    { naam: "Presenteren met Quarto", url: "https://quarto.org/docs/presentations/revealjs/presenting.html", noot: "de speakerview, en wat de toetsen doen" },
     "excalidraw":           { naam: "Excalidraw", url: "https://excalidraw.com", noot: "met de hand tekenen in je browser" },
     "vscode":               { naam: "VS Code", url: "https://code.visualstudio.com", noot: "" },
     "obsidian":             { naam: "Obsidian", url: "https://obsidian.md", noot: "markdown schrijven zonder aan mappen te denken" },
     "typora":               { naam: "Typora", url: "https://typora.io", noot: "" },
     "typst":                { naam: "typst", url: "https://typst.app", noot: "" },
+    "skill-afbeelding":     { naam: "SKILL.md", url: "assets/skill-afbeelding/SKILL.md", noot: "de skill voor figuren, van deze site" },
+    "skill-sjabloon":       { naam: "sjabloon.js", url: "assets/skill-afbeelding/sjabloon.js", noot: "waar elk figuurscript van vertrekt" },
+    "skill-api":            { naam: "api.md", url: "assets/skill-afbeelding/api.md", noot: "wat de helpers kunnen" },
+    "skill-checklist":      { naam: "checklist.md", url: "assets/skill-afbeelding/checklist.md", noot: "wat je nakijkt op de gerenderde png" },
+    "imagegen-excal":       { naam: "excal.js", url: "assets/imagegen/excal.js", noot: "de helper die de stijl vasthoudt, honderdachtentwintig regels" },
+    "imagegen-vijfdocumenten": { naam: "vijfdocumenten.js", url: "assets/imagegen/vijfdocumenten.js", noot: "een echt figuurscript van deze site" },
     "git":                  { naam: "git", url: "https://git-scm.com", noot: "zien wat er veranderde, en het terugdraaien" },
     "gdocs":                { naam: "Google Docs", url: "https://docs.google.com", noot: "importeert en exporteert markdown, in beide richtingen" },
     "claude-projects":      { naam: "Claude Projects", url: "https://claude.ai/projects", noot: "je bestanden blijven staan tussen twee gesprekken" },

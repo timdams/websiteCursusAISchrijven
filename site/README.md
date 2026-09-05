@@ -5,13 +5,15 @@ willen inschakelen bij het maken van hun cursusmateriaal. De site catert bewust 
 gemiddelde AI-gebruikers: duidelijke taal, geen jargon, en niets dat een installatie vereist om te
 kunnen starten.
 
-De opzet is **gids eerst**: de startpagina is de bevrager zelf. Eén rustige vraag per scherm, en na
-een handvol vragen ontvouwt zich **Jouw plan**, een persoonlijk stappenplan in de termen van de
-gekozen AI-tool. Daarnaast zit alles achter een klein menu:
+De opzet is **antwoord eerst**: de startpagina zegt in welke volgorde je het doet, in zeven stappen.
+Daaronder staan twee deuren. Links je eerste sessie, één hoofdstuk lang, klik voor klik. Rechts de
+gids: één rustige vraag per scherm, en na een handvol vragen ontvouwt zich **Jouw plan**, een
+persoonlijk stappenplan in de termen van de gekozen AI-tool. Daarnaast zit alles achter een klein
+menu:
 
 | Menu | Wat het is |
 |---|---|
-| De gids | het welkomstscherm en de vragen, één per scherm, met voortgangsbolletjes en een terugknop |
+| De gids | de startpagina: de volgorde in zeven stappen, de twee deuren, en daarachter de vragen, één per scherm, met voortgangsbolletjes en een terugknop |
 | Jouw plan | verschijnt na de gids: je doel bovenaan, je werkwijze in één regel, de vier snelle winsten in de termen van jouw tool, de eerste drie prompts om te plakken, en onder "Als je verder wil" de rest achter een vouw |
 | Naslagwerk | een zoekveld over alles, en daaronder de deuren in groepen, met boven elke groep de vraag die ze beantwoordt. Je ziet er altijd maar een onderdeel tegelijk |
 | Valkuilen | de meest voorkomende fouten, doorzoekbaar. Elke klacht wijst naar het onderwerp dat overgeslagen is |
@@ -19,6 +21,26 @@ gekozen AI-tool. Daarnaast zit alles achter een klein menu:
 
 De werkwijzenpagina (een pagina per werkwijze plus de vergelijkingstabel) hangt niet in het menu
 maar is bereikbaar vanuit het plan, het naslagwerk en het zoekveld.
+
+## De startpagina: eerst het antwoord, dan de deuren
+
+De startpagina was de bevrager zelf: een kop, een terzijde, **Start de gids**, en daaronder vier
+gelijke knoppen naar de contextmap, je regels, skills en de valkuilen. Wie binnenkwam met "hoe begin
+ik eraan" kreeg dus eerst vragen terug, en daarna een menu. Vier knoppen naast elkaar zeggen wel wat
+er bestaat, niet wat er eerst komt.
+
+Nu staat het antwoord er: `startplan` in `data.js`, zeven stappen in de volgorde waarin je ze zet,
+van "schrijf eerst als schrijver" tot "kijk na". De vier snelle winsten zitten daar als stap vier tot
+zeven nog altijd in, alleen niet meer als gelijken. Onder elke stap staat een wegwijzer naar de plek
+waar het onderwerp uitgelegd wordt; die knop kent zichzelf, want de naam komt uit
+`interneBestemming()`, dezelfde functie die de wegwijzers onder een valkuil tekent. `startplanNaast`
+zet er twee dingen naast die niet in de volgorde passen: je afbeeldingen en git.
+
+Daaronder staan twee deuren (`startDeuren()` in `app.js`). Links **Je eerste sessie**, de meest
+concrete bladzijde van de site, die vroeger enkel via het naslagwerk of via je plan te bereiken was.
+Rechts de gids. Wie de gids al deed, ziet in die tweede deur zijn plan staan ("werkwijze 1, Alles in
+de browser, met Claude") met de knop ernaartoe; wie halverwege stopte, leest daar waar hij gebleven
+was. `snelwinst` staat sindsdien alleen nog in Jouw plan.
 
 ## Het naslagwerk: een hub met deuren
 
@@ -230,10 +252,15 @@ terechtkomt, en een pad met vijf onderdelen wordt daar een vlek.
 ## Waar de tekst staat
 
 Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: `waarom`,
-`snelwinst`, `materiaal`, `bron`, `bronRegels`, `bronMap`, `werkwijzen`, `installatie`, `ervaring`,
+`startplan`, `snelwinst`, `materiaal`, `bron`, `bronRegels`, `bronMap`, `werkwijzen`, `installatie`, `ervaring`,
 `onderwerpen`, `vergelijking`, `outputs`, `valkuilen`, `randgevallen`, `prompts`, `assistenten`,
 `gereedschap`, `voorbeelden`, `colofon` en `links`. Een tip toevoegen is een regel bijzetten in dat bestand.
 
+- `startplan` is de volgorde op de startpagina: per stap een `kop`, een `tekst` en optioneel een
+  `wegwijzer` (`{ naar, id }`, dezelfde vorm als de `verder` onder een valkuil) met een eigen `knop`
+  als opschrift. `startplanKop` en `startplanNoot` staan erboven, `startplanNaastKop` en
+  `startplanNaast` eronder. Een stap bijzetten is dus een item in die lijst, zonder aan `app.js` te
+  komen; `startplanBlok()` tekent ze
 - een werkwijze krijgt haar pagina uit `voorwie`, `pitch`, `punten`, `installeren`, `stappen`,
   `overslaan` en `onderwerpen` (een zin per onderwerp)
 - een werkwijze kan daarnaast `routes` dragen: twee manieren om hetzelfde te doen, met `kop`,
@@ -244,6 +271,11 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
   ze, op de werkwijzenpagina en in de vouw "Zo zet je werkwijze N op"; een werkwijze zonder
   `routes` krijgt niets extra
 - een onderwerp krijgt zijn venster uit `watis`, `kern`, `tips`, `gevorderd` en optioneel een `tabel`
+- een onderwerp kan daarnaast `keuzes` dragen: groepen manieren om hetzelfde te doen, met per
+  groep een `kop`, een `noot` en een `slot`, en per optie `naam`, `wanneer` (het merkje), `hoe`,
+  een `code` die letterlijk in een codeblok komt, `letop` en `links`. Tips zeggen wat je moet
+  doen, keuzes zeggen wat je moet kiezen. "Van tekst naar lesmateriaal" heeft er twee, over
+  figuren en over slides; `keuzeBlokken()` in `app.js` tekent ze, na de tips
 - elk formaat in `bron` (Word, PowerPoint, pdf, scan, leerplatform ...) krijgt naast `advies` twee
   `routes` (`[kop, tekst]`: een zonder installatie en een met pandoc) en een `letop` met
   wat er stilletjes sneuvelt. Tekst `tussen accenten` wordt een code-vakje; functie `rijk()` in
@@ -302,6 +334,14 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
   daarnaast een `voorbeeld` (`kop`, `intro`, `regels`, `knop`): zes van die regels in het
   onderwerpvenster zelf, met een knop naar het volledige bestand. Die zes staan bewust apart, want
   de selectie is een keuze en geen kopie
+- `colofon.skill` is het tweede stuk eigen werk dat het colofon toont: de skill waarmee de figuren
+  van deze site getekend worden (`kop`, `intro` als lijst alinea's, `bestandenKop` en `bestanden`
+  als `[naam, wat, link-id]`, `slot` en `links`). De vier bestanden zelf staan in
+  `assets/skill-afbeelding/`, genericised uit `.claude/afbeelding/`: paden zonder modulenummers en
+  zonder de aannames van die repo, zodat een lezer ze kan overnemen. `excal.js`, de twee
+  Caveat-fonts en de vijf echte figuurscripts staan al in `assets/imagegen/`, dus wie de skill neemt
+  heeft er ook de helper en een werkend voorbeeld bij. Het onderwerp "Skills" heeft er hetzelfde
+  `voorbeeld`-blok bij als "Je regels in een bestand", met de knop naar dit colofon
 - de alinea's van `misliep` horen in Tims eigen woorden te staan. Wat er nu staat is een voorzet op
   basis van wat er bij het nakijken van deze site gevonden werd (negen em-dashes, acht
   tijdsaanduidingen), en mag vervangen worden

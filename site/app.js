@@ -443,6 +443,54 @@
     return D.onderwerpen.filter(function (o) { return o.id === id; })[0];
   }
 
+  /* Een onderwerp kan groepen keuzes dragen: manieren om hetzelfde te doen, met
+     per manier wanneer je ze neemt, hoe het concreet gaat en waar ze op stukloopt.
+     Tips zeggen wat je moet doen; dit zegt wat je moet kiezen, en dat is waar de
+     vraag "hoe maak ik mijn figuren" op vastliep. */
+  function keuzeBlokken(o) {
+    if (!o.keuzes || !o.keuzes.length) return null;
+    var frag = document.createDocumentFragment();
+    o.keuzes.forEach(function (g) {
+      var wrap = el("section", "keuzegroep");
+      wrap.appendChild(kaderKop("h3", null, g.kop, "splitsing", true));
+      if (g.noot) wrap.appendChild(rijk(el("p", "noot keuzegroepnoot"), g.noot));
+
+      var rij = el("div", "keuzerij");
+      (g.opties || []).forEach(function (k) {
+        var kaart = el("div", "keuze");
+        kaart.appendChild(el("b", "keuzenaam", k.naam));
+        if (k.wanneer) kaart.appendChild(el("span", "keuzewanneer", k.wanneer));
+        if (k.code) {
+          var pre = el("pre", "keuzecode");
+          pre.textContent = T(k.code);
+          kaart.appendChild(pre);
+        }
+        if (k.hoe) kaart.appendChild(rijk(el("p", "keuzehoe"), k.hoe));
+        if (k.letop) {
+          var l = el("p", "keuzeletop");
+          l.appendChild(kaderKop("b", null, "Let op", "waarschuwing"));
+          rijk(l, k.letop);
+          kaart.appendChild(l);
+        }
+        var ids = toolLinks(k.links);
+        if (ids && ids.length) {
+          var lijst = el("div", "linkjes keuzelinkjes");
+          ids.forEach(function (id) {
+            var kk = linkKaart(id);
+            if (kk) lijst.appendChild(kk);
+          });
+          kaart.appendChild(lijst);
+        }
+        rij.appendChild(kaart);
+      });
+      wrap.appendChild(rij);
+
+      if (g.slot) wrap.appendChild(rijk(el("p", "keuzeslot"), g.slot));
+      frag.appendChild(wrap);
+    });
+    return frag;
+  }
+
   /* Een merkje met de naam van een onderwerp wordt een knop die het venster opent. */
   function onderwerpMerk(id) {
     var o = onderwerpBij(id);
@@ -500,6 +548,9 @@
       o.tips.forEach(function (t) { ul.appendChild(rijk(el("li"), t)); });
       binnen.appendChild(ul);
     }
+
+    var kz = keuzeBlokken(o);
+    if (kz) binnen.appendChild(kz);
 
     if (o.voorbeeld) {
       var vb = el("section", "regelvoorbeeld");
@@ -907,6 +958,102 @@
     return vak;
   }
 
+  /* Het antwoord op "hoe begin ik eraan", in de volgorde waarin je het doet.
+     Stond hier vroeger als vier gelijke knoppen naast elkaar; vier knoppen zijn
+     een menu, en een menu zegt niet wat er eerst komt. De wegwijzer onder een
+     stap kent zichzelf: de bestemming komt uit de data, via interneBestemming(). */
+  function startplanBlok() {
+    if (!D.startplan || !D.startplan.length) return null;
+    var wrap = el("section", "startplan");
+    wrap.appendChild(kaderKop("h2", "startplan-kop", D.startplanKop, "trap", true));
+    if (D.startplanNoot) wrap.appendChild(rijk(el("p", "noot startplan-noot"), D.startplanNoot));
+
+    var ol = el("ol", "startplan-lijst");
+    D.startplan.forEach(function (st) {
+      var li = el("li", "startplan-stap");
+      li.appendChild(el("b", "startplan-stapkop", st.kop));
+      li.appendChild(rijk(el("span", "startplan-tekst"), st.tekst));
+      var knop = wegwijzerKnop(st);
+      if (knop) li.appendChild(knop);
+      ol.appendChild(li);
+    });
+    wrap.appendChild(ol);
+
+    if (D.startplanNaast && D.startplanNaast.length) {
+      var naast = el("div", "advieslijn afweging startplan-naast");
+      naast.appendChild(kaderKop("b", null, D.startplanNaastKop, "splitsing"));
+      D.startplanNaast.forEach(function (n) {
+        var regel = rijk(el("p", "startplan-naastregel"), n.tekst);
+        var k = wegwijzerKnop(n);
+        if (k) { regel.appendChild(document.createTextNode(" ")); regel.appendChild(k); }
+        naast.appendChild(regel);
+      });
+      wrap.appendChild(naast);
+    }
+    return wrap;
+  }
+
+  /* Een tekstknop naar een plek op deze site. Staat er geen eigen opschrift in
+     de data, dan noemt de bestemming zichzelf. */
+  function wegwijzerKnop(item) {
+    var doel = item.wegwijzer ? interneBestemming(item.wegwijzer) : null;
+    if (!doel) return null;
+    var knop = el("button", "tekstknop startplan-naar", (item.knop || doel.naam) + " →");
+    knop.type = "button";
+    knop.addEventListener("click", doel.doe);
+    return knop;
+  }
+
+  /* De twee deuren onder de volgorde. Links wat je vandaag doet, rechts de gids
+     die er jouw versie van maakt. De gids stond hier vroeger bovenaan en alleen:
+     wie binnenkomt met een vraag kreeg dan eerst vragen terug. */
+  function startDeuren() {
+    var wrap = el("div", "startdeuren");
+
+    var eerste = el("div", "startdeur startdeur-groot");
+    eerste.appendChild(el("h3", null, "Doe stap één vandaag"));
+    eerste.appendChild(el("p", null, "Één hoofdstuk, van het openen van je laptop tot een tekst waar je tevreden over bent. Zes stappen, met het klikpad van jouw tool erbij."));
+    var naarSessie = el("button", "knop knop-groot", "Naar je eerste sessie");
+    naarSessie.type = "button";
+    naarSessie.addEventListener("click", function () { naarVak("eerstekeer"); });
+    eerste.appendChild(naarSessie);
+    wrap.appendChild(eerste);
+
+    var tweede = el("div", "startdeur");
+    tweede.appendChild(el("h3", null, "Of laat het op jou afstemmen"));
+    var klaar = state.mijnWerkwijze && huidigeStap() === null;
+    if (klaar) {
+      var r = D.werkwijzen[state.mijnWerkwijze];
+      var a = mijnAssistent();
+      tweede.appendChild(el("p", null, "Je plan staat klaar: werkwijze " + r.nr + ", " + r.naam + (a && !a.geenaccount ? ", met " + a.naam : "") + "."));
+      var naarPlan = el("button", "knop", "Bekijk jouw plan");
+      naarPlan.type = "button";
+      naarPlan.addEventListener("click", function () { naarTab("plan"); });
+      tweede.appendChild(naarPlan);
+      var opnieuw = el("button", "tekstknop startdeur-stil", "Doe de gids opnieuw");
+      opnieuw.type = "button";
+      opnieuw.addEventListener("click", herbegin);
+      tweede.appendChild(opnieuw);
+    } else {
+      var halfweg = Object.keys(state.antwoorden).length > 0;
+      tweede.appendChild(el("p", null, halfweg
+        ? "Je bent halverwege de gids. De rest van de vragen gaat over je ervaring, je AI-tool en wat er uit moet komen."
+        : "Een handvol vragen over je vak, je ervaring en je AI-tool. Daarna staat er een plan met jouw werkwijze, jouw eerste drie prompts, en de knoppen zoals ze in jouw tool heten."));
+      var start = el("button", "knop", halfweg ? "Ga verder waar je zat" : "Start de gids");
+      start.type = "button";
+      start.addEventListener("click", function () { state.gestart = true; bewaar(); tekenGids(); });
+      tweede.appendChild(start);
+      if (halfweg) {
+        var opnieuw2 = el("button", "tekstknop startdeur-stil", "Begin opnieuw");
+        opnieuw2.type = "button";
+        opnieuw2.addEventListener("click", herbegin);
+        tweede.appendChild(opnieuw2);
+      }
+    }
+    wrap.appendChild(tweede);
+    return wrap;
+  }
+
   function tekenWelkom() {
     var scherm = el("div", "welkom");
 
@@ -916,44 +1063,15 @@
       "*Je hebt het al eens geprobeerd. Je plakte een hoofdstuk in een chatvenster, vroeg om het wat vlotter te maken, " +
       "en kreeg iets terug dat las als een folder.* De AI wist niets van je vak, niets van je studenten, en niets van de " +
       "afspraken die al twintig jaar in je hoofd zitten. Op deze site zet je die drie in bestanden die bij elke vraag meegaan. " +
-      "Beantwoord een handvol vragen en je krijgt een plan op maat: welke werkwijze bij jou past, en waar je vandaag mee begint."));
+      "Hieronder staat in welke volgorde je dat doet."));
 
-    var rij = el("div", "knoppenrij welkom-knoppen");
+    var plan = startplanBlok();
+    if (plan) scherm.appendChild(plan);
 
-    if (state.mijnWerkwijze && huidigeStap() === null) {
-      var r = D.werkwijzen[state.mijnWerkwijze];
-      var a = mijnAssistent();
-      scherm.appendChild(el("p", "welkom-status", "Je plan staat klaar: werkwijze " + r.nr + ", " + r.naam + (a && !a.geenaccount ? ", met " + a.naam : "") + "."));
-      var naarPlan = el("button", "knop knop-groot", "Bekijk jouw plan");
-      naarPlan.type = "button";
-      naarPlan.addEventListener("click", function () { naarTab("plan"); });
-      rij.appendChild(naarPlan);
-      var opnieuw = el("button", "knop knop-stil", "Doe de gids opnieuw");
-      opnieuw.type = "button";
-      opnieuw.addEventListener("click", herbegin);
-      rij.appendChild(opnieuw);
-    } else if (Object.keys(state.antwoorden).length) {
-      scherm.appendChild(el("p", "welkom-status", "Je bent halverwege de gids."));
-      var verder = el("button", "knop knop-groot", "Ga verder waar je zat");
-      verder.type = "button";
-      verder.addEventListener("click", function () { state.gestart = true; bewaar(); tekenGids(); });
-      rij.appendChild(verder);
-      var opnieuw2 = el("button", "knop knop-stil", "Begin opnieuw");
-      opnieuw2.type = "button";
-      opnieuw2.addEventListener("click", herbegin);
-      rij.appendChild(opnieuw2);
-    } else {
-      var start = el("button", "knop knop-groot", "Start de gids");
-      start.type = "button";
-      start.addEventListener("click", function () { state.gestart = true; bewaar(); tekenGids(); });
-      rij.appendChild(start);
-      var duurtje = el("span", "welkom-duur", "een handvol vragen, en je hoeft niets te installeren");
-      rij.appendChild(duurtje);
-    }
-    scherm.appendChild(rij);
+    scherm.appendChild(startDeuren());
 
     var naslagLijn = el("p", "welkom-naslag");
-    naslagLijn.appendChild(tn("Liever zelf rondkijken? "));
+    naslagLijn.appendChild(tn("Liever eerst rondkijken? "));
     var naarNaslag = el("button", "tekstknop", "Naar het naslagwerk");
     naarNaslag.type = "button";
     naarNaslag.addEventListener("click", function () { naarTab("naslag"); });
@@ -963,22 +1081,6 @@
     var kern = figuurBlok(D.figuren && D.figuren.kernidee, "figuur-breed");
     if (kern) scherm.appendChild(kern);
 
-    /* de vier snelle winsten, als één rustige rij */
-    var winstKop = el("p", "winstmini-kop", "Of spring meteen naar wat vandaag al loont:");
-    scherm.appendChild(winstKop);
-    var mini = el("div", "winstmini");
-    D.snelwinst.forEach(function (w, i) {
-      var knop = el("button", "winstmini-knop");
-      knop.type = "button";
-      knop.appendChild(el("span", "winstnr", String(i + 1)));
-      knop.appendChild(tn(w.titel));
-      knop.addEventListener("click", function () {
-        if (w.valkuilen) naarTab("valkuilen");
-        else openOnderwerp(w.onderwerp);
-      });
-      mini.appendChild(knop);
-    });
-    scherm.appendChild(mini);
     scherm.appendChild(waaromBlok());
 
     wizard.appendChild(scherm);
@@ -2682,6 +2784,48 @@
       });
       doel.appendChild(ul);
     });
+
+    /* De enige skill die deze site heeft, en de vier bestanden waar ze uit
+       bestaat. Staat hier om dezelfde reden als het regelsbestand erboven: het
+       onderwerp zegt wel wat een skill is en liet er tot nu geen enkele zien. */
+    if (c.skill) {
+      var sk = el("section", "colofonskill");
+      doel.appendChild(kaderKop("h3", null, c.skill.kop, "vonk", true));
+      (c.skill.intro || []).forEach(function (t) {
+        sk.appendChild(rijk(el("p", "noot"), t));
+      });
+
+      if (c.skill.bestanden && c.skill.bestanden.length) {
+        if (c.skill.bestandenKop) {
+          sk.appendChild(kaderKop("h4", "regelkopje", c.skill.bestandenKop + " (" + c.skill.bestanden.length + ")", "klembord"));
+        }
+        var bl = el("ul", "skillbestanden");
+        c.skill.bestanden.forEach(function (b) {
+          var li = el("li", "skillbestand");
+          var l = D.links[b[2]];
+          if (l) {
+            var a = el("a", "skillbestandnaam");
+            a.href = l.url;
+            a.target = "_blank";
+            a.rel = "noopener";
+            a.textContent = b[0];
+            li.appendChild(a);
+          } else {
+            li.appendChild(el("b", "skillbestandnaam", b[0]));
+          }
+          li.appendChild(rijk(el("span", "skillbestandwat"), b[1]));
+          bl.appendChild(li);
+        });
+        sk.appendChild(bl);
+      }
+
+      if (c.skill.slot) sk.appendChild(rijk(el("p", "skillslot"), c.skill.slot));
+
+      var sl = linkBlok(c.skill.links, "Wat ernaast staat");
+      if (sl) sk.appendChild(sl);
+
+      doel.appendChild(sk);
+    }
 
     if (c.slot) doel.appendChild(rijk(el("p", "sessieslot"), c.slot));
   }

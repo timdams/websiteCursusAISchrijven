@@ -345,28 +345,77 @@ main { max-width: var(--breed); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
 .welkom-naslag { margin: 1.6rem 0 0; color: var(--inkt-stil); font-size: .95rem; }
 
-.winstmini-kop { margin: 2.6rem 0 .6rem; color: var(--inkt-stil); font-size: .95rem; }
+/* ---------- de volgorde op de startpagina ---------- */
 
-.winstmini { display: flex; flex-wrap: wrap; gap: .5rem; }
+.startplan { margin: 0 0 2rem; }
+.startplan-kop { margin: 0 0 .3rem; font-size: 1.25rem; }
+.startplan-noot { margin: 0 0 1.1rem; }
 
-.winstmini-knop {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  background: var(--kaart);
-  border: 1px solid var(--lijn);
-  border-radius: 999px;
-  padding: .4rem .9rem .4rem .45rem;
-  font: inherit;
-  font-size: .9rem;
-  font-weight: 600;
-  color: var(--inkt);
-  cursor: pointer;
+.startplan-lijst {
+  list-style: none;
+  counter-reset: startstap;
+  padding: 0;
+  margin: 0;
+  border-left: 2px solid var(--lijn);
 }
 
-.winstmini-knop:hover { border-color: var(--accent); color: var(--accent-diep); }
+.startplan-stap {
+  counter-increment: startstap;
+  position: relative;
+  padding: 0 0 1.15rem 2.6rem;
+}
 
-.winstmini-knop .winstnr { flex: 0 0 1.5rem; height: 1.5rem; font-size: .82rem; margin: 0; }
+.startplan-stap:last-child { padding-bottom: 0; }
+
+.startplan-stap::before {
+  content: counter(startstap);
+  position: absolute;
+  left: -.85rem;
+  top: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 999px;
+  background: var(--accent-zacht);
+  color: var(--accent-diep);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: .9rem;
+}
+
+.startplan-stapkop { display: block; font-size: 1rem; margin-bottom: .2rem; }
+.startplan-tekst { display: block; color: var(--inkt-stil); font-size: .95rem; line-height: 1.6; }
+.startplan-naar { display: inline-block; margin-top: .35rem; font-size: .9rem; }
+
+.startplan-naast { margin-top: 1.4rem; }
+.startplan-naastregel { margin: .45rem 0 0; font-size: .92rem; line-height: 1.55; color: var(--inkt-stil); }
+.startplan-naastregel:first-of-type { margin-top: .2rem; }
+.startplan-naastregel b { color: var(--inkt); }
+
+/* ---------- de twee deuren onder de volgorde ---------- */
+
+.startdeuren { display: grid; gap: .8rem; margin: 0 0 .4rem; }
+
+@media (min-width: 34rem) {
+  .startdeuren { grid-template-columns: 1fr 1fr; }
+}
+
+.startdeur {
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  background: var(--kaart);
+  padding: 1.1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.startdeur-groot { border-color: var(--accent); background: var(--accent-zacht); }
+
+.startdeur h3 { margin: 0 0 .35rem; font-size: 1.05rem; }
+.startdeur p { margin: 0 0 .9rem; font-size: .92rem; line-height: 1.55; color: var(--inkt-stil); }
+.startdeur .knop { margin-top: auto; }
+.startdeur-stil { margin-top: .6rem; font-size: .88rem; }
 
 .gidsvraag { display: flex; flex-direction: column; }
 
@@ -1981,8 +2030,6 @@ dialog.wwvenster { max-width: 34rem; }
   text-align: center;
 }
 
-.figuur + .winstmini-kop { margin-top: 1.6rem; }
-
 /* ---------- smal scherm ---------- */
 
 @media (max-width: 40rem) {
@@ -2062,6 +2109,107 @@ dialog.wwvenster { max-width: 34rem; }
 /* ---------- twee routes binnen één werkwijze ----------
    Alleen werkwijze 2 heeft ze: pandoc als er enkel Word uit moet, Quarto als er
    meer uit moet. Naast elkaar zolang het scherm het toelaat, daaronder gestapeld. */
+
+/* ---------- de skill van deze site, in het colofon ---------- */
+
+.colofonskill { margin-top: .4rem; }
+
+.skillbestanden {
+  list-style: none;
+  padding: 0;
+  margin: .3rem 0 0;
+  display: grid;
+  gap: .55rem;
+}
+
+.skillbestand {
+  border-left: 3px solid var(--lijn-hard);
+  padding: .1rem 0 .1rem .9rem;
+  font-size: .93rem;
+  line-height: 1.55;
+}
+
+.skillbestandnaam {
+  display: block;
+  font-family: "Cascadia Code", Consolas, SFMono-Regular, Menlo, monospace;
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--accent-diep);
+}
+
+.skillbestandwat { display: block; color: var(--inkt-stil); }
+
+.skillslot { margin: 1rem 0 0; font-size: .93rem; line-height: 1.6; max-width: 46rem; }
+
+.colofonskill .blokje { margin-top: 1rem; }
+
+/* ---------- keuzes binnen een onderwerp: manieren om hetzelfde te doen ---------- */
+
+.keuzegroep { margin: 1.6rem 0 0; }
+.keuzegroepnoot { margin: .1rem 0 .9rem; max-width: 46rem; }
+
+.keuzerij {
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  align-items: start;
+}
+
+.keuze {
+  border: 1px solid var(--lijn);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--papier);
+  padding: .85rem .95rem .9rem;
+}
+
+.keuzenaam { display: block; font-size: .98rem; line-height: 1.4; }
+
+.keuzewanneer {
+  display: inline-block;
+  margin: .35rem 0 .55rem;
+  padding: .1rem .45rem;
+  border-radius: 4px;
+  background: var(--accent-zacht);
+  color: var(--accent-diep);
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.keuzecode {
+  font-family: "Cascadia Code", Consolas, SFMono-Regular, Menlo, monospace;
+  font-size: .78rem;
+  line-height: 1.6;
+  background: var(--kaart);
+  border: 1px solid var(--lijn);
+  border-radius: 6px;
+  padding: .5rem .6rem;
+  margin: 0 0 .55rem;
+  overflow-x: auto;
+  white-space: pre;
+  color: var(--inkt);
+}
+
+.keuzehoe { margin: 0; font-size: .92rem; line-height: 1.55; }
+
+.keuzeletop {
+  margin: .6rem 0 0;
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--inkt-stil);
+  --kk: var(--oker);
+}
+
+.keuzeletop .kaderkop {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--oker);
+  margin-bottom: .1rem;
+}
+
+.keuzelinkjes { margin-top: .7rem; }
+.keuzeslot { margin: 1rem 0 0; font-size: .93rem; line-height: 1.6; max-width: 46rem; }
 
 .wwroutes { margin: 0 0 .3rem; }
 

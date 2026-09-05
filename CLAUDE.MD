@@ -1,11 +1,17 @@
-Deze website heeft als doel om mensen te helpen hoe ze AI kunnen gebruiken in het maken/schrijven van een lescursus. De website bestaat uit 3 delen:
+Deze website heeft als doel om mensen te helpen hoe ze AI kunnen gebruiken in het maken/schrijven van een lescursus. De website bestaat uit 4 delen:
 
-1. Een interactieve 'bevrager' die de gebruiker helpt te beslissen welke aanpak en tools moeten gebruikt worden. Gebaseerd op voorkennis en AI-abbonement.
-2. Een naslagwerk met een overzicht van tools, prompts, en aanpakmogelijkheden.
-3. Een gallerij met links naar externe voorbeelden (repos, websites). Dit deel bestaat nog niet.
+1. Een startpagina die de vraag beantwoordt waarmee iemand binnenkomt: "hoe begin ik eraan". Zeven stappen in de volgorde waarin je ze zet. Zie De startpagina hieronder.
+2. Een interactieve 'bevrager' die de gebruiker helpt te beslissen welke aanpak en tools moeten gebruikt worden. Gebaseerd op voorkennis en AI-abbonement.
+3. Een naslagwerk met een overzicht van tools, prompts, en aanpakmogelijkheden.
+4. Een gallerij met links naar externe voorbeelden (repos, websites). Dit deel bestaat nog niet.
 
 
 Het is belangrijk dat de website vooral catert naar beginnende en medium gebruikers van AI, en dat de informatie duidelijk en toegankelijk is. De interactieve bevrager moet gebruikers begeleiden door een reeks vragen die hun behoeften en kennisniveau in kaart brengen, zodat ze de meest geschikte tools en methoden kunnen vinden voor het maken van hun lescursus.
+
+De bevrager was eerst zelf de startpagina. Dat verwarde: wie binnenkomt met een vraag kreeg vragen
+terug, en daaronder een menu van vier gelijke knoppen. Nu staat het antwoord er eerst en maakt de
+bevrager dat antwoord daarna persoonlijk: welke tool, welke werkwijze, welke drie prompts, en hoe de
+knoppen in jouw venster heten.
 
 
 **Doel:** een lector kan een olod herwerken met AI zonder dat het resultaat leest als AI, en zonder
@@ -13,13 +19,43 @@ afhankelijk te zijn van een tool.
 **Niet het doel:** leren prompten. Prompten is tien procent van het werk. De rest is het expliciteren
 en bewaren van je eigen afspraken.
 
+# De startpagina
+
+Zeven stappen, in de volgorde waarin je ze zet. Ze staan in `startplan` in `site/data.js`:
+
+1. Schrijf eerst als schrijver. Outline, eerste versie, nalezen, herschrijven.
+2. Zet je cursus in droge tekst: een map per hoofdstuk, een bestand per onderwerp.
+3. Trek je nog niets aan van je layout. De opmaak komt op het einde, in één keer.
+4. Maak een contextmap, en hou ze sec.
+5. Zet je regels in een bestand, met daarin ook wat elk document in je contextmap is.
+6. Laat de AI bijhouden wat je corrigeert (`improve.md`), en maak daar later je skills van.
+7. Kijk na.
+
+Stap 4 tot 7 zijn de lowhangingfruit-wins uit Het naslagwerk hieronder. Ze stonden er ooit als vier
+gelijke knoppen naast elkaar; dat is een menu, en een menu zegt niet wat er eerst komt. De eerste
+drie stappen gaan nog niet over AI, en dat is precies waarom ze eerst staan.
+
+Twee dingen lopen ernaast en staan apart onder de lijst: je afbeeldingen (schrijf per figuur één zin
+op, en beslis pas later of het mermaid, Excalidraw of iets anders wordt) en git (alleen wanneer je
+bestanden op je eigen schijf staan, en dan vanaf de eerste dag).
+
+Onder de volgorde staan twee deuren. Links je eerste sessie: één hoofdstuk, van het openen van je
+laptop tot een tekst waar je tevreden over bent, met het klikpad van je eigen tool erbij. Rechts de
+bevrager.
+
+De bron van deze volgorde is `context/gettingstarted.md`: de huisregels die ik meegeef aan een
+collega die me die vraag stelt. Wat daar staat en op de site nog ontbreekt, hoort er dus bij te
+komen.
+
 # Bevraging
 
 We willen in de bevraging zeker de gebruiker de optie geven dat hij informatie op maat krijgt gebaseerd op de AI-tool waarvoor hij een abbonement heeft. We voorzien ondersteuning voor **Claude, ChatGpt, Gemini, Microsoft CoPilot, "generiek" (bv selfhosted, openrouter, etc.) of "ik heb er nog geen" (geen abonnement)**. Op basis van deze keuze zal de bevrager de gebruiker specifieke aanbevelingen doen die passen bij hun situatie.
 
 # Het naslagwerk
 
-Direct na de bevraging, **en graag al op de hoofdpagina** wil ik zeker een vereenvoudigde flow tonen waarbij we de "lowhangingfruit" wins kunnen tonen, namelijk:
+Ik wil zeker een vereenvoudigde flow tonen met de "lowhangingfruit" wins. Die staan op twee plekken:
+als stap 4 tot 7 van de volgorde op de hoofdpagina, en in het plan dat na de bevraging verschijnt.
+Het gaat om:
 
 - het nut van een contextmap (een overzicht van de inhoud en structuur van de cursus, zodat de AI beter kan helpen bij het genereren van content)
 - het nut van een claude.md/gemini.md prompt (je eigen regels, om niet telkens dezelfde dingen te moeten herhalen)
