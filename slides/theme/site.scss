@@ -1,0 +1,240 @@
+/*-- scss:defaults --*/
+
+// Dezelfde kleuren en hetzelfde font als de site. De waarden komen letterlijk
+// uit site/styles.css, zodat een slide en een pagina naast elkaar niet vloeken.
+$papier:       #fafaf7;
+$kaart:        #ffffff;
+$inkt:         #2b2b33;
+$inkt-kop:     #1a1a22;
+$inkt-stil:    #62626e;
+$accent:       #B30000;
+$accent-diep:  #8F0000;
+$accent-zacht: #FFE5E5;
+$lijn:         #e3e3dd;
+$lijn-hard:    #cfcfc7;
+
+// De achtergrond van de tekeningen. Iets koeler dan het papier van de site,
+// dus de figuren krijgen hun eigen vlakje in plaats van te botsen.
+$tekenpapier:  #f8f9fa;
+
+$body-bg:    $papier;
+$body-color: $inkt;
+$link-color: $accent-diep;
+$link-color-hover: $accent;
+$selection-bg: $accent-zacht;
+$selection-color: $accent-diep;
+
+$font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$font-family-monospace: "Cascadia Code", Consolas, SFMono-Regular, Menlo, monospace;
+
+$presentation-font-size-root: 32px;
+$presentation-line-height: 1.5;
+$presentation-heading-font: $font-family-sans-serif;
+$presentation-heading-color: $inkt-kop;
+$presentation-heading-font-weight: 700;
+$presentation-heading-line-height: 1.2;
+$presentation-h1-font-size: 2.1em;
+$presentation-h2-font-size: 1.4em;
+$presentation-h3-font-size: 1.1em;
+
+$code-block-font-size: 0.6em;
+$code-color: $accent-diep;
+
+/*-- scss:rules --*/
+
+.reveal .slides section {
+  text-align: left;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  letter-spacing: -.01em;
+  text-transform: none;
+}
+
+// De kop draagt een dun rood lijntje, zoals de deuren in het naslagwerk.
+.reveal h2 {
+  margin-bottom: .5em;
+  padding-bottom: .28em;
+  border-bottom: 2px solid $lijn;
+}
+
+// ---------- het stapnummer in de kop ----------
+// Hetzelfde bolletje als in de tekening met de zeven stappen, zodat je aan de
+// kop ziet waar in de volgorde je zit.
+.reveal h2 .nr {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: .4em;
+  vertical-align: -.32em;
+  border-radius: 50%;
+  background: $accent-zacht;
+  color: $accent-diep;
+  font-size: .78em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+// ---------- figuren ----------
+// De tekening is het punt van de slide, dus ze krijgt alle ruimte die overblijft.
+.reveal .figuur {
+  margin: 0;
+  text-align: center;
+}
+
+.reveal .figuur img,
+.reveal p > img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 640px;
+  width: auto;
+  border: 1px solid $lijn;
+  border-radius: 10px;
+  background: $tekenpapier;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .05);
+}
+
+// Een slide met kop, tekening en één regel eronder. 640 is wat er overblijft
+// onder een kop en boven een onderschrift van twee regels; hoger en de laatste
+// regel valt van de slide. De tekeningen zijn 1560 breed getekend, dus bij deze
+// hoogte renderen ze op 0,94: bijna 1 op 1, en dat is wat ze leesbaar houdt op
+// een beamer. Zie MAATVOERING.md.
+.reveal .metonder .figuur img,
+.reveal .metonder p > img {
+  max-height: 640px;
+}
+
+// De agenda-slide draagt de tekening én twee kolommen tekst, dus daar mag de
+// tekening kleiner.
+.reveal .metkolommen .figuur img,
+.reveal .metkolommen p > img {
+  max-height: 420px;
+}
+
+// Een tekening die naast tekst in een kolom staat, draagt de slide niet alleen.
+// Iets lager, anders duwt ze de tekst ernaast naar een streepje breed.
+.reveal .columns .figuur img,
+.reveal .columns p > img {
+  max-height: 540px;
+}
+
+// ---------- de regel onder een figuur ----------
+.reveal .onder {
+  margin-top: .7em;
+  color: $inkt-stil;
+  font-size: .8em;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.reveal .onder strong {
+  color: $accent-diep;
+}
+
+// ---------- het terzijde ----------
+// Handgeschreven, zoals de tekeningen. Voor de grap of de bekentenis waarmee
+// een slide opent, en verder nergens voor.
+.reveal .terzijde {
+  font-family: Caveat, cursive;
+  font-size: 1.32em;
+  line-height: 1.25;
+  color: $accent-diep;
+  margin-bottom: .7em;
+}
+
+.reveal .groot {
+  font-size: 1.25em;
+  line-height: 1.35;
+}
+
+.reveal .stil {
+  color: $inkt-stil;
+}
+
+.reveal strong {
+  color: $inkt-kop;
+}
+
+// ---------- kadertje ----------
+.reveal .kader {
+  padding: .7em 1em;
+  border: 1px solid $lijn;
+  border-left: 4px solid $accent;
+  border-radius: 8px;
+  background: $kaart;
+  font-size: .82em;
+}
+
+// ---------- de titelslide en de tussentitel ----------
+#title-slide .subtitle,
+.reveal .quarto-title-block .subtitle {
+  color: $accent-diep;
+  font-size: 1.05em;
+  margin-bottom: 1.2em;
+}
+
+#title-slide .author,
+#title-slide .quarto-title-authors {
+  color: $inkt-stil;
+  font-size: .8em;
+}
+
+.reveal section.tussentitel h1,
+.reveal section.tussentitel h2 {
+  border: none;
+  color: $accent-diep;
+  font-size: 2em;
+}
+
+// ---------- kolommen ----------
+.reveal .columns {
+  gap: 1.6em;
+}
+
+.reveal .kop {
+  color: $accent-diep;
+  font-weight: 700;
+}
+
+// ---------- lijsten ----------
+.reveal ol,
+.reveal ul {
+  margin-left: .4em;
+}
+
+.reveal li {
+  margin-bottom: .45em;
+}
+
+.reveal ol li::marker {
+  color: $accent;
+  font-weight: 700;
+}
+
+.reveal ul li::marker {
+  color: $accent;
+}
+
+.reveal code:not(.sourceCode) {
+  background: $accent-zacht;
+  color: $accent-diep;
+  padding: .1em .35em;
+  border-radius: 4px;
+  font-size: .85em;
+}
+
+// ---------- voetregel en voortgang ----------
+.reveal .slide-number {
+  background: transparent;
+  color: $inkt-stil;
+  font-size: .5em;
+}
+
+.reveal .progress {
+  color: $accent;
+  height: 4px;
+}

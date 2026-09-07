@@ -3,7 +3,7 @@ Deze website heeft als doel om mensen te helpen hoe ze AI kunnen gebruiken in he
 1. Een startpagina die de vraag beantwoordt waarmee iemand binnenkomt: "hoe begin ik eraan". Zeven stappen in de volgorde waarin je ze zet. Zie De startpagina hieronder.
 2. Een interactieve 'bevrager' die de gebruiker helpt te beslissen welke aanpak en tools moeten gebruikt worden. Gebaseerd op voorkennis en AI-abbonement.
 3. Een naslagwerk met een overzicht van tools, prompts, en aanpakmogelijkheden.
-4. Een gallerij met links naar externe voorbeelden (repos, websites). Dit deel bestaat nog niet.
+4. Een gallerij met links naar externe voorbeelden (repos, websites). Staat er, met tien cursussen en sites, elk met maker, een regel uitleg en de techniek erachter. Ze staat in `voorbeelden` in `site/data.js`.
 
 
 Het is belangrijk dat de website vooral catert naar beginnende en medium gebruikers van AI, en dat de informatie duidelijk en toegankelijk is. De interactieve bevrager moet gebruikers begeleiden door een reeks vragen die hun behoeften en kennisniveau in kaart brengen, zodat ze de meest geschikte tools en methoden kunnen vinden voor het maken van hun lescursus.
@@ -25,15 +25,20 @@ Zeven stappen, in de volgorde waarin je ze zet. Ze staan in `startplan` in `site
 
 1. Schrijf eerst als schrijver. Outline, eerste versie, nalezen, herschrijven.
 2. Zet je cursus in droge tekst: een map per hoofdstuk, een bestand per onderwerp.
-3. Trek je nog niets aan van je layout. De opmaak komt op het einde, in één keer.
-4. Maak een contextmap, en hou ze sec.
-5. Zet je regels in een bestand, met daarin ook wat elk document in je contextmap is.
-6. Laat de AI bijhouden wat je corrigeert (`improve.md`), en maak daar later je skills van.
-7. Kijk na.
+3. Maak een contextmap, en hou ze sec.
+4. Zet je regels in een bestand, met daarin ook wat elk document in je contextmap is.
+5. Laat de AI bijhouden wat je corrigeert (`improve.md`), en maak daar later je skills van.
+6. Kijk na.
+7. En dan pas je opmaak, in één keer.
 
-Stap 4 tot 7 zijn de lowhangingfruit-wins uit Het naslagwerk hieronder. Ze stonden er ooit als vier
+Stap 3 tot 6 zijn de lowhangingfruit-wins uit Het naslagwerk hieronder. Ze stonden er ooit als vier
 gelijke knoppen naast elkaar; dat is een menu, en een menu zegt niet wat er eerst komt. De eerste
-drie stappen gaan nog niet over AI, en dat is precies waarom ze eerst staan.
+twee stappen gaan nog niet over AI, en dat is precies waarom ze eerst staan.
+
+De opmaak stond ooit op drie, als "trek je nog niets aan van je layout". Dat is een verbod en geen
+handeling: je *doet* je opmaak op het einde. Als lijst van dingen die je zet, hoort ze dus achteraan,
+en dat is nog duidelijker geworden sinds de AI-stappen ertussen kwamen. Het verbod zelf is niet
+verdwenen, het staat nu als waarschuwing bij stap 2, waar de verleiding zit.
 
 Twee dingen lopen ernaast en staan apart onder de lijst: je afbeeldingen (schrijf per figuur één zin
 op, en beslis pas later of het mermaid, Excalidraw of iets anders wordt) en git (alleen wanneer je

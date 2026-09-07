@@ -1,0 +1,4 @@
+# De gerenderde slides. Lokaal maken met: quarto render cursus-schrijven-met-ai.qmd
+*.html
+*_files/
+.quarto/

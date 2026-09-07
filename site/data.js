@@ -61,9 +61,13 @@ window.DATA = {
      stond hier ooit als vier gelijke knoppen naast elkaar (de contextmap, je
      regels, skills, de valkuilen). Vier knoppen zijn een menu, en een menu
      zegt niet wat er eerst komt. Nu staat het als zeven stappen in de volgorde
-     waarin je ze zet; die vier zitten er als stap 4 tot 7 nog altijd in. */
+     waarin je ze zet; die vier zitten er als stap 3 tot 6 nog altijd in.
+     De opmaak stond ooit op drie, als "trek je nog niets aan van je layout".
+     Dat is een verbod en geen handeling, en je doet je opmaak op het einde, dus
+     ze staat nu op zeven. Het verbod zelf staat bij stap 2, waar de verleiding
+     zit. */
   startplanKop: "Hoe begin je eraan?",
-  startplanNoot: "Zeven stappen, in deze volgorde. De eerste drie gaan nog niet over AI.",
+  startplanNoot: "Zeven stappen, in deze volgorde. De eerste twee gaan nog niet over AI, en de laatste ook niet.",
   startplan: [
     {
       kop: "Schrijf eerst als schrijver.",
@@ -71,17 +75,11 @@ window.DATA = {
     },
     {
       kop: "Zet je cursus in droge tekst.",
-      tekst: "Een map per hoofdstuk, daarin een bestand per onderwerp, en verder geen opmaak. Zo geef je één hoofdstuk aan de AI zonder de andere twaalf mee te sturen.",
+      tekst: "Een map per hoofdstuk, daarin een bestand per onderwerp, en verder geen opmaak. Zo geef je één hoofdstuk aan de AI zonder de andere twaalf mee te sturen. Geen sjabloon dus, geen pdf, geen slides: die komen als stap zeven.",
       wegwijzers: [
         { wegwijzer: { naar: "onderwerp", id: "plat" }, knop: "Werk in platte tekst" },
         { wegwijzer: { naar: "onderwerp", id: "mapindeling" }, knop: "Zo ziet die map eruit" }
       ]
-    },
-    {
-      kop: "Trek je nog niets aan van je layout.",
-      tekst: "Geen sjabloon, geen pdf, geen slides. Wie zijn opmaak eerst in orde brengt, doet ze opnieuw bij elke zin die daarna nog verandert. De opmaak komt op het einde, in één keer.",
-      wegwijzer: { naar: "onderwerp", id: "lesmateriaal" },
-      knop: "Wanneer de opmaak dan wel komt"
     },
     {
       kop: "Maak een contextmap, en hou ze sec.",
@@ -106,6 +104,12 @@ window.DATA = {
       tekst: "Een bronvermelding die niet bestaat, een definitie die net naast de jouwe ligt, een opsomming waar een redenering hoorde. Lees elk stuk dat je overneemt, met je regels ernaast.",
       wegwijzer: { naar: "tab", id: "valkuilen" },
       knop: "De valkuilen op een rij"
+    },
+    {
+      kop: "En dan pas je opmaak.",
+      tekst: "Nu verandert er aan je tekst niets meer, dus nu mag je sjabloon, je pdf en je slides erbij. Uit diezelfde bestanden rolt elk formaat dat je nodig hebt. Wie zijn opmaak eerst in orde bracht, deed ze opnieuw bij elke zin die daarna nog veranderde.",
+      wegwijzer: { naar: "onderwerp", id: "lesmateriaal" },
+      knop: "Hoe je die opmaak maakt"
     }
   ],
   startplanNaastKop: "Twee dingen die ernaast lopen",
