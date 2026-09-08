@@ -122,6 +122,56 @@ $code-color: $accent-diep;
   max-height: 540px;
 }
 
+// De tekst ernaast begint op de hoogte van het midden van de tekening. Quarto
+// zet de kolommen naast elkaar als inline-block met vertical-align: top, en dan
+// hangen drie bolletjes tegen de kop terwijl de tekening tot halfweg de slide
+// doorloopt.
+.reveal .columns:has(.figuur) > .column,
+.reveal .columns:has(p > img) > .column {
+  vertical-align: middle;
+}
+
+// ---------- een tekening naast tekst, op volle hoogte ----------
+// Voor de slide waar de tekening het punt is en de tekst het bijschrift: een
+// schermafdruk van een bestand, of de stapel papier van Fair warning. Op 540
+// hoog bleef in een kolom van de helft rechts een halve kolom leeg staan en
+// onderaan een strook van een derde slide. Op .metnaast begint de tekening op
+// 103 en loopt ze tot 825 van de 900, en haar kolom krimpt tot de breedte die
+// ze op die hoogte nodig heeft: 476 voor de skill, 722 voor de stapel. De tekst
+// krijgt wat overblijft, dus in de qmd staat bij die kolommen geen width.
+//
+// Quarto zet de twee kolommen naast elkaar als inline-block. Voor een kolom
+// zonder width rekent de browser dan met de volle slide en niet met wat er
+// naast de tekening overblijft: de tekst past niet en valt eronder. Hier dus
+// wel flexbox.
+.reveal .metnaast .columns {
+  display: flex;
+  align-items: center;
+}
+
+.reveal .metnaast .columns > .column {
+  width: auto !important;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+// De kolom van de tekening vraagt haar eigen breedte, de tekst neemt de rest.
+.reveal .metnaast .columns > .column:has(img) {
+  flex: 0 0 auto;
+}
+
+// De hoogte staat vast en de breedte volgt eruit: daardoor vraagt de kolom
+// hierboven de breedte van de tekening op 720 hoog, en niet die van het
+// bestand. Zet je hier een liggende tekening, dan is 720 te hoog en houdt
+// object-fit haar in verhouding in plaats van ze uit te rekken.
+.reveal .metnaast .columns .figuur img,
+.reveal .metnaast .columns p > img {
+  height: 720px;
+  max-height: 720px;
+  width: auto;
+  object-fit: contain;
+}
+
 // ---------- de regel onder een figuur ----------
 .reveal .onder {
   margin-top: .7em;

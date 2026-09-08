@@ -1,6 +1,6 @@
 # Slides
 
-Een deck van zesentwintig slides over hoe je aan een cursus begint met AI, met de
+Een deck van eenendertig slides over hoe je aan een cursus begint met AI, met de
 site als afsluiter. Alleen voor lokaal gebruik: de workflow in
 [.github/workflows/pages.yml](../.github/workflows/pages.yml) zet enkel `site/` op
 GitHub Pages, dus deze map gaat er niet mee op.
@@ -49,6 +49,41 @@ pdf. Druk `s` voor de sprekersweergave, `o` voor het overzicht.
 | `assets/imagegen/*.js` | de scripts die die tekeningen maken |
 | `MAATVOERING.md` | hoe groot tekst in een tekening moet zijn om te beamen |
 
+## De klasse achter de kop
+
+Achter de kop van een slide staat soms een klasse tussen accolades, en die
+beslist hoe hoog de tekening erop mag worden. De rekensom staat er in
+[theme/site.scss](theme/site.scss) bij.
+
+| Klasse | Wat er op de slide staat | Hoe hoog de tekening wordt |
+|---|---|---|
+| `.metonder` | kop, tekening, een regel eronder | tot 640 |
+| `.metkolommen` | kop, tekening, twee kolommen tekst eronder | tot 420 |
+| `.metnaast` | kop, tekening links, tekst rechts | 720, van 103 tot 825 |
+| geen | tekst, of een tekening in een kolom naast tekst | tot 540 |
+
+`.metnaast` is voor de slide waar de tekening het punt is en de tekst het
+bijschrift: een schermafdruk van een bestand (*Voorbeeld van mijn regels*,
+*Voorbeeld Mijn skill*) of de stapel papier van *Fair warning*. Zonder die
+klasse werd zo'n afdruk op 540 afgekapt en bleef er in haar kolom van de helft
+rechts een halve kolom leeg staan. Zet bij de kolommen van zo'n slide geen
+`width`: de kolom van de tekening krimpt zelf tot wat ze op 720 hoog nodig
+heeft, en de tekst neemt de rest.
+
+```markdown
+## Voorbeeld Mijn skill voor de illustraties {.metnaast}
+
+::: {.columns}
+::: {.column}
+![](assets/skillvb.png){.figuur}
+:::
+
+::: {.column}
+* Meeste tekeningen in deze talk zijn met deze skills gemaakt.
+:::
+:::
+```
+
 ## De tekeningen
 
 Dezelfde machinerie als de site: rough.js plus Caveat, in de stijl uit
@@ -70,31 +105,53 @@ cd slides/assets/imagegen
 for f in *.js; do [ "$f" = excal.js ] || node "$f"; done
 ```
 
-### Vijftien tekeningen
+### Achttien tekeningen
 
-`prillebegin`, `teleurstelling`, `volgorde`, `schrijverswerk`, `mapindeling`,
-`improvelus`, `nakijken` en `website` zijn voor dit deck getekend. `eenbron`,
-`vijfdocumenten`, `kernidee` en `afsprakenofskill` staan ook op de site, maar de
-scripts hier zijn een eigen versie: op de site zijn ze 1660 tot 1740 breed, hier
-1560, met grotere tekst. Wijzig je zo'n figuur, wijzig hem dan op beide plekken.
+`prillebegin`, `zaal`, `teleurstelling`, `volgorde`, `schrijverswerk`,
+`mapindeling`, `eerstesessie`, `improvelus`, `nakijken`, `website` en `versies`
+zijn voor dit deck getekend. `zaal` opent de talk, `versies` komt er achteraan op
+terug en tekent diezelfde slide in zijn twee versies: wijzig je de ene, kijk dan
+ook naar de andere.
+
+`mapindeling` en `eerstesessie` tekenen dezelfde boom. Op stap 2 staat die boom
+er kaal naast de docx: een map per hoofdstuk, een bestand per onderwerp, en
+verder niets. In `eerstesessie` staan de contextmap en de regels erbij en staat
+in het rood wat je in je eerste sessie aanraakt. Wijzig je de boom in het ene
+script, wijzig hem dan ook in het andere.
+
+`eenbron`, `vijfdocumenten`, `kernidee` en `afsprakenofskill` staan ook op de
+site, maar de scripts hier zijn een eigen versie: op de site zijn ze 1660 tot
+1740 breed, hier 1560, met grotere tekst. Wijzig je zo'n figuur, wijzig hem dan op beide plekken.
 
 `strip-vraag`, `strip-vorigjaar` en `strip-nu` zijn de stripversie van de origin
 story. De panelen, de stokfiguurtjes en de tekstballonnen zitten in
 `strip.js`, dat de andere drie inladen. `poppetje` neemt `armen` (`omhoog`,
 `uit`, `wijzen`) en `gezicht` (`blij`, `paniek`, `twijfel`).
 
-### De ene tekening die geen script heeft
+### De twee tekeningen die geen script hebben
 
 `meteenja.png` komt uit Imagen, niet uit rough.js. Ze staat in allebei de origin
-stories: op slide 2 naast de tekst, en op slide 8 als slot van de strip. Er is
-geen script om aan te passen, dus wil je er iets aan wijzigen dan moet ze opnieuw
-gegenereerd worden, en dan is het een andere tekening. De prompt die haar
-opleverde staat in [PROMPT-meteenja.md](PROMPT-meteenja.md).
+stories: op slide 2 naast de tekst, en op slide 8 als slot van de strip.
+`robotlector.png` staat op *Het lag niet aan je vraag*, in de kolom naast de
+tekst, en komt ook uit een beeldgenerator.
+
+Bij allebei is er geen script om aan te passen, dus wil je er iets aan wijzigen
+dan moeten ze opnieuw gegenereerd worden, en dan is het een andere tekening. De
+prompts staan in [PROMPT-meteenja.md](PROMPT-meteenja.md) en
+[PROMPT-robotlector.md](PROMPT-robotlector.md).
+
+Op *Wat je daarvoor in je regelbestand zet* staat nog een derde beeld zonder
+script: een schermafdruk van een echte `improve.md`. Die staat niet in deze map
+maar in `../site/assets/improvevb.png`, en de slide verwijst er rechtstreeks
+naar. Vervang je die afdruk, dan volgt de slide vanzelf.
 
 ### Leesbaar op een beamer
 
 Elke tekening is 1560 breed en hoogstens 670 hoog, met tekst van minstens 30. Zo
-rendert ze op de slide op ongeveer één op één. De rekensom en de reden staan in
+rendert ze op de slide op ongeveer één op één. Smaller mag: de schaal hangt aan
+de hoogte zolang de breedte onder 1470 blijft, en `mapindeling` (1060) en
+`eerstesessie` (1000) staan daarom smaller, anders houden ze rechts een lege
+strook over. De rekensom en de reden staan in
 [MAATVOERING.md](MAATVOERING.md). Wijzig je een figuur, hou je daar dan aan: op
 een canvas van 2300 breed valt tekst van 30 terug tot achttien pixels op het
 scherm, en dat leest niemand achteraan de zaal.
