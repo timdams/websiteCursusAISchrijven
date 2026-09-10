@@ -14,9 +14,20 @@ staat er een oude dame met een stapel papier tegen haar borst, een dikke man met
 een baard die zijn handen in de lucht gooit, een lange vrouw met een sjaal, en
 zo verder. Elk van hen is iemand anders, en dat is het punt van de slide.
 
-De stijl is die van `ateam.png` en `vermomming.png`, en `ateam.png` ging als
-referentiebeeld mee de generator in. Model was GPT-5.4 Image 2 op OpenRouter,
-beeldverhouding 21:9, en dat leverde 1568 bij 672.
+De stijl is die van `ateam.png` en `vermomming.png`. Er gaan twee
+referentiebeelden mee de generator in: de vorige `zaal-bron.png` voor de
+compositie, zodat de x van elke kop op zijn plek blijft, en `ateam.png` voor de
+hand. Model is Gemini 3 Pro (Nano Banana Pro) op OpenRouter, beeldverhouding
+21:9, en dat levert 1584 bij 672. De generator schrijft een jpg en `zaal.js`
+bedt de onderlaag in als `data:image/png`, dus zet ze eerst om naar png op
+dezelfde maat. Een svg met de jpg als data-URI door resvg halen doet dat in vijf
+regels.
+
+De eerste versie kwam uit GPT-5.4 Image 2 met alleen `ateam.png` als referentie
+en de compositie helemaal uitgeschreven. Daar stonden acht getekende mensen op,
+en die ene rechts was een pezige kerel met warrig haar en een laptop onder zijn
+arm. Nu staat de professor met de snor daar, en zijn de zeven van de zaal
+losser getekend: minder arcering, minder gemodelleerde armen en benen.
 
 Zet het resultaat in `assets/imagegen/` onder de naam `zaal-bron.png`. Niet in
 `assets/`: daar staat het eindresultaat, en `node zaal.js` schrijft dat.
@@ -34,36 +45,43 @@ allebei uit `zaal.js`. Zo ligt het accent precies waar het hoort en niet op een
 sjaal.
 
 ```
-A loose hand-drawn pencil sketch on off-white paper, in the style of a quick
-sketchbook doodle: scratchy graphite outlines with visible construction lines
-and double strokes, light hatching for shadow, no colour fills, no gradients,
-no 3D rendering, no photo texture.
+Redraw the wide panoramic pencil sketch in the first reference image, keeping its
+composition: the same eight figures at the same horizontal positions, the same
+crowded group of seven across the left two thirds growing further apart towards
+the right, the same wide empty gap, and one figure standing alone at the far
+right end.
 
-Composition: a very wide panoramic strip. All eight figures stand with their
-feet on one single straight horizontal pencil line that runs across the full
-width at four fifths of the image height. No head reaches higher than one third
-from the top. The paper above the heads and the paper below that line are
-completely empty: no hatching, no props, no clouds. Nothing touches or crosses
-the edges of the frame.
+Framing, and this matters most: draw the figures small, so the whole row of
+people occupies only the middle band of the picture, exactly as small as in the
+first reference image. One single straight horizontal ground line runs edge to
+edge across the full width at exactly four fifths of the image height, and every
+figure stands with its feet on it. No head, no raised hand and no prop reaches
+higher than one third down from the top. The band of paper below the ground
+line, the bottom fifth of the picture, is completely blank, and the top third
+above the heads is completely blank too: no hatching, no props, no shadows, no
+clouds. Nothing touches the edges of the frame.
 
-Scene: a row of eight visibly different people, each clearly a distinct
-individual, all drawn in the same scratchy stick-figure style with simple round
-heads and dot eyes. Seven of them form a group across the left two thirds of
-the line, crowded shoulder to shoulder at the far left and standing further and
-further apart towards the right. Then a wide empty gap, and the eighth stands
-alone at the far right end of the line. From left to right: a small older woman
-with a bun and a cardigan hugging a stack of papers to her chest; a heavy-set
-bald man with a beard and a jumper throwing both hands up in alarm; a tall thin
-woman with round glasses and a long scarf; a woman with curly hair, a blouse
-and a lanyard; a young man in a hoodie with a laptop bag over one shoulder; a
-man with a goatee and rolled-up shirtsleeves standing with his hands in his
-pockets; a lanky young woman in dungarees with headphones round her neck, one
-arm raised. Their faces run from worried and hunched on the left, through
-uncertain in the middle, to relaxed and smiling on the right. The one standing
-alone at the far right is a wiry man with messy hair and a t-shirt, a small
-laptop tucked under one arm, grinning broadly with his chin up.
+Change the drawing style of every figure to match the second reference image:
+much simpler and looser doodles, plain round heads with two dot eyes and a
+single line mouth, thin wobbly noodle limbs instead of modelled arms and legs,
+clothing suggested by two or three quick strokes, only the lightest hatching, no
+shaded volume, no rendered folds, no detailed faces or hair texture. Keep each of
+the seven recognisable by one prop and one attitude only: the small older woman
+with a hair bun hugging a stack of papers; the round bearded man throwing both
+hands up in alarm; the tall thin woman with round glasses and a long scarf; the
+woman with curly hair and a lanyard; the young man in a hoodie with a bag on one
+shoulder; the man with a goatee, hands in pockets; the young woman in dungarees
+with headphones and one arm raised. Their expressions run from worried on the
+left to relaxed and smiling on the right.
 
-Colour: off-white background #f8f9fa. Every line in dark grey #4D4D4D. No other
+The eighth figure, the one standing alone at the far right, is the moustached
+professor from the second reference image, drawn identically: a round head with a
+small tuft of hair on top, round spectacles, a large bushy walrus moustache, a
+jacket with lapels, thin noodle arms and legs. He stands upright at the same
+spot, chin up and grinning, a small plain closed laptop tucked under one arm with
+a blank lid: no logo, no badge, no markings on it.
+
+Colour: off-white background #f8f9fa, every line in dark grey #4D4D4D, no other
 colour anywhere in the drawing.
 
 No text, no letters, no numbers, no speech bubbles, no labels, no watermark,
@@ -72,22 +90,25 @@ no signature.
 
 ## De maten waar `zaal.js` op staat
 
-Opgemeten op `zaal-bron.png`, 1568 bij 672. Het canvas van `zaal.js` is 1560 bij
-670, dus de getallen kan je zo overnemen; het scheelt een halve procent.
+Opgemeten op `zaal-bron.png` van 1584 bij 672 en omgerekend naar het canvas van
+`zaal.js`, dat 1560 bij 670 is. `plak` rekt de tekening daarnaartoe met
+`preserveAspectRatio="none"`, dus bron-x maal 0,985 geeft canvas-x. Hieronder
+staan de canvasgetallen.
 
 | wat | waar |
 | --- | --- |
-| de grondlijn | y = 509 |
-| de zeven van de zaal | x = 111, 271, 439, 559, 681, 831, 958 |
-| die ene rechts | x = 1446, kruin op y = 166 |
-| de opgestoken hand | tot y = 120 |
-| rechterrand van de groep | x = 1015 |
+| de grondlijn | y = 511 |
+| de zeven van de zaal | x = 108, 294, 437, 556, 677, 827, 953 |
+| de professor rechts | x = 1427, kruin op y = 179 |
+| de opgestoken hand | tot y = 118 |
+| rechterrand van de groep | x = 1011 |
 
 Daar hangt de hele tekstlaag aan vast. `mijn vrouw` staat onder de vrouw met het
-krullend haar op 559 en `Yves` onder de man met het sikje op 831. De beugel loopt
-van 46 tot 1062 en ligt op y = 95, want de opgestoken hand komt tot 120. Het
-bordje staat in de gaping naast die ene rechts, op halve hoogte, met twee
-lijntjes naar hem toe. Rechtsboven blijft vrij, want daar vliegt Kristof.
+krullend haar op 556 en `Yves` onder de man met het sikje op 827; `zaal.js` zet
+ze op 559 en 831, en die drie pixel zie je niet. De beugel loopt van 46 tot 1062
+en ligt op y = 95, want de opgestoken hand komt tot 118. Het bordje staat in de
+gaping naast de professor, op halve hoogte, met twee lijntjes naar hem toe die op
+1362 en 1366 eindigen. Rechtsboven blijft vrij, want daar vliegt Kristof.
 
 Vervang je `zaal-bron.png`, meet dan opnieuw. In `zaal.js` staat een klein
 meetscript beschreven; sneller is de nieuwe tekening in een editor openen en de
@@ -108,9 +129,11 @@ x van elke kop aflezen.
 - **Geen rood, en geen letter.** Allebei de laatste regels van de prompt staan er
   niet voor niets in. Kleurt de generator toch een trui rood, dan vecht die met
   de beugel.
-- **De lector met de snor hoort hier niet bij.** Hij staat op `titel.png`,
-  `vermomming.png` en `ateam.png`, en hij is degene die praat. Zet hem in de
-  zaal en de lezer zoekt zichzelf op de verkeerde plek.
+- **De professor met de snor staat rechts, en hij staat er alleen.** Hij is
+  dezelfde als op `titel.png`, `vermomming.png`, `ateam.png` en `pintje.png`, en
+  hij is degene die praat. Daarom staat hij achter de gaping en buiten de beugel:
+  hij hoort niet bij de zaal, hij kijkt ernaar. Zet hem tussen de zeven en de
+  lezer zoekt zichzelf op de verkeerde plek.
 - **`zaal.svg` is 1,8 MB.** De onderlaag zit er als data-URI in, want resvg
   zoekt een relatief pad niet zelf op. Dat bestand wordt bij elke render opnieuw
   geschreven en rough.js tekent elk streepje net anders, dus het is elke keer een

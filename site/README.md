@@ -13,11 +13,16 @@ menu:
 
 | Menu | Wat het is |
 |---|---|
-| De gids | de startpagina: de volgorde in zeven stappen, de twee deuren, en daarachter de vragen, één per scherm, met voortgangsbolletjes en een terugknop |
-| Jouw plan | verschijnt na de gids: je doel bovenaan, je werkwijze in één regel, de vier snelle winsten in de termen van jouw tool, de eerste drie prompts om te plakken, en onder "Als je verder wil" de rest achter een vouw |
-| Naslagwerk | een zoekveld over alles, en daaronder de deuren in groepen, met boven elke groep de vraag die ze beantwoordt. Je ziet er altijd maar een onderdeel tegelijk |
-| Valkuilen | de meest voorkomende fouten, doorzoekbaar. Elke klacht wijst naar het onderwerp dat overgeslagen is |
+| Start | de startpagina: de volgorde in zeven stappen met `volgorde.png` erboven, de twee deuren, de slides, en daarachter de vragen van de bevrager, één per scherm, met voortgangsbolletjes en een terugknop |
+| Jouw plan | verschijnt na de bevrager: je doel bovenaan, je werkwijze in één regel, de vier dingen die je meeneemt in de termen van jouw tool, de eerste drie prompts om te plakken, en onder "Als je verder wil" de rest achter een vouw |
+| Naslagwerk | een zoekveld over alles, en daaronder de deuren in groepen, met boven elke groep de vraag die ze beantwoordt. Je ziet er altijd maar een onderdeel tegelijk. De valkuilen zijn er een van |
 | Voorbeelden | de galerij met externe voorbeelden, met keywords per kaart. Groeit nog |
+| De slides ↗ | de talk waar deze site uit komt, als aparte pagina onder `/slides/`. Geen paneel, dus ze staat met een rand en een pijltje in de kop |
+
+Dat zijn de vier delen van `website.png` op de slides: de startpagina, de bevrager, het naslagwerk
+en de voorbeelden. De valkuilen stonden hier als vijfde knop en zitten sinds die slide in het
+naslagwerk, bij de onderwerpen, de prompts en de tools. Oude links naar `#valkuilen` blijven werken:
+`bindTabs()` stuurt ze door naar `#naslag/valkuilen`.
 
 De werkwijzenpagina (een pagina per werkwijze plus de vergelijkingstabel) hangt niet in het menu
 maar is bereikbaar vanuit het plan, het naslagwerk en het zoekveld.
@@ -30,25 +35,38 @@ ik eraan" kreeg dus eerst vragen terug, en daarna een menu. Vier knoppen naast e
 er bestaat, niet wat er eerst komt.
 
 Nu staat het antwoord er: `startplan` in `data.js`, zeven stappen in de volgorde waarin je ze zet,
-van "schrijf eerst als schrijver" tot "kijk na". De vier snelle winsten zitten daar als stap vier tot
-zeven nog altijd in, alleen niet meer als gelijken. Onder elke stap staat een wegwijzer naar de plek
-waar het onderwerp uitgelegd wordt; die knop kent zichzelf, want de naam komt uit
-`interneBestemming()`, dezelfde functie die de wegwijzers onder een valkuil tekent. `startplanNaast`
-zet er twee dingen naast die niet in de volgorde passen: je afbeeldingen en git.
+van "schrijf eerst als schrijver" tot "en dan pas je opmaak". Het zijn dezelfde zeven als op
+`volgorde.png`, en die tekening staat erboven (`figuren.volgorde`). De vier dingen die je meeneemt
+zitten daar als stap drie tot zes nog altijd in, alleen niet meer als gelijken. Onder elke stap staat
+een wegwijzer naar de plek waar het onderwerp uitgelegd wordt; die knop kent zichzelf, want de naam
+komt uit `interneBestemming()`, dezelfde functie die de wegwijzers onder een valkuil tekent.
+`startplanNaast` zet er twee dingen naast die niet in de volgorde passen: je afbeeldingen en git.
+
+Op de tekening staan twee beugels onder de bolletjes: *eerst schrijven* onder stap één en twee,
+*hier komt de AI erbij* onder drie tot zeven. In de lijst eronder staan die twee als tussenkop, op de
+plek waar de kleur verspringt. Ze komen uit `startplanGroepen`, en een stap wijst met `groep` naar
+de zijne. Zonder die twee regels leest het als zeven gelijke stappen, en dan verdwijnt dat de AI er
+pas bij drie bij komt.
 
 Daaronder staan twee deuren (`startDeuren()` in `app.js`). Links **Je eerste sessie**, de meest
 concrete bladzijde van de site, die vroeger enkel via het naslagwerk of via je plan te bereiken was.
-Rechts de gids. Wie de gids al deed, ziet in die tweede deur zijn plan staan ("werkwijze 1, Alles in
+Rechts de bevrager. Wie ze al deed, ziet in die tweede deur zijn plan staan ("werkwijze 1, Alles in
 de browser, met Claude") met de knop ernaartoe; wie halverwege stopte, leest daar waar hij gebleven
 was. `snelwinst` staat sindsdien alleen nog in Jouw plan.
+
+Onder de deuren staat `slidesBanner()`: de talk zelf, met haar titel en de toetsen die je erin nodig
+hebt. Nog lager staat `aanleidingBlok()`, de twee slides waar de talk mee opent: het antwoord dat
+las als een folder (`teleurstelling.png`), en dat het niet alleen aan je vraag lag (`mimic.jpg`).
+Die staan onder het antwoord en niet erboven, want wie binnenkomt met "hoe begin ik eraan" krijgt
+eerst de zeven stappen te zien.
 
 ## Het naslagwerk: een hub met deuren
 
 Het naslagwerk stond ooit als een lange lijst op een pagina. Dat leest niemand. Nu is het een hub:
-negen kaarten met een pictogram, een titel, een zin en een teller. Je klikt er een open, ziet alleen
+tien kaarten met een pictogram, een titel, een zin en een teller. Je klikt er een open, ziet alleen
 dat onderdeel, en gaat met "Alle onderdelen" terug.
 
-Negen kaarten op een hoop zijn negen kaarten die je alle negen moet lezen. Ze staan daarom in vijf
+Tien kaarten op een hoop zijn tien kaarten die je alle tien moet lezen. Ze staan daarom in zes
 groepen, met boven elke groep de vraag die je stelt op het moment dat je hier terechtkomt. Wie zijn
 vraag herkent, leest de andere groepen niet. De hiërarchie zit in de opmaak: de eerste deur is een
 brede kaart in de accentkleur, het colofon is een smalle kaart zonder schaduw, de rest zit
@@ -57,6 +75,7 @@ ertussenin.
 | Groep (`hubgroep-`) | Vraag erboven | Kleur | Kaarten |
 |---|---|---|---|
 | `start` | Waar begin ik? | rood accent | Je eerste sessie, stap voor stap (`eerstekeer`, brede kaart) |
+| `mis` | Het ging mis. Wat ontbrak er? | rood accent | Valkuilen (`valkuilen`, brede kaart) |
 | `kern` | Hoe werkt dit dan? | blauw | De onderwerpen (`onderwerpen`), De vier werkwijzen (geen vak: springt naar de werkwijzenpagina) |
 | `maat` | Wat geldt er bij mij? | oker | Met welke AI werk je? (`tool`), Wat moet eruit komen? (`uitkomst`), Bij mij ligt dat anders (`randgevallen`) |
 | `pak` | Wat kan ik nu meteen gebruiken? | groen | Prompts om te plakken (`prompts`), Gereedschap en links (`gereedschap`) |
@@ -94,8 +113,10 @@ Wat je nodig hebt om vandaag te beginnen, staat nu zonder kader op de pagina:
    een streep in de accentkleur
 2. je werkwijze als één regel: nummer, naam, pitch en een knop naar de werkwijzenpagina. De
    volledige kaart met haar punten en routes staat daar, en stond hier een tweede keer
-3. de vier stappen uit `snelwinst` als één kolom met een lijn ertussen, met de regel in de termen
-   van jouw tool eronder. Klikken opent het onderwerpvenster
+3. de vier dingen uit `snelwinst` als één kolom met een lijn ertussen, met `meenemen.png` erboven
+   en de regel in de termen van jouw tool eronder. Klikken opent het onderwerpvenster. De nummers
+   zijn de stappen drie tot zes uit de volgorde (het veld `nr`) en niet de plaats in de lijst, zodat
+   hier dezelfde cijfers staan als op de tekening en op de startpagina
 4. de drie prompts, en daaronder de twee doorverwijzingen op één regel: je eerste sessie, en alle
    prompts in het naslagwerk
 
@@ -186,6 +207,21 @@ npx serve .                    # idem
 `index.html` rechtstreeks openen met dubbelklik werkt ook, alleen bewaart de browser dan je
 antwoorden niet tussen twee bezoeken.
 
+### De slides erbij
+
+De knop **De slides** in de kop wijst naar `slides/`, en die map staat er lokaal niet. Ze wordt
+gemaakt uit `slides/cursus-schrijven-met-ai.qmd`, vanuit de repo-root:
+
+```bash
+npm run slides
+```
+
+Dat rendert de talk naar `site/slides/index.html`, met haar tekeningen en haar thema ernaast. De map
+staat in `.gitignore`, want ze is af te leiden uit de qmd; op GitHub Pages maakt de stap *Slides
+renderen* in [.github/workflows/pages.yml](../.github/workflows/pages.yml) ze bij elke deploy
+opnieuw. Draai je dat commando niet, dan is de knop een link naar niets: de rest van de site werkt
+gewoon. Quarto moet je er wel voor geïnstalleerd hebben.
+
 ## Opmaak in de tekst zelf
 
 `rijk()` in `app.js` leest vier markeringen: `` `tussen accenten` `` wordt een code-vakje,
@@ -272,7 +308,13 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
   Claude-app en Claude Code doet dat vanuit een commandovenster. `routesBlok()` in `app.js` tekent
   ze, op de werkwijzenpagina en in de vouw "Zo zet je werkwijze N op"; een werkwijze zonder
   `routes` krijgt niets extra
-- een onderwerp krijgt zijn venster uit `watis`, `kern`, `tips`, `gevorderd` en optioneel een `tabel`
+- een onderwerp krijgt zijn venster uit `watis`, `kern`, `tips`, `gevorderd` en optioneel een `tabel`.
+  Er zijn er negen, in de volgorde van de zeven stappen: `plat`, `mapindeling`, `contextmap`,
+  `regels`, `improve`, `skills`, `nakijken`, `lesmateriaal`, `figuren`
+- een onderwerp kan daarnaast een `code` dragen (een stuk uit een echt bestand, met `kop`, `intro`,
+  `taal` en `tekst`, letterlijk in een codeblok) en een `kader` (het terzijde dat er telkens op
+  volgt, met `kop`, `tekst` en een eigen `figuur`). Zet `breed: true` op die figuur wanneer het een
+  schermafdruk is die je moet kunnen lezen; anders staat ze naast de tekst
 - een onderwerp kan een `verder` dragen: wegwijzers naar een andere plek op deze site, met dezelfde
   kaartjes als onder een valkuil. Dat is waar uitleg heen ging die op deze bladzijde stond maar er
   niet over ging: de opmaak hoort bij "Van tekst naar lesmateriaal" en niet bij "Werk in platte
@@ -381,10 +423,15 @@ zodat een figuur bijgestuurd kan worden zonder van nul te beginnen.
 
 Welke tekening waar hangt, staat in `data.js` en nergens anders:
 
-- `figuren.kernidee` en `figuren.werkwijzen` zijn de twee losse tekeningen: de eerste staat op
-  het welkomscherm, de tweede boven de tabs op de werkwijzenpagina (in `#werkwijzenfiguur`)
+- `figuren` draagt de losse tekeningen: `volgorde` boven de zeven stappen, `meenemen` boven de
+  vier dingen in je plan, `kernidee` lager op het welkomscherm, en `werkwijzen` boven de tabs op
+  de werkwijzenpagina (in `#werkwijzenfiguur`)
 - een onderwerp kan een `figuur` hebben; die verschijnt in het onderwerpvenster tussen "De kern"
-  en de tips. Nu hebben `plat`, `contextmap` en `skills` er een
+  en de tips. Een tweede, `figuur2`, komt onder de tips: de eerste zegt wat het is, de tweede hoe
+  het werkt. Zeven van de negen onderwerpen hebben er minstens een
+- `aanleiding`, `assistentFiguur`, `voorbeeldgesprek.figuur` en de drie in `colofon`
+  (`delenFiguur`, `figuur`, `mapFiguur`) zijn de tekeningen die bij een bladzijde horen en niet bij
+  een onderwerp
 - een figuur is telkens `bestand` (pad vanaf `site/`), `alt` (beschrijf wat er te zien is) en
   `bijschrift`. Het bijschrift mag niet herhalen wat er vlak boven al staat
 - `figuurBlok()` in `app.js` tekent ze; klikken opent de tekening op ware grootte. Een brede
@@ -392,6 +439,26 @@ Welke tekening waar hangt, staat in `data.js` en nergens anders:
   handschrift onleesbaar
 
 Schermafbeeldingen staan ook in `assets/`.
+
+### De tekeningen die van de slides komen
+
+Sinds de talk staan de meeste tekeningen op twee plekken. De scripts ervoor staan in
+[slides/assets/imagegen/](../slides/assets/imagegen/) en de png's die eruit komen zijn hierheen
+gekopieerd: `volgorde`, `meenemen`, `mapindeling`, `improvelus`, `improvevb`, `watiseenskill`,
+`skillvb`, `eerstesessie`, `teleurstelling`, `agnostisch`, `chatvenster`, `regelbestand`, `versies`,
+`website` en `allessamen`. Wijzig je daar een figuur, kopieer hem dan opnieuw hierheen, want de
+site leest zijn eigen `assets/` en niet die van de slides.
+
+Vier scripts bestaan twee keer, met opzet: `eenbron`, `vijfdocumenten`, `kernidee` en
+`afsprakenofskill` staan hier op 1600 tot 1660 breed en op de slides op 1560, met grotere tekst.
+`afsprakenofskill` is bovendien een andere tekening geworden: hier het regelbestand naast een skill,
+op de slides waar een skill vandaan komt. Die twee lopen bewust uiteen.
+
+Vijf tekeningen komen niet uit rough.js maar uit een beeldgenerator, en die staan hier als `.jpg`:
+`zekerweten`, `ateam`, `laatzeschrijven`, `vermomming` en `mimic`. Als png van 1024 bij 1024 wegen
+ze elk meer dan een megabyte, en dat is voor een webpagina te zwaar. Ze zijn teruggebracht naar 960
+breed en als jpeg op kwaliteit 82 bewaard, wat ze onder de 140 kB brengt. Vervang je er een, doe dan
+hetzelfde; de png's blijven in `slides/assets/` staan.
 
 `app.js` bevat de logica, `styles.css` de opmaak (licht papier, rood als accent, ook een donkere
 versie). De accentkleur sluit aan bij de tekeningen en staat in `--accent`, `--accent-diep` en

@@ -2,3 +2,7 @@ node_modules/
 
 /.quarto/
 **/*.quarto_ipynb
+
+# De gerenderde slides onder site/. Ze worden lokaal gemaakt met
+# `npm run slides` en op GitHub Actions door de stap Slides renderen.
+site/slides/

@@ -2,8 +2,10 @@ Deze website heeft als doel om mensen te helpen hoe ze AI kunnen gebruiken in he
 
 1. Een startpagina die de vraag beantwoordt waarmee iemand binnenkomt: "hoe begin ik eraan". Zeven stappen in de volgorde waarin je ze zet. Zie De startpagina hieronder.
 2. Een interactieve 'bevrager' die de gebruiker helpt te beslissen welke aanpak en tools moeten gebruikt worden. Gebaseerd op voorkennis en AI-abbonement.
-3. Een naslagwerk met een overzicht van tools, prompts, en aanpakmogelijkheden.
+3. Een naslagwerk met een overzicht van tools, prompts, en aanpakmogelijkheden. De valkuilen zitten hierin, als een van de deuren; ze stonden ooit als een vijfde knop in het menu.
 4. Een gallerij met links naar externe voorbeelden (repos, websites). Staat er, met tien cursussen en sites, elk met maker, een regel uitleg en de techniek erachter. Ze staat in `voorbeelden` in `site/data.js`.
+
+Naast die vier staan de slides van de talk, onder `/slides/`, met een knop in de kop en een strook op de startpagina. Ze worden gerenderd uit `slides/cursus-schrijven-met-ai.qmd`: lokaal met `npm run slides`, op Pages door de workflow. **De slides zijn de waarheid.** Loopt de site uit de pas met wat daar verteld wordt, dan volgt de site.
 
 
 Het is belangrijk dat de website vooral catert naar beginnende en medium gebruikers van AI, en dat de informatie duidelijk en toegankelijk is. De interactieve bevrager moet gebruikers begeleiden door een reeks vragen die hun behoeften en kennisniveau in kaart brengen, zodat ze de meest geschikte tools en methoden kunnen vinden voor het maken van hun lescursus.
@@ -25,11 +27,13 @@ Zeven stappen, in de volgorde waarin je ze zet. Ze staan in `startplan` in `site
 
 1. Schrijf eerst als schrijver. Outline, eerste versie, nalezen, herschrijven.
 2. Zet je cursus in droge tekst: een map per hoofdstuk, een bestand per onderwerp.
-3. Maak een contextmap, en hou ze sec.
-4. Zet je regels in een bestand, met daarin ook wat elk document in je contextmap is.
+3. Maak een contextmap, en hou ze proper: `context/` is wat een collega nodig heeft om je vak over te nemen, `content/` zijn je hoofdstukken zelf.
+4. Zet je regels in een bestand: de handleiding voor je agents, met daarin ook wat elk document in je contextmap is.
 5. Laat de AI bijhouden wat je corrigeert (`improve.md`), en maak daar later je skills van.
-6. Kijk na.
+6. Kijk na. De AI zegt nooit dat ze het niet zeker weet. Huur er het A(I)-team bij: laat nalezen, telkens in een andere rol.
 7. En dan pas je opmaak, in één keer.
+
+Op de startpagina staat `volgorde.png` van de slides erboven, met de twee beugels eronder als tussenkop: *eerst schrijven* onder één en twee, *hier komt de AI erbij* onder drie tot zeven.
 
 Stap 3 tot 6 zijn de lowhangingfruit-wins uit Het naslagwerk hieronder. Ze stonden er ooit als vier
 gelijke knoppen naast elkaar; dat is een menu, en een menu zegt niet wat er eerst komt. De eerste
@@ -59,13 +63,15 @@ We willen in de bevraging zeker de gebruiker de optie geven dat hij informatie o
 # Het naslagwerk
 
 Ik wil zeker een vereenvoudigde flow tonen met de "lowhangingfruit" wins. Die staan op twee plekken:
-als stap 4 tot 7 van de volgorde op de hoofdpagina, en in het plan dat na de bevraging verschijnt.
-Het gaat om:
+als stap 3 tot 6 van de volgorde op de hoofdpagina, en in het plan dat na de bevraging verschijnt.
+Het zijn dezelfde vier als op `meenemen.png` van de slides, met dezelfde nummers:
 
-- het nut van een contextmap (een overzicht van de inhoud en structuur van de cursus, zodat de AI beter kan helpen bij het genereren van content)
-- het nut van een claude.md/gemini.md prompt (je eigen regels, om niet telkens dezelfde dingen te moeten herhalen)
-- het nut van skills (een overzicht van de vaardigheden die de AI moet beheersen om de cursusinhoud effectief te genereren
-- NAKIJKEN! Een overzicht van de meest voorkomende fouten en valkuilen bij het gebruik van AI in cursusontwikkeling, zodat gebruikers deze kunnen vermijden.
+- **3, je contextmap** (een overzicht van de inhoud en structuur van de cursus, zodat de AI beter kan helpen bij het genereren van content). Vijf documenten, elk met een reden erbij
+- **4, je regelbestand** (claude.md, AGENTS.md, of het instructieveld van je venster: je eigen regels, om niet telkens dezelfde dingen te moeten herhalen). Je toon, en vooral je niet-doen-lijst
+- **5, `improve.md`** (de AI noteert je correcties terwijl je ze geeft). Wat blijft terugkomen wordt een vaste regel, wat over één soort taak gaat wordt een skill: een apart document per taak die terugkeert
+- **6, NAKIJKEN!** De getallen, de namen en de bronnen: zelf lezen. Daaronder hangen de valkuilen, een overzicht van de meest voorkomende fouten bij het gebruik van AI in cursusontwikkeling
+
+De negen onderwerpen in `onderwerpen` (`site/data.js`) staan in diezelfde volgorde: `plat`, `mapindeling`, `contextmap`, `regels`, `improve`, `skills`, `nakijken`, `lesmateriaal`, `figuren`.
 
 
 

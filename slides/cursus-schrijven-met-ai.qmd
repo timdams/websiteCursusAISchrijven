@@ -129,7 +129,7 @@ Wat volgt is daarom een voorgestelde workflow (en een work-in-progress website m
 ::: {.onder}
 Iedereen zit met een ander abonnement (of geen) en een andere toolset: browser,
 client, VS Code. Theoretisch werkt wat volgt op elke combinatie. 🤞
-**Op het einde kort hoe het praktisch gaat in Claude.**
+
 :::
 
 
@@ -256,13 +256,13 @@ jouw venster waar je bestanden blijven staan.
 
 
 
-## [5]{.nr} Laat de A.I.bijhouden wat je corrigeert {.metonder}
+## [5]{.nr} Laat de A.I. bijhouden wat je corrigeert {.metonder}
 
 ![](assets/improvelus.png){.figuur}
 
 
 
-## [5]{.nr} Voorbeeld van mijn 'improve.md'  omtrent afbeeldingen maken {.metnaast}
+## [5]{.nr} Van losse correcties naar één checklist {.metnaast}
 
 ::: {.columns}
 ::: {.column}
@@ -271,6 +271,7 @@ jouw venster waar je bestanden blijven staan.
 
 ::: {.column}
 
+* Elke regel hier stond eerst als correctie in een chat.
 * `improve.md` wordt vanaf dan meegelezen zoals je regelbestand zelf: de A.I. past toe wat ze daar noteerde.
 * Beter dan *"ik zal op het einde van de sessie al m'n remarks wel even opschrijven"*...dat doe je toch nooit.😒
 * Tip: neem de regels geregeld door (soms neemt de A.I. vreemde beslissingen, en dan moet je ze corrigeren).
@@ -346,7 +347,7 @@ Wanneer je jezelf dezelfde reeks commando's hoort dicteren. Of A.I. telkens het 
 
 
 ::: {.fragment}
-* Tip: installeer niet tig skills die je online vindt. Broedt op je eigen skills. Remember: you're the boss! 🧑‍🍳
+* Tip: installeer niet iedere skill die je online vindt. Broedt op je eigen skills. **Remember: you're the boss! 🧑‍🍳**
 
 :::
 
@@ -375,7 +376,7 @@ Het verschil tussen een cursus en A.I.-slob.
 
 
 
-## Huur het A(I)-team {.metnaast}
+## [6]{.nr} Huur het A(I)-team {.metnaast}
 
 ::: {.columns}
 ::: {.column}
@@ -396,29 +397,134 @@ Laat de A.I. je teksten nalezen, maar telkens in een andere rol.
 :::
 :::
 
-## [7]{.nr} En nu de belekes, pdf, slides, etc! {.metonder}
+## [7]{.nr} En finaal de belekes, pdf, slides, etc! {.metonder}
 
 ![](assets/eenbron.png){.figuur}
 
 ::: {.onder}
 Nu begint de tokenburning ... en fun 😁.
 
-Maar dat is voor een andere keer.
+Maar dat is voor een andere keer...
 :::
 
-## Als je één slide fotografeert: deze {.metonder}
+## Ook deze slides doorliepen deze flow {.metonder}
+
+![](assets/versies.png){.figuur}
+
+## Deze talk, als map {.metonder}
+<!-- SLOT B van twee. A is "Wat je meeneemt" hierboven. Dezelfde vier dingen,
+     maar dan waar ze staan in de repo van deze talk zelf. -->
+
+![](assets/allessamen.png){.figuur}
+
+
+
+## Wat je (hopelijk) mee naar huis neemt  {.metonder}
 
 ![](assets/meenemen.png){.figuur}
 
 
 
-## Dus: {.metonder}
-
-![](assets/volgorde.png){.figuur}
 
 
+## Hoe heet het bij jou? In je venster
 
-## De site {.tussentitel .center}
+<table class="termen">
+<colgroup>
+  <col style="width:14%"><col style="width:32%"><col style="width:25%"><col style="width:29%">
+</colgroup>
+<thead>
+<tr>
+  <th class="hoek"></th>
+  <th>je vaste plek heet</th>
+  <th>je regels staan in</th>
+  <th>een skill is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <th>Claude</th>
+  <td>een Project</td>
+  <td>de projectinstructies</td>
+  <td>een Skill, als zip of <code>.md</code> opgeladen</td>
+</tr>
+<tr>
+  <th>ChatGPT</th>
+  <td>een Project</td>
+  <td>de projectinstructies</td>
+  <td>een document in je project, of een eigen GPT</td>
+</tr>
+<tr>
+  <th>Gemini</th>
+  <td>een Gem, of een Notebook</td>
+  <td>de instructies van je Gem of notebook</td>
+  <td>een tweede Gem</td>
+</tr>
+<tr>
+  <th>Copilot</th>
+  <td>een Notebook</td>
+  <td>de instructies van je notebook</td>
+  <td>een tweede notebook</td>
+</tr>
+</tbody>
+</table>
+
+::: {.onder}
+
+Deze info heeft Claude verzameld...Graag feedback (nadien) of dit klopt.
+:::
+
+
+## Hoe heet het bij jou? In een map op je pc
+
+<table class="termen">
+<colgroup>
+  <col style="width:14%"><col style="width:32%"><col style="width:25%"><col style="width:29%">
+</colgroup>
+<thead>
+<tr>
+  <th class="hoek"></th>
+  <th>waarmee je je map opent</th>
+  <th>je regels staan in</th>
+  <th>je skills staan in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <th>Claude</th>
+  <td>de Claude-app<span class="via">Cowork, of Claude Code</span></td>
+  <td><code>CLAUDE.md</code></td>
+  <td><code>.claude/skills/</code></td>
+</tr>
+<tr>
+  <th>ChatGPT</th>
+  <td>Codex<span class="via">in de ChatGPT-app, of in VS Code</span></td>
+  <td><code>AGENTS.md</code></td>
+  <td><code>~/.codex/skills/</code></td>
+</tr>
+<tr>
+  <th>Gemini</th>
+  <td>Antigravity<span class="via">de editor van Google zelf</span></td>
+  <td><code>AGENTS.md</code><span class="via">of <code>GEMINI.md</code></span></td>
+  <td><code>.agents/skills/</code></td>
+</tr>
+<tr>
+  <th>Copilot</th>
+  <td>VS Code<span class="via">niet de Copilot in Word</span></td>
+  <td><code>AGENTS.md</code></td>
+  <td><code>.github/skills/</code></td>
+</tr>
+</tbody>
+</table>
+
+::: {.onder}
+
+Drie van de vier lezen AGENTS.md, en in elke skills-map zit een SKILL.md.
+:::
+
+
+
+## Ohja...de site {.tussentitel .center}
 
 ::: {.terzijde}
 Op vraag van mijn vrouw...en Yves 😉
@@ -430,155 +536,33 @@ Op vraag van mijn vrouw...en Yves 😉
 
 
 
-## Hoe heet het bij jou?
 
-
-
-<table class="termen">
-<colgroup>
-  <col style="width:10%"><col style="width:19%"><col style="width:19%">
-  <col style="width:22%"><col style="width:30%">
-</colgroup>
-<thead>
-<tr>
-  <th class="hoek"></th>
-  <th class="groep" colspan="3">in je venster: browser of app</th>
-  <th class="groep">in een map op je eigen schijf</th>
-</tr>
-<tr>
-  <th class="hoek"></th>
-  <th>je vaste plek heet</th>
-  <th>je regels staan in</th>
-  <th>een skill heet</th>
-  <th>je regelbestand heet</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <th>Claude</th>
-  <td>een Project</td>
-  <td>de projectinstructies</td>
-  <td>een Skill, als zip opgeladen</td>
-  <td><code>CLAUDE.md</code> en skills in <code>.claude/skills/</code><span class="via">met Cowork of Claude Code</span></td>
-</tr>
-<tr>
-  <th>ChatGPT</th>
-  <td>een Project</td>
-  <td>de projectinstructies</td>
-  <td>een document in je project, of een eigen GPT</td>
-  <td><code>AGENTS.md</code><span class="via">met Codex</span></td>
-</tr>
-<tr>
-  <th>Gemini</th>
-  <td>een Gem, of een Notebook<span class="via">een Notebook vraagt een persoonlijk account</span></td>
-  <td>de instructies van je Gem, of van je notebook</td>
-  <td>een tweede Gem</td>
-  <td><code>GEMINI.md</code> en skills in <code>.gemini/skills/</code><span class="via">met de Gemini CLI</span></td>
-</tr>
-<tr>
-  <th>Copilot</th>
-  <td>een Notebook</td>
-  <td>de instructies van je notebook</td>
-  <td>een tweede notebook</td>
-  <td><code>.github/<wbr>copilot-instructions.md</code><span class="via">met Copilot in VS Code, niet die in Word</span></td>
-</tr>
-</tbody>
-</table>
-
-::: {.onder}
-Namen veranderen: NotebookLM heet sinds juli Gemini Notebook. Kijk dus na of
-het bij jou nog zo heet, en kies op de site je tool voor de rest van je klikpad.
-
-Deze info heeft Claude verzameld...Graag feedback of dit klopt.
-:::
-
-## Ook deze slides {.metonder}
-
-![](assets/versies.png){.figuur}
-
-::: {.onder}
-De linkse was tot vandaag slide twee. In punt één ontbrak een werkwoord, en dat
-had ik niet gezien.
-:::
 
 ## Wat er nog niet af is
 
 - De galerij groeit nog. Ken je een cursus, site of cursusmap die erin hoort,
   laat het weten.
-- Grote stukken van de teksten voelen nog A.I.aan, op de site net zo goed als
-  hier in de slides.
+- Grote stukken van de teksten voelen nog A.I. aan.
 - Of de bevrager de juiste vragen stelt, weet ik niet. Dat merk ik pas wanneer
   iemand anders hem doorloopt met zijn eigen vak in zijn hoofd.
 
+:::: {.columns}
+::: {.column width="72%"}
 ::: {.kader}
 Ga naar `timdams.github.io/websiteCursusAISchrijven`, doorloop de bevrager met
 je eigen vak in je hoofd, en stuur me terug waar je vastliep of wat er ontbreekt.
 :::
-
-## Wat je meeneemt {.metonder}
-<!-- SLOT A van twee. B is "Deze talk, als map" hieronder. Kies er een voor de
-     talk en gooi de andere weg. -->
-
-![](assets/meenemen.png){.figuur}
-
-::: {.onder}
-Begin bij het regelbestand, met drie regels en niet met twintig. Wat je daarna
-corrigeert, schrijft de AI zelf bij in `improve.md`.
 :::
 
-## Deze talk, als map {.metonder}
-<!-- SLOT B van twee. A is "Wat je meeneemt" hierboven. Dezelfde vier dingen,
-     maar dan waar ze staan in de repo van deze talk zelf. -->
-
-![](assets/allessamen.png){.figuur}
-
-::: {.onder}
-`context/` en `CLAUDE.MD` staan er vanaf de eerste dag. De skill kwam er pas bij
-de derde tekening, en `site/` en `slides/` zijn wat eruit kwam.
+::: {.column width="28%"}
+![](assets/qrsite.png){.qr}
 :::
+::::
 
 
 
-## Uitsmijters
-
-Voor als er nog tijd over is
-
-## Twee dingen die ernaast lopen
-
-::: {.columns}
-::: {.column width="50%"}
-[Je afbeeldingen]{.kop}
-
-Schrijf per figuur één zin op over wat erop moet staan. Waarmee je ze maakt,
-beslis je later.
-
-::: {.onder style="text-align:left"}
-De tekeningen hier zijn Excalidraw-code. Ze zitten in git, en ik kan er een
-woord in wijzigen zonder opnieuw te tekenen.
-:::
-:::
-
-::: {.column width="50%"}
-[Git]{.kop}
-
-Staan je bestanden op je eigen schijf, zet er dan versiebeheer op vanaf de
-eerste dag.
-
-::: {.onder style="text-align:left"}
-Blijf je in de browser werken, dan sla je dit over.
-:::
-:::
-:::
 
 
-## Je eerste sessie
+## Bedankt! {.center}
 
-1. Kies één hoofdstuk. Dat waar je zelf het minst tevreden over bent.
-2. Maak de map, zet je regels erin, zet je contextmap ernaast.
-3. Vraag één ding: *herschrijf sectie 2 met mijn regels ernaast*.
-4. Lees na, corrigeer, en laat elke correctie in `improve.md` zetten.
-
-::: {.kader}
-Je stopt wanneer dat ene hoofdstuk er staat zoals jij het wil. De andere twaalf
-blijven ondertussen gewoon liggen.
-:::
+![](assets/pintje.png){.figuur}

@@ -123,18 +123,21 @@ paste geen kolom meer bij. Het script en de png zijn weg; de tabel staat nu
 als gewone HTML in de qmd, met haar opmaak onder *de termentabel* in
 [theme/site.scss](theme/site.scss).
 
-Er staan zes tools in en vier namen per tool: waar je bestanden blijven staan,
-waar je regels staan, hoe een skill daar heet, en hoe je regelbestand heet
-wanneer je in een map op je eigen schijf werkt. Die laatste kolom staat apart,
-met de tool waarmee je dat doet eronder in het grijs (`.via`).
+Het zijn er ondertussen twee, en ze staan op twee slides na elkaar: *In je
+venster* en *In een map op je pc*. Vier tools per tabel en drie namen per tool.
+In de tweede staat onder de tool waarmee je je map opent, en onder een
+regelbestand dat ook anders kan heten, een tweede regel in het grijs (`.via`).
 
-De namen komen uit `assistenten[]` in [site/data.js](../site/data.js): `plek`,
-`regels`, `skill` en `termen.regelbestand`. Wijzigt daar een naam, wijzig hem
-dan ook hier.
+Diezelfde twee tabellen staan op de site, onder *Met welke AI werk je?*. Daar
+worden ze getekend door `tekenTermentabellen()` in [site/app.js](../site/app.js)
+uit `assistenten[]` in [site/data.js](../site/data.js): `kort3.plek`,
+`kort3.regels` en `kort3.skill` voor de eerste tabel, en het blok `map`
+(`waarmee`, `via`, `regelbestand`, `regelbestandVia`, `skills`) voor de tweede.
+Wijzigt daar een naam, wijzig hem dan ook hier, en omgekeerd.
 
 De breedtes van de kolommen staan in de `colgroup` in de qmd en de tabel staat
-op `table-layout: fixed`. Zonder dat verdeelt de browser ze zelf en breekt
-`.github/copilot-instructions.md` over twee regels. Zes rijen van vijf kolommen
+op `table-layout: fixed`. Zonder dat verdeelt de browser ze zelf en breekt een
+lang pad als `~/.codex/skills/` over twee regels. Vier rijen van vier kolommen
 vullen de slide op `font-size: .76em`; komt er een rij of een kolom bij, dan
 moet die grootte omlaag en kijk je opnieuw na of het achteraan de aula nog
 leest.

@@ -216,11 +216,13 @@ $code-color: $accent-diep;
 
 // ---------- de termentabel ----------
 // Op *Hoe heet het bij jou?* staat een echte tabel en geen tekening: de lezer
-// zoekt daar zijn eigen rij op, en dat gaat niet in een png. Vijf kolommen op
-// 1472 bruikbare pixels, dus de tekst valt hier onder de maat van de
-// tekeningen. Zes rijen van vijf kolommen vullen op deze grootte de slide;
-// zet je er een kolom of een rij bij, dan moet de grootte hieronder mee omlaag
-// en leest het achteraan de aula niet meer.
+// zoekt daar zijn eigen rij op, en dat gaat niet in een png. Ze staat twee keer
+// met dezelfde vier kolommen: eerst wat je in je venster ziet, dan wat er in
+// een map op je schijf staat. Die twee stonden ooit naast elkaar op één slide,
+// met een groepskop erboven; op 1472 bruikbare pixels werden dat vijf kolommen
+// en las de rechterhelft achteraan de aula niet meer. Vijf rijen van vier
+// kolommen vullen op deze grootte de slide; zet je er een kolom of een rij bij,
+// dan moet de grootte hieronder mee omlaag.
 .reveal table.termen {
   width: 100%;
   margin: .3em 0 0;
@@ -228,41 +230,29 @@ $code-color: $accent-diep;
   // De breedtes staan in de colgroup in de qmd: zonder table-layout kiest de
   // browser ze zelf en breekt het pad van copilot-instructions.md in twee.
   table-layout: fixed;
-  font-size: .76em;
+  font-size: 1.15em;
   line-height: 1.25;
 }
 
 .reveal table.termen th,
 .reveal table.termen td {
-  padding: .38em .5em;
+  padding: .65em .5em;
   border: none;
   border-bottom: 1px solid $lijn;
   text-align: left;
   vertical-align: top;
 }
 
-// De bovenste kop groepeert: waar het in je venster staat, en waar hetzelfde
-// op je schijf staat. Het rode lijntje eronder loopt enkel onder de groep, dus
-// het lege hoekje links draagt er geen.
-.reveal table.termen thead tr:first-child th {
-  padding-bottom: .15em;
-  border-bottom: none;
-  color: $inkt-stil;
-  font-weight: 500;
-}
-
-.reveal table.termen thead tr:first-child th.groep {
+// De kop noemt de drie dingen die elke tool anders noemt. Het rode lijntje
+// eronder loopt niet onder het lege hoekje links: daar staat geen kop.
+.reveal table.termen thead th {
   border-bottom: 2px solid $accent;
-}
-
-.reveal table.termen thead tr:first-child th.groep + .groep {
-  border-left: 1px solid $lijn;
-}
-
-.reveal table.termen thead tr:last-child th {
-  border-bottom: 2px solid $lijn-hard;
   color: $inkt-kop;
   font-weight: 700;
+}
+
+.reveal table.termen thead th.hoek {
+  border-bottom: none;
 }
 
 // De naam van de tool is de ingang van de rij.
@@ -277,11 +267,6 @@ $code-color: $accent-diep;
   border-bottom: none;
 }
 
-// De kolom van je eigen schijf staat apart, ook in de rijen eronder.
-.reveal table.termen tbody td:last-child {
-  border-left: 1px solid $lijn;
-}
-
 .reveal table.termen code {
   padding: .05em .2em;
   font-size: .86em;
@@ -292,8 +277,9 @@ $code-color: $accent-diep;
   color: $inkt-stil;
 }
 
-// Waarmee je in die map werkt. Hoort bij het bestand erboven, dus geen eigen
-// kolom maar een regel eronder.
+// Het programma waar de cel over gaat, of de tweede naam van hetzelfde
+// bestand. Hoort bij de regel erboven, dus geen eigen kolom maar een regel
+// eronder.
 .reveal table.termen .via {
   display: block;
   margin-top: .2em;
@@ -401,4 +387,25 @@ $code-color: $accent-diep;
 .reveal .progress {
   color: $accent;
   height: 4px;
+}
+
+// ---------- de qr-code naar de site ----------
+// De code hangt naast het kadertje met het adres erin, en is dus geen figuur:
+// geen kader, geen schaduw, geen afgeronde hoeken. Een scanner leest het
+// rustigst met een witte rand rondom en zonder lijn eromheen. Op 300 breed
+// scant ze vanaf de achterste rij; kleiner dan 240 en de camera van een gsm
+// begint te zoeken.
+.reveal .qr,
+.reveal p > img.qr,
+.reveal .columns p > img.qr {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
 }

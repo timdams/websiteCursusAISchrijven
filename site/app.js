@@ -399,7 +399,7 @@
     "quarto", "quarto-docx", "quarto-pptx", "quarto-html", "quarto-typst",
     "quarto-revealjs", "quarto-book", "quarto-brand", "pandoc", "pandoc-refdoc",
     "marp", "mermaid", "vscode", "obsidian", "typora", "typst", "git", "writage",
-    "gemini-cli", "gemini-skills", "claude-code", "copilot-instructions"
+    "antigravity", "antigravity-skills", "claude-code", "copilot-instructions"
   ];
 
   /* Blijft deze gebruiker in de browser? Dan is een mappenboom op zijn schijf,
@@ -564,13 +564,53 @@
       binnen.appendChild(ul);
     }
 
+    /* Een tweede tekening, onder de tips. Het onderwerp draagt er twee wanneer
+       de eerste zegt wat het is en de tweede hoe het werkt. */
+    var ofig2 = figuurBlok(o.figuur2);
+    if (ofig2) binnen.appendChild(ofig2);
+
+    /* Een stuk uit een echt bestand, letterlijk. Voor wie nog nooit een
+       regelbestand zag is de vorm de helft van het antwoord. */
+    if (o.code) {
+      var cb = el("section", "codevoorbeeld");
+      cb.appendChild(kaderKop("h3", null, o.code.kop, "klembord", true));
+      if (o.code.intro) cb.appendChild(rijk(el("p", "noot"), o.code.intro));
+      var pre = el("pre", "codeblok");
+      if (o.code.taal) pre.setAttribute("data-taal", o.code.taal);
+      pre.appendChild(el("code", null, o.code.tekst));
+      cb.appendChild(pre);
+      binnen.appendChild(cb);
+    }
+
     var kz = keuzeBlokken(o);
     if (kz) binnen.appendChild(kz);
+
+    /* Het terzijde bij een onderwerp: de vraag die er telkens op volgt, met
+       zijn eigen tekening erbij. */
+    if (o.kader) {
+      var kd = el("section", "onderwerpkader");
+      kd.appendChild(kaderKop("h3", null, o.kader.kop, "lamp", true));
+      /* Een schermafdruk moet je kunnen lezen, dus die krijgt de volle kolom.
+         Een tekening naast de tekst mag smaller. */
+      if (o.kader.figuur && o.kader.figuur.breed) {
+        kd.appendChild(rijk(el("p", "kadertekst"), o.kader.tekst));
+        kd.appendChild(figuurBlok(o.kader.figuur));
+      } else {
+        var knaast = el("div", "naastelkaar");
+        knaast.appendChild(rijk(el("p"), o.kader.tekst));
+        var kfig = figuurBlok(o.kader.figuur, "figuur-vierkant");
+        if (kfig) knaast.appendChild(kfig);
+        kd.appendChild(knaast);
+      }
+      binnen.appendChild(kd);
+    }
 
     if (o.voorbeeld) {
       var vb = el("section", "regelvoorbeeld");
       vb.appendChild(kaderKop("h3", null, o.voorbeeld.kop, "klembord", true));
       vb.appendChild(rijk(el("p", "noot"), o.voorbeeld.intro));
+      var vbfig = figuurBlok(o.voorbeeld.figuur);
+      if (vbfig) vb.appendChild(vbfig);
       var vul = el("ul", "regellijst kaal");
       o.voorbeeld.regels.forEach(function (r) {
         vul.appendChild(rijk(el("li", "regelitem"), r));
@@ -611,7 +651,7 @@
     }
 
     var mijn = mijnAssistent();
-    if (o.id === "contextmap" || o.id === "regels" || o.id === "skills") {
+    if (o.id === "contextmap" || o.id === "regels" || o.id === "skills" || o.id === "improve") {
       if (mijn) {
         var tk = assistentKaart(mijn, "Bij " + mijn.naam + " heet dat");
         tk.classList.add("kaal");
@@ -995,8 +1035,26 @@
     wrap.appendChild(kaderKop("h2", "startplan-kop", D.startplanKop, "trap", true));
     if (D.startplanNoot) wrap.appendChild(rijk(el("p", "noot startplan-noot"), D.startplanNoot));
 
+    /* De rij bolletjes van de slides staat boven de lijst. Wie de tekening al
+       gezien heeft, herkent de zeven stappen eronder meteen; wie ze niet zag,
+       ziet er de twee helften in staan. */
+    var vfig = figuurBlok(D.figuren && D.figuren.volgorde, "figuur-breed startplan-figuur");
+    if (vfig) wrap.appendChild(vfig);
+
     var ol = el("ol", "startplan-lijst");
-    D.startplan.forEach(function (st) {
+    var vorigeGroep = null;
+    D.startplan.forEach(function (st, i) {
+      /* Op de plek waar de kleur in de tekening verspringt, staat hier de
+         beugel als tussenkop. Zonder die twee regels zijn het zeven gelijke
+         stappen, en dan verdwijnt dat de AI er pas bij drie bij komt. */
+      var groepen = D.startplanGroepen || {};
+      if (st.groep && st.groep !== vorigeGroep && groepen[st.groep]) {
+        var tussen = el("li", "startplan-groep startplan-groep-" + st.groep);
+        tussen.appendChild(el("span", null, groepen[st.groep]));
+        tussen.setAttribute("aria-hidden", "true");
+        ol.appendChild(tussen);
+        vorigeGroep = st.groep;
+      }
       var li = el("li", "startplan-stap");
       li.appendChild(el("b", "startplan-stapkop", st.kop));
       li.appendChild(rijk(el("span", "startplan-tekst"), st.tekst));
@@ -1060,16 +1118,16 @@
       naarPlan.type = "button";
       naarPlan.addEventListener("click", function () { naarTab("plan"); });
       tweede.appendChild(naarPlan);
-      var opnieuw = el("button", "tekstknop startdeur-stil", "Doe de gids opnieuw");
+      var opnieuw = el("button", "tekstknop startdeur-stil", "Doe de bevrager opnieuw");
       opnieuw.type = "button";
       opnieuw.addEventListener("click", herbegin);
       tweede.appendChild(opnieuw);
     } else {
       var halfweg = Object.keys(state.antwoorden).length > 0;
       tweede.appendChild(el("p", null, halfweg
-        ? "Je bent halverwege de gids. De rest van de vragen gaat over je ervaring, je AI-tool en wat er uit moet komen."
+        ? "Je bent halverwege de bevrager. De rest van de vragen gaat over je ervaring, je AI-tool en wat er uit moet komen."
         : "Een handvol vragen over je vak, je ervaring en je AI-tool. Daarna staat er een plan met jouw werkwijze, jouw eerste drie prompts, en de knoppen zoals ze in jouw tool heten."));
-      var start = el("button", "knop", halfweg ? "Ga verder waar je zat" : "Start de gids");
+      var start = el("button", "knop", halfweg ? "Ga verder waar je zat" : "Start de bevrager");
       start.type = "button";
       start.addEventListener("click", function () { state.gestart = true; bewaar(); tekenGids(); });
       tweede.appendChild(start);
@@ -1100,6 +1158,9 @@
 
     scherm.appendChild(startDeuren());
 
+    var sl = slidesBanner();
+    if (sl) scherm.appendChild(sl);
+
     var naslagLijn = el("p", "welkom-naslag");
     naslagLijn.appendChild(tn("Liever eerst rondkijken? "));
     var naarNaslag = el("button", "tekstknop", "Naar het naslagwerk");
@@ -1107,6 +1168,9 @@
     naarNaslag.addEventListener("click", function () { naarTab("naslag"); });
     naslagLijn.appendChild(naarNaslag);
     scherm.appendChild(naslagLijn);
+
+    var aan = aanleidingBlok();
+    if (aan) scherm.appendChild(aan);
 
     var kern = figuurBlok(D.figuren && D.figuren.kernidee, "figuur-breed");
     if (kern) scherm.appendChild(kern);
@@ -1116,12 +1180,59 @@
     wizard.appendChild(scherm);
   }
 
+  /* De twee slides waar de talk mee opent: iedereen heeft het al eens
+     geprobeerd, en het lag niet alleen aan de vraag die je stelde. Staat onder
+     het antwoord en niet erboven: wie binnenkomt met "hoe begin ik eraan" krijgt
+     eerst de zeven stappen te zien. */
+  function aanleidingBlok() {
+    var a = D.aanleiding;
+    if (!a) return null;
+    var wrap = el("section", "aanleiding");
+    wrap.appendChild(kaderKop("h2", null, a.kop, "lamp", true));
+
+    /* De eerste tekening is breed en laag, dus die staat over de volle kolom
+       met de tekst eronder. De tweede is vierkant en past naast zijn tekst. */
+    var fig = figuurBlok(a.figuur);
+    if (fig) wrap.appendChild(fig);
+    wrap.appendChild(rijk(el("p"), a.tekst));
+
+    if (a.tweede) {
+      wrap.appendChild(el("h3", "aanleiding-kop", a.tweede.kop));
+      var naast = el("div", "naastelkaar");
+      naast.appendChild(rijk(el("p"), a.tweede.tekst));
+      var fig2 = figuurBlok(a.tweede.figuur, "figuur-vierkant");
+      if (fig2) naast.appendChild(fig2);
+      wrap.appendChild(naast);
+    }
+    return wrap;
+  }
+
+  /* De slides van de talk, als een eigen strook onder de twee deuren. Ze zijn
+     geen vijfde onderdeel van de site, maar wel de kortste weg door hetzelfde
+     verhaal, dus ze staan hier en in de kop. */
+  function slidesBanner() {
+    var s = D.slides;
+    if (!s) return null;
+    var wrap = el("aside", "slidesbanner");
+    var tekst = el("div", "slidesbanner-tekst");
+    tekst.appendChild(el("b", null, s.kop));
+    tekst.appendChild(el("span", "slidesbanner-titel", s.kort));
+    tekst.appendChild(rijk(el("span", "slidesbanner-wat"), s.tekst));
+    wrap.appendChild(tekst);
+    var link = el("a", "knop slidesbanner-knop", s.knop);
+    link.href = s.url;
+    link.target = "_blank";
+    link.rel = "noopener";
+    wrap.appendChild(link);
+    return wrap;
+  }
+
   /* knop die altijd in beeld staat terwijl je de gids doorloopt; twee klikken, zodat
      een misklik je antwoorden niet wist */
   function herbeginKnop() {
     var knop = el("button", "tekstknop herbeginknop", "Begin opnieuw");
     knop.type = "button";
-    knop.title = "Wis je antwoorden en begin de gids van vooraf aan";
+    knop.title = "Wis je antwoorden en begin de bevrager van vooraf aan";
     var wacht = null;
     knop.addEventListener("click", function () {
       if (wacht) { clearTimeout(wacht); herbegin(); return; }
@@ -1490,9 +1601,9 @@
     var nr = state.mijnWerkwijze;
     if (!nr || !D.werkwijzen[nr]) {
       doel.appendChild(el("h2", null, "Nog geen plan"));
-      doel.appendChild(el("p", "noot", "Doorloop eerst de gids, dan verschijnt hier je plan op maat."));
+      doel.appendChild(el("p", "noot", "Doorloop eerst de bevrager, dan verschijnt hier je plan op maat."));
       var rij0 = el("div", "knoppenrij");
-      var naarGids = el("button", "knop", "Start de gids");
+      var naarGids = el("button", "knop", "Start de bevrager");
       naarGids.type = "button";
       naarGids.addEventListener("click", function () { state.gestart = true; bewaar(); naarTab("gids"); });
       rij0.appendChild(naarGids);
@@ -1541,18 +1652,23 @@
     /* de vier stappen om vandaag te beginnen, in de termen van jouw tool. Eén
        kolom met een lijn ertussen: zo is het een weg, en geen vier kaarten die
        om je aandacht vechten. */
-    doel.appendChild(el("h3", "planstapkop", "Wat je opzet: vier stappen"));
+    doel.appendChild(el("h3", "planstapkop", D.snelwinstKop || "Wat je opzet: vier stappen"));
+    var mnm = figuurBlok(D.figuren && D.figuren.meenemen, "figuur-breed");
+    if (mnm) doel.appendChild(mnm);
     var stappen = el("ol", "planstappen");
     D.snelwinst.forEach(function (w, i) {
       var li = el("li");
       var knop = el("button", "planstap");
       knop.type = "button";
-      knop.appendChild(el("span", "winstnr", String(i + 1)));
+      /* Het nummer is de stap uit de volgorde op de startpagina (drie tot zes),
+         en niet de plaats in deze lijst. Zo staan hier dezelfde cijfers als op
+         de tekening en in de zeven stappen. */
+      knop.appendChild(el("span", "winstnr", w.nr || String(i + 1)));
       var tekst = el("span", "planstap-tekst");
       tekst.appendChild(el("b", null, w.titel));
-      tekst.appendChild(el("span", "planstap-wat", w.tekst));
+      tekst.appendChild(rijk(el("span", "planstap-wat"), w.tekst));
       var onder = el("span", "planstap-onder");
-      if (a && !w.valkuilen) {
+      if (a) {
         var plek = "";
         if (w.onderwerp === "contextmap") plek = a.plek;
         if (w.onderwerp === "regels") plek = a.regels;
@@ -1568,10 +1684,7 @@
       if (onder.childNodes.length) tekst.appendChild(onder);
       knop.appendChild(tekst);
       knop.appendChild(el("span", "planstap-pijl", "→"));
-      knop.addEventListener("click", function () {
-        if (w.valkuilen) naarTab("valkuilen");
-        else openOnderwerp(w.onderwerp, nr);
-      });
+      knop.addEventListener("click", function () { openOnderwerp(w.onderwerp, nr); });
       li.appendChild(knop);
       stappen.appendChild(li);
     });
@@ -1684,7 +1797,7 @@
     naarNaslag.addEventListener("click", function () { naarTab("naslag"); });
     rij.appendChild(naarNaslag);
 
-    var opnieuw = el("button", "knop knop-stil", "Doe de gids opnieuw");
+    var opnieuw = el("button", "knop knop-stil", "Doe de bevrager opnieuw");
     opnieuw.type = "button";
     opnieuw.addEventListener("click", function () { herbegin(); naarTab("gids"); });
     rij.appendChild(opnieuw);
@@ -1794,7 +1907,7 @@
 
     /* knoppen */
     var rij2 = el("div", "knoppenrij");
-    var naarHulp = el("button", "knop knop-stil", state.mijnWerkwijze ? "Doe de gids opnieuw" : "Twijfel je? Doe de gids");
+    var naarHulp = el("button", "knop knop-stil", state.mijnWerkwijze ? "Doe de bevrager opnieuw" : "Twijfel je? Doe de bevrager");
     naarHulp.type = "button";
     naarHulp.addEventListener("click", function () { state.gestart = true; bewaar(); naarTab("gids"); });
     rij2.appendChild(naarHulp);
@@ -1833,8 +1946,68 @@
 
   /* ---------------- naslag: toolkiezer ---------------- */
 
+  /* De twee tabellen van de slides. Ze staan onder de toolkiezer, want daar
+     stelt iemand de vraag waar ze het antwoord op zijn: hoe heet dat ding bij
+     mij. De rij van jouw tool staat aangeduid. De namen komen uit
+     assistenten[], zodat er maar één plek is waar ze wijzigen. */
+  function tekenTermentabellen() {
+    var doel = document.getElementById("termentabellen");
+    if (!doel || !D.termentabellen) return;
+    leeg(doel);
+
+    var fig = figuurBlok(D.assistentFiguur, "figuur-breed");
+    if (fig) doel.appendChild(fig);
+
+    D.termentabellen.forEach(function (t) {
+      var wrap = el("section", "termenblok");
+      wrap.appendChild(kaderKop("h3", null, t.kop, "map", true));
+
+      /* Alleen de tools die de gevraagde namen dragen. "Iets anders" en "nog
+         geen" hebben geen map op je schijf, dus die vallen in de tweede tabel
+         weg in plaats van er met een streepje in te staan. */
+      var rijen = D.assistenten.filter(function (a) {
+        return t.uitMap ? !!a.map : !a.geenaccount && a.id !== "generiek";
+      });
+      if (!rijen.length) return;
+
+      var tabel = el("table", "termen");
+      var thead = el("thead");
+      var trk = el("tr");
+      trk.appendChild(el("th", "hoek"));
+      t.kolommen.forEach(function (k) { trk.appendChild(el("th", null, k)); });
+      thead.appendChild(trk);
+      tabel.appendChild(thead);
+
+      var tbody = el("tbody");
+      rijen.forEach(function (a) {
+        var tr = el("tr");
+        if (a.id === state.assistent) tr.className = "jouwrij";
+        tr.appendChild(el("th", null, a.naam));
+        var k3 = a.kort3 || { plek: a.plek, regels: a.regels, skill: a.skill };
+        var cellen = t.uitMap
+          ? [[a.map.waarmee, a.map.via], [a.map.regelbestand, a.map.regelbestandVia], [a.map.skills, ""]]
+          : [[k3.plek, ""], [k3.regels, ""], [k3.skill, ""]];
+        cellen.forEach(function (c) {
+          var td = el("td");
+          rijk(td, c[0]);
+          if (c[1]) td.appendChild(el("span", "via", c[1]));
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      tabel.appendChild(tbody);
+
+      var tw = el("div", "tabelwrap");
+      tw.appendChild(tabel);
+      wrap.appendChild(tw);
+      if (t.noot) wrap.appendChild(rijk(el("p", "noot"), t.noot));
+      doel.appendChild(wrap);
+    });
+  }
+
   function tekenToolkiezer() {
     document.getElementById("assistent-noot").textContent = D.assistentNoot;
+    tekenTermentabellen();
 
     var rij = document.getElementById("toolrij");
     leeg(rij);
@@ -2012,7 +2185,7 @@
         zoek: p.klacht + " " + p.fix,
         waar: "Valkuil",
         doe: function () {
-          naarTab("valkuilen");
+          naarVak("valkuilen");
           var veld = document.getElementById("zoek");
           veld.value = p.klacht.split(" ").slice(0, 3).join(" ");
           tekenValkuilen(veld.value);
@@ -2250,6 +2423,21 @@
           titel: "Je eerste sessie, stap voor stap",
           kort: "Eén doorlopend verhaal: wat je typt, wat je terugkrijgt en waar je op let.",
           tel: function () { return D.voorbeeldgesprek.stappen.length + " stappen"; }
+        }
+      ]
+    },
+    {
+      id: "mis",
+      vraag: "Het ging mis. Wat ontbrak er?",
+      noot: "De klacht die je hebt, wijst telkens naar een stap die overgeslagen is. Zoek de jouwe en je leest meteen waar ze thuishoort.",
+      items: [
+        {
+          vak: "valkuilen",
+          icoon: "verboden",
+          groot: true,
+          titel: "Valkuilen",
+          kort: "Het verzint dingen, het klinkt niet als jou, je zit aan je limiet: per klacht de stap die eronder zit.",
+          tel: function () { return D.valkuilen.length + " valkuilen"; }
         }
       ]
     },
@@ -2528,7 +2716,10 @@
     if (v.naar === "tab") {
       var link = document.querySelector('.menulink[data-tab="' + v.id + '"]');
       if (!link) return null;
-      return { naam: link.textContent, doe: function () { naarTab(v.id); } };
+      /* De knop in het menu heet kort ("Start"). Wijst een wegwijzer naar één
+         blok op zo'n bladzijde, dan mag hij dat blok noemen in plaats van de
+         bladzijde: dat zet je met "naam" op de wegwijzer zelf. */
+      return { naam: v.naam || link.textContent, doe: function () { naarTab(v.id); } };
     }
     return null;
   }
@@ -2744,6 +2935,9 @@
     var doel = document.getElementById("sessie-inhoud");
     leeg(doel);
 
+    var sfig = figuurBlok(g.figuur, "figuur-breed");
+    if (sfig) doel.appendChild(sfig);
+
     if (g.situatie) {
       var sit = el("div", "advieslijn buiten sessiesituatie");
       sit.appendChild(kaderKop("b", null, "Waarmee je begint", "map"));
@@ -2792,6 +2986,36 @@
 
     var doel = document.getElementById("colofon-inhoud");
     leeg(doel);
+
+    if (c.delenFiguur) {
+      var db = el("section", "colofon-delen");
+      db.appendChild(kaderKop("h3", null, c.delenKop, "blokken", true));
+      if (c.delenIntro) db.appendChild(rijk(el("p", "noot"), c.delenIntro));
+      var dfig = figuurBlok(c.delenFiguur, "figuur-breed");
+      if (dfig) db.appendChild(dfig);
+      doel.appendChild(db);
+    }
+
+    var cfig = figuurBlok(c.figuur, "figuur-breed");
+    if (cfig) doel.appendChild(cfig);
+
+    if (c.mapFiguur) {
+      var mb = el("section", "colofon-map");
+      mb.appendChild(kaderKop("h3", null, c.mapKop, "map", true));
+      if (c.mapIntro) mb.appendChild(rijk(el("p", "noot"), c.mapIntro));
+      var mfig = figuurBlok(c.mapFiguur, "figuur-breed");
+      if (mfig) mb.appendChild(mfig);
+      doel.appendChild(mb);
+    }
+
+    if (c.nogNiet && c.nogNiet.length) {
+      var nn = el("div", "advieslijn afweging colofon-nogniet");
+      nn.appendChild(kaderKop("b", null, c.nogNietKop, "splitsing"));
+      var nul = el("ul");
+      c.nogNiet.forEach(function (t) { nul.appendChild(rijk(el("li"), t)); });
+      nn.appendChild(nul);
+      doel.appendChild(nn);
+    }
 
     if (c.misliep && c.misliep.length) {
       var mis = el("div", "advieslijn vragen colofon-misliep");
@@ -2994,9 +3218,13 @@
     });
     var stukken = (location.hash || "").replace("#", "").split("/");
     var start = stukken[0];
-    var geldig = ["gids", "plan", "werkwijzen", "naslag", "valkuilen", "voorbeelden"];
+    var vak = stukken[1];
+    var geldig = ["gids", "plan", "werkwijzen", "naslag", "voorbeelden"];
+    /* #valkuilen was een eigen tab en staat nog in links en bladwijzers van
+       voor de verhuizing. Ze komt nu uit als het vak in het naslagwerk. */
+    if (start === "valkuilen") { start = "naslag"; vak = "valkuilen"; }
     if (start === "plan" && !state.mijnWerkwijze) start = "gids";
-    naarTab(geldig.indexOf(start) >= 0 ? start : "gids", stukken[1]);
+    naarTab(geldig.indexOf(start) >= 0 ? start : "gids", vak);
   }
 
   /* ---------------- start ---------------- */

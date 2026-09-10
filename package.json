@@ -6,6 +6,10 @@
     "@fontsource/caveat": "^5.0.0",
     "@resvg/resvg-js": "^2.6.0",
     "jsdom": "^24.0.0",
+    "qrcode-generator": "^2.0.4",
     "roughjs": "^4.6.6"
+  },
+  "scripts": {
+    "slides": "cd slides && quarto render cursus-schrijven-met-ai.qmd --output index.html --output-dir ../site/slides"
   }
 }

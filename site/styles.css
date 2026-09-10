@@ -1227,6 +1227,11 @@ button.linkje {
   border-radius: var(--radius);
   padding: 1rem 1.2rem 1.1rem 3.4rem;
   background: var(--kaart);
+  /* Een rastercel krimpt standaard niet onder de breedte van haar inhoud, en de
+     mappenboom in stap 1 is een blok dat niet afbreekt. Zonder deze regel duwt
+     die boom de hele bladzijde breder dan het scherm, in plaats van zelf te
+     schuiven binnen zijn eigen kader. */
+  min-width: 0;
 }
 
 .sessiestap::before {
@@ -2277,3 +2282,238 @@ dialog.wwvenster { max-width: 34rem; }
   border-top: 1px dashed var(--lijn-hard);
   padding-top: .5rem;
 }
+
+
+/* ============================================================
+   Wat er van de slides naar de site is overgekomen
+   ============================================================ */
+
+/* ---------- de slides zelf, als deur ---------- */
+
+/* De knop in de kop. Ze wijst naar buiten (een aparte pagina) en niet naar een
+   paneel, dus ze mag er niet uitzien als de vier onderdelen ernaast. */
+.menuslides {
+  border: 1px solid var(--lijn-hard);
+  color: var(--inkt);
+  margin-left: .35rem;
+}
+
+.menuslides::after {
+  content: "↗";
+  margin-left: .35rem;
+  font-size: .8em;
+  color: var(--inkt-stil);
+}
+
+.menuslides:hover { border-color: var(--accent); color: var(--accent-diep); }
+.menuslides:hover::after { color: var(--accent-diep); }
+
+.slidesbanner {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin: .9rem 0 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--lijn-hard);
+  border-radius: var(--radius);
+  background: var(--kaart);
+}
+
+.slidesbanner-tekst { flex: 1 1 22rem; min-width: 0; }
+.slidesbanner-tekst b { display: block; font-size: 1.02rem; color: var(--inkt-kop); }
+
+.slidesbanner-titel {
+  display: block;
+  margin-top: .1rem;
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--accent-diep);
+}
+
+.slidesbanner-wat {
+  display: block;
+  margin-top: .45rem;
+  font-size: .9rem;
+  line-height: 1.55;
+  color: var(--inkt-stil);
+}
+
+.slidesbanner-knop { flex: 0 0 auto; text-decoration: none; }
+
+/* ---------- de twee beugels onder de zeven stappen ---------- */
+
+/* In volgorde.png staat onder de bolletjes een beugel met "eerst schrijven" en
+   een met "hier komt de AI erbij". In de lijst eronder staan ze op de plek waar
+   de kleur verspringt, anders leest het als zeven gelijke stappen. */
+.startplan-groep {
+  list-style: none;
+  padding: 0 0 .5rem 2.6rem;
+  margin-left: -2px;
+}
+
+.startplan-groep span {
+  display: inline-block;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--inkt-stil);
+  border-bottom: 2px solid var(--lijn-hard);
+  padding-bottom: .15rem;
+}
+
+.startplan-groep-ai span { color: var(--accent-diep); border-color: var(--accent); }
+
+.startplan-figuur { margin-top: .2rem; margin-bottom: 1.4rem; }
+
+/* ---------- waar het bij iedereen misliep ---------- */
+
+.aanleiding {
+  margin: 2.4rem 0 0;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--lijn);
+}
+
+.aanleiding > p { font-size: .96rem; line-height: 1.65; color: var(--inkt-stil); }
+.aanleiding > p b { color: var(--inkt); }
+.aanleiding-kop { margin: 1.8rem 0 .2rem; font-size: 1.05rem; }
+
+/* ---------- een tekening die vierkant is in plaats van breed ---------- */
+
+/* De beeldgeneratortekeningen zijn vierkant. Op volle kolombreedte worden ze
+   even hoog als het scherm, dus ze staan naast hun tekst in plaats van erboven.
+   Met float liep de tekst ernaast dicht te knijpen tot vier woorden per regel;
+   een raster houdt allebei de kolommen op een leesbare breedte. */
+.naastelkaar { display: grid; gap: 1.2rem; align-items: start; }
+
+@media (min-width: 46rem) {
+  .naastelkaar { grid-template-columns: minmax(0, 1fr) 17rem; }
+}
+
+.naastelkaar > p {
+  margin: 0;
+  font-size: .96rem;
+  line-height: 1.65;
+  color: var(--inkt-stil);
+}
+
+.figuur-vierkant { margin: 0; }
+.figuur-vierkant figcaption { font-size: .85rem; }
+
+/* ---------- een stuk uit een echt bestand ---------- */
+
+.codevoorbeeld { margin: 1.6rem 0 0; }
+.codevoorbeeld .noot { margin: .2rem 0 .7rem; }
+
+.codeblok {
+  margin: 0;
+  padding: .9rem 1rem;
+  border: 1px solid var(--lijn);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  background: var(--kaart);
+  overflow-x: auto;
+  font-family: "Cascadia Code", Consolas, SFMono-Regular, Menlo, monospace;
+  font-size: .82rem;
+  line-height: 1.65;
+  color: var(--inkt);
+}
+
+/* Een heel blok is al code, dus de rode accenten die een los stukje code in
+   lopende tekst krijgt, moeten er hier af. */
+.codeblok code {
+  font: inherit;
+  white-space: pre;
+  background: none;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* ---------- het terzijde bij een onderwerp ---------- */
+
+.onderwerpkader {
+  margin: 1.6rem 0 0;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--lijn-hard);
+  border-radius: var(--radius);
+  background: var(--papier);
+}
+
+.onderwerpkader > p,
+.onderwerpkader .kadertekst {
+  margin: 0;
+  font-size: .93rem;
+  line-height: 1.6;
+  color: var(--inkt-stil);
+}
+
+.onderwerpkader .figuur { margin-bottom: 0; }
+
+/* ---------- de twee termentabellen ---------- */
+
+.termenblok { margin: 2rem 0 0; }
+.termenblok .noot { margin: .7rem 0 0; }
+
+table.termen {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .88rem;
+}
+
+table.termen th,
+table.termen td {
+  text-align: left;
+  vertical-align: top;
+  padding: .55rem .7rem;
+  border-bottom: 1px solid var(--lijn);
+  line-height: 1.45;
+}
+
+table.termen thead th {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--inkt-stil);
+  border-bottom: 1px solid var(--lijn-hard);
+}
+
+table.termen thead th.hoek { border-bottom-color: transparent; }
+table.termen tbody th { color: var(--inkt-kop); font-weight: 700; white-space: nowrap; }
+table.termen tbody tr:last-child th,
+table.termen tbody tr:last-child td { border-bottom: none; }
+
+table.termen code {
+  font-family: "Cascadia Code", Consolas, SFMono-Regular, Menlo, monospace;
+  font-size: .92em;
+}
+
+/* De rij van de tool die je bovenaan gekozen hebt. Zonder die markering zoek je
+   je eigen rij elke keer opnieuw. */
+table.termen tr.jouwrij { background: var(--accent-zacht); }
+table.termen tr.jouwrij th { color: var(--accent-diep); }
+
+/* De tweede regel in een cel: waarmee je dat opent, of hoe het daar nog heet. */
+table.termen .via {
+  display: block;
+  margin-top: .15rem;
+  font-size: .84em;
+  color: var(--inkt-stil);
+}
+
+/* ---------- de map onder het colofon ---------- */
+
+.colofon-map { margin: 0 0 1.8rem; }
+.colofon-map .noot { margin: .2rem 0 0; }
+
+@media (max-width: 40rem) {
+  .slidesbanner { padding: .9rem 1rem; }
+  .slidesbanner-knop { width: 100%; text-align: center; }
+  table.termen { font-size: .82rem; }
+  table.termen th, table.termen td { padding: .45rem .5rem; }
+}
+
+.colofon-nogniet ul { margin: .5rem 0 0; padding-left: 1.1rem; }
+.colofon-nogniet li { margin: .35rem 0; line-height: 1.55; }

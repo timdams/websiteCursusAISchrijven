@@ -13,12 +13,17 @@
 <header class="top">
   <div class="top-binnen">
     <a class="merk" href="#gids" data-tab="gids">Een cursus schrijven met AI</a>
+    <!-- Vier onderdelen, zoals ze op de slide "Vier delen" staan: de
+         startpagina, de bevrager (die je plan oplevert), het naslagwerk en de
+         voorbeelden. De valkuilen zitten in het naslagwerk en zijn dus geen
+         vijfde knop meer. De slides staan er los naast, met een eigen opmaak:
+         ze zijn geen onderdeel van de site maar wel dezelfde inhoud. -->
     <nav class="menu" aria-label="Onderdelen">
-      <a href="#gids" class="menulink" data-tab="gids">De gids</a>
+      <a href="#gids" class="menulink" data-tab="gids">Start</a>
       <a href="#plan" class="menulink" data-tab="plan" id="menu-plan" hidden>Jouw plan</a>
       <a href="#naslag" class="menulink" data-tab="naslag">Naslagwerk</a>
-      <a href="#valkuilen" class="menulink" data-tab="valkuilen">Valkuilen</a>
       <a href="#voorbeelden" class="menulink" data-tab="voorbeelden">Voorbeelden</a>
+      <a href="slides/" class="menulink menuslides" target="_blank" rel="noopener" id="menu-slides">De slides</a>
     </nav>
     <div class="toolschakelaar">
       <button type="button" id="toolchip" class="toolchip" aria-haspopup="listbox" aria-expanded="false" aria-controls="toolmenu"></button>
@@ -77,6 +82,9 @@
         <div class="toolrij" id="toolrij"></div>
         <div id="tooldetail"></div>
         <p class="noot" id="assistent-noot"></p>
+        <!-- De twee tabellen van de slides: hoe het heet in je chatvenster, en
+             hoe het heet zodra je bestanden op je eigen schijf staan. -->
+        <div id="termentabellen"></div>
       </div>
 
       <div class="naslagvak" data-vak="uitkomst" hidden>
@@ -118,16 +126,19 @@
         <p class="noot">Situaties die niet in het standaardverhaal passen, en wat je er dan mee doet.</p>
         <div class="randgevallen-lijst" id="randgevallen-lijst"></div>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ VALKUILEN ============ -->
-  <section class="paneel" data-panel="valkuilen" hidden>
-    <h2>Valkuilen: het ging mis, wat ontbreekt er?</h2>
-    <p class="noot">De meest voorkomende fouten bij AI in cursusontwikkeling. Elke klacht wijst naar een stap die overgeslagen is. Typ wat er misgaat, of kies uit de lijst. Onder de fix staat waar het verder uitgelegd staat: het onderwerp, de prompt die je kan plakken, de werkwijze waar het thuishoort, en de handleiding van de makers zelf.</p>
-    <input type="search" id="zoek" class="zoek" placeholder="bv. klinkt niet als mij, limiet, pdf" autocomplete="off" aria-label="Zoek in de valkuilen">
-    <div class="probleemlijst" id="probleemlijst"></div>
-    <p class="geen-treffer" id="geen-treffer" hidden>Niks gevonden. Probeer een ander woord, of kijk in het naslagwerk.</p>
+      <!-- De valkuilen stonden hier vroeger als een eigen tab naast het
+           naslagwerk. Op de slide "Vier delen" staan ze in het naslagwerk, bij
+           de onderwerpen, de prompts en de tools, en daar horen ze ook: een
+           klacht wijst telkens naar een stap die overgeslagen is. -->
+      <div class="naslagvak" data-vak="valkuilen" hidden>
+        <h3>Valkuilen: het ging mis, wat ontbreekt er?</h3>
+        <p class="noot">De meest voorkomende fouten bij AI in cursusontwikkeling. Elke klacht wijst naar een stap die overgeslagen is. Typ wat er misgaat, of kies uit de lijst. Onder de fix staat waar het verder uitgelegd staat: het onderwerp, de prompt die je kan plakken, de werkwijze waar het thuishoort, en de handleiding van de makers zelf.</p>
+        <input type="search" id="zoek" class="zoek" placeholder="bv. klinkt niet als mij, limiet, pdf" autocomplete="off" aria-label="Zoek in de valkuilen">
+        <div class="probleemlijst" id="probleemlijst"></div>
+        <p class="geen-treffer" id="geen-treffer" hidden>Niks gevonden. Probeer een ander woord, of kijk in het naslagwerk.</p>
+      </div>
+    </div>
   </section>
 
   <!-- ============ VOORBEELDEN ============ -->

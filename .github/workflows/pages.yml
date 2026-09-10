@@ -1,5 +1,7 @@
-# Zet de map site/ op GitHub Pages. Geen buildstap: de site is index.html,
-# styles.css, data.js, app.js en assets/, en die gaan er ongewijzigd op.
+# Zet de map site/ op GitHub Pages. De site zelf is index.html, styles.css,
+# data.js, app.js en assets/, en die gaan er ongewijzigd op. Eén ding wordt wel
+# gebouwd: de slides uit slides/ komen als site/slides/index.html mee, zodat ze
+# vanaf de site te bekijken zijn. Ze staan niet in git; deze stap maakt ze.
 name: Pages
 
 on:
@@ -26,6 +28,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      # In de qmd staat geen code die uitgevoerd moet worden, dus R noch Python
+      # hoeft erbij. Het resultaat heet index.html, zodat de map zelf het adres
+      # is: /slides/ en niet /slides/cursus-schrijven-met-ai.html.
+      - name: Slides renderen
+        working-directory: slides
+        run: quarto render cursus-schrijven-met-ai.qmd --output index.html --output-dir ../site/slides
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
