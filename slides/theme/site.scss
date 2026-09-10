@@ -214,6 +214,93 @@ $code-color: $accent-diep;
   color: $inkt-kop;
 }
 
+// ---------- de termentabel ----------
+// Op *Hoe heet het bij jou?* staat een echte tabel en geen tekening: de lezer
+// zoekt daar zijn eigen rij op, en dat gaat niet in een png. Vijf kolommen op
+// 1472 bruikbare pixels, dus de tekst valt hier onder de maat van de
+// tekeningen. Zes rijen van vijf kolommen vullen op deze grootte de slide;
+// zet je er een kolom of een rij bij, dan moet de grootte hieronder mee omlaag
+// en leest het achteraan de aula niet meer.
+.reveal table.termen {
+  width: 100%;
+  margin: .3em 0 0;
+  border-collapse: collapse;
+  // De breedtes staan in de colgroup in de qmd: zonder table-layout kiest de
+  // browser ze zelf en breekt het pad van copilot-instructions.md in twee.
+  table-layout: fixed;
+  font-size: .76em;
+  line-height: 1.25;
+}
+
+.reveal table.termen th,
+.reveal table.termen td {
+  padding: .38em .5em;
+  border: none;
+  border-bottom: 1px solid $lijn;
+  text-align: left;
+  vertical-align: top;
+}
+
+// De bovenste kop groepeert: waar het in je venster staat, en waar hetzelfde
+// op je schijf staat. Het rode lijntje eronder loopt enkel onder de groep, dus
+// het lege hoekje links draagt er geen.
+.reveal table.termen thead tr:first-child th {
+  padding-bottom: .15em;
+  border-bottom: none;
+  color: $inkt-stil;
+  font-weight: 500;
+}
+
+.reveal table.termen thead tr:first-child th.groep {
+  border-bottom: 2px solid $accent;
+}
+
+.reveal table.termen thead tr:first-child th.groep + .groep {
+  border-left: 1px solid $lijn;
+}
+
+.reveal table.termen thead tr:last-child th {
+  border-bottom: 2px solid $lijn-hard;
+  color: $inkt-kop;
+  font-weight: 700;
+}
+
+// De naam van de tool is de ingang van de rij.
+.reveal table.termen tbody th {
+  color: $accent-diep;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.reveal table.termen tbody tr:last-child th,
+.reveal table.termen tbody tr:last-child td {
+  border-bottom: none;
+}
+
+// De kolom van je eigen schijf staat apart, ook in de rijen eronder.
+.reveal table.termen tbody td:last-child {
+  border-left: 1px solid $lijn;
+}
+
+.reveal table.termen code {
+  padding: .05em .2em;
+  font-size: .86em;
+}
+
+// Wat er in die tool niet zit.
+.reveal table.termen .leeg {
+  color: $inkt-stil;
+}
+
+// Waarmee je in die map werkt. Hoort bij het bestand erboven, dus geen eigen
+// kolom maar een regel eronder.
+.reveal table.termen .via {
+  display: block;
+  margin-top: .2em;
+  color: $inkt-stil;
+  font-size: .86em;
+}
+
 // ---------- kadertje ----------
 .reveal .kader {
   padding: .7em 1em;
@@ -225,6 +312,19 @@ $code-color: $accent-diep;
 }
 
 // ---------- de titelslide en de tussentitel ----------
+// De optocht uit assets/titel.png ligt over de hele titelslide (zie
+// `title-slide-attributes` in de qmd) en laat boven de antennes ongeveer 210
+// pixels lucht over. Daar moet het titelblok in passen, dus staat het bovenaan
+// (`center-title-slide: false`) en een maat kleiner dan een gewone h1. Schuif je
+// de achtergrond met `data-background-position`, kijk dan of deze maten nog
+// kloppen.
+#title-slide h1.title {
+  margin-top: .5em;
+  margin-bottom: .2em;
+  font-size: 1.5em;
+  line-height: 1.15;
+}
+
 #title-slide .subtitle,
 .reveal .quarto-title-block .subtitle {
   color: $accent-diep;
@@ -232,10 +332,19 @@ $code-color: $accent-diep;
   margin-bottom: 1.2em;
 }
 
+#title-slide .subtitle {
+  font-size: .8em;
+  margin-bottom: .35em;
+}
+
 #title-slide .author,
 #title-slide .quarto-title-authors {
   color: $inkt-stil;
   font-size: .8em;
+}
+
+#title-slide .quarto-title-authors {
+  font-size: .68em;
 }
 
 .reveal section.tussentitel h1,

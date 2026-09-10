@@ -1,4 +1,4 @@
-// Je afsprakendocument wordt altijd meegelezen, een skill alleen wanneer die taak langskomt.
+// Je regelbestand wordt altijd meegelezen, een skill alleen wanneer die taak langskomt.
 // Draaien vanuit de imagegen-map:  node afsprakenofskill.js
 const { createCanvas, C } = require('./excal');
 
@@ -17,9 +17,9 @@ taken.forEach(([y, label], i) => {
   c.txt(830, y + 72, label, 30, C.GRAY, 600);
 });
 
-// ---------- links: het afsprakendocument ----------
+// ---------- links: het regelbestand ----------
 c.rect(90, 300, 440, 200, { strokeWidth: 2.4 });
-c.txt(310, 356, 'je afsprakendocument', 34, C.RED_DARK, 700);
+c.txt(310, 356, 'je regelbestand', 34, C.RED_DARK, 700);
 c.lines(310, 404, ['wordt bij elk gesprek', 'meegelezen'], 28, C.GRAY, 600, 'middle', 1.3);
 taken.forEach(([y]) => c.arrow(540, 400, 615, y + 60, { stroke: C.RED, strokeWidth: 2.2, head: 13 }));
 

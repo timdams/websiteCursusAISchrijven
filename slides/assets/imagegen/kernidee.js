@@ -1,4 +1,4 @@
-// Op je vaste plek staan twee dingen: je contextmap en je afsprakendocument,
+// Op je vaste plek staan twee dingen: je contextmap en je regelbestand,
 // en die twee gelden voor elk gesprek dat je daar voert.
 // Overgenomen uit site/assets/imagegen/kernidee.js en op beamermaat gezet.
 //
@@ -25,10 +25,10 @@ c.txt(305, 188, 'je contextmap', 36, C.RED_DARK, 700);
 for (let j = 0; j < 5; j++) doc(115 + j * 78, 212, 60, 88);
 c.txt(305, 358, 'waar je vak over gaat', 32, C.GRAY, 600);
 
-// ---------- links onder: het afsprakendocument ----------
+// ---------- links onder: het regelbestand ----------
 c.rect(75, 388, 460, 180, { fill: C.RED_LIGHT, fillStyle: 'hachure', hachureGap: 8,
   fillWeight: 1.5, stroke: C.RED, strokeWidth: 2.6, roughness: 1.4 });
-c.txt(305, 434, 'je afsprakendocument', 36, C.RED_DARK, 700);
+c.txt(305, 434, 'je regelbestand', 36, C.RED_DARK, 700);
 c.lines(305, 468, ['wie mijn publiek is', 'hoe ik klink', 'wat ik niet wil zien'],
   30, C.GRAY, 600, 'middle', 1.24);
 c.txt(305, 606, 'wat altijd geldt', 32, C.GRAY, 600);

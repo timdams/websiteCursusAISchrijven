@@ -1,4 +1,4 @@
-// Je afsprakendocument wordt altijd meegelezen, een skill alleen wanneer die
+// Je regelbestand wordt altijd meegelezen, een skill alleen wanneer die
 // taak langskomt.
 // Overgenomen uit site/assets/imagegen/afsprakenofskill.js en op beamermaat gezet.
 //
@@ -22,9 +22,9 @@ taken.forEach(([y, label], i) => {
   c.txt(770, y + 64, label, 34, C.GRAY, 600);
 });
 
-// ---------- links: het afsprakendocument ----------
+// ---------- links: het regelbestand ----------
 c.rect(40, 240, 400, 170, { strokeWidth: 2.6, roughness: 1.4 });
-c.txt(240, 298, 'je afsprakendocument', 36, C.RED_DARK, 700);
+c.txt(240, 298, 'je regelbestand', 36, C.RED_DARK, 700);
 c.lines(240, 344, ['wordt bij elk gesprek', 'meegelezen'], 30, C.GRAY, 600, 'middle', 1.3);
 taken.forEach(([y]) => c.arrow(450, 325, 545, y + 52,
   { stroke: C.RED, strokeWidth: 2.4, roughness: 1.3, head: 16 }));

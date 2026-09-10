@@ -5,6 +5,19 @@ site als afsluiter. Alleen voor lokaal gebruik: de workflow in
 [.github/workflows/pages.yml](../.github/workflows/pages.yml) zet enkel `site/` op
 GitHub Pages, dus deze map gaat er niet mee op.
 
+## De titelslide
+
+`assets/titel.png` ligt als achtergrond over de hele titelslide: de lector met
+zijn rode potlood en vier robotjes met dezelfde rode nepbril, aan elkaar geknoopt
+met het touw uit `temmen.png`. De titel, de ondertitel en je naam staan in de
+lucht erboven, en daarvoor staat `center-title-slide: false` in de qmd en het
+titelblok een maat kleiner in [theme/site.scss](theme/site.scss).
+
+De tekening komt uit een beeldgenerator en is vierkant. Hoe ze toch de volle
+1600 bij 900 vult, welke uitsnede `data-background-position: 50% 48%` toont en
+wat je moet doen wanneer je haar vervangt, staat in
+[PROMPT-titel.md](PROMPT-titel.md), samen met de prompt zelf.
+
 ## Twee origin stories, kies er een
 
 Het deck opent met waar het vandaan komt: deze slides en de site zijn met Claude
@@ -101,6 +114,31 @@ heeft, en de tekst neemt de rest.
 :::
 ```
 
+## De termentabel
+
+*Hoe heet het bij jou?* is de enige slide met een echte tabel erop. Ze stond er
+eerst als tekening (`pertool.png`, zes rijen van twee kolommen), maar op een
+tekening kan je je eigen rij niet aanwijzen en de tekst niet kopiëren, en er
+paste geen kolom meer bij. Het script en de png zijn weg; de tabel staat nu
+als gewone HTML in de qmd, met haar opmaak onder *de termentabel* in
+[theme/site.scss](theme/site.scss).
+
+Er staan zes tools in en vier namen per tool: waar je bestanden blijven staan,
+waar je regels staan, hoe een skill daar heet, en hoe je regelbestand heet
+wanneer je in een map op je eigen schijf werkt. Die laatste kolom staat apart,
+met de tool waarmee je dat doet eronder in het grijs (`.via`).
+
+De namen komen uit `assistenten[]` in [site/data.js](../site/data.js): `plek`,
+`regels`, `skill` en `termen.regelbestand`. Wijzigt daar een naam, wijzig hem
+dan ook hier.
+
+De breedtes van de kolommen staan in de `colgroup` in de qmd en de tabel staat
+op `table-layout: fixed`. Zonder dat verdeelt de browser ze zelf en breekt
+`.github/copilot-instructions.md` over twee regels. Zes rijen van vijf kolommen
+vullen de slide op `font-size: .76em`; komt er een rij of een kolom bij, dan
+moet die grootte omlaag en kijk je opnieuw na of het achteraan de aula nog
+leest.
+
 ## De tekeningen
 
 Dezelfde machinerie als de site: rough.js plus Caveat, in de stijl uit
@@ -119,7 +157,7 @@ Alles opnieuw renderen:
 
 ```bash
 cd slides/assets/imagegen
-for f in *.js; do [ "$f" = excal.js ] || node "$f"; done
+for f in *.js; do case "$f" in excal.js|strip.js|vrijstaand.js) ;; *) node "$f";; esac; done
 ```
 
 ### Negentien tekeningen
@@ -129,6 +167,23 @@ for f in *.js; do [ "$f" = excal.js ] || node "$f"; done
 `website` en `versies` zijn voor dit deck getekend. `zaal` opent de talk, `versies` komt
 er achteraan op terug en tekent diezelfde slide in zijn twee versies: wijzig je
 de ene, kijk dan ook naar de andere.
+
+`zaal` is de enige van die reeks die uit twee lagen bestaat. De mensen erop
+komen uit een beeldgenerator en staan in `imagegen/zaal-bron.png`; `zaal.js`
+legt daar de labels, de rode beugel en het bordje overheen. De prompt, de
+opgemeten posities van de acht figuren en wat er met `zaal-kristof.png` moet
+gebeuren staan in [PROMPT-zaal.md](PROMPT-zaal.md).
+
+Kristof zweeft op de tweede versie van die slide als superheld voorbij het einde
+van de as, en komt ook uit de generator. `vrijstaand.js` haalt het papier onder
+zo een tekening vandaan en snijdt ze bij, zodat je ze op een andere tekening kan
+leggen zonder dat je het vel eronder ziet liggen:
+
+```bash
+node vrijstaand.js kristof-bron.png kristof.png
+```
+
+`excal.js`, `strip.js` en `vrijstaand.js` zijn gereedschap en tekenen zelf niets.
 
 `meenemen` staat er twee keer in, net als `volgorde`: een keer voor de workflow
 als aankondiging (*Als je één slide fotografeert: deze*) en een keer als
@@ -177,6 +232,10 @@ Bij allebei is er geen script om aan te passen, dus wil je er iets aan wijzigen
 dan moeten ze opnieuw gegenereerd worden, en dan is het een andere tekening. De
 prompts staan in [PROMPT-meteenja.md](PROMPT-meteenja.md) en
 [PROMPT-robotlector.md](PROMPT-robotlector.md).
+
+Hetzelfde geldt voor `assets/imagegen/zaal-bron.png`, de onderlaag van `zaal`:
+daar zit wel een script omheen, maar de mensen zelf zijn niet te wijzigen zonder
+opnieuw te genereren.
 
 Op *Wat je daarvoor in je regelbestand zet* staat nog een derde beeld zonder
 script: een schermafdruk van een echte `improve.md`. Die staat niet in deze map

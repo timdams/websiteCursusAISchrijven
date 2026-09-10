@@ -1,4 +1,4 @@
-// Kernidee - op je vaste plek staan twee dingen: je contextmap en je afsprakendocument,
+// Kernidee - op je vaste plek staan twee dingen: je contextmap en je regelbestand,
 // en die twee gelden voor elk gesprek dat je daar voert.
 // Draaien vanuit de imagegen-map:  node kernidee.js
 const { createCanvas, C } = require('./excal');
@@ -23,10 +23,10 @@ c.txt(380, 248, 'je contextmap', 34, C.RED_DARK, 700);
 for (let j = 0; j < 5; j++) doc(180 + j * 84, 278, 64, 100);
 c.txt(380, 452, 'waar je vak over gaat', 30, C.GRAY, 600);
 
-// ---------- links onder: het afsprakendocument ----------
+// ---------- links onder: het regelbestand ----------
 c.rect(130, 495, 500, 190, { fill: C.RED_LIGHT, fillStyle: 'hachure', hachureGap: 8, fillWeight: 1.4,
   stroke: C.RED, strokeWidth: 2.4 });
-c.txt(380, 537, 'je afsprakendocument', 34, C.RED_DARK, 700);
+c.txt(380, 537, 'je regelbestand', 34, C.RED_DARK, 700);
 c.lines(380, 581, ['wie mijn publiek is', 'hoe ik klink', 'wat ik niet wil zien'],
   27, C.GRAY, 600, 'middle', 1.3);
 c.txt(380, 722, 'wat altijd geldt', 30, C.GRAY, 600);

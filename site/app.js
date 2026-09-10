@@ -56,14 +56,14 @@
   /* Zonder toolkeuze komt hier een omschrijving te staan, nooit een merknaam.
      Zo blijft gedeelde tekst gedeeld, en zit het merk alleen in de toolkaart. */
   var NEUTRAAL = {
-    regelsbestand: "je regelsbestand",
+    regelbestand: "je regelbestand",
     regelsplek: "een vast bestand met je afspraken",
     projectplek: "een vaste map of project",
     skillplek: "een apart document per soort taak",
     toolnaam: "je AI-tool"
   };
 
-  /* Vult {regelsbestand}, {regelsplek}, {projectplek}, {skillplek} en
+  /* Vult {regelbestand}, {regelsplek}, {projectplek}, {skillplek} en
      {toolnaam} in met de termen van de gekozen tool. */
   function T(tekst) {
     if (typeof tekst !== "string" || tekst.indexOf("{") < 0) return tekst;
@@ -399,7 +399,7 @@
     "quarto", "quarto-docx", "quarto-pptx", "quarto-html", "quarto-typst",
     "quarto-revealjs", "quarto-book", "quarto-brand", "pandoc", "pandoc-refdoc",
     "marp", "mermaid", "vscode", "obsidian", "typora", "typst", "git", "writage",
-    "gemini-cli", "claude-code", "copilot-instructions"
+    "gemini-cli", "gemini-skills", "claude-code", "copilot-instructions"
   ];
 
   /* Blijft deze gebruiker in de browser? Dan is een mappenboom op zijn schijf,
@@ -806,7 +806,7 @@
     account: {
       kort: "Tool",
       vraag: "Met welke AI werk je?",
-      hulp: "De rest van de site past zich aan je keuze aan: waar je bestanden blijven staan, hoe je regelsbestand heet, en de juiste links. Weet je het nog niet, kies dan het laatste antwoord: het volgende scherm helpt je kiezen. Wisselen kan altijd, met de knop rechtsboven.",
+      hulp: "De rest van de site past zich aan je keuze aan: waar je bestanden blijven staan, hoe je regelbestand heet, en de juiste links. Weet je het nog niet, kies dan het laatste antwoord: het volgende scherm helpt je kiezen. Wisselen kan altijd, met de knop rechtsboven.",
       type: "single",
       opties: D.assistenten.map(function (a) {
         return { id: a.id, label: a.vraaglabel || a.naam, hulp: a.kort };
@@ -2134,8 +2134,8 @@
         ix.push({
           titel: r.kop,
           tekst: r.tekst || c.regelsKop,
-          zoek: r.kop + " " + (r.tekst || "") + " regel regels regelsbestand schrijfstijl",
-          waar: "Het regelsbestand",
+          zoek: r.kop + " " + (r.tekst || "") + " regel regels regelbestand schrijfstijl",
+          waar: "Het regelbestand",
           doe: function () { naarVak("colofon"); }
         });
       });
@@ -2345,7 +2345,7 @@
           icoon: "haakjes",
           smal: true,
           titel: "Hoe deze site gemaakt is",
-          kort: "Het regelsbestand waarmee deze site geschreven is, en wat er ondertussen misging.",
+          kort: "Het regelbestand waarmee deze site geschreven is, en wat er ondertussen misging.",
           tel: function () { return (D.colofon.wel.length + D.colofon.niet.length) + " regels"; }
         }
       ]
@@ -2781,7 +2781,7 @@
     if (g.slot) doel.appendChild(rijk(el("p", "sessieslot"), g.slot));
   }
 
-  /* Het colofon: het regelsbestand van deze site, en wat er misging. Staat er
+  /* Het colofon: het regelbestand van deze site, en wat er misging. Staat er
      omdat het onderwerp "je regels" wel zegt dat een regel testbaar moet zijn
      en er tot nu toe geen enkele liet zien. */
   function tekenColofon() {
@@ -2818,7 +2818,7 @@
     });
 
     /* De enige skill die deze site heeft, en de vier bestanden waar ze uit
-       bestaat. Staat hier om dezelfde reden als het regelsbestand erboven: het
+       bestaat. Staat hier om dezelfde reden als het regelbestand erboven: het
        onderwerp zegt wel wat een skill is en liet er tot nu geen enkele zien. */
     if (c.skill) {
       var sk = el("section", "colofonskill");

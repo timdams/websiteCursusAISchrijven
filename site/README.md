@@ -115,7 +115,7 @@ vouw draagt die titel al. Op papier staat elke vouw open (`@media print`).
 De toolvraag kent zes antwoorden: **Claude, ChatGPT, Gemini, Microsoft Copilot, iets anders
 (zelf gehost, OpenRouter, ...) of nog geen**. De keuze stuurt de hele site:
 
-- teksten met de placeholders `{regelsbestand}` `{regelsplek}` `{projectplek}` `{skillplek}` en
+- teksten met de placeholders `{regelbestand}` `{regelsplek}` `{projectplek}` `{skillplek}` en
   `{toolnaam}` in `data.js` vullen zich met de termen van de gekozen tool (functie `T()` in
   `app.js`, veld `termen` per assistent). Zonder toolkeuze komt er een neutrale omschrijving uit
   `NEUTRAAL` in `app.js` ("een vast bestand met je afspraken"), nooit een merknaam: gedeelde tekst
@@ -294,7 +294,7 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
   die kern staan al bovenaan het venster. `bronMap.browser` is dezelfde inhoud zonder boom, voor
   wie in de browser blijft en dus geen mappen op zijn schijf heeft
 - een assistent krijgt zijn kaartjes uit `plek`, `regels`, `skill`, `inmap`, `waar` en
-  `termen.regelsbestand`. `sessieplek` is de lijst klikstappen die bij stap 1 van
+  `termen.regelbestand`. `sessieplek` is de lijst klikstappen die bij stap 1 van
   `voorbeeldgesprek` verschijnt (letterlijke knopnamen, `**vet**` en `` `code` `` mogen erin), en
   `sessieplekLink` overschrijft daar de link die anders uit `rollen.project` komt (een lege string
   laat de link weg). Verder eventueel `wistjedat` (een blok of een lijst blokken) met `kop`,
@@ -336,7 +336,7 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
   muur. De valkuil noemt met `toollink` een rol (`regels`, `project` of `skill`), en `rollen` bij
   je assistent zegt welke bladzijde daarbij hoort. `verderBlok()` tekent de twee rijen
 - het zoekveld indexeert alles in `bouwIndex()` in `app.js`
-- `colofon` is het regelsbestand waarmee deze site geschreven is, plus wat er bij het maken
+- `colofon` is het regelbestand waarmee deze site geschreven is, plus wat er bij het maken
   misging: `intro`, `misliepKop` en `misliep` (lijst alinea's), `regelsKop` en `regelsIntro`
   (lijst alinea's), `welKop` + `wel` en `nietKop` + `niet` (elk een lijst `kop` + `tekst`), en
   `slot`. `tekenColofon()` tekent het, en de teller op de hubkaart telt `wel` en `niet` op, zodat

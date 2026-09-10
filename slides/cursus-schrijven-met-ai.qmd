@@ -19,14 +19,25 @@ format:
     transition-speed: fast
     fig-align: center
     link-external-newwindow: true
+    center-title-slide: false
 lang: nl
+
+# De optocht op de titelslide. `cover` schaalt het vierkant van 1024 naar 1600
+# breed en toont daar een venster van 900 hoog van; het tweede getal in
+# `position` schuift dat venster over de tekening. Op 48% staan de wieltjes net
+# boven de onderrand en blijft de lucht boven de koppen vrij voor de titel.
+title-slide-attributes:
+  data-background-image: assets/titel.png
+  data-background-size: cover
+  data-background-position: 50% 48%
+  data-background-color: "#f8f7f5"
 
 ---
 ## Voor wie is dit? {.metonder}
 
 ![](assets/zaal.png){.figuur}
 
-::: {.onder}
+::: {.onder .fragment}
 Alles wat volgt is proefondervindelijk gevonden. Roep wanneer iets niet klopt. Mensen helemaal rechts: ik reken op **feedback**.
 :::
 
@@ -64,28 +75,7 @@ Toegegeven, het trok op niets: maar er was tenminste een basis.
 :::
 :::
 
-## Fair warning {.metnaast}
 
-::: {.columns}
-::: {.column}
-![](assets/meteenja.png){.figuur}
-:::
-
-::: {.column}
-[De kleine rode stapel]{.kop} = deze talk en een website:
-
-* Twee weken werk, en dat
-hoor/zie/lees je.  *Kon deze zin nog meer A.I. aanvoelen?*
-
-[De grote stapel]{.kop} = mijn eigen olods (insert sluikreclame voor Zie Scherp Scherper, hier):
-
-* Lees: vele jaren werk, recyclage, ervaring en feedback.
-
-::: {.onder style="text-align:left" }
-De voet geneest wel. *(wederom zo'n typische A.I.-zin)*
-:::
-:::
-:::
 
 ## Onze eerste stapjes. Remember? {.metonder}
 
@@ -129,7 +119,7 @@ Toch?
 :::
 :::
 ::: {.kader .fragment}
-Wat volgt is daarom een voorgestelde workflow (en een website  praktische tools en tips).
+Wat volgt is daarom een voorgestelde workflow (en een work-in-progress website met tips&tricks).
 :::
 
 ##  A.I. agnostisch...geprobeerd  {.metonder}
@@ -183,10 +173,6 @@ En **trek je nog niets aan van je opmaak en afbeeldingen**.
 
 ![](assets/temmen.png){.figuur}
 
-## Als je één slide fotografeert: deze {.metonder}
-
-![](assets/meenemen.png){.figuur}
-
 
 
 ## [3]{.nr} Maak een contextmap, en hou ze proper {.metonder}
@@ -208,7 +194,7 @@ En **trek je nog niets aan van je opmaak en afbeeldingen**.
 
 
 
-## Wat zet je daar dan in? {.metnaast}
+## [4]{.nr} Regelbestand inhoud?  {.metnaast}
 
 ::: {.columns}
 ::: {.column}
@@ -227,7 +213,7 @@ Zet er zeker waar alle bestanden staan en wat hun nut is.
 :::
 :::
 
-## Voorbeeldje
+## [4]{.nr} Regelbestand voorbeeldje
 
 ```markdown
 ## Toon
@@ -276,7 +262,7 @@ jouw venster waar je bestanden blijven staan.
 
 
 
-## Voorbeeld van mijn 'improve.md'  omtrent afbeeldingen maken {.metnaast}
+## [5]{.nr} Voorbeeld van mijn 'improve.md'  omtrent afbeeldingen maken {.metnaast}
 
 ::: {.columns}
 ::: {.column}
@@ -292,7 +278,7 @@ jouw venster waar je bestanden blijven staan.
 :::
 :::
 
-## En daar komen je '.skills' uit {.metonder}
+## [5]{.nr} En daar komen je '.skills' uit {.metonder}
 
 ![](assets/afsprakenofskill.png){.figuur}
 
@@ -300,7 +286,7 @@ jouw venster waar je bestanden blijven staan.
 Figuren, oefeningen, examenvragen: elke taak die terugkeert.
 :::
 
-## Hoe werkt zo'n skill? {.metonder}
+## [5]{.nr} Hoe werkt zo'n skill? {.metonder}
 
 ![](assets/watiseenskill.png){.figuur}
 
@@ -310,7 +296,7 @@ Een gewoon tekstbestand dat je zelf schrijft: het **recept** voor die ene taak.
 
 :::
 
-## Voorbeeld van mijn skill voor de illustraties {.metnaast}
+## [5]{.nr} Voorbeeld van mijn skill voor de illustraties {.metnaast}
 
 ::: {.columns}
 ::: {.column}
@@ -339,7 +325,7 @@ opnieuw tot het klopt."*
 :::
 :::
 
-## Wanneer maak je een skill, en typ je die zelf? {.metnaast}
+## [5]{.nr} Wanneer maak je een skill, en typ je die zelf? {.metnaast}
 
 ::: {.columns}
 ::: {.column}
@@ -420,6 +406,10 @@ Nu begint de tokenburning ... en fun 😁.
 Maar dat is voor een andere keer.
 :::
 
+## Als je één slide fotografeert: deze {.metonder}
+
+![](assets/meenemen.png){.figuur}
+
 
 
 ## Dus: {.metonder}
@@ -440,13 +430,66 @@ Op vraag van mijn vrouw...en Yves 😉
 
 
 
-## Waar je moet klikken {.metonder}
+## Hoe heet het bij jou?
 
-![](assets/pertool.png){.figuur}
+
+
+<table class="termen">
+<colgroup>
+  <col style="width:10%"><col style="width:19%"><col style="width:19%">
+  <col style="width:22%"><col style="width:30%">
+</colgroup>
+<thead>
+<tr>
+  <th class="hoek"></th>
+  <th class="groep" colspan="3">in je venster: browser of app</th>
+  <th class="groep">in een map op je eigen schijf</th>
+</tr>
+<tr>
+  <th class="hoek"></th>
+  <th>je vaste plek heet</th>
+  <th>je regels staan in</th>
+  <th>een skill heet</th>
+  <th>je regelbestand heet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <th>Claude</th>
+  <td>een Project</td>
+  <td>de projectinstructies</td>
+  <td>een Skill, als zip opgeladen</td>
+  <td><code>CLAUDE.md</code> en skills in <code>.claude/skills/</code><span class="via">met Cowork of Claude Code</span></td>
+</tr>
+<tr>
+  <th>ChatGPT</th>
+  <td>een Project</td>
+  <td>de projectinstructies</td>
+  <td>een document in je project, of een eigen GPT</td>
+  <td><code>AGENTS.md</code><span class="via">met Codex</span></td>
+</tr>
+<tr>
+  <th>Gemini</th>
+  <td>een Gem, of een Notebook<span class="via">een Notebook vraagt een persoonlijk account</span></td>
+  <td>de instructies van je Gem, of van je notebook</td>
+  <td>een tweede Gem</td>
+  <td><code>GEMINI.md</code> en skills in <code>.gemini/skills/</code><span class="via">met de Gemini CLI</span></td>
+</tr>
+<tr>
+  <th>Copilot</th>
+  <td>een Notebook</td>
+  <td>de instructies van je notebook</td>
+  <td>een tweede notebook</td>
+  <td><code>.github/<wbr>copilot-instructions.md</code><span class="via">met Copilot in VS Code, niet die in Word</span></td>
+</tr>
+</tbody>
+</table>
 
 ::: {.onder}
-Deze talk ging over de volgorde. Dit is wat er niet in past, en precies wat de
-site wel doet: kies je tool, en elke pagina zegt hoe het bij jou heet.
+Namen veranderen: NotebookLM heet sinds juli Gemini Notebook. Kijk dus na of
+het bij jou nog zo heet, en kies op de site je tool voor de rest van je klikpad.
+
+Deze info heeft Claude verzameld...Graag feedback of dit klopt.
 :::
 
 ## Ook deze slides {.metonder}
