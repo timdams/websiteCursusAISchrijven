@@ -1037,8 +1037,8 @@ window.DATA = {
       id: "contextmap",
       figuur: {
         bestand: "assets/vijfdocumenten.png",
-        alt: "Tekening. Links een vak met dertig lege documentjes en het opschrift “alles wat ik heb”, met eronder “geen enkele reden opgeschreven”. Rechts vijf documenten die elk een regel uitleg krijgen: het hoofdstuk, de vakbeschrijving, je beginsituatie, een goed voorbeeld en een slecht voorbeeld.",
-        bijschrift: "Het selecteren is het werk. Vijf met een reden erbij doen meer dan dertig zonder."
+        alt: "Tekening. Links een vak met dertig documentjes onder het opschrift “alles wat ik heb”; vijf ervan staan rood omlijnd. Een pijl met het bijschrift “je kiest er vijf uit” wijst naar rechts, waar diezelfde vijf uitvergroot staan met elk een regel erbij: het hoofdstuk, de vakbeschrijving, je beginsituatie, een goed voorbeeld en een slecht voorbeeld.",
+        bijschrift: "De vijf rechts stonden ook al links. Wat erbij komt, is de regel waarom ze er liggen."
       },
       titel: "De contextmap",
       kort: "contextmap",
@@ -1100,7 +1100,7 @@ window.DATA = {
       id: "skills",
       figuur: {
         bestand: "assets/afsprakenofskill.png",
-        alt: "Tekening. Links je afsprakendocument, met pijlen naar alle vier de gesprekken in het midden. Rechts een skill, met één pijl naar alleen het gesprek waarin je een figuur maakt. Eronder staat: je haalt het erbij, en verder blijft het liggen.",
+        alt: "Tekening. Links je afsprakendocument, dat bij elk gesprek meegelezen wordt, met pijlen naar alle vier de gesprekken in het midden. Rechts een skill, die enkel meegelezen wordt bij die ene taak, met één pijl naar alleen het gesprek waarin je een figuur maakt.",
         bijschrift: "Je afspraken gelden altijd. Een skill haal je erbij als die ene taak langskomt."
       },
       titel: "Skills: vaste uitleg per taak",
@@ -1671,7 +1671,7 @@ window.DATA = {
         ["api.md", "wat de helpers kunnen: `c.rect`, `c.arrow`, `c.txt`, en de kleuren als constanten", "skill-api"],
         ["checklist.md", "wat je nakijkt op de gerenderde png. Van de vier is dit het bestand dat het meeste oplevert, want elke regel erin is al eens misgelopen", "skill-checklist"]
       ],
-      slot: "De helper waarop die scripts steunen en de vijf echte figuurscripts van deze site staan ernaast in `assets/imagegen/`. Wil je zien wat een figuur uiteindelijk is: `vijfdocumenten.js` tekent de dertig lege documentjes links en de vijf met een reden rechts, in tweeënvijftig regels.",
+      slot: "De helper waarop die scripts steunen en de vijf echte figuurscripts van deze site staan ernaast in `assets/imagegen/`. Wil je zien wat een figuur uiteindelijk is: `vijfdocumenten.js` tekent de dertig documentjes links, waarvan er vijf rood staan, en diezelfde vijf rechts met hun reden erbij, in achtenzestig regels.",
       links: ["imagegen-excal", "imagegen-vijfdocumenten"]
     },
 

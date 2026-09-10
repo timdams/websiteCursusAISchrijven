@@ -27,9 +27,7 @@ taken.forEach(([y]) => c.arrow(540, 400, 615, y + 60, { stroke: C.RED, strokeWid
 c.rect(1130, 300, 440, 200, { fill: C.RED_LIGHT, fillStyle: 'hachure', hachureGap: 8, fillWeight: 1.4,
   stroke: C.RED, strokeWidth: 2.4 });
 c.txt(1350, 356, 'een skill', 34, C.RED_DARK, 700);
-c.lines(1350, 404, ['een apart blad', 'voor een taak'], 28, C.GRAY, 600, 'middle', 1.3);
+c.lines(1350, 404, ['wordt enkel meegelezen', 'bij die ene taak'], 28, C.GRAY, 600, 'middle', 1.3);
 c.arrow(1120, 420, 1045, 470, { stroke: C.RED, strokeWidth: 2.4, head: 14 });
-c.txt(1350, 566, 'je haalt het erbij,', 28, C.GRAY, 600);
-c.txt(1350, 600, 'en verder blijft het liggen', 28, C.GRAY, 600);
 
 c.save('.', 'afsprakenofskill', '');

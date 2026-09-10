@@ -22,6 +22,23 @@ commentaarregel die zegt waar het begint en eindigt.
 Dat commentaar staat bewust **onder** de kop en niet erboven: markdown-commentaar
 boven een `##` valt buiten die slide en levert een lege slide op.
 
+
+## Twee slotslides, kies er ook een
+
+Achteraan staan dezelfde vier dingen twee keer, en ook daar gooi je er een weg
+voor de talk. In de qmd staat onder elke kop welke van de twee het is.
+
+| Versie | Kop | Wat |
+|---|---|---|
+| A | *Wat je meeneemt* | `meenemen.png`: de vier als kaarten, met de nummers uit de volgorde |
+| B | *Deze talk, als map* | `allessamen.png`: dezelfde vier, aangeduid in de map van deze repo |
+
+B is het praktische geval en A de samenvatting. Zet je ze allebei, dan staat A
+voorop.
+
+Wat op geen van de twee staat is `improve.md`: die is stap vijf in de volgorde,
+maar er ligt er geen in deze repo, dus staat hij ook niet in de boom van B.
+
 ## Renderen
 
 ```bash
@@ -105,23 +122,44 @@ cd slides/assets/imagegen
 for f in *.js; do [ "$f" = excal.js ] || node "$f"; done
 ```
 
-### Achttien tekeningen
+### Negentien tekeningen
 
 `prillebegin`, `zaal`, `teleurstelling`, `volgorde`, `schrijverswerk`,
-`mapindeling`, `eerstesessie`, `improvelus`, `nakijken`, `website` en `versies`
-zijn voor dit deck getekend. `zaal` opent de talk, `versies` komt er achteraan op
-terug en tekent diezelfde slide in zijn twee versies: wijzig je de ene, kijk dan
-ook naar de andere.
+`mapindeling`, `eerstesessie`, `improvelus`, `nakijken`, `meenemen`, `allessamen`,
+`website` en `versies` zijn voor dit deck getekend. `zaal` opent de talk, `versies` komt
+er achteraan op terug en tekent diezelfde slide in zijn twee versies: wijzig je
+de ene, kijk dan ook naar de andere.
 
-`mapindeling` en `eerstesessie` tekenen dezelfde boom. Op stap 2 staat die boom
-er kaal naast de docx: een map per hoofdstuk, een bestand per onderwerp, en
-verder niets. In `eerstesessie` staan de contextmap en de regels erbij en staat
-in het rood wat je in je eerste sessie aanraakt. Wijzig je de boom in het ene
-script, wijzig hem dan ook in het andere.
+`meenemen` staat er twee keer in, net als `volgorde`: een keer voor de workflow
+als aankondiging (*Als je één slide fotografeert: deze*) en een keer als
+slotslide. De nummers op de vier kaarten zijn de stappen 3 tot 6 uit
+`volgorde`, en kaart zes staat er gestreept bij om dezelfde reden als het
+bolletje daar. Wijzig je een van de twee tekeningen, kijk dan ook naar de andere.
+
+`allessamen` is de verkenner van deze repo zelf, overgetekend rij per rij, met
+de vier dingen in het rood aangeduid. De rommel staat er bewust bij:
+`node_modules`, `.vscode` en de twee package-bestanden. Zonder die rijen leest
+het als een opgekuiste voorbeeldmap. Verandert de mapindeling van de repo, dan
+klopt deze tekening niet meer en moet `rijen` in het script mee.
+
+`mapindeling` en `eerstesessie` tekenen dezelfde boom, met dezelfde helpers
+`map`, `blad` en `tak`. Op stap 2 staat die boom naast de docx waar hij uit
+komt: de twee koppen in dat document, `1 Inleiding` en `2 Rekenregels`, zijn de
+twee mappen rechts, en de pijl ertussen zegt wat je ermee doet. Verder staat er
+niets: geen contextmap, geen regels, geen rood. In `eerstesessie` staan de
+contextmap en de regels er wel bij en staat in het rood wat je in je eerste
+sessie aanraakt. Wijzig je de boom in het ene script, wijzig hem dan ook in het
+andere.
+
+`regelbestand` staat op *Wat zet je daar dan in?* en vervangt daar de drie
+bolletjes toon / niet-doen / contextmap. Het robotje erop is dat van
+`mimic.png`, maar dan getekend: vierkante kop, antenne en dezelfde rode nepbril
+met snor. Wijzig je de vermomming daar, kijk dan ook hier. De tekst op het blad
+en in het mapje is die van de slide *Voorbeeldje* ernaast.
 
 `eenbron`, `vijfdocumenten`, `kernidee` en `afsprakenofskill` staan ook op de
-site, maar de scripts hier zijn een eigen versie: op de site zijn ze 1660 tot
-1740 breed, hier 1560, met grotere tekst. Wijzig je zo'n figuur, wijzig hem dan op beide plekken.
+site, maar de scripts hier zijn een eigen versie: op de site zijn ze 1600 tot
+1660 breed, hier 1560, met grotere tekst. Wijzig je zo'n figuur, wijzig hem dan op beide plekken.
 
 `strip-vraag`, `strip-vorigjaar` en `strip-nu` zijn de stripversie van de origin
 story. De panelen, de stokfiguurtjes en de tekstballonnen zitten in
@@ -149,7 +187,7 @@ naar. Vervang je die afdruk, dan volgt de slide vanzelf.
 
 Elke tekening is 1560 breed en hoogstens 670 hoog, met tekst van minstens 30. Zo
 rendert ze op de slide op ongeveer één op één. Smaller mag: de schaal hangt aan
-de hoogte zolang de breedte onder 1470 blijft, en `mapindeling` (1060) en
+de hoogte zolang de breedte onder 1470 blijft, en `mapindeling` (1200) en
 `eerstesessie` (1000) staan daarom smaller, anders houden ze rechts een lege
 strook over. De rekensom en de reden staan in
 [MAATVOERING.md](MAATVOERING.md). Wijzig je een figuur, hou je daar dan aan: op

@@ -23,6 +23,13 @@ function blad(x, y, label, rood) {
   c.txt(x + 54, y + 34, label, 36, rood ? C.RED_DARK : C.GRAY, 500, 'start');
 }
 
+// een tak: de verticale lijn onder een map, met een stuk naar elk kind toe
+function tak(xv, yTop, kinderen, breedte, o = {}) {
+  c.line(xv, yTop, xv, kinderen[kinderen.length - 1], { strokeWidth: 1.8, roughness: 1.6, ...o });
+  kinderen.forEach((y, i) => c.line(xv, y, xv + (Array.isArray(breedte) ? breedte[i] : breedte), y,
+    { strokeWidth: 1.8, roughness: 1.6, ...o }));
+}
+
 const RX = 110, RY = 100, RH = 56;
 const rij = i => RY + i * RH;
 
@@ -35,11 +42,11 @@ blad(RX + 120, rij(5), 'vermenigvuldigen.md', false);
 map(RX + 55, rij(6), 'context/', true);
 blad(RX + 120, rij(7), 'regels.md', true);
 
-// de verticale lijnen van de boom
-c.line(RX + 22, rij(0) + 43, RX + 22, rij(6) + 22, { strokeWidth: 1.8, roughness: 1.6 });
-c.line(RX + 77, rij(1) + 43, RX + 77, rij(2) + 22, { strokeWidth: 1.8, roughness: 1.6 });
-c.line(RX + 77, rij(3) + 43, RX + 77, rij(5) + 22, { strokeWidth: 1.8, roughness: 1.6 });
-c.line(RX + 77, rij(6) + 43, RX + 77, rij(7) + 22, { stroke: C.RED, strokeWidth: 1.8, roughness: 1.6 });
+// de takken van de boom; de tak bij optellen.md stopt tegen het rode kader
+tak(RX + 22, rij(0) + 43, [rij(1) + 23, rij(3) + 23, rij(6) + 23], 33);
+tak(RX + 77, rij(1) + 43, [rij(2) + 17], 43);
+tak(RX + 77, rij(3) + 43, [rij(4) + 17, rij(5) + 17], [29, 43]);
+tak(RX + 77, rij(6) + 43, [rij(7) + 17], 43, { stroke: C.RED });
 
 // het ene bestand dat je doorgeeft
 c.rect(RX + 110, rij(4) - 12, 330, 56, { fill: 'none', stroke: C.RED, strokeWidth: 2.6, roughness: 1.5 });

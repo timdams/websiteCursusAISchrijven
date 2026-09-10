@@ -6,7 +6,7 @@
 // Draaien vanuit de imagegen-map:  node afsprakenofskill.js
 const { createCanvas, C } = require('./excal');
 
-const c = createCanvas(1560, 620);
+const c = createCanvas(1560, 590);
 
 // ---------- de gesprekken in het midden ----------
 const taken = [
@@ -33,9 +33,7 @@ taken.forEach(([y]) => c.arrow(450, 325, 545, y + 52,
 c.rect(1100, 240, 420, 170, { fill: C.RED_LIGHT, fillStyle: 'hachure', hachureGap: 8,
   fillWeight: 1.5, stroke: C.RED, strokeWidth: 2.6, roughness: 1.4 });
 c.txt(1310, 298, 'een skill', 36, C.RED_DARK, 700);
-c.lines(1310, 344, ['een apart blad', 'voor een taak'], 30, C.GRAY, 600, 'middle', 1.3);
+c.lines(1310, 344, ['wordt enkel meegelezen', 'bij die ene taak'], 30, C.GRAY, 600, 'middle', 1.3);
 c.arrow(1090, 350, 995, 385, { stroke: C.RED, strokeWidth: 2.6, roughness: 1.3, head: 17 });
-c.lines(1310, 478, ['je haalt het erbij,', 'en verder blijft het liggen'],
-  30, C.GRAY, 600, 'middle', 1.3);
 
 c.save('.', 'afsprakenofskill', '');

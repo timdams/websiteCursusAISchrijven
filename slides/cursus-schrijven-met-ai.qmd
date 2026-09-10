@@ -22,7 +22,7 @@ format:
 lang: nl
 
 ---
-## Waar deze talk begint {.metonder}
+## Voor wie is dit? {.metonder}
 
 ![](assets/zaal.png){.figuur}
 
@@ -32,7 +32,7 @@ Alles wat volgt is proefondervindelijk gevonden. Roep wanneer iets niet klopt. M
 
 ---
 
-## Waar deze talk begint {.metonder}
+## Voor wie is dit?  {.metonder}
 
 ![](assets/zaal-kristof.png){.figuur}
 
@@ -42,23 +42,25 @@ Ah ja. En Kristof.
 
 ---
 
-## Waarom ik meteen ja zei
+## Origin story
 
 ::: {.terzijde}
-Yves en Kelly vroegen 2 weken geleden op overleg of ik deze talk wou geven...Ik zei direct 'ja'.
+Yves en Kelly vroegen 2 weken geleden op overleg of ik deze talk wou geven...uiteraard zei ik direct 'okidoki!'
 :::
 
 ::: {.columns}
-::: {.column width="50%"}
-[Tim from the past]{.kop}
+::: {.column width="50%" .fragment}
+[Tim from the past...]{.kop}
 
-Had dat ook geantwoord. En week later diiiik spijt van gehad.
+...had dat ook geantwoord. En week later diiiik spijt van gehad.
 :::
 
 ::: {.column width="50%" .fragment}
-[Tim van nu]{.kop}
+[Tim van nu...]{.kop}
 
-Zei ja , had uur later een outline en 1 dag en 3 prompts later  een eerste cursusversie die online beschikbaar was. 
+...zei dus ja , had een uur later een outline en 1 dag en 3 prompts later een eerste cursusversie die online beschikbaar stond. 
+
+Toegegeven, het trok op niets: maar er was tenminste een basis.
 :::
 :::
 
@@ -73,14 +75,13 @@ Zei ja , had uur later een outline en 1 dag en 3 prompts later  een eerste cursu
 [De kleine rode stapel]{.kop} = deze talk en een website:
 
 * Twee weken werk, en dat
-hoor/zie/lees je. 
-* *(Kon deze zin nog meer A.I. aanvoelen?)*
+hoor/zie/lees je.  *Kon deze zin nog meer A.I. aanvoelen?*
 
 [De grote stapel]{.kop} = mijn eigen olods (insert sluikreclame voor Zie Scherp Scherper, hier):
 
 * Lees: vele jaren werk, recyclage, ervaring en feedback.
 
-::: {.onder style="text-align:left"}
+::: {.onder style="text-align:left" }
 De voet geneest wel. *(wederom zo'n typische A.I.-zin)*
 :::
 :::
@@ -90,7 +91,7 @@ De voet geneest wel. *(wederom zo'n typische A.I.-zin)*
 
 ![](assets/teleurstelling.png){.figuur}
 
-::: {.onder}
+::: {.onder .fragment}
 **Gevaar van A.I. is dat het altijd overtuigend antwoordt.**
 :::
 
@@ -125,6 +126,18 @@ En hoe kan A.I. dat overnemen?!
 Wat volgt is daarom een voorgestelde workflow (en een website  praktische tools en tips).
 :::
 
+##  A.I. agnostisch  {.metonder}
+
+![](assets/agnostisch.png){.figuur}
+
+::: {.onder}
+Iedereen zit met een ander abonnement (of geen) en een andere toolset: browser,
+client, VS Code. Theoretisch werkt wat volgt op elke combinatie. 🤞
+**Op het einde kort hoe het praktisch gaat in Claude.**
+:::
+
+
+
 ## De workflow {.metkolommen}
 
 ![](assets/volgorde.png){.figuur}
@@ -139,14 +152,16 @@ Wat volgt is daarom een voorgestelde workflow (en een website  praktische tools 
 :::
 :::
 
+
+
 ## [1]{.nr} Schrijf eerst als schrijver {.metonder}
 
 ![](assets/schrijverswerk.png){.figuur}
 
 ::: {.onder}
-Outline, eerste versie, nalezen, herschrijven: die volgorde verandert niet omdat
-er een AI bij komt. Vraag je meteen een hoofdstuk, dan krijg je twaalf
-hoofdstukken die elk apart kloppen en samen nergens naartoe gaan.
+Maak een ruwe outline en schrijf (een stuk) van je favoriete hoofdstuk. 
+
+Als je A.I. vanaf nul laat schrijven dan duwt hij de inhoud en toon. Stay in control 🤓 !
 :::
 
 ## [2]{.nr} Zet je cursus in droge tekst {.metonder}
@@ -154,19 +169,31 @@ hoofdstukken die elk apart kloppen en samen nergens naartoe gaan.
 ![](assets/mapindeling.png){.figuur}
 
 ::: {.onder}
-Markdown of gewone txt. Een map per hoofdstuk, daarin een bestand per onderwerp.
-En trek je nog niets aan van je opmaak: die is stap zeven.
+**Markdown** of gewone txt. Knip tot op de maat die je in één keer meegeeft: meestal één onderwerp.
+En **trek je nog niets aan van je opmaak**.
 :::
+
+## Tijd om de A.I. te temmen {.metonder}
+
+![](assets/temmen.png){.figuur}
+
+## Als je één slide fotografeert: deze {.metonder}
+
+![](assets/meenemen.png){.figuur}
+
+
 
 ## [3]{.nr} Maak een contextmap, en hou ze proper {.metonder}
 
 ![](assets/vijfdocumenten.png){.figuur}
 
 ::: {.onder}
-`context/`:hierin zit wat een collega nodig heeft om je vak over te nemen. *K.I.S.S.* 
+`context/`: hierin zit wat een collega nodig heeft om je vak over te nemen. *K.I.S.S.*
 
-`content/`: Hier komen je cursushoofdstukken (later afbeeldingen.
+`content/`: hier komen je cursushoofdstukken, en later je afbeeldingen.
 :::
+
+
 
 ## [4]{.nr} Zet je regels in een bestand: de handleiding voor je agents {.metonder}
 
@@ -177,21 +204,15 @@ En trek je nog niets aan van je opmaak: die is stap zeven.
 bestand zet je per document van je contextmap die ene regel waarom. 
 :::
 
-## Wat zet je daar dan in?
 
-::: {.terzijde}
-Een tekstbestand van een halve pagina, in de map van je cursus. Je AI leest het
-bij elke nieuwe vraag opnieuw, zonder dat jij het meestuurt.
-:::
+## Wat zet je daar dan in? {.metonder}
 
-* **Je toon.** Beschrijf die niet zelf: *"vlot en toegankelijk"* levert precies
-  niks op. Geef twee eigen teksten en vraag welke regels die volgen.
-* **Je niet-doen-lijst.** Die weegt zwaarder dan de wel-doen-lijst. Daaraan
-  herkent een lezer AI-tekst (maar je zal het nooit helemaal wegkrijgen...trust me).
-* **Je contextmap.** Een "plan" van je folder. Waar staat welk bestand en waarvoor dient het.
+![](assets/regelbestand.png){.figuur}
 
-::: {.kader}
-Werk je in een chatvenster, dan is dit het instructieveld van je project. 
+::: {.onder}
+Een tekstbestand van een halve pagina dat je A.I.bij elke nieuwe vraag opnieuw leest. Je
+**niet-doen-lijst** weegt daarbij zwaarder dan je wel-doen-lijst: daaraan herkent een lezer
+AI-tekst (helemaal wegkrijgen doe je het nooit, *trust me*).
 :::
 
 ## Voorbeeldje
@@ -212,18 +233,44 @@ Werk je in een chatvenster, dan is dit het instructieveld van je project.
 ```
 
 ::: {.onder style="text-align:left"}
+* Beschrijf je toon niet zelf: *"vlot en toegankelijk"* levert precies niks op. Geef twee
+eigen teksten en vraag welke regels die volgen.
 * Maak elke regel nakijkbaar. *Schrijf helder* kan je niet nakijken, *getallen tot
 twintig voluit* wel. 
 * Laat de A.I. het regelbestand nalezen en er feedback op geven.
 :::
 
-## [5]{.nr} Laat de AI bijhouden wat je corrigeert {.metonder}
+## "Ja maar, ik werk in een chatvenster..." (Claude vb.) {.metnaast}
+
+::: {.columns}
+::: {.column}
+![](assets/chatvenster.png){.figuur}
+:::
+
+::: {.column}
+
+
+* **Instructions**: je regels, in een tekstvak.
+* **Context**: je documenten. Eén keer opladen en ze blijven staan.
+* **Folder**: een map op je schijf, enkel in Claude Desktop.
+
+::: {.kader}
+ChatGPT heeft Projects met dezelfde velden, Copilot heeft notebooks. Zoek in
+jouw venster waar je bestanden blijven staan.
+:::
+
+:::
+:::
+
+
+
+## [5]{.nr} Laat de A.I.bijhouden wat je corrigeert {.metonder}
 
 ![](assets/improvelus.png){.figuur}
 
 
 
-## Voorbeeld van mijn regels omtrent afbeeldingen maken {.metnaast}
+## Voorbeeld van mijn 'improve.md'  omtrent afbeeldingen maken {.metnaast}
 
 ::: {.columns}
 ::: {.column}
@@ -232,14 +279,14 @@ twintig voluit* wel.
 
 ::: {.column}
 
-* `improve.md` wordt vanaf dan meegelezen zoals je regelbestand zelf: de AI past toe wat ze daar noteerde.
-* Beter dan "ik zal op het einde van de sessie al m'n remarks wel even opschrijven"...dat doe je toch nooit.
+* `improve.md` wordt vanaf dan meegelezen zoals je regelbestand zelf: de A.I. past toe wat ze daar noteerde.
+* Beter dan *"ik zal op het einde van de sessie al m'n remarks wel even opschrijven"*...dat doe je toch nooit.😒
 * Tip: neem de regels geregeld door (soms neemt de A.I. vreemde beslissingen, en dan moet je ze corrigeren).
 
 :::
 :::
 
-## En daar komen je 'skills' uit {.metonder}
+## En daar komen je '.skills' uit {.metonder}
 
 ![](assets/afsprakenofskill.png){.figuur}
 
@@ -247,37 +294,18 @@ twintig voluit* wel.
 Figuren, oefeningen, examenvragen: elke taak die terugkeert.
 :::
 
-## Wat is zo'n skill dan?
+## Hoe werkt zo'n skill? {.metonder}
 
-::: {.terzijde}
-Een receptenblad voor één taak.
+![](assets/watiseenskill.png){.figuur}
+
+::: {.onder}
+Een gewoon tekstbestand dat je zelf schrijft: het receptenblad voor die ene taak.
+
+In dat van de examenvragen staat: vier alternatieven, één juist, geen *alle
+bovenstaande*.
 :::
 
-::: {.columns}
-::: {.column width="52%"}
-Een apart tekstbestand met **de reeks stappen** die de AI telkens opnieuw moet
-doen. Bovenaan één regel over wanneer het van toepassing is, en daar herkent ze
-het aan.
-
-Wat erin staat:
-
-* de commando's, met de map van waaruit je ze draait
-* wat er nagekeken wordt voor het klaar is
-* hoe het resultaat moet heten en waar het komt te staan
-:::
-
-::: {.column width="48%"}
-[Taken waar het loont]{.kop}
-
-* **Een figuur tekenen.** Van het script tot de PNG die ik zelf nog bekijk.
-* **Code testen en rapporteren.** `dotnet test` draaien, enkel de gefaalde
-  teruggeven, met bestand en regelnummer erbij.
-* **Een examenvraag maken.** Vier alternatieven, één juist, geen *alle
-  bovenstaande*.
-:::
-:::
-
-## Voorbeeld Mijn skill voor de illustraties {.metnaast}
+## Voorbeeld van mijn skill voor de illustraties {.metnaast}
 
 ::: {.columns}
 ::: {.column}
@@ -293,7 +321,7 @@ Wat erin staat:
 :::
 :::
 
-## Wanneer maak je er een?
+## Wanneer maak je skill?
 
 ::: {.terzijde}
 Wanneer je jezelf dezelfde reeks commando's hoort dicteren. Bij mij was dat de
@@ -312,27 +340,33 @@ er gedraaid zijn, en welke twee keer over moesten. In een nieuw venster is dat
 weg.
 :::
 
+## Moet je die zelf schrijven? {.metonder}
+
+![](assets/laatzeschrijven.png){.figuur}
+
+::: {.onder}
+Nee. Zij schrijft haar eigen receptenblad, jij leest het na met de rode pen. 😏
+:::
+
 ## [6]{.nr} Kijk na
 
 ::: {.terzijde}
-De enige stap die je met je eigen ogen doet. Daarom staat die zes gestreept in
-het schema en niet vol.
+Het verschil tussen een cursus en A.I.-slob.
 :::
 
-* **De AI zegt nooit dat ze het niet zeker weet.** Een verzonnen jaartal staat er
-  even overtuigd als een juist jaartal.
+* **De A.I.zegt nooit dat ze (hij?) het niet zeker weet.** 
 * Zelf lezen dus: de getallen, de namen, de bronnen, en of het klopt met wat jij
-  in de les vertelt. Staat er code in, dan draai je ze.
+  in de les vertelt. Staat er code in, dan draA.I.je ze.
 * Wat je hier corrigeert, gaat naar `improve.md` van stap vijf. Anders kijk je
   het volgende hoofdstuk na op precies hetzelfde.
 
 ::: {.kader}
-[Eén hulpmiddel wel]{.kop}: laat de AI haar eigen tekst nalezen, maar in een
+[Eén hulpmiddel wel]{.kop}: laat de A.I. haar eigen tekst nalezen, maar in een
 andere rol, en liefst in een ander model dan het model dat ze geschreven heeft.
 
-* *Lees dit hoofdstuk als een student met dyslexie. Waar haak je af?*
-* *Stel dat de Spaanse inquisitie mijn cursus leest: welke uitspraken moet ik
-  zeker online verifiëren?*
+* "*Lees dit hoofdstuk als een student met dyslexie. Waar haak je af?*"
+* "*Stel dat de Spaanse inquisitie mijn cursus leest: welke uitspraken moet ik
+  zeker online verifiëren?*""
 :::
 
 ## [7]{.nr} En dan pas je opmaak {.metonder}
@@ -411,7 +445,7 @@ Onder elke voorbeeldkaart staan bolletjes met de techniek erachter. Staat er
 **De startpagina** geeft het antwoord op "hoe begin ik eraan": dezelfde zeven
 stappen, in dezelfde volgorde.
 
-**De bevrager** vraagt welke AI je hebt en wat je al kan, en geeft je jouw plan.
+**De bevrager** vraagt welke A.I.je hebt en wat je al kan, en geeft je jouw plan.
 Claude, ChatGPT, Gemini, Copilot, iets zelfgehost, of nog geen abonnement.
 
 **Het naslagwerk** is om later in terug te vallen. De valkuilen staan er op
@@ -442,7 +476,7 @@ had ik niet gezien.
 
 - De galerij groeit nog. Ken je een cursus, site of cursusmap die erin hoort,
   laat het weten.
-- Grote stukken van de teksten voelen nog AI aan, op de site net zo goed als
+- Grote stukken van de teksten voelen nog A.I.aan, op de site net zo goed als
   hier in de slides.
 - Of de bevrager de juiste vragen stelt, weet ik niet. Dat merk ik pas wanneer
   iemand anders hem doorloopt met zijn eigen vak in zijn hoofd.
@@ -450,4 +484,26 @@ had ik niet gezien.
 ::: {.kader}
 Ga naar `timdams.github.io/websiteCursusAISchrijven`, doorloop de bevrager met
 je eigen vak in je hoofd, en stuur me terug waar je vastliep of wat er ontbreekt.
+:::
+
+## Wat je meeneemt {.metonder}
+<!-- SLOT A van twee. B is "Deze talk, als map" hieronder. Kies er een voor de
+     talk en gooi de andere weg. -->
+
+![](assets/meenemen.png){.figuur}
+
+::: {.onder}
+Begin bij het regelbestand, met drie regels en niet met twintig. Wat je daarna
+corrigeert, schrijft de AI zelf bij in `improve.md`.
+:::
+
+## Deze talk, als map {.metonder}
+<!-- SLOT B van twee. A is "Wat je meeneemt" hierboven. Dezelfde vier dingen,
+     maar dan waar ze staan in de repo van deze talk zelf. -->
+
+![](assets/allessamen.png){.figuur}
+
+::: {.onder}
+`context/` en `CLAUDE.MD` staan er vanaf de eerste dag. De skill kwam er pas bij
+de derde tekening, en `site/` en `slides/` zijn wat eruit kwam.
 :::
