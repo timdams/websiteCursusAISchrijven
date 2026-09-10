@@ -111,6 +111,12 @@ lesgever**.
 
 En hoe kan A.I. dat overnemen?!
 
+Wij zijn toch uniek. Niet vervangbaar.
+
+Toch?
+
+[Toch...?]{.klein}
+
 
 :::
 
@@ -126,7 +132,7 @@ En hoe kan A.I. dat overnemen?!
 Wat volgt is daarom een voorgestelde workflow (en een website  praktische tools en tips).
 :::
 
-##  A.I. agnostisch  {.metonder}
+##  A.I. agnostisch...geprobeerd  {.metonder}
 
 ![](assets/agnostisch.png){.figuur}
 
@@ -144,7 +150,7 @@ client, VS Code. Theoretisch werkt wat volgt op elke combinatie. 🤞
 
 ::: {.columns}
 ::: {.column width="50%"}
-[Eén en twee]{.kop} is zonder A.I (sorry!).
+[Eén en twee]{.kop} is grotendeels zonder A.I. (sorry!).
 :::
 
 ::: {.column width="50%"}
@@ -161,7 +167,7 @@ client, VS Code. Theoretisch werkt wat volgt op elke combinatie. 🤞
 ::: {.onder}
 Maak een ruwe outline en schrijf (een stuk) van je favoriete hoofdstuk. 
 
-Als je A.I. vanaf nul laat schrijven dan duwt hij de inhoud en toon. Stay in control 🤓 !
+Als je A.I. vanaf nul laat schrijven dan duwt hij de inhoud en toon. **Stay in control 🤓 !**
 :::
 
 ## [2]{.nr} Zet je cursus in droge tekst {.metonder}
@@ -170,7 +176,7 @@ Als je A.I. vanaf nul laat schrijven dan duwt hij de inhoud en toon. Stay in con
 
 ::: {.onder}
 **Markdown** of gewone txt. Knip tot op de maat die je in één keer meegeeft: meestal één onderwerp.
-En **trek je nog niets aan van je opmaak**.
+En **trek je nog niets aan van je opmaak en afbeeldingen**.
 :::
 
 ## Tijd om de A.I. te temmen {.metonder}
@@ -199,10 +205,7 @@ En **trek je nog niets aan van je opmaak**.
 
 ![](assets/kernidee.png){.figuur}
 
-::: {.onder}
-`claude.md`, `gemini.md`, of de projectinstructie in je venster. In datzelfde
-bestand zet je per document van je contextmap die ene regel waarom. 
-:::
+
 
 
 ## Wat zet je daar dan in? {.metnaast}
@@ -213,11 +216,14 @@ bestand zet je per document van je contextmap die ene regel waarom.
 :::
 
 ::: {.column}
-Een tekstbestand van een halve pagina dat je A.I. bij elke nieuwe vraag opnieuw
-leest.
+Een tekstbestand van een halve pagina dat je A.I. bij elke nieuwe vraag opnieuw leest.
 
-Je **niet-doen-lijst** weegt daarbij zwaarder dan je wel-doen-lijst: daaraan
-herkent een lezer AI-tekst (helemaal wegkrijgen doe je het nooit, *trust me*).
+Zet er alles dat je telkens opnieuw moet zeggen (alsof het een student is 😉)
+
+Zet er zeker waar alle bestanden staan en wat hun nut is.
+
+[Vergelijk het met een studiewijzer.]{.klein}
+
 :::
 :::
 
@@ -239,11 +245,8 @@ herkent een lezer AI-tekst (helemaal wegkrijgen doe je het nooit, *trust me*).
 ```
 
 ::: {.onder style="text-align:left"}
-* Beschrijf je toon niet zelf: *"vlot en toegankelijk"* levert precies niks op. Geef twee
-eigen teksten en vraag welke regels die volgen.
-* Maak elke regel nakijkbaar. *Schrijf helder* kan je niet nakijken, *getallen tot
-twintig voluit* wel. 
-* Laat de A.I. het regelbestand nalezen en er feedback op geven.
+
+* Tip: Laat de A.I. het regelbestand nalezen en er feedback op geven.
 :::
 
 ## "Ja maar, ik werk in een chatvenster..." (Claude vb.) {.metnaast}
@@ -256,9 +259,6 @@ twintig voluit* wel.
 ::: {.column}
 
 
-* **Instructions**: je regels, in een tekstvak.
-* **Context**: je documenten. Eén keer opladen en ze blijven staan.
-* **Folder**: een map op je schijf, enkel in Claude Desktop.
 
 ::: {.kader}
 ChatGPT heeft Projects met dezelfde velden, Copilot heeft notebooks. Zoek in
@@ -305,10 +305,9 @@ Figuren, oefeningen, examenvragen: elke taak die terugkeert.
 ![](assets/watiseenskill.png){.figuur}
 
 ::: {.onder}
-Een gewoon tekstbestand dat je zelf schrijft: het receptenblad voor die ene taak.
+Een gewoon tekstbestand dat je zelf schrijft: het **recept** voor die ene taak.
 
-In dat van de examenvragen staat: vier alternatieven, één juist, geen *alle
-bovenstaande*.
+
 :::
 
 ## Voorbeeld van mijn skill voor de illustraties {.metnaast}
@@ -324,29 +323,23 @@ bovenstaande*.
 * Sommige zijn met behulp van ChatGpt Images 2.0 gemaakt.
 * Tip: laat je imagegen prompts door de A.I. uitschrijven.
 
+
+::: {.fragment}
+A propos: stap 5 van deze skill is: 
+
+*"Deze stap nooit overslaan. Bekijk de gerenderde PNG met de Read tool. rough.js geeft geen foutmelding bij lelijke
+output, dus je moet echt kijken. Loop de checklist in
+`references/checklist.md` af, corrigeer het script en render
+opnieuw tot het klopt."*
+
+
+:::
+
+
 :::
 :::
 
-## Wanneer maak je skill?
-
-::: {.terzijde}
-Wanneer je jezelf dezelfde reeks commando's hoort dicteren. Bij mij was dat de
-derde tekening.
-:::
-
-* Merk je dat je agent telkens dezelfde acties doorloopt (dezelfde scripts,
-  dezelfde volgorde, dezelfde controle op het einde), dan hoort dat op een blad.
-* Vraag het op het einde van die chat: *schrijf wat we net gedaan hebben als een
-  skill: de stappen in volgorde, met de commando's en met wat er misliep.*
-* Lees na wat ze opschrijft. Bij mij stond er een stap in die ik nooit gevraagd had.
-
-::: {.kader}
-Doe dat vóór je het venster sluit. Zij heeft het gesprek nog: welke commando's
-er gedraaid zijn, en welke twee keer over moesten. In een nieuw venster is dat
-weg.
-:::
-
-## Moet je die zelf schrijven? {.metnaast}
+## Wanneer maak je een skill, en typ je die zelf? {.metnaast}
 
 ::: {.columns}
 ::: {.column}
@@ -355,11 +348,21 @@ weg.
 
 ::: {.column}
 
-* Nee. Zo'n blad typ je niet met de hand: dat van mijn illustraties telt 123
-  regels, met twee bijlagen erbij.
-* Geef de A.I. er één die je al hebt: *maak er zo nog een, voor mijn
-  examenvragen.* 
-* Heb je nog geen voorbeeld? Geen  probleem...A.I. lost het wel op😏
+::: {.terzijde}
+Wanneer je jezelf dezelfde reeks commando's hoort dicteren. Of A.I. telkens het wiel moet heruitvinden.
+:::
+
+* Skills schrijf je niet zelf...Allez, ik toch niet.
+* Vraag het op het einde van een chat: "*schrijf wat we net gedaan hebben als een
+  skill: de stappen in volgorde, met de commando's en met wat er misliep.*"
+* Controleer de skill, en "installeer" hem.
+
+
+
+::: {.fragment}
+* Tip: installeer niet tig skills die je online vindt. Broedt op je eigen skills. Remember: you're the boss! 🧑‍🍳
+
+:::
 
 :::
 :::
@@ -386,35 +389,44 @@ Het verschil tussen een cursus en A.I.-slob.
 
 
 
-## Eén hulpmiddel wel
+## Huur het A(I)-team {.metnaast}
 
-Laat de A.I. haar eigen tekst nalezen, maar in een andere rol, en liefst in een
-ander model dan het model dat ze geschreven heeft.
+::: {.columns}
+::: {.column}
+![](assets/ateam.png){.figuur}
+:::
+
+::: {.column}
+
+Laat de A.I. je teksten nalezen, maar telkens in een andere rol.
 
 ::: {.kader}
 * "*Lees dit hoofdstuk als een student met dyslexie. Waar haak je af?*"
+* *"Je bent eindredacteur bij Pearson en wil dit hoofdstuk de finishing touches geven voor je het in miljoenen oplage afdrukt. Waar zitten de easy wins? Wat gaat de uitgeverij geld kosten?"*
 * "*Stel dat de Spaanse inquisitie mijn cursus leest: welke uitspraken moet ik
   zeker online verifiëren?*"
 :::
 
-## [7]{.nr} En dan pas je opmaak/finale document {.metonder}
+:::
+:::
+
+## [7]{.nr} En nu de belekes, pdf, slides, etc! {.metonder}
 
 ![](assets/eenbron.png){.figuur}
 
 ::: {.onder}
-Nu verandert er aan de tekst niets meer, dus nu mag de opmaak. Wie ze eerst deed,
-doet ze opnieuw bij elke zin die daarna nog veranderde.
+Nu begint de tokenburning ... en fun 😁.
+
+Maar dat is voor een andere keer.
 :::
 
 
 
-## Nog eens, in volgorde {.metonder}
+## Dus: {.metonder}
 
 ![](assets/volgorde.png){.figuur}
 
-::: {.onder}
-Begin bij één, en niet bij drie.
-:::
+
 
 ## De site {.tussentitel .center}
 
