@@ -1,9 +1,19 @@
 # Slides
 
-Een deck van eenendertig slides over hoe je aan een cursus begint met AI, met de
-site als afsluiter. Alleen voor lokaal gebruik: de workflow in
-[.github/workflows/pages.yml](../.github/workflows/pages.yml) zet enkel `site/` op
-GitHub Pages, dus deze map gaat er niet mee op.
+Een deck van vierendertig slides over hoe je aan een cursus begint met AI, met de
+site als afsluiter.
+
+De qmd blijft hier staan, maar het gerenderde deck gaat wel mee op GitHub Pages.
+De stap *Slides renderen* in
+[.github/workflows/pages.yml](../.github/workflows/pages.yml) zet het als
+`site/slides/index.html` naast de site, zodat de knop **De slides** in de kop van
+[de site](../site/README.md) ergens op uitkomt. Lokaal maak je diezelfde map met
+`npm run slides` vanuit de repo-root. Ze staat in `.gitignore`.
+
+De slides zijn de waarheid: loopt de site uit de pas met wat hier verteld wordt,
+dan volgt de site. Wat er van dit deck naar de site is overgekomen, en welke
+tekeningen daar een tweede keer staan, staat onder *De tekeningen die van de
+slides komen* in [site/README.md](../site/README.md).
 
 ## De titelslide
 
@@ -18,39 +28,31 @@ De tekening komt uit een beeldgenerator en is vierkant. Hoe ze toch de volle
 wat je moet doen wanneer je haar vervangt, staat in
 [PROMPT-titel.md](PROMPT-titel.md), samen met de prompt zelf.
 
-## Twee origin stories, kies er een
+## Hoe het deck loopt
 
-Het deck opent met waar het vandaan komt: deze slides en de site zijn met Claude
-gemaakt, en de aanpak die erin staat komt uit de olods waar wel jaren in zitten.
-Die beats staan er **twee keer** in, zodat je kan kiezen voor je presenteert:
+Vier stukken, in deze volgorde:
 
-| Versie | Slides | Wat |
-|---|---|---|
-| A | 2 en 3 | kort: tekst met de tekening ernaast, dan de twee stapels |
-| B | 4 tot en met 8 | dezelfde beats als strip met tekstballonnen |
+| Slides | Wat |
+|---|---|
+| 1 tot 7 | wie er zit, waar de talk vandaan komt, en waarom het de vorige keer tegenviel |
+| 8 tot 25 | de zeven stappen, met de nummers in het rood voor de kop |
+| 26 tot 30 | deze slides zelf, wat je meeneemt, en de twee termentabellen |
+| 31 tot 34 | de site, wat er nog niet af is, en bedankt |
 
-Gooi voor de talk een van de twee blokken weg. In de qmd staat boven elk blok een
-commentaarregel die zegt waar het begint en eindigt.
+De nummers voor een kop (`[5]{.nr}`) zijn de stap uit `volgorde.png`. Stap vier
+en vijf hebben er elk vier slides, want daar zit het werk; stap één, twee en
+zeven hebben er één.
 
-Dat commentaar staat bewust **onder** de kop en niet erboven: markdown-commentaar
-boven een `##` valt buiten die slide en levert een lege slide op.
+Achteraan staan dezelfde vier dingen twee keer: *Deze talk, als map*
+(`allessamen.png`, de vier aangeduid in de map van deze repo) en *Wat je
+(hopelijk) mee naar huis neemt* (`meenemen.png`, de vier als kaarten met de
+nummers uit de volgorde). De eerste is het praktische geval, de tweede de
+samenvatting. Loop je krap, dan is dat het paar waar je er een van kan weghalen.
 
-
-## Twee slotslides, kies er ook een
-
-Achteraan staan dezelfde vier dingen twee keer, en ook daar gooi je er een weg
-voor de talk. In de qmd staat onder elke kop welke van de twee het is.
-
-| Versie | Kop | Wat |
-|---|---|---|
-| A | *Wat je meeneemt* | `meenemen.png`: de vier als kaarten, met de nummers uit de volgorde |
-| B | *Deze talk, als map* | `allessamen.png`: dezelfde vier, aangeduid in de map van deze repo |
-
-B is het praktische geval en A de samenvatting. Zet je ze allebei, dan staat A
-voorop.
-
-Wat op geen van de twee staat is `improve.md`: die is stap vijf in de volgorde,
-maar er ligt er geen in deze repo, dus staat hij ook niet in de boom van B.
+Onder de kop van die eerste staat in de qmd een commentaarregel die zegt welke
+van de twee je voor je hebt. Zo'n commentaar staat bewust **onder** de kop en
+niet erboven: markdown-commentaar boven een `##` valt buiten die slide en levert
+een lege slide op.
 
 ## Renderen
 
@@ -93,15 +95,15 @@ beslist hoe hoog de tekening erop mag worden. De rekensom staat er in
 | geen | tekst, of een tekening in een kolom naast tekst | tot 540 |
 
 `.metnaast` is voor de slide waar de tekening het punt is en de tekst het
-bijschrift: een schermafdruk van een bestand (*Voorbeeld van mijn regels*,
-*Voorbeeld Mijn skill*) of de stapel papier van *Fair warning*. Zonder die
-klasse werd zo'n afdruk op 540 afgekapt en bleef er in haar kolom van de helft
-rechts een halve kolom leeg staan. Zet bij de kolommen van zo'n slide geen
-`width`: de kolom van de tekening krimpt zelf tot wat ze op 720 hoog nodig
-heeft, en de tekst neemt de rest.
+bijschrift: een schermafdruk van een bestand (*Voorbeeld van mijn skill*, *Van
+losse correcties naar één checklist*) of een vierkant beeld uit de generator
+(*Kijk na*, *Huur het A(I)-team*). Zonder die klasse werd zo'n afdruk op 540
+afgekapt en bleef er in haar kolom van de helft rechts een halve kolom leeg
+staan. Zet bij de kolommen van zo'n slide geen `width`: de kolom van de tekening
+krimpt zelf tot wat ze op 720 hoog nodig heeft, en de tekst neemt de rest.
 
 ```markdown
-## Voorbeeld Mijn skill voor de illustraties {.metnaast}
+## [5]{.nr} Voorbeeld van mijn skill voor de illustraties {.metnaast}
 
 ::: {.columns}
 ::: {.column}
@@ -163,13 +165,25 @@ cd slides/assets/imagegen
 for f in *.js; do case "$f" in excal.js|strip.js|vrijstaand.js) ;; *) node "$f";; esac; done
 ```
 
-### Negentien tekeningen
+### Negenentwintig tekeningen op vierendertig slides
 
-`prillebegin`, `zaal`, `teleurstelling`, `volgorde`, `schrijverswerk`,
-`mapindeling`, `eerstesessie`, `improvelus`, `nakijken`, `meenemen`, `allessamen`,
-`website` en `versies` zijn voor dit deck getekend. `zaal` opent de talk, `versies` komt
-er achteraan op terug en tekent diezelfde slide in zijn twee versies: wijzig je
-de ene, kijk dan ook naar de andere.
+Vijf slides dragen er geen: de origin story, het voorbeeldje van een
+regelbestand, de twee termentabellen en de tussentitel. Van de negenentwintig
+komen er negentien uit een script hier, acht uit een beeldgenerator en twee zijn
+schermafdrukken (`skillvb` en `improvevb`). `zaal.js` telt voor twee: het schrijft
+zowel `zaal.png` als `zaal-kristof.png`.
+
+`zaal`, `teleurstelling`, `volgorde`, `schrijverswerk`, `mapindeling`,
+`improvelus`, `watiseenskill`, `agnostisch`, `chatvenster`, `meenemen`,
+`allessamen`, `website` en `versies` zijn voor dit deck getekend. `zaal` opent de
+talk en `versies` komt er achteraan op terug: die tweede tekent diezelfde slide
+in zijn twee versies, dus wijzig je de ene, kijk dan ook naar de andere.
+
+In `imagegen/` staan meer scripts dan het deck gebruikt. `prillebegin`,
+`nakijken`, `nietgetest`, `tweerondes`, `dezetalk` en de drie `strip-`-scripts
+tekenen slides die er niet meer op staan; `eerstesessie` en `regelbestand`
+tekenen er twee die naar de site verhuisd zijn. Ze blijven staan, want een
+weggegooid script is een tekening die je van nul moet overdoen.
 
 `zaal` is de enige van die reeks die uit twee lagen bestaat. De mensen erop
 komen uit een beeldgenerator en staan in `imagegen/zaal-bron.png`; `zaal.js`
@@ -188,11 +202,13 @@ node vrijstaand.js kristof-bron.png kristof.png
 
 `excal.js`, `strip.js` en `vrijstaand.js` zijn gereedschap en tekenen zelf niets.
 
-`meenemen` staat er twee keer in, net als `volgorde`: een keer voor de workflow
-als aankondiging (*Als je één slide fotografeert: deze*) en een keer als
-slotslide. De nummers op de vier kaarten zijn de stappen 3 tot 6 uit
+`meenemen` en `volgorde` stonden er allebei twee keer in en staan er nu elk één
+keer: `volgorde` op *De workflow* vooraan, `meenemen` op de voorlaatste slide.
+De nummers op de vier kaarten van `meenemen` zijn de stappen 3 tot 6 uit
 `volgorde`, en kaart zes staat er gestreept bij om dezelfde reden als het
-bolletje daar. Wijzig je een van de twee tekeningen, kijk dan ook naar de andere.
+bolletje daar. Wijzig je een van de twee tekeningen, kijk dan ook naar de andere,
+en naar de site: daar staat `volgorde` boven de zeven stappen en `meenemen` in
+het plan, met diezelfde nummers.
 
 `allessamen` is de verkenner van deze repo zelf, overgetekend rij per rij, met
 de vier dingen in het rood aangeduid. De rommel staat er bewust bij:
@@ -209,41 +225,54 @@ contextmap en de regels er wel bij en staat in het rood wat je in je eerste
 sessie aanraakt. Wijzig je de boom in het ene script, wijzig hem dan ook in het
 andere.
 
-`regelbestand` staat op *Wat zet je daar dan in?* en vervangt daar de drie
-bolletjes toon / niet-doen / contextmap. Het robotje erop is dat van
-`mimic.png`, maar dan getekend: vierkante kop, antenne en dezelfde rode nepbril
-met snor. Wijzig je de vermomming daar, kijk dan ook hier. De tekst op het blad
-en in het mapje is die van de slide *Voorbeeldje* ernaast.
+`regelbestand` stond op *Wat zet je daar dan in?* en is daar vervangen door
+`vermomming.png`. De tekening staat nu op de site, in het onderwerp *Je regels in
+een bestand*. Het robotje erop is dat van `mimic.png`, maar dan getekend:
+vierkante kop, antenne en dezelfde rode nepbril met snor. Wijzig je de vermomming
+daar, kijk dan ook hier. De tekst op het blad en in het mapje is die van de slide
+*Regelbestand voorbeeldje* verderop.
 
 `eenbron`, `vijfdocumenten`, `kernidee` en `afsprakenofskill` staan ook op de
 site, maar de scripts hier zijn een eigen versie: op de site zijn ze 1600 tot
 1660 breed, hier 1560, met grotere tekst. Wijzig je zo'n figuur, wijzig hem dan op beide plekken.
 
-`strip-vraag`, `strip-vorigjaar` en `strip-nu` zijn de stripversie van de origin
-story. De panelen, de stokfiguurtjes en de tekstballonnen zitten in
-`strip.js`, dat de andere drie inladen. `poppetje` neemt `armen` (`omhoog`,
-`uit`, `wijzen`) en `gezicht` (`blij`, `paniek`, `twijfel`).
+`strip-vraag`, `strip-vorigjaar` en `strip-nu` waren de stripversie van de
+origin story, die nu één slide met twee kolommen is. De panelen, de
+stokfiguurtjes en de tekstballonnen zitten in `strip.js`, dat de andere drie
+inladen. `poppetje` neemt `armen` (`omhoog`, `uit`, `wijzen`) en `gezicht`
+(`blij`, `paniek`, `twijfel`). Wil je er ooit weer een strip bij, dan staat de
+machinerie er nog.
 
-### De twee tekeningen die geen script hebben
+### De tekeningen die geen script hebben
 
-`meteenja.png` komt uit Imagen, niet uit rough.js. Ze staat in allebei de origin
-stories: op slide 2 naast de tekst, en op slide 8 als slot van de strip.
-`robotlector.png` staat op *Het lag niet aan je vraag*, in de kolom naast de
-tekst, en komt ook uit een beeldgenerator.
+Acht beelden op een slide komen uit een beeldgenerator en niet uit rough.js, en
+daaronder liggen er nog twee als onderlaag. Er is geen script om aan te passen,
+dus wil je er iets aan wijzigen dan moeten ze opnieuw gegenereerd worden, en dan
+is het een andere tekening. Waar er een prompt van bewaard is, staat die ernaast:
 
-Bij allebei is er geen script om aan te passen, dus wil je er iets aan wijzigen
-dan moeten ze opnieuw gegenereerd worden, en dan is het een andere tekening. De
-prompts staan in [PROMPT-meteenja.md](PROMPT-meteenja.md) en
-[PROMPT-robotlector.md](PROMPT-robotlector.md).
+| Beeld | Waar het staat | Prompt |
+|---|---|---|
+| `titel.png` | de titelslide, als achtergrond | [PROMPT-titel.md](PROMPT-titel.md) |
+| `imagegen/zaal-bron.png` | de onderlaag van `zaal` | [PROMPT-zaal.md](PROMPT-zaal.md) |
+| `imagegen/kristof-bron.png` | Kristof op de tweede zaalslide | [PROMPT-zaal.md](PROMPT-zaal.md) |
+| `mimic.png` | *Het lag niet alleen aan je prompt* | geen |
+| `temmen.png` | *Tijd om de A.I. te temmen* | geen |
+| `vermomming.png` | *Regelbestand inhoud?* | [PROMPT-vermomming.md](PROMPT-vermomming.md) |
+| `laatzeschrijven.png` | *Wanneer maak je een skill?* | [PROMPT-laatzeschrijven.md](PROMPT-laatzeschrijven.md) |
+| `zekerweten.png` | *Kijk na* | [PROMPT-zekerweten.md](PROMPT-zekerweten.md) |
+| `ateam.png` | *Huur het A(I)-team* | geen |
+| `pintje.png` | *Bedankt!* | [PROMPT-pintje.md](PROMPT-pintje.md) |
 
-Hetzelfde geldt voor `assets/imagegen/zaal-bron.png`, de onderlaag van `zaal`:
-daar zit wel een script omheen, maar de mensen zelf zijn niet te wijzigen zonder
-opnieuw te genereren.
+Bij `zaal-bron` en `kristof-bron` zit er wel een script omheen, maar de mensen
+zelf zijn niet te wijzigen zonder opnieuw te genereren.
+[PROMPT-meteenja.md](PROMPT-meteenja.md) en
+[PROMPT-robotlector.md](PROMPT-robotlector.md) horen bij beelden die niet meer op
+een slide staan.
 
-Op *Wat je daarvoor in je regelbestand zet* staat nog een derde beeld zonder
-script: een schermafdruk van een echte `improve.md`. Die staat niet in deze map
-maar in `../site/assets/improvevb.png`, en de slide verwijst er rechtstreeks
-naar. Vervang je die afdruk, dan volgt de slide vanzelf.
+Twee beelden zijn schermafdrukken en dus ook geen script: `skillvb.png` (de
+`SKILL.md` voor de figuren) en `improvevb.png` (de checklist die uit de losse
+correcties gegroeid is). Vervang je zo'n afdruk, dan volgt de slide vanzelf.
+Allebei staan ze ook op de site, in `../site/assets/`.
 
 ### Leesbaar op een beamer
 

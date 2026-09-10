@@ -1142,8 +1142,27 @@
     return wrap;
   }
 
+  /* De band bovenaan de startpagina: dezelfde tekening als de titelslide van de
+     talk. Geen figuurBlok(), want die hangt er een kader, een bijschrift en een
+     link naar de volle grootte aan. Dit is geen figuur om te bestuderen maar de
+     kop van de bladzijde, en ze staat boven de vouw, dus ze laadt meteen. */
+  function heroBlok() {
+    var h = D.figuren && D.figuren.hero;
+    if (!h || !h.bestand) return null;
+    var wrap = el("div", "hero");
+    var img = el("img");
+    img.src = h.bestand;
+    img.alt = h.alt || "";
+    img.decoding = "async";
+    wrap.appendChild(img);
+    return wrap;
+  }
+
   function tekenWelkom() {
     var scherm = el("div", "welkom");
+
+    var hero = heroBlok();
+    if (hero) scherm.appendChild(hero);
 
     scherm.appendChild(el("p", "vraagnr", "Voor leerkrachten, lectoren en docenten"));
     scherm.appendChild(el("h1", "welkom-kop", D.rodedraad));

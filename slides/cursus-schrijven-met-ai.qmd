@@ -412,8 +412,7 @@ Maar dat is voor een andere keer...
 ![](assets/versies.png){.figuur}
 
 ## Deze talk, als map {.metonder}
-<!-- SLOT B van twee. A is "Wat je meeneemt" hierboven. Dezelfde vier dingen,
-     maar dan waar ze staan in de repo van deze talk zelf. -->
+
 
 ![](assets/allessamen.png){.figuur}
 

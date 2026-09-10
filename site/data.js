@@ -46,6 +46,15 @@ window.DATA = {
      slides/assets/imagegen/. Wijzigt daar een figuur, dan hoort de kopie in
      site/assets/ mee te wijzigen. */
   figuren: {
+    /* De titelslide van de talk, als band bovenaan de startpagina. Op de slide
+       ligt ze over het hele scherm en staat de titel in de lucht erboven; hier
+       staat de titel eronder, dus is die lucht weggesneden. Het origineel is
+       assets/titel.png (1024 bij 1024); site/README.md zegt hoe de uitsnede
+       gemaakt is. */
+    hero: {
+      bestand: "assets/titel.jpg",
+      alt: "Tekening. Een lector met een bril, een snor en een groot rood potlood in zijn hand loopt vooraan. Naast hem, vier robotjes op wieltjes met dezelfde rode nepbril en snor: een met een stapel mappen, een met een opengeslagen blad, een die zwaait, en een met een torenhoge stapel papier. Een rood touw knoopt ze alle vijf aan elkaar."
+    },
     volgorde: {
       bestand: "assets/volgorde.png",
       alt: "Tekening. Zeven genummerde bolletjes op een rij met een pijl ertussen: schrijf eerst als schrijver, alles in droge tekst (markdown), een kleine werkbare contextmap, je regels in een bestand, improve.md en je skills, nakijken, en dan pas je opmaak. De eerste twee staan grijs onder een beugel “eerst schrijven”, de laatste vijf rood onder een beugel “hier komt de AI erbij”. Bolletje zes staat gestreept en leeg.",

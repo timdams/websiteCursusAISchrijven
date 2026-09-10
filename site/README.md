@@ -454,11 +454,28 @@ Vier scripts bestaan twee keer, met opzet: `eenbron`, `vijfdocumenten`, `kernide
 `afsprakenofskill` is bovendien een andere tekening geworden: hier het regelbestand naast een skill,
 op de slides waar een skill vandaan komt. Die twee lopen bewust uiteen.
 
-Vijf tekeningen komen niet uit rough.js maar uit een beeldgenerator, en die staan hier als `.jpg`:
-`zekerweten`, `ateam`, `laatzeschrijven`, `vermomming` en `mimic`. Als png van 1024 bij 1024 wegen
-ze elk meer dan een megabyte, en dat is voor een webpagina te zwaar. Ze zijn teruggebracht naar 960
-breed en als jpeg op kwaliteit 82 bewaard, wat ze onder de 140 kB brengt. Vervang je er een, doe dan
-hetzelfde; de png's blijven in `slides/assets/` staan.
+Vier tekeningen komen niet uit rough.js maar uit een beeldgenerator, en die staan hier als `.jpg`:
+`zekerweten`, `ateam`, `laatzeschrijven` en `mimic`. Als png van 1024 bij 1024 wegen ze elk meer dan
+een megabyte, en dat is voor een webpagina te zwaar. Ze zijn teruggebracht naar 960 breed en als
+jpeg op kwaliteit 82 bewaard, wat ze onder de 140 kB brengt. Vervang je er een, doe dan hetzelfde;
+de png's blijven in `slides/assets/` staan.
+
+### De band bovenaan de startpagina
+
+`assets/titel.jpg` is dezelfde tekening als de titelslide van de talk: de lector met zijn rode
+potlood en vier robotjes aan een touw. Op de slide ligt ze over het hele scherm en staat de titel in
+de lucht erboven; hier staat de titel eronder, dus is die lucht weggesneden.
+
+De bron is `slides/assets/titel.png`, 1024 bij 1024. De uitsnede loopt van `y = 315` (de punt van
+het potlood, net boven de antennes) tot `y = 885` (het einde van de schaduwen), over de volle
+breedte, en is als jpeg op kwaliteit 88 bewaard: 1024 bij 570, 139 kB. Vervang je de tekening, snijd
+dan opnieuw op diezelfde twee grenzen, want de band houdt haar eigen verhouding. Lager maken kan
+niet: de optocht loopt van rand tot rand, dus een ondiepere band snijdt de buitenste robotjes af.
+
+`heroBlok()` in `app.js` tekent ze, en bewust niet met `figuurBlok()`: die hangt er een kader, een
+bijschrift en een link naar de volle grootte aan. Dit is de kop van de bladzijde en geen figuur om
+te bestuderen, dus ze laadt ook meteen in plaats van lui. In de donkere stand staat het vel op
+`opacity: .88`, anders is het het felste vlak van de hele bladzijde.
 
 `app.js` bevat de logica, `styles.css` de opmaak (licht papier, rood als accent, ook een donkere
 versie). De accentkleur sluit aan bij de tekeningen en staat in `--accent`, `--accent-diep` en

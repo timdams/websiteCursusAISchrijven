@@ -2517,3 +2517,28 @@ table.termen .via {
 
 .colofon-nogniet ul { margin: .5rem 0 0; padding-left: 1.1rem; }
 .colofon-nogniet li { margin: .35rem 0; line-height: 1.55; }
+
+/* ---------- de band bovenaan de startpagina ---------- */
+
+/* Dezelfde tekening als de titelslide van de talk. Ze staat even breed als de
+   kop eronder, zodat ze bij de tekst hoort en er niet los boven hangt. De
+   verhouding is die van de uitsnede zelf: de optocht loopt van rand tot rand,
+   dus lager maken zou de robotjes afsnijden. */
+.hero {
+  /* De gidspagina houdt bovenaan ruimte vrij voor een vraag; een band die de
+     bladzijde opent, hoort dichter tegen de kop te staan. */
+  margin: -1.8rem 0 1.4rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fdfdfb;
+  border: 1px solid var(--lijn);
+}
+
+.hero img { display: block; width: 100%; height: auto; }
+
+/* De tekening staat op wit papier. In de donkere stand mag dat vel wat zachter
+   staan, anders is het het felste vlak van de hele bladzijde. */
+@media (prefers-color-scheme: dark) {
+  .hero { border-color: var(--lijn-hard); }
+  .hero img { opacity: .88; }
+}
