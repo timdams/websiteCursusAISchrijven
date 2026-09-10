@@ -205,14 +205,20 @@ bestand zet je per document van je contextmap die ene regel waarom.
 :::
 
 
-## Wat zet je daar dan in? {.metonder}
+## Wat zet je daar dan in? {.metnaast}
 
-![](assets/regelbestand.png){.figuur}
+::: {.columns}
+::: {.column}
+![](assets/vermomming.png){.figuur}
+:::
 
-::: {.onder}
-Een tekstbestand van een halve pagina dat je A.I.bij elke nieuwe vraag opnieuw leest. Je
-**niet-doen-lijst** weegt daarbij zwaarder dan je wel-doen-lijst: daaraan herkent een lezer
-AI-tekst (helemaal wegkrijgen doe je het nooit, *trust me*).
+::: {.column}
+Een tekstbestand van een halve pagina dat je A.I. bij elke nieuwe vraag opnieuw
+leest.
+
+Je **niet-doen-lijst** weegt daarbij zwaarder dan je wel-doen-lijst: daaraan
+herkent een lezer AI-tekst (helemaal wegkrijgen doe je het nooit, *trust me*).
+:::
 :::
 
 ## Voorbeeldje
@@ -340,36 +346,58 @@ er gedraaid zijn, en welke twee keer over moesten. In een nieuw venster is dat
 weg.
 :::
 
-## Moet je die zelf schrijven? {.metonder}
+## Moet je die zelf schrijven? {.metnaast}
 
+::: {.columns}
+::: {.column}
 ![](assets/laatzeschrijven.png){.figuur}
-
-::: {.onder}
-Nee. Zij schrijft haar eigen receptenblad, jij leest het na met de rode pen. 😏
 :::
 
-## [6]{.nr} Kijk na
+::: {.column}
 
+* Nee. Zo'n blad typ je niet met de hand: dat van mijn illustraties telt 123
+  regels, met twee bijlagen erbij.
+* Geef de A.I. er één die je al hebt: *maak er zo nog een, voor mijn
+  examenvragen.* 
+* Heb je nog geen voorbeeld? Geen  probleem...A.I. lost het wel op😏
+
+:::
+:::
+
+## [6]{.nr} Kijk na {.metnaast}
+
+::: {.columns}
+::: {.column}
+![](assets/zekerweten.png){.figuur}
+:::
+
+::: {.column}
 ::: {.terzijde}
 Het verschil tussen een cursus en A.I.-slob.
 :::
 
-* **De A.I.zegt nooit dat ze (hij?) het niet zeker weet.** 
+* **De A.I. zegt nooit dat ze (hij?) het niet zeker weet.**
 * Zelf lezen dus: de getallen, de namen, de bronnen, en of het klopt met wat jij
-  in de les vertelt. Staat er code in, dan draA.I.je ze.
-* Wat je hier corrigeert, gaat naar `improve.md` van stap vijf. Anders kijk je
-  het volgende hoofdstuk na op precies hetzelfde.
-
-::: {.kader}
-[Eén hulpmiddel wel]{.kop}: laat de A.I. haar eigen tekst nalezen, maar in een
-andere rol, en liefst in een ander model dan het model dat ze geschreven heeft.
-
-* "*Lees dit hoofdstuk als een student met dyslexie. Waar haak je af?*"
-* "*Stel dat de Spaanse inquisitie mijn cursus leest: welke uitspraken moet ik
-  zeker online verifiëren?*""
+  in de les vertelt. 
+* Tokens te veel? Laat A.I. de codevoorbeelden zelf runnen en testen.
+* Wat je hier corrigeert, gaat naar `improve.md` van stap vijf.
+:::
 :::
 
-## [7]{.nr} En dan pas je opmaak {.metonder}
+
+
+## Eén hulpmiddel wel
+
+Laat de A.I. haar eigen tekst nalezen, maar in een andere rol, en liefst in een
+ander model dan het model dat ze geschreven heeft.
+
+::: {.kader}
+* "*Lees dit hoofdstuk als een student met dyslexie. Waar haak je af?*"
+* "*Stel dat de Spaanse inquisitie mijn cursus leest: welke uitspraken moet ik
+  zeker online verifiëren?*"
+:::
+
+## [7]{.nr} En dan pas je opmaak/finale document {.metonder}
 
 ![](assets/eenbron.png){.figuur}
 
@@ -378,44 +406,7 @@ Nu verandert er aan de tekst niets meer, dus nu mag de opmaak. Wie ze eerst deed
 doet ze opnieuw bij elke zin die daarna nog veranderde.
 :::
 
-## Twee dingen die ernaast lopen
 
-::: {.columns}
-::: {.column width="50%"}
-[Je afbeeldingen]{.kop}
-
-Schrijf per figuur één zin op over wat erop moet staan. Waarmee je ze maakt,
-beslis je later.
-
-::: {.onder style="text-align:left"}
-De tekeningen hier zijn Excalidraw-code. Ze zitten in git, en ik kan er een
-woord in wijzigen zonder opnieuw te tekenen.
-:::
-:::
-
-::: {.column width="50%"}
-[Git]{.kop}
-
-Staan je bestanden op je eigen schijf, zet er dan versiebeheer op vanaf de
-eerste dag.
-
-::: {.onder style="text-align:left"}
-Blijf je in de browser werken, dan sla je dit over.
-:::
-:::
-:::
-
-## Je eerste sessie
-
-1. Kies één hoofdstuk. Dat waar je zelf het minst tevreden over bent.
-2. Maak de map, zet je regels erin, zet je contextmap ernaast.
-3. Vraag één ding: *herschrijf sectie 2 met mijn regels ernaast*.
-4. Lees na, corrigeer, en laat elke correctie in `improve.md` zetten.
-
-::: {.kader}
-Je stopt wanneer dat ene hoofdstuk er staat zoals jij het wil. De andere twaalf
-blijven ondertussen gewoon liggen.
-:::
 
 ## Nog eens, in volgorde {.metonder}
 
@@ -428,31 +419,14 @@ Begin bij één, en niet bij drie.
 ## De site {.tussentitel .center}
 
 ::: {.terzijde}
-Werk in uitvoering, en dat is geen bescheidenheid.
+Op vraag van mijn vrouw...en Yves 😉
 :::
 
 ## Vier delen {.metonder}
 
 ![](assets/website.png){.figuur}
 
-::: {.onder}
-Onder elke voorbeeldkaart staan bolletjes met de techniek erachter. Staat er
-*markdown*, dan was de tekst het werk en kwam de site er achteraf uit.
-:::
 
-## Hoe je hem gebruikt
-
-**De startpagina** geeft het antwoord op "hoe begin ik eraan": dezelfde zeven
-stappen, in dezelfde volgorde.
-
-**De bevrager** vraagt welke A.I.je hebt en wat je al kan, en geeft je jouw plan.
-Claude, ChatGPT, Gemini, Copilot, iets zelfgehost, of nog geen abonnement.
-
-**Het naslagwerk** is om later in terug te vallen. De valkuilen staan er op
-klacht: je typt wat er misgaat, en je krijgt de stap die je oversloeg.
-
-**De voorbeelden** zijn tien cursussen en sites van collega's, met bij elk wat
-het is en waarmee het gebouwd is. Zie Scherp Scherper staat er ook tussen.
 
 ## Waar je moet klikken {.metonder}
 
@@ -506,4 +480,50 @@ corrigeert, schrijft de AI zelf bij in `improve.md`.
 ::: {.onder}
 `context/` en `CLAUDE.MD` staan er vanaf de eerste dag. De skill kwam er pas bij
 de derde tekening, en `site/` en `slides/` zijn wat eruit kwam.
+:::
+
+
+
+## Uitsmijters
+
+Voor als er nog tijd over is
+
+## Twee dingen die ernaast lopen
+
+::: {.columns}
+::: {.column width="50%"}
+[Je afbeeldingen]{.kop}
+
+Schrijf per figuur één zin op over wat erop moet staan. Waarmee je ze maakt,
+beslis je later.
+
+::: {.onder style="text-align:left"}
+De tekeningen hier zijn Excalidraw-code. Ze zitten in git, en ik kan er een
+woord in wijzigen zonder opnieuw te tekenen.
+:::
+:::
+
+::: {.column width="50%"}
+[Git]{.kop}
+
+Staan je bestanden op je eigen schijf, zet er dan versiebeheer op vanaf de
+eerste dag.
+
+::: {.onder style="text-align:left"}
+Blijf je in de browser werken, dan sla je dit over.
+:::
+:::
+:::
+
+
+## Je eerste sessie
+
+1. Kies één hoofdstuk. Dat waar je zelf het minst tevreden over bent.
+2. Maak de map, zet je regels erin, zet je contextmap ernaast.
+3. Vraag één ding: *herschrijf sectie 2 met mijn regels ernaast*.
+4. Lees na, corrigeer, en laat elke correctie in `improve.md` zetten.
+
+::: {.kader}
+Je stopt wanneer dat ene hoofdstuk er staat zoals jij het wil. De andere twaalf
+blijven ondertussen gewoon liggen.
 :::

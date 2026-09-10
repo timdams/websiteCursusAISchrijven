@@ -54,11 +54,11 @@ no signature.
   touw strak of terug in de hand van de lector, dan is de grap weg. Lukt het na
   twee pogingen niet, laat het touw dan vallen en hou het rood enkel op de
   bladen.
-- **Vierkant, net als `temmen.png`.** Die staat op 1024 bij 1024 en vult onder de
-  kop precies de hoogte die er is. Vraag je 16:9, dan krijg je een strook met
-  twee poppetjes ver uit elkaar.
+- **Vierkant, net als `temmen.png`.** Die staat op 1024 bij 1024. Hier staat ze
+  in een kolom naast de tekst en rendert het thema haar op 720 hoog, dus vierkant
+  laat 752 pixels over voor de opsomming ernaast. Vraag je 16:9, dan eet de
+  tekening die kolom op en valt de tekst eronder.
 - **De laatste regel is er niet voor niets.** Beeldgeneratoren maken van letters
-  meestal soep. Wat er aan tekst bij moet, zet je in het onderschrift van de
-  slide.
+  meestal soep. Wat er aan tekst bij moet, staat in de kolom ernaast.
 - **De achtergrond klopt zelden exact.** Het thema geeft elke figuur al een
   vlakje met een randje, dus wit valt niet uit de toon.
