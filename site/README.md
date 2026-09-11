@@ -55,18 +55,21 @@ de browser, met Claude") met de knop ernaartoe; wie halverwege stopte, leest daa
 was. `snelwinst` staat sindsdien alleen nog in Jouw plan.
 
 Onder de deuren staat `slidesBanner()`: de talk zelf, met haar titel en de toetsen die je erin nodig
-hebt. Nog lager staat `aanleidingBlok()`, de twee slides waar de talk mee opent: het antwoord dat
-las als een folder (`teleurstelling.png`), en dat het niet alleen aan je vraag lag (`mimic.jpg`).
-Die staan onder het antwoord en niet erboven, want wie binnenkomt met "hoe begin ik eraan" krijgt
-eerst de zeven stappen te zien.
+hebt. Daarna nog één regel naar het naslagwerk, en daar stopt de pagina.
+
+Er stond nog meer onder: `aanleidingBlok()` (de twee slides waar de talk mee opent, het antwoord
+dat las als een folder in `teleurstelling.png` en dat het niet alleen aan je vraag lag in
+`mimic.jpg`), `kernidee.png` en de zeven redenen van `waaromBlok()`. Daarmee liep de pagina na het
+antwoord nog eens zo lang door. Die drie staan nu samen in het vak `waarom` van het naslagwerk,
+getekend door `tekenWaarom()`.
 
 ## Het naslagwerk: een hub met deuren
 
 Het naslagwerk stond ooit als een lange lijst op een pagina. Dat leest niemand. Nu is het een hub:
-tien kaarten met een pictogram, een titel, een zin en een teller. Je klikt er een open, ziet alleen
+elf kaarten met een pictogram, een titel, een zin en een teller. Je klikt er een open, ziet alleen
 dat onderdeel, en gaat met "Alle onderdelen" terug.
 
-Tien kaarten op een hoop zijn tien kaarten die je alle tien moet lezen. Ze staan daarom in zes
+Elf kaarten op een hoop zijn elf kaarten die je alle elf moet lezen. Ze staan daarom in zes
 groepen, met boven elke groep de vraag die je stelt op het moment dat je hier terechtkomt. Wie zijn
 vraag herkent, leest de andere groepen niet. De hiërarchie zit in de opmaak: de eerste deur is een
 brede kaart in de accentkleur, het colofon is een smalle kaart zonder schaduw, de rest zit
@@ -76,7 +79,7 @@ ertussenin.
 |---|---|---|---|
 | `start` | Waar begin ik? | rood accent | Je eerste sessie, stap voor stap (`eerstekeer`, brede kaart) |
 | `mis` | Het ging mis. Wat ontbrak er? | rood accent | Valkuilen (`valkuilen`, brede kaart) |
-| `kern` | Hoe werkt dit dan? | blauw | De onderwerpen (`onderwerpen`), De vier werkwijzen (geen vak: springt naar de werkwijzenpagina) |
+| `kern` | Hoe werkt dit dan? | blauw | Waarom je dit doet (`waarom`), De onderwerpen (`onderwerpen`), De vier werkwijzen (geen vak: springt naar de werkwijzenpagina) |
 | `maat` | Wat geldt er bij mij? | oker | Met welke AI werk je? (`tool`), Wat moet eruit komen? (`uitkomst`), Bij mij ligt dat anders (`randgevallen`) |
 | `pak` | Wat kan ik nu meteen gebruiken? | groen | Prompts om te plakken (`prompts`), Gereedschap en links (`gereedschap`) |
 | `achter` | Achter de schermen | grijs | Hoe deze site gemaakt is (`colofon`, smalle kaart) |
@@ -276,8 +279,8 @@ De iconen zelf staan in `ICONEN` in `app.js`: vierentwintig paden op een raster 
 code en niet in een bestand, want het zijn pictogrammen en geen figuren. Ze nemen hun kleur over van
 het kader waar ze in staan. Elk kader zet daarvoor twee variabelen in `styles.css`: `--kk` is de
 lijnkleur, `--kz` de kleur van het vierkantje eronder. `.advieslijn.vragen` zet `--kk` op oker,
-`.advieslijn.ok` op groen, en een kader dat zelf op `--accent-zacht` staat (het waarom-blok op het
-welkomscherm) zet `--kz` op `--kaart`, anders valt het vierkantje weg tegen zijn eigen achtergrond.
+`.advieslijn.ok` op groen, en een kader dat zelf op `--accent-zacht` staat (het waarom-blok in het
+naslagwerk) zet `--kz` op `--kaart`, anders valt het vierkantje weg tegen zijn eigen achtergrond.
 Alles staat in `em`, zodat het icoon meegroeit met de kop waar het naast staat: bij de kleine
 kopjes in een blokje wordt het vanzelf klein.
 
@@ -344,7 +347,7 @@ Alle inhoud staat in `data.js`, in het Nederlands, in een object per onderdeel: 
   `planregel` en `links`
 - `waarom` is de opbrengst van de hele aanpak (jezelf niet herhalen, ver komen op een gratis
   account, werk dat achterblijft): een lijst `kop` + `tekst`, met `waaromKop` en `waaromNoot`
-  erboven. Functie `waaromBlok()` in `app.js` tekent ze, onderaan het welkomscherm en in het plan
+  erboven. Functie `waaromBlok()` in `app.js` tekent ze, in het vak `waarom` van het naslagwerk en in het plan
   achter de vouw "Waarom je dit doet"; `waaromBlok(true)` laat daar de kop weg, want de vouw draagt
   die al. Elk item van `snelwinst` heeft daarnaast een eigen `waarom`-regel, zodat de reden naast
   het ding staat waar ze over gaat
@@ -424,7 +427,7 @@ zodat een figuur bijgestuurd kan worden zonder van nul te beginnen.
 Welke tekening waar hangt, staat in `data.js` en nergens anders:
 
 - `figuren` draagt de losse tekeningen: `volgorde` boven de zeven stappen, `meenemen` boven de
-  vier dingen in je plan, `kernidee` lager op het welkomscherm, en `werkwijzen` boven de tabs op
+  vier dingen in je plan, `kernidee` in het vak `waarom` van het naslagwerk, en `werkwijzen` boven de tabs op
   de werkwijzenpagina (in `#werkwijzenfiguur`)
 - een onderwerp kan een `figuur` hebben; die verschijnt in het onderwerpvenster tussen "De kern"
   en de tips. Een tweede, `figuur2`, komt onder de tips: de eerste zegt wat het is, de tweede hoe

@@ -20,8 +20,9 @@ window.DATA = {
     knop: "Bekijk de slides"
   },
 
-  /* Waar de talk mee opent, en waarom dat hier ook vooraan staat: bijna iedereen
-     heeft het al eens geprobeerd en was teleurgesteld. */
+  /* Waar de talk mee opent: bijna iedereen heeft het al eens geprobeerd en was
+     teleurgesteld. Staat in het vak "waarom" van het naslagwerk, samen met
+     figuren.kernidee en waarom; op de startpagina kwam het pas na het antwoord. */
   aanleiding: {
     kop: "Onze eerste stapjes. Remember?",
     figuur: {
@@ -37,7 +38,7 @@ window.DATA = {
         alt: "Tekening. Een robotje met een rode nepbril, neus en snor staat naast een lector met een echte bril en snor. Allebei steken ze dezelfde vinger op, in exact dezelfde houding.",
         bijschrift: "Ze kan jou nadoen. Maar enkel als ze weet hoe jij klinkt."
       },
-      tekst: "Prompten is al lang niet meer de *core competentie*. Akkoord, het start bij je vraag, maar veel belangrijker zijn je ervaring en je stijl als lesgever. En die kan de AI enkel overnemen als je ze ergens opschrijft. Dat is wat de zeven stappen hieronder doen."
+      tekst: "Prompten is al lang niet meer de *core competentie*. Akkoord, het start bij je vraag, maar veel belangrijker zijn je ervaring en je stijl als lesgever. En die kan de AI enkel overnemen als je ze ergens opschrijft. Dat is wat de zeven stappen op de startpagina doen."
     }
   },
 

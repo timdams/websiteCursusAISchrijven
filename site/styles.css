@@ -2379,6 +2379,9 @@ dialog.wwvenster { max-width: 34rem; }
 .aanleiding > p b { color: var(--inkt); }
 .aanleiding-kop { margin: 1.8rem 0 .2rem; font-size: 1.05rem; }
 
+/* bovenaan het vak "waarom" staat er niets boven om van af te scheiden */
+.naslagvak .aanleiding:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+
 /* ---------- een tekening die vierkant is in plaats van breed ---------- */
 
 /* De beeldgeneratortekeningen zijn vierkant. Op volle kolombreedte worden ze

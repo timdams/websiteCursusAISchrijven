@@ -1009,7 +1009,7 @@
     tekenWelkom();
   }
 
-  /* waarom je die vier dingen doet; staat op het welkomscherm en onder je plan */
+  /* waarom je die vier dingen doet; staat in het naslagwerk en onder je plan */
   function waaromBlok(zonderKop) {
     var vak = el("section", "waarom" + (zonderKop ? " kaal" : ""));
     if (!zonderKop) vak.appendChild(kaderKop("h3", "waarom-kop", D.waaromKop, "kompas", true));
@@ -1188,26 +1188,19 @@
     naslagLijn.appendChild(naarNaslag);
     scherm.appendChild(naslagLijn);
 
-    var aan = aanleidingBlok();
-    if (aan) scherm.appendChild(aan);
-
-    var kern = figuurBlok(D.figuren && D.figuren.kernidee, "figuur-breed");
-    if (kern) scherm.appendChild(kern);
-
-    scherm.appendChild(waaromBlok());
-
     wizard.appendChild(scherm);
   }
 
   /* De twee slides waar de talk mee opent: iedereen heeft het al eens
-     geprobeerd, en het lag niet alleen aan de vraag die je stelde. Staat onder
-     het antwoord en niet erboven: wie binnenkomt met "hoe begin ik eraan" krijgt
-     eerst de zeven stappen te zien. */
+     geprobeerd, en het lag niet alleen aan de vraag die je stelde. Stond eerst
+     onder de deuren op de startpagina, samen met kernidee.png en de zeven
+     redenen. Die pagina liep daardoor dubbel zo lang door na het antwoord, dus
+     staan ze nu in het vak "waarom" van het naslagwerk. */
   function aanleidingBlok() {
     var a = D.aanleiding;
     if (!a) return null;
     var wrap = el("section", "aanleiding");
-    wrap.appendChild(kaderKop("h2", null, a.kop, "lamp", true));
+    wrap.appendChild(kaderKop("h3", null, a.kop, "lamp", true));
 
     /* De eerste tekening is breed en laag, dus die staat over de volle kolom
        met de tekst eronder. De tweede is vierkant en past naast zijn tekst. */
@@ -1216,7 +1209,7 @@
     wrap.appendChild(rijk(el("p"), a.tekst));
 
     if (a.tweede) {
-      wrap.appendChild(el("h3", "aanleiding-kop", a.tweede.kop));
+      wrap.appendChild(el("h4", "aanleiding-kop", a.tweede.kop));
       var naast = el("div", "naastelkaar");
       naast.appendChild(rijk(el("p"), a.tweede.tekst));
       var fig2 = figuurBlok(a.tweede.figuur, "figuur-vierkant");
@@ -1224,6 +1217,19 @@
       wrap.appendChild(naast);
     }
     return wrap;
+  }
+
+  /* Het vak "waarom" in het naslagwerk: waar het misliep, het kernidee, en wat
+     je terugkrijgt. */
+  function tekenWaarom() {
+    var doel = document.getElementById("waarom-inhoud");
+    if (!doel) return;
+    leeg(doel);
+    var aan = aanleidingBlok();
+    if (aan) doel.appendChild(aan);
+    var kern = figuurBlok(D.figuren && D.figuren.kernidee, "figuur-breed");
+    if (kern) doel.appendChild(kern);
+    doel.appendChild(waaromBlok());
   }
 
   /* De slides van de talk, als een eigen strook onder de twee deuren. Ze zijn
@@ -2193,7 +2199,7 @@
         tekst: w.tekst,
         zoek: D.waaromKop + " " + w.kop + " " + w.tekst,
         waar: "Waarom",
-        doe: function () { naarTab(state.mijnWerkwijze && huidigeStap() === null ? "plan" : "gids"); }
+        doe: function () { naarVak("waarom"); }
       });
     });
 
@@ -2463,8 +2469,15 @@
     {
       id: "kern",
       vraag: "Hoe werkt dit dan?",
-      noot: "De twee stukken waar de rest van de site op staat: wat je klaarzet, en waar die bestanden staan.",
+      noot: "Waarom je eerste poging las als een folder, wat je klaarzet, en waar die bestanden staan.",
       items: [
+        {
+          vak: "waarom",
+          icoon: "kompas",
+          titel: "Waarom je dit doet",
+          kort: "Het antwoord dat las als een folder, het kernidee, en wat je terugkrijgt als je je afspraken opschrijft.",
+          tel: function () { return D.waarom.length + " redenen"; }
+        },
         {
           vak: "onderwerpen",
           icoon: "blokken",
@@ -3268,6 +3281,7 @@
   tekenSessie();
   tekenKist();
   tekenColofon();
+  tekenWaarom();
   tekenRandgevallen();
   tekenVoorbeelden();
 
