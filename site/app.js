@@ -3229,7 +3229,9 @@
   }
 
   function bindTabs() {
-    document.querySelectorAll(".menulink, .merk").forEach(function (t) {
+    /* Enkel wat een data-tab heeft: de knop naar de slides is een gewone link
+       naar een andere pagina, en die mag gewoon doorgaan. */
+    document.querySelectorAll(".menulink[data-tab], .merk[data-tab]").forEach(function (t) {
       t.addEventListener("click", function (e) {
         e.preventDefault();
         naarTab(t.getAttribute("data-tab"));
