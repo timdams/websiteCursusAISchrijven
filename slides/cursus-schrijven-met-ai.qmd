@@ -168,11 +168,7 @@ Maak een ruwe outline en schrijf (een stuk) van je favoriete hoofdstuk.
 Als je A.I. vanaf nul laat schrijven dan duwt hij de inhoud en toon. **Stay in control 🤓 !**
 :::
 
-## [1]{.nr} Nog een reden
 
-Hoe solider de basis, hoe beter je A.I. hier later mee aan de slag kan.
-
-Dit is identiek bij softwareprojecten die je met/door A.I. laat doen: zorg dat de fundamentals goed zitten; 
 
 ## [2]{.nr} Zet je cursus in droge tekst {.metonder}
 
