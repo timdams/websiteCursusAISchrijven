@@ -1,0 +1,17 @@
+/* Het AI MODIFIED-label van de Europese Commissie, rechtsboven op de
+   titelslide. Het hangt aan de slide (1600 bij 900) en niet aan de achtergrond,
+   want die wordt met `cover` bijgesneden en dan valt een hoek weg. Rechtsonder
+   staat het slidenummer, dus staat het label boven, in de lucht naast de titel.
+   De titel staat gecentreerd en loopt tot zo'n 1260 pixels; op 300 breed
+   raakte het label haar bijna, op 220 blijft er een duim lucht tussen. Het pad is relatief tegenover dit bestand: theme/ ligt naast assets/, zowel
+   in slides/ als in de render in site/slides/. */
+.reveal #title-slide::after {
+  content: "";
+  position: absolute;
+  top: 42px;
+  right: 0;
+  width: 220px;
+  height: 49px;
+  background: url("../assets/ai-modified.png") no-repeat center / contain;
+  pointer-events: none;
+}

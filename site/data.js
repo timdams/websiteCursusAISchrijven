@@ -54,6 +54,12 @@ window.DATA = {
        gemaakt is. */
     hero: {
       bestand: "assets/titel.jpg",
+      /* Het AI MODIFIED-label van de Europese Commissie, rechtsboven op de
+         band. Op de titelslide staat het op dezelfde plek. */
+      label: {
+        bestand: "assets/ai-modified.png",
+        alt: "AI modified"
+      },
       alt: "Tekening. Een lector met een bril, een snor en een groot rood potlood in zijn hand loopt vooraan. Naast hem, vier robotjes op wieltjes met dezelfde rode nepbril en snor: een met een stapel mappen, een met een opengeslagen blad, een die zwaait, en een met een torenhoge stapel papier. Een rood touw knoopt ze alle vijf aan elkaar."
     },
     volgorde: {

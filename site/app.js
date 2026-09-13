@@ -1155,6 +1155,12 @@
     img.alt = h.alt || "";
     img.decoding = "async";
     wrap.appendChild(img);
+    if (h.label && h.label.bestand) {
+      var label = el("img", "hero-label");
+      label.src = h.label.bestand;
+      label.alt = h.label.alt || "";
+      wrap.appendChild(label);
+    }
     return wrap;
   }
 

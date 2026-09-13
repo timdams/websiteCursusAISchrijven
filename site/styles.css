@@ -2537,7 +2537,20 @@ table.termen .via {
   border: 1px solid var(--lijn);
 }
 
+.hero { position: relative; }
 .hero img { display: block; width: 100%; height: auto; }
+
+/* Het AI MODIFIED-label rechtsboven. De antenne van het rechtse robotje komt
+   op zo'n 11% van de hoogte, dus het label blijft smal genoeg om erboven te
+   passen. */
+.hero img.hero-label {
+  position: absolute;
+  top: 2.5%;
+  right: 1.5%;
+  width: 18%;
+  max-width: 180px;
+  min-width: 90px;
+}
 
 /* De tekening staat op wit papier. In de donkere stand mag dat vel wat zachter
    staan, anders is het het felste vlak van de hele bladzijde. */

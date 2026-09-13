@@ -480,6 +480,11 @@ bijschrift en een link naar de volle grootte aan. Dit is de kop van de bladzijde
 te bestuderen, dus ze laadt ook meteen in plaats van lui. In de donkere stand staat het vel op
 `opacity: .88`, anders is het het felste vlak van de hele bladzijde.
 
+Rechtsboven op de band staat het AI MODIFIED-label van de Europese Commissie (`figuren.hero.label`,
+`assets/ai-modified.png`). Het origineel is 2501 bij 1668 met veel wit rond de pil; de kopie is
+bijgesneden tot de pil, 600 bij 133, met een doorzichtige achtergrond. Op de titelslide staat
+hetzelfde bestand op dezelfde plek, via `slides/theme/label.css`.
+
 `app.js` bevat de logica, `styles.css` de opmaak (licht papier, rood als accent, ook een donkere
 versie). De accentkleur sluit aan bij de tekeningen en staat in `--accent`, `--accent-diep` en
 `--accent-zacht`.

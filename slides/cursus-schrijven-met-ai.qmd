@@ -5,7 +5,7 @@ author: "Tim Dams"
 format:
   revealjs:
     theme: [default, theme/site.scss]
-    css: theme/caveat.css
+    css: [theme/caveat.css, theme/label.css]
     width: 1600
     height: 900
     margin: 0.04
@@ -31,6 +31,14 @@ title-slide-attributes:
   data-background-size: cover
   data-background-position: 50% 48%
   data-background-color: "#f8f7f5"
+
+# Het AI MODIFIED-label van de Europese Commissie staat rechtsboven op de
+# titelslide. Het zit niet in titel.png geplakt: die achtergrond wordt met
+# `cover` bijgesneden, dus op een smaller scherm viel de hoek weg. Het hangt
+# aan de slide zelf, via theme/label.css. Die verwijst er enkel vanuit css
+# naar, vandaar dat het hier als resource staat.
+resources:
+  - assets/ai-modified.png
 
 ---
 ## Voor wie is dit? {.metonder}
@@ -160,6 +168,12 @@ Maak een ruwe outline en schrijf (een stuk) van je favoriete hoofdstuk.
 Als je A.I. vanaf nul laat schrijven dan duwt hij de inhoud en toon. **Stay in control 🤓 !**
 :::
 
+## [1]{.nr} Nog een reden
+
+Hoe solider de basis, hoe beter je A.I. hier later mee aan de slag kan.
+
+Dit is identiek bij softwareprojecten die je met/door A.I. laat doen: zorg dat de fundamentals goed zitten; 
+
 ## [2]{.nr} Zet je cursus in droge tekst {.metonder}
 
 ![](assets/mapindeling.png){.figuur}
@@ -206,7 +220,7 @@ Een tekstbestand van een halve pagina dat je A.I. bij elke nieuwe vraag opnieuw 
 
 Zet er alles dat je telkens opnieuw moet zeggen (alsof het een student is 😉)
 
-Zet er zeker waar alle bestanden staan en wat hun nut is.
+Zet er zeker een '**plan van je map**' in, waar je beschrijft waar alle bestanden staan en wat hun nut is.
 
 [Vergelijk het met een studiewijzer.]{.klein}
 
@@ -225,9 +239,12 @@ Zet er zeker waar alle bestanden staan en wat hun nut is.
 - Geen wijze slotzin: stop na het laatste feit.
 - Getallen tot twintig voluit.
 
-## Mijn contextmap
-- `toonvoorbeeld.md`: mijn hoofdstuk over casting. Hier zit mijn stem in.
-- `gettingstarted.md`: de huisregels waar deze talk uit komt.
+## Waar staat wat
+- 'context\': alle informatie die je nodig hebt om de perfecte teksten te maken. Lees deze altijd voor je aan iets nieuws begint.
+  - `toonvoorbeeld.md`: mijn hoofdstuk over casting. Hier zit mijn stem in.
+  - `gettingstarted.md`: de huisregels waar deze talk uit komt.
+- 'content\': hier komen de slides, handboek, etc.
+- 'jokes\': eindig ieder hoofdstuk met 1 mop uit deze folder. Voor de rest negeer je deze folder
 ```
 
 ::: {.onder style="text-align:left"}
