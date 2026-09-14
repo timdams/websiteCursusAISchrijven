@@ -129,7 +129,7 @@ window.DATA = {
      ze staat nu op zeven. Het verbod zelf staat bij stap 2, waar de verleiding
      zit. */
   startplanKop: "Hoe begin je eraan?",
-  startplanNoot: "Volg Tims flow voor een perfecte cursus, in jouw stem en met ene A.I. die in de pas loopt.",
+  startplanNoot: "Volg Tims flow voor een perfecte cursus, in jouw stem en met een A.I. die jou volgt, niet vice versa 😉.",
 
   /* De twee beugels onder de rij bolletjes in volgorde.png. Ze staan hier als
      data, want in de tekening staan ze ook: een stap draagt zijn groep, en de
