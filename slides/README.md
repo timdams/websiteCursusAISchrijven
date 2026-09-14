@@ -173,7 +173,7 @@ komen er negentien uit een script hier, acht uit een beeldgenerator en twee zijn
 schermafdrukken (`skillvb` en `improvevb`). `zaal.js` telt voor twee: het schrijft
 zowel `zaal.png` als `zaal-kristof.png`.
 
-`zaal`, `teleurstelling`, `volgorde`, `schrijverswerk`, `mapindeling`,
+`zaal`, `teleurstelling`, `origineel`, `volgorde`, `schrijverswerk`, `mapindeling`,
 `improvelus`, `watiseenskill`, `agnostisch`, `chatvenster`, `meenemen`,
 `allessamen`, `website` en `versies` zijn voor dit deck getekend. `zaal` opent de
 talk en `versies` komt er achteraan op terug: die tweede tekent diezelfde slide
@@ -209,6 +209,12 @@ De nummers op de vier kaarten van `meenemen` zijn de stappen 3 tot 6 uit
 bolletje daar. Wijzig je een van de twee tekeningen, kijk dan ook naar de andere,
 en naar de site: daar staat `volgorde` boven de zeven stappen en `meenemen` in
 het plan, met diezelfde nummers.
+
+`origineel` staat op de slide net voor *De workflow*: `volgorde` zonder het rode
+deel, dus schrijven, droge tekst en nakijken, alle drie grijs. Het nakijken heet
+daar drie en niet zes, want zonder de AI-stappen komt het meteen na twee. Canvas,
+bolletjes en letters zijn die van `volgorde`, zodat de twee slides na elkaar op
+dezelfde schaal staan; wijzig je de ene, pas de andere mee aan.
 
 `allessamen` is de verkenner van deze repo zelf, overgetekend rij per rij, met
 de vier dingen in het rood aangeduid. De rommel staat er bewust bij:

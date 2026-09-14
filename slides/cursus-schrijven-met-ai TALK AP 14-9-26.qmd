@@ -154,10 +154,6 @@ client, VS Code. Theoretisch werkt wat volgt op elke combinatie. 🤞
 
 
 
-## Mijn originele flow {.metonder}
-
-![](assets/origineel.png){.figuur}
-
 ## De workflow {.metkolommen}
 
 ![](assets/volgorde.png){.figuur}
