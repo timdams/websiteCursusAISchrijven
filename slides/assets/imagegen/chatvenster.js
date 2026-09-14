@@ -4,7 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const { createCanvas, C } = require('./excal');
 
-const c = createCanvas(1030, 960);
+// 1120 breed: de langste label, "of wijs naar een map", is in Kalam 377 breed
+// en begint op 712.
+const c = createCanvas(1120, 960);
 
 // ---------- de schermafdruk zelf ----------
 // claude.png is het hele venster; we tonen enkel de kaart rechts.

@@ -6,9 +6,11 @@
 // rommel: node_modules, .vscode en de twee package-bestanden. Zonder die rijen
 // leest het als een opgekuiste voorbeeldmap, en dat is het niet.
 //
-// De kaders lopen van x 94 tot 744, dus alle vier even breed en met dezelfde
+// De kaders lopen van x 94 tot 500, dus alle vier even breed en met dezelfde
 // rechterrand. Daardoor vertrekken de vier pijlen op dezelfde x en kruisen ze
-// elkaar niet.
+// elkaar niet. Ze liepen tot 744, maar in Kalam is de langste regel rechts
+// ("één map per taak ...") 787 breed en die viel dan van het canvas. De langste
+// rij in de boom, websiteCursusAISchrijven, eindigt op 450.
 //
 // Beamermaat: canvas 1560 breed, hoogstens 670 hoog, zie MAATVOERING.md.
 // Kleinste tekst 30. Draaien vanuit de imagegen-map:  node allessamen.js
@@ -37,7 +39,7 @@ function blad(x, y, label) {
 }
 
 // ---------- het verkennervenster ----------
-c.rect(30, 16, 726, 606, { strokeWidth: 2.6, roughness: 1.4 });
+c.rect(30, 16, 490, 606, { strokeWidth: 2.6, roughness: 1.4 });
 
 const rijen = [
   [0, 'map', 'websiteCursusAISchrijven'],
@@ -71,7 +73,7 @@ rijen.forEach(([n, soort, label], i) => {
 });
 
 // ---------- de vier kaders, met de pijl en het label ernaast ----------
-const KX = 94, KB = 650, LX = 880;
+const KX = 94, KB = 406, LX = 620;
 
 function duid(van, tot, kop, regel) {
   const y = rij(van) - 8, h = (tot - van) * RH + 42;

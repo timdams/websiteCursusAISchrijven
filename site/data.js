@@ -1775,7 +1775,7 @@ window.DATA = {
   voorbeeldenWaarschuwing: {
     kop: "Een paar van deze mensen zijn doorgeslagen",
     icoon: "raket",
-    url:"https://dverhulst1981.github.io/cloudsystemen/",
+    url:"https://cloudsystemen.ap.be/",
     tekst: [
       "*En dat is een compliment.* Cloudsystemen van David Verhulst is een eigen webapplicatie met oefenterminals die in de pagina zelf draaien. In Circuit Crawler van Andie Similon schrijft een student een lus van drie stappen, en zet een robot op het scherm drie stappen. Knap gedaan, maar daar zit een technische achtergrond achter die de meesten van ons niet hebben.",
       "Je hoeft daar niet naartoe om hier iets aan te hebben. Onder elk van deze projecten liggen dezelfde twee bestanden als in werkwijze 1, Alles in de browser: een contextmap met een handvol documenten, en een regelbestand met je eigen afspraken. Die twee maak je zonder één installatie.",

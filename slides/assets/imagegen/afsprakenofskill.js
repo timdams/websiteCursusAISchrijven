@@ -19,7 +19,7 @@ const OVER_FIGUREN = [
   'kijk de PNG na voor je klaar zegt',
 ];
 const BAND_Y = 330, REGEL_Y = 358;
-const band = (x) => c.rect(x, BAND_Y, 400, 160, { fill: C.RED_LIGHT, fillStyle: 'hachure',
+const band = (x) => c.rect(x, BAND_Y, 500, 160, { fill: C.RED_LIGHT, fillStyle: 'hachure',
   hachureGap: 8, fillWeight: 1.5, stroke: C.RED, strokeWidth: 2.2, roughness: 1.4 });
 const regels = (x) => OVER_FIGUREN.forEach((r, i) =>
   c.txt(x, REGEL_Y + i * 56, r, 30, C.RED_DARK, 600, 'start'));
@@ -28,13 +28,14 @@ const regels = (x) => OVER_FIGUREN.forEach((r, i) =>
 c.rect(40, 70, 560, 460, { strokeWidth: 2.6, roughness: 1.4 });
 c.txt(320, 132, 'improve.md', 36, C.RED_DARK, 700);
 c.line(75, 162, 565, 162, { stroke: C.GRAY, strokeWidth: 1.8, roughness: 1.2 });
-c.txt(150, 225, 'geen bullets in de uitleg', 30, C.GRAY, 500, 'start');
-c.txt(150, 281, 'de student is enkelvoud', 30, C.GRAY, 500, 'start');
-band(120);
-regels(150);
+c.txt(100, 225, 'geen bullets in de uitleg', 30, C.GRAY, 500, 'start');
+c.txt(100, 281, 'de student is enkelvoud', 30, C.GRAY, 500, 'start');
+band(70);
+regels(100);
 
 // ---------- de drie die bij elkaar horen, verhuizen ----------
-c.txt(780, 380, 'drie regels over dezelfde taak', 30, C.RED_DARK, 700);
+// Op twee regels: tussen de twee blokken is 360 pixels plaats.
+c.lines(780, 350, ['drie regels over', 'dezelfde taak'], 30, C.RED_DARK, 700, 'middle', 1.2);
 c.arrow(610, 410, 950, 410,
   { stroke: C.RED, strokeWidth: 2.6, roughness: 1.3, head: 17 });
 
@@ -44,7 +45,7 @@ c.txt(1240, 132, 'een skill: afbeelding', 36, C.RED_DARK, 700);
 c.lines(1240, 176, ['wordt enkel meegelezen', 'bij die ene taak'],
   30, C.GRAY, 600, 'middle', 1.3);
 c.line(995, 248, 1485, 248, { stroke: C.RED, strokeWidth: 1.8, roughness: 1.2 });
-band(1040);
-regels(1070);
+band(990);
+regels(1020);
 
 c.save('.', 'afsprakenofskill', '');

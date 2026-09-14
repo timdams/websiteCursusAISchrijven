@@ -9,7 +9,7 @@ const c = createCanvas(1560, 620);
 
 const PY = 95, PH = 420;
 const LX = 55, LW = 585;          // links: je schijf
-const RX = 971, RW = 526;         // rechts: de vijf, uitvergroot
+const RX = 940, RW = 580;         // rechts: de vijf, uitvergroot
 
 // documentje met omgeplooide hoek; gekozen exemplaren staan rood en gearceerd
 function doc(x, y, w, h, gekozen) {
@@ -42,8 +42,8 @@ for (let r = 0; r < 5; r++) {
 c.txt(LX + LW / 2, 570, 'dertig, allemaal even zwaar', 34, C.GRAY, 600);
 
 // ---------- ertussen: de handeling ----------
-c.txt(805, 268, 'je kiest er vijf uit', 34, C.RED_DARK, 700);
-c.arrow(655, 308, 956, 308, { stroke: C.RED, strokeWidth: 2.8, head: 18 });
+c.txt(790, 268, 'je kiest er vijf uit', 34, C.RED_DARK, 700);
+c.arrow(655, 308, 925, 308, { stroke: C.RED, strokeWidth: 2.8, head: 18 });
 
 // ---------- rechts: dezelfde vijf, met hun reden ----------
 c.txt(RX + RW / 2, 62, 'vijf documenten', 38, C.RED_DARK, 700);

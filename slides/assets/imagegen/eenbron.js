@@ -16,11 +16,11 @@ function doc(x, y, w, h) {
 }
 
 // ---------- links: de bron ----------
-c.rect(60, 230, 420, 220, { fill: C.RED_LIGHT, fillStyle: 'hachure', hachureGap: 9,
+c.rect(40, 230, 480, 220, { fill: C.RED_LIGHT, fillStyle: 'hachure', hachureGap: 9,
   fillWeight: 1.4, stroke: C.RED, strokeWidth: 2.8, roughness: 1.4 });
-c.txt(270, 286, 'je cursus als gewone tekst', 36, C.RED_DARK, 700);
-for (let j = 0; j < 4; j++) doc(100 + j * 85, 315, 66, 105);
-c.lines(270, 505, ['je past hier iets aan,', 'en verder nergens'], 34, C.GRAY, 600, 'middle', 1.25);
+c.txt(280, 286, 'je cursus als gewone tekst', 36, C.RED_DARK, 700);
+for (let j = 0; j < 4; j++) doc(120 + j * 85, 315, 66, 105);
+c.lines(280, 505, ['je past hier iets aan,', 'en verder nergens'], 34, C.GRAY, 600, 'middle', 1.25);
 
 // ---------- rechts: de vier formaten ----------
 const outputs = [
@@ -33,7 +33,7 @@ outputs.forEach(([y, kop, onder]) => {
   c.rect(900, y, 620, 120, { strokeWidth: 2.4, roughness: 1.4 });
   c.txt(1210, y + 54, kop, 36, C.GRAY, 700);
   c.txt(1210, y + 96, onder, 30, C.RED_DARK, 600);
-  c.arrow(500, 340, 875, y + 58, { stroke: C.RED, strokeWidth: 2.5, roughness: 1.3, head: 17 });
+  c.arrow(540, 340, 875, y + 58, { stroke: C.RED, strokeWidth: 2.5, roughness: 1.3, head: 17 });
 });
 
 c.save('.', 'eenbron', '');

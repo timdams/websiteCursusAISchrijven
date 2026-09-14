@@ -4,6 +4,7 @@
   "description": "Generatorscripts voor de tekeningen van de site (Excalidraw-stijl, rough.js).",
   "devDependencies": {
     "@fontsource/caveat": "^5.0.0",
+    "@fontsource/kalam": "^5.3.0",
     "@resvg/resvg-js": "^2.6.0",
     "jsdom": "^24.0.0",
     "qrcode-generator": "^2.0.4",

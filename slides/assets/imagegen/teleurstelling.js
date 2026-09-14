@@ -8,12 +8,13 @@ const { createCanvas, C } = require('./excal');
 const c = createCanvas(1560, 660);
 
 // ---------- links: de vraag ----------
-c.rect(30, 190, 545, 165, { strokeWidth: 2.6, roughness: 1.5 });
-c.lines(302, 252, [
-  'schrijf een hoofdstuk over',
-  'kansrekenen voor mijn studenten',
+c.rect(30, 170, 545, 210, { strokeWidth: 2.6, roughness: 1.5 });
+c.lines(302, 237, [
+  'schrijf een hoofdstuk',
+  'over kansrekenen',
+  'voor mijn studenten',
 ], 38, C.GRAY, 600, 'middle', 1.35);
-c.txt(302, 425, 'wat je typte', 38, C.GRAY, 700);
+c.txt(302, 440, 'wat je typte', 38, C.GRAY, 700);
 
 c.arrow(595, 272, 650, 272, { stroke: C.RED, strokeWidth: 3, roughness: 1.3, head: 18 });
 

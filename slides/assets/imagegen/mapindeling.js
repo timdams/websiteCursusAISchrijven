@@ -23,7 +23,8 @@ c.rect(90, 95, 310, 400, { strokeWidth: 2.6, roughness: 1.4 });
 c.txt(245, 565, 'alles in één bestand', 36, C.GRAY, 600);
 
 // ---------- ertussen: de handeling ----------
-c.txt(550, 278, 'je knipt hem in stukken', 32, C.GRAY, 700);
+// Op twee regels: tussen het docx en de boom is 300 pixels plaats.
+c.lines(550, 242, ['je knipt hem', 'in stukken'], 32, C.GRAY, 700, 'middle', 1.2);
 c.arrow(420, 320, 680, 320, { strokeWidth: 2.6, roughness: 1.3, head: 18 });
 
 // ---------- rechts: dezelfde cursus als map ----------

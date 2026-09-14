@@ -2,8 +2,11 @@
  * excal.js - gedeelde Excalidraw-stijl helpers voor Zie Scherp Scherper.
  * Zie CLAUDE.md > "Afbeeldingen moderniseren". Niet de stijl wijzigen zonder Tim.
  *
- * Deps: npm i roughjs jsdom @fontsource/caveat @resvg/resvg-js
- * Fonts: caveat-700.ttf / caveat-400.ttf naast dit bestand (voor PNG-render).
+ * Deps: npm i roughjs jsdom @fontsource/kalam @resvg/resvg-js
+ * Fonts: kalam-700.ttf / kalam-400.ttf naast dit bestand (voor PNG-render).
+ *
+ * De slides gebruiken Kalam en niet Caveat zoals de site: Caveat was op de
+ * talk van 14 september 2026 amper leesbaar achteraan de aula. Zie MAATVOERING.md.
  */
 const { JSDOM } = require('jsdom');
 const rough = require('roughjs');
@@ -16,6 +19,7 @@ const C = {
   BOX_TOP: '#fbe9e9', BOX_SIDE: '#f3d4d4'
 };
 const SVGNS = 'http://www.w3.org/2000/svg';
+const FONT = 'Kalam, cursive';
 
 function createCanvas(W, H) {
   const dom = new JSDOM('<!DOCTYPE html><body></body>');
@@ -24,7 +28,7 @@ function createCanvas(W, H) {
   svg.setAttribute('xmlns', SVGNS);
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
   svg.setAttribute('width', W); svg.setAttribute('height', H);
-  svg.setAttribute('font-family', 'Caveat, cursive');
+  svg.setAttribute('font-family', FONT);
   const rc = rough.svg(svg);
   const bg = document.createElementNS(SVGNS, 'rect');
   bg.setAttribute('width', W); bg.setAttribute('height', H); bg.setAttribute('fill', C.OFFWHITE);
@@ -36,7 +40,7 @@ function createCanvas(W, H) {
     const t = document.createElementNS(SVGNS, 'text');
     t.setAttribute('x', x); t.setAttribute('y', y); t.setAttribute('font-size', size);
     t.setAttribute('fill', color); t.setAttribute('font-weight', weight);
-    t.setAttribute('text-anchor', anchor); t.setAttribute('font-family', 'Caveat, cursive');
+    t.setAttribute('text-anchor', anchor); t.setAttribute('font-family', FONT);
     t.textContent = s; svg.appendChild(t); return t;
   };
   // mixed-color inline text via tspan (array of {t, color, weight} segments)
@@ -45,7 +49,7 @@ function createCanvas(W, H) {
     el.setAttribute('x', x); el.setAttribute('y', y);
     el.setAttribute('font-size', size);
     el.setAttribute('text-anchor', anchor);
-    el.setAttribute('font-family', 'Caveat, cursive');
+    el.setAttribute('font-family', FONT);
     segs.forEach(seg => {
       const ts = document.createElementNS(SVGNS, 'tspan');
       ts.setAttribute('fill', seg.color || C.GRAY);
@@ -107,17 +111,19 @@ function createCanvas(W, H) {
 
   api.save = (dir, name, pngSuffix = 'NEW') => {
     try {
-      const woff2 = require.resolve('@fontsource/caveat/files/caveat-latin-700-normal.woff2');
-      const b = fs.readFileSync(woff2).toString('base64');
       const style = document.createElementNS(SVGNS, 'style');
-      style.textContent = `@font-face{font-family:'Caveat';font-weight:700;src:url(data:font/woff2;base64,${b}) format('woff2');}`;
+      style.textContent = [400, 700].map(w => {
+        const woff2 = require.resolve(`@fontsource/kalam/files/kalam-latin-${w}-normal.woff2`);
+        const b = fs.readFileSync(woff2).toString('base64');
+        return `@font-face{font-family:'Kalam';font-weight:${w};src:url(data:font/woff2;base64,${b}) format('woff2');}`;
+      }).join('');
       svg.insertBefore(style, svg.firstChild);
     } catch (e) { console.warn('font niet ingebed:', e.message); }
     fs.writeFileSync(path.join(dir, name + '.svg'), svg.outerHTML);
     try {
       const { Resvg } = require('@resvg/resvg-js');
-      const fonts = ['caveat-700.ttf', 'caveat-400.ttf'].map(f => path.join(__dirname, f)).filter(fs.existsSync);
-      const r = new Resvg(svg.outerHTML, { font: { fontFiles: fonts, defaultFontFamily: 'Caveat', loadSystemFonts: false }, background: 'white' });
+      const fonts = ['kalam-700.ttf', 'kalam-400.ttf'].map(f => path.join(__dirname, f)).filter(fs.existsSync);
+      const r = new Resvg(svg.outerHTML, { font: { fontFiles: fonts, defaultFontFamily: 'Kalam', loadSystemFonts: false }, background: 'white' });
       fs.writeFileSync(path.join(dir, '..', name + pngSuffix + '.png'), r.render().asPng());
     } catch (e) { console.warn('PNG niet gerenderd:', e.message); }
     console.log(name, 'klaar');

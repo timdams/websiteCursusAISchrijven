@@ -33,19 +33,20 @@ c.txt(275, 122, 'je regelbestand', 40, C.RED_DARK, 700);
 c.line(75, 147, 475, 147, { strokeWidth: 1.8, roughness: 1.8 });
 
 // die ene afspraak, voluit en in het rood: zonder deze zin gebeurt er niets
-c.rect(68, 170, 414, 185, { fill: C.WHITE, fillStyle: 'solid',
+c.rect(68, 170, 414, 240, { fill: C.WHITE, fillStyle: 'solid',
   stroke: C.RED, strokeWidth: 3, roughness: 1.3 });
 c.lines(275, 210, [
-  '"hou in improve.md bij wat ik',
-  'corrigeer in chats, als nieuwe',
-  'toekomstige regels. Hou daar',
-  'steeds rekening mee"',
+  '"hou in improve.md bij',
+  'wat ik corrigeer in chats,',
+  'als nieuwe toekomstige',
+  'regels. Hou daar steeds',
+  'rekening mee"',
 ], 32, C.RED_DARK, 700, 'middle', 1.28);
 
 // je gewone regels eronder, en de nieuwe in het rood
-[[395, 350], [430, 300]].forEach(([y, breed]) =>
+[[430, 350], [450, 300]].forEach(([y, breed]) =>
   c.line(75, y, 75 + breed, y, { strokeWidth: 2, roughness: 1.9 }));
-c.line(75, 468, 75 + 320, 468, { stroke: C.RED, strokeWidth: 3.2, roughness: 1.6 });
+c.line(75, 472, 75 + 320, 472, { stroke: C.RED, strokeWidth: 3.2, roughness: 1.6 });
 
 // Links uitgelijnd en niet gecentreerd: de terugpijl komt op de onderrand van
 // dit kader uit, en die pijlpunt stond anders bovenop dit bijschrift.

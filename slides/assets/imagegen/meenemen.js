@@ -18,7 +18,7 @@ const { createCanvas, C } = require('./excal');
 
 const c = createCanvas(1560, 585);
 
-const KW = 348, GAP = 30, KY = 96, KH = 330;
+const KW = 348, GAP = 30, KY = 96, KH = 350;
 const kx = i => 40 + i * (KW + GAP);
 const mid = i => kx(i) + KW / 2;
 
@@ -33,11 +33,11 @@ const kaarten = [
   },
   {
     n: '5', kop: 'improve.md',
-    regels: ['de AI noteert je correcties,', 'en daar komen je skills uit'],
+    regels: ['de AI noteert', 'je correcties, en daar', 'komen je skills uit'],
   },
   {
     n: '6', kop: 'nakijken', zelf: true,
-    regels: ['de getallen, de namen', 'en de bronnen: zelf lezen'],
+    regels: ['de getallen, de namen', 'en de bronnen:', 'zelf lezen'],
   },
 ];
 
@@ -60,7 +60,9 @@ kaarten.forEach((k, i) => {
 
   c.txt(m, 285, k.kop, 40, C.RED_DARK, 700);
   c.line(x + 46, 305, x + KW - 46, 305, { stroke: C.RED, strokeWidth: 1.8, roughness: 1.8 });
-  c.lines(m, 350, k.regels, 30, C.GRAY, 600, 'middle', 1.3);
+  // Vijf en zes staan op drie regels: in Kalam is een kaart van 348 te smal
+  // voor "de AI noteert je correcties,". Daarom is de kaart 350 hoog.
+  c.lines(m, 345, k.regels, 30, C.GRAY, 600, 'middle', 1.25);
 });
 
 // ---------- 3. vijf documenten naast elkaar ----------
@@ -105,12 +107,12 @@ kaarten.forEach((k, i) => {
 }
 
 // ---------- de lus tussen zes en vijf ----------
-c.carrow(mid(3), 434, mid(2) + 190, 545, mid(2), 434,
+c.carrow(mid(3), 454, mid(2) + 190, 555, mid(2), 454,
   { stroke: C.RED, strokeWidth: 2.8, roughness: 1.3, strokeLineDash: [14, 10], head: 20 });
-c.txt(mid(2) + 190, 545, 'wat je hier corrigeert, gaat naar improve.md', 34, C.RED_DARK, 700);
+c.txt(mid(2) + 190, 555,'wat je hier corrigeert, gaat naar improve.md', 34, C.RED_DARK, 700);
 
 // ---------- de rode draad, links onder de eerste twee kaarten ----------
-c.lines(40, 498, ['Alles wat je een tweede keer tegen de AI',
+c.lines(40, 512, ['Alles wat je een tweede keer tegen de AI',
   'moet zeggen, hoort in een bestand.'], 36, C.GRAY, 700, 'start', 1.3);
 
 c.save('.', 'meenemen', '');

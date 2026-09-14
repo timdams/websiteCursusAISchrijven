@@ -12,7 +12,8 @@ const c = createCanvas(1560, 486);
 const stappen = [
   { n: '1', regels: ['schrijf eerst', 'als schrijver'] },
   { n: '2', regels: ['alles in', 'droge tekst', '(markdown)'] },
-  { n: '3', regels: ['een kleine, werkbare', 'contextmap'], ai: true },
+  // Op drie regels: in Kalam liep "een kleine, werkbare" in de labels van twee en vier.
+  { n: '3', regels: ['een kleine,', 'werkbare', 'contextmap'], ai: true },
   { n: '4', regels: ['je regels in', 'een bestand'], ai: true },
   { n: '5', regels: ['improve.md', 'en je skills'], ai: true },
   { n: '6', regels: ['nakijken'], ai: true, half: true },

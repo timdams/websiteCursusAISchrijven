@@ -37,7 +37,7 @@ Zet het resultaat in `assets/imagegen/` onder de naam `zaal-bron.png`. Niet in
 Op de onderlaag staat geen woord. De labels van deze figuur zijn Nederlandse
 zinnen van vier en vijf woorden, en daar maakt een beeldgenerator soep van.
 Vandaar de laatste regel van de prompt, en vandaar dat `zaal.js` de tekst er
-achteraf op zet, in dezelfde Caveat als de rest van het deck.
+achteraf op zet, in dezelfde Kalam als de rest van het deck.
 
 Om dezelfde reden zit er geen rood in de onderlaag. Het rood van deze figuur is
 de beugel *hier begint deze talk* en het bordje *dit weet ik al*, en die komen

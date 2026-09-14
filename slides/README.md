@@ -62,7 +62,7 @@ quarto render cursus-schrijven-met-ai.qmd
 ```
 
 Dat schrijft `cursus-schrijven-met-ai.html` naast de qmd. Dubbelklikken volstaat;
-Caveat zit als base64 in `theme/caveat.css`, dus het werkt ook over `file://`.
+Kalam zit als base64 in `theme/kalam.css`, dus het werkt ook over `file://`.
 
 Tijdens het schrijven is `quarto preview cursus-schrijven-met-ai.qmd` handiger:
 die ververst bij elke opslag.
@@ -76,7 +76,7 @@ pdf. Druk `s` voor de sprekersweergave, `o` voor het overzicht.
 |---|---|
 | `cursus-schrijven-met-ai.qmd` | de slides zelf |
 | `theme/site.scss` | de kleuren en het font van de site, omgezet naar reveal.js |
-| `theme/caveat.css` | Caveat als base64, gegenereerd door `maak-font-css.js` |
+| `theme/kalam.css` | Kalam als base64, gegenereerd door `maak-font-css.js` |
 | `assets/*.png` | de tekeningen |
 | `assets/imagegen/*.js` | de scripts die die tekeningen maken |
 | `MAATVOERING.md` | hoe groot tekst in een tekening moet zijn om te beamen |
@@ -146,8 +146,12 @@ leest.
 
 ## De tekeningen
 
-Dezelfde machinerie als de site: rough.js plus Caveat, in de stijl uit
-[.claude/afbeelding/SKILL.md](../.claude/afbeelding/SKILL.md). Elk script blijft
+Dezelfde machinerie als de site: rough.js, in de stijl uit
+[.claude/afbeelding/SKILL.md](../.claude/afbeelding/SKILL.md), met één
+verschil: de tekst staat in Kalam en niet in Caveat. Caveat las achteraan de
+aula niet; zie *Het font* in [MAATVOERING.md](MAATVOERING.md). Kalam staat als
+`kalam-400.ttf` en `kalam-700.ttf` in `imagegen/`, met de licentie ernaast in
+`OFL-kalam.txt`. Elk script blijft
 staan, dus een figuur bijsturen betekent een regel wijzigen en opnieuw renderen:
 
 ```bash
@@ -240,7 +244,12 @@ daar, kijk dan ook hier. De tekst op het blad en in het mapje is die van de slid
 
 `eenbron`, `vijfdocumenten`, `kernidee` en `afsprakenofskill` staan ook op de
 site, maar de scripts hier zijn een eigen versie: op de site zijn ze 1600 tot
-1660 breed, hier 1560, met grotere tekst. Wijzig je zo'n figuur, wijzig hem dan op beide plekken.
+1660 breed, hier 1560, met grotere tekst in Kalam. Wijzig je zo'n figuur, wijzig hem dan op beide plekken.
+
+De scripts die het deck niet meer gebruikt, zijn niet opnieuw gedraaid sinds de
+overstap naar Kalam. Draai je er een, kijk dan eerst of de tekst nog in haar
+kaders past; `strip.js` rekent de breedte van een ballon nog uit met de factor
+van Caveat.
 
 `strip-vraag`, `strip-vorigjaar` en `strip-nu` waren de stripversie van de
 origin story, die nu één slide met twee kolommen is. De panelen, de

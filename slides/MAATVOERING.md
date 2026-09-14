@@ -37,20 +37,36 @@ tekening en moet er iets uit, niet iets kleiner.
 Ga je boven 670 hoog, dan wordt de tekening in de hoogte geknepen en zakt de
 schaal: op 800 hoog is ze nog 0,8 en is je tekst van 32 weer 26 pixels.
 
+## Het font
+
+De tweede versie had de maat wel goed, en werd op 14 september 2026 toch
+gegeven met een deck waarvan achteraan in de aula gezegd werd: "Het enige dat
+mij meteen opviel was de leesbaarheid en in het bijzonder het lettertype." De
+tekst stond toen in Caveat, op 30 en meer. Caveat is smal, met korte kleine
+letters en dunne lijnen: op 30 pixels is een kleine letter zo'n twaalf pixels
+hoog, en dat valt op afstand weg.
+
+Sindsdien staan de tekeningen van de slides in **Kalam**. Dat is ook
+handgeschreven, maar met hogere kleine letters en dikkere lijnen. De site
+tekent nog in Caveat.
+
 ## Meten in plaats van gokken
 
-Caveat is smal: een teken is ongeveer **0,33 keer de fontgrootte** (0,37 voor
-korte stukken vet). Een regel van veertig tekens op grootte 34 is dus zo'n 450
-pixels breed. Nameten kan:
+Kalam is breder dan Caveat: een teken is ongeveer **0,46 keer de fontgrootte**
+(0,44 voor gewicht 400), tegenover 0,33 voor Caveat. Een regel van veertig
+tekens op grootte 34 is dus zo'n 625 pixels breed. Wie een oud script opnieuw
+draait, ziet dat verschil als tekst die over de rand van haar kader loopt. Maak
+het kader breder of breek de regel af, en zet de tekst niet kleiner. Nameten
+kan:
 
 ```bash
 cd slides/assets/imagegen
 node -e "
 const {Resvg}=require('@resvg/resvg-js');const path=require('path');
-const s='de regel die je wil meten', size=34;
-const fonts=['caveat-700.ttf','caveat-400.ttf'].map(f=>path.join(process.cwd(),f));
-const svg='<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6000\" height=\"400\"><text x=\"10\" y=\"250\" font-size=\"'+size+'\" font-family=\"Caveat\">'+s+'</text></svg>';
-console.log(Math.round(new Resvg(svg,{font:{fontFiles:fonts,defaultFontFamily:'Caveat',loadSystemFonts:false}}).getBBox().width),'px');
+const s='de regel die je wil meten', size=34, weight=700;
+const fonts=['kalam-700.ttf','kalam-400.ttf'].map(f=>path.join(process.cwd(),f));
+const svg='<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6000\" height=\"400\"><text x=\"10\" y=\"250\" font-size=\"'+size+'\" font-weight=\"'+weight+'\" font-family=\"Kalam\">'+s+'</text></svg>';
+console.log(Math.round(new Resvg(svg,{font:{fontFiles:fonts,defaultFontFamily:'Kalam',loadSystemFonts:false}}).getBBox().width),'px');
 "
 ```
 

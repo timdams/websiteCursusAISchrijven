@@ -9,7 +9,7 @@ const { createCanvas, C } = require('./excal');
 const c = createCanvas(1560, 600);
 
 // ---------- links: wat jij hebt ----------
-const BX = 90, BW = 340, BH = 66, STAP = 82;
+const BX = 60, BW = 390, BH = 66, STAP = 82;
 const by = i => 70 + i * STAP;
 
 c.txt(BX + BW / 2, 40, 'wat jij hebt', 40, C.GRAY, 700);
