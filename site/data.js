@@ -6,7 +6,7 @@
 window.DATA = {
 
   /* ---------- De rode draad van de hele site ---------- */
-  rodedraad: "Alles wat je een tweede keer tegen de AI moet zeggen, hoort in een bestand.",
+  rodedraad: "Alles wat je een tweede keer tegen de A.I. moet zeggen, hoort in een bestand.",
 
   /* ---------- De talk waar deze site uit komt ----------
      De slides staan onder site/slides/ en worden door de workflow in
@@ -27,10 +27,10 @@ window.DATA = {
     kop: "Onze eerste stapjes. Remember?",
     figuur: {
       bestand: "assets/teleurstelling.png",
-      alt: "Tekening. Links het kader “wat je typte” met daarin: schrijf een hoofdstuk over kansrekenen voor mijn studenten. Rechts het antwoord, drie vlotte zinnen en drie bullets, met er in het rood onder: klinkt als een reclamefolder, geen enkel getal, geen enkel voorbeeld, drie bullets waar een uitleg hoorde.",
+      alt: "Tekening. Links het kader “wat je typte” met daarin: schrijf een hoofdstuk over kansrekenen voor mijn studenten. Rechts het antwoord, drie vlotte zinnen en drie bullets, met er in het rood onder: klinkt als een reclamemap, geen enkel getal, geen enkel voorbeeld, drie bullets waar een uitleg hoorde.",
       bijschrift: "Geen enkel getal, geen enkel voorbeeld, en drie bullets waar een uitleg hoorde."
     },
-    tekst: "**Het gevaar van AI is dat ze altijd overtuigend antwoordt.** Ook wanneer ze niets weet van je vak, niets van je studenten en niets van de afspraken die al twintig jaar in je hoofd zitten.",
+    tekst: "**Het gevaar van A.I. is dat ze altijd overtuigend antwoordt.** Ook wanneer ze niets weet van je vak, niets van je studenten en niets van de afspraken die al twintig jaar in je hoofd zitten.",
     tweede: {
       kop: "En het lag niet alleen aan je prompt",
       figuur: {
@@ -38,7 +38,7 @@ window.DATA = {
         alt: "Tekening. Een robotje met een rode nepbril, neus en snor staat naast een lector met een echte bril en snor. Allebei steken ze dezelfde vinger op, in exact dezelfde houding.",
         bijschrift: "Ze kan jou nadoen. Maar enkel als ze weet hoe jij klinkt."
       },
-      tekst: "Prompten is al lang niet meer de *core competentie*. Akkoord, het start bij je vraag, maar veel belangrijker zijn je ervaring en je stijl als lesgever. En die kan de AI enkel overnemen als je ze ergens opschrijft. Dat is wat de zeven stappen op de startpagina doen."
+      tekst: "Prompten is al lang niet meer de *core competentie*. Akkoord, het start bij je vraag, maar veel belangrijker zijn je ervaring en je stijl als lesgever. En die kan de A.I. enkel overnemen als je ze ergens opschrijft. Dat is wat de zeven stappen op de startpagina doen."
     }
   },
 
@@ -54,7 +54,7 @@ window.DATA = {
        gemaakt is. */
     hero: {
       bestand: "assets/titel.jpg",
-      /* Het AI MODIFIED-label van de Europese Commissie, rechtsboven op de
+      /* Het A.I. MODIFIED-label van de Europese Commissie, rechtsboven op de
          band. Op de titelslide staat het op dezelfde plek. */
       label: {
         bestand: "assets/ai-modified.png",
@@ -64,8 +64,8 @@ window.DATA = {
     },
     volgorde: {
       bestand: "assets/volgorde.png",
-      alt: "Tekening. Zeven genummerde bolletjes op een rij met een pijl ertussen: schrijf eerst als schrijver, alles in droge tekst (markdown), een kleine werkbare contextmap, je regels in een bestand, improve.md en je skills, nakijken, en dan pas je opmaak. De eerste twee staan grijs onder een beugel “eerst schrijven”, de laatste vijf rood onder een beugel “hier komt de AI erbij”. Bolletje zes staat gestreept en leeg.",
-      bijschrift: "Zes staat gestreept omdat het nakijken je eigen werk blijft. De rest doe je samen met de AI."
+      alt: "Tekening. Zeven genummerde bolletjes op een rij met een pijl ertussen: schrijf eerst als schrijver, alles in droge tekst (markdown), een kleine werkbare contextmap, je regels in een bestand, improve.md en je skills, nakijken, en dan pas je opmaak. De eerste twee staan grijs onder een beugel “eerst schrijven”, de laatste vijf rood onder een beugel “hier komt de A.I. erbij”. Bolletje zes staat gestreept en leeg.",
+      bijschrift: "Zwart == vooral jouw werk. Rood == vooral A.I."
     },
     meenemen: {
       bestand: "assets/meenemen.png",
@@ -80,7 +80,7 @@ window.DATA = {
     werkwijzen: {
       bestand: "assets/vierwerkwijzen.png",
       alt: "Tekening. De vier werkwijzen naast elkaar. Per werkwijze staat waar je bestanden staan, wie erin schrijft en wat je installeert. Bij 1 en 2 schrijf jij, bij 3 en 4 de AI. Werkwijze 1 is aangeduid.",
-      bijschrift: "Bij 1 en 2 hou je je bestanden zelf vast, bij 3 en 4 laat je de AI erin schrijven. De meeste lesgevers blijven bij 1."
+      bijschrift: "Bij 1 en 2 hou je je bestanden zelf vast, bij 3 en 4 laat je de A.I. erin schrijven. De meeste lesgevers blijven bij 1."
     }
   },
 
@@ -114,7 +114,7 @@ window.DATA = {
     },
     {
       kop: "Je kan tonen hoe het gemaakt is.",
-      tekst: "Vraagt iemand wat je aan de AI gaf en welke afspraken golden, dan wijs je gewoon je map aan."
+      tekst: "Vraagt iemand wat je aan de A.I. gaf en welke afspraken golden, dan wijs je gewoon je map aan."
     }
   ],
 
@@ -129,25 +129,25 @@ window.DATA = {
      ze staat nu op zeven. Het verbod zelf staat bij stap 2, waar de verleiding
      zit. */
   startplanKop: "Hoe begin je eraan?",
-  startplanNoot: "Zeven stappen, in deze volgorde. Stap één en twee gaan nog niet over AI. Vanaf drie komt ze erbij, en bij zes gaat ze weer aan de kant.",
+  startplanNoot: "Volg Tims flow voor een perfecte cursus, in jouw stem en met ene A.I. die in de pas loopt.",
 
   /* De twee beugels onder de rij bolletjes in volgorde.png. Ze staan hier als
      data, want in de tekening staan ze ook: een stap draagt zijn groep, en de
      lijst zet er een tussenkop bij op de plek waar de kleur verspringt. */
   startplanGroepen: {
     eerst: "Eerst schrijven",
-    ai: "Hier komt de AI erbij"
+    ai: "Hier komt de A.I. erbij"
   },
   startplan: [
     {
       groep: "eerst",
       kop: "Schrijf eerst als schrijver.",
-      tekst: "Een ruwe outline, en dan een stuk van je favoriete hoofdstuk. Die volgorde verandert niet omdat er een AI bij komt. Laat je haar vanaf nul schrijven, dan duwt zij de inhoud en de toon, en dat merk je pas drie hoofdstukken later."
+      tekst: "Maak eerst (zelf!) een ruwe outline. Schrijf vervolgens je favoriete hoofdstuk of onderwerp, zodat de A.I. je toon kan capteren. Laat niét de A.I. starten, want dan duwt hij je in een (platgereden) richting en toon."
     },
     {
       groep: "eerst",
-      kop: "Zet je cursus in droge tekst.",
-      tekst: "Markdown of gewone txt. Een map per hoofdstuk, daarin een bestand per onderwerp, geknipt tot op de maat die je in één keer meegeeft: meestal één onderwerp. En trek je hier nog niets aan van je opmaak en je afbeeldingen, want die komen als stap zeven.",
+      kop: "Zet je cursus in platte tekst in één map.",
+      tekst: "Markdown of gewone txt. In een map `content/` staan je teksten, en later je afbeeldingen. Een map per hoofdstuk.  En trek je hier nog niets aan van je opmaak en je afbeeldingen, want die komen pas in stap zeven.",
       wegwijzers: [
         { wegwijzer: { naar: "onderwerp", id: "plat" }, knop: "Werk in platte tekst" },
         { wegwijzer: { naar: "onderwerp", id: "mapindeling" }, knop: "Zo ziet die map eruit" }
@@ -156,21 +156,21 @@ window.DATA = {
     {
       groep: "ai",
       kop: "Maak een contextmap, en hou ze proper.",
-      tekst: "In `context/` zet je wat een collega nodig heeft om je vak over te nemen: je opbouw, je ECTS-fiche of je leerdoelen, je beginsituatie, en twee stukken tekst die jij zelf schreef. In `content/` staan je hoofdstukken, en later je afbeeldingen. Niet meer dan een handvol documenten in die eerste map. Elk document dat er zonder reden bij komt, maakt de andere minder zwaar.",
+      tekst: "In de`context/` zet je wat een collega nodig heeft om je vak over te nemen: je opbouw, je vakfiche of je leerdoelen, je beginsituatie, en twee korte stukken tekst die jij zelf schreef.  Maak er géén afvalberg van: enkel de essentie. Hoe minder vet, hoe beter je A.I. zal (mee)werken.",
       wegwijzer: { naar: "onderwerp", id: "contextmap" },
       knop: "Wat er in je contextmap hoort"
     },
     {
       groep: "ai",
       kop: "Zet je regels in een bestand: de handleiding voor je agents.",
-      tekst: "Een tekstbestand van een halve bladzijde dat je AI bij elke nieuwe vraag opnieuw leest. Zet er alles in dat je anders telkens opnieuw moet zeggen, alsof het een student is: je toon, je opbouw, wat je nooit wil zien. En zet er zeker bij waar al je bestanden staan en wat elk document is, in één regel per bestand.",
+      tekst: "Een tekstbestand van een halve bladzijde dat je A.I. bij elke nieuwe vraag opnieuw leest. Zet er alles in dat je anders telkens opnieuw moet zeggen, alsof het een student is: je toon, je opbouw, wat je nooit wil zien. En zet er zeker bij waar al je bestanden staan en wat elk document is, in één regel per bestand. Dit is dé stap die de meeste winst geeft",
       wegwijzer: { naar: "onderwerp", id: "regels" },
-      knop: "Hoe je die regels vindt"
+      knop: "Alles over je regelsbestand"
     },
     {
       groep: "ai",
-      kop: "Laat de AI bijhouden wat je corrigeert.",
-      tekst: "Vraag in dat regelbestand om een `improve.md` bij te houden: alles wat jij terugstuurt, komt daarin, letterlijk. Beter dan “ik schrijf mijn opmerkingen op het einde van de sessie wel op”, want dat doe je toch nooit. Wat daar blijft terugkomen, verhuist naar je vaste regels, en wat over één soort taak gaat wordt een skill.",
+      kop: "Laat de A.I. bijhouden wat je corrigeert en maak er skills van.",
+      tekst: "Vraag in dat regelbestand om een verbeterbestand (`improve.md`) bij te houden: alles wat jij terugstuurt, komt daarin, letterlijk. Beter dan “ik schrijf mijn opmerkingen op het einde van de sessie wel op”, want dat doe je toch nooit. Wat daar blijft terugkomen, verhuist naar je vaste regels, en wat over één soort taak gaat wordt een skill.",
       wegwijzers: [
         { wegwijzer: { naar: "onderwerp", id: "improve" }, knop: "Hoe die lus loopt" },
         { wegwijzer: { naar: "onderwerp", id: "skills" }, knop: "Wat een skill is" }
@@ -179,7 +179,7 @@ window.DATA = {
     {
       groep: "ai",
       kop: "Kijk na.",
-      tekst: "De AI zegt nooit dat ze het niet zeker weet. Zelf lezen dus: de getallen, de namen, de bronnen, en of het klopt met wat jij in de les vertelt. Wat je hier corrigeert, gaat naar de `improve.md` van stap vijf.",
+      tekst: "De A.I. zegt nooit dat ze het niet zeker weet. Zelf lezen dus: de getallen, de namen, de bronnen, en of het klopt met wat jij in de les vertelt. Wat je hier corrigeert, gaat naar de `improve.md` van stap vijf. En vergeet niet om het A(I)-team in te roepen!",
       wegwijzers: [
         { wegwijzer: { naar: "onderwerp", id: "nakijken" }, knop: "Nakijken, en het A(I)-team" },
         { wegwijzer: { naar: "vak", id: "valkuilen" }, knop: "De valkuilen op een rij" }
@@ -188,22 +188,11 @@ window.DATA = {
     {
       groep: "ai",
       kop: "En dan pas je opmaak.",
-      tekst: "Nu verandert er aan je tekst niets meer, dus nu mogen je sjabloon, je pdf en je slides erbij. Uit diezelfde bestanden rolt elk formaat dat je nodig hebt. Wie zijn opmaak eerst in orde bracht, deed ze opnieuw bij elke zin die daarna nog veranderde.",
-      wegwijzer: { naar: "onderwerp", id: "lesmateriaal" },
-      knop: "Hoe je die opmaak maakt"
-    }
-  ],
-  startplanNaastKop: "Twee dingen die ernaast lopen",
-  startplanNaast: [
-    {
-      tekst: "**Je afbeeldingen.** Beslis nog niet waarmee je ze maakt. Schrijf per figuur één zin op over wat erop moet staan, en zet die zin bij het hoofdstuk. Later kies je waarmee: een mermaid-schema, een tekening in Excalidraw, een vrij te gebruiken beeld van Wikimedia Commons, een grafiek uit je eigen cijfers of een generator.",
-      wegwijzer: { naar: "onderwerp", id: "figuren" },
-      knop: "Figuren, manier per manier"
-    },
-    {
-      tekst: "**Git.** Staan je bestanden op je eigen schijf, zet er dan versiebeheer op vanaf de eerste dag, en niet pas wanneer de AI er iets in kapot heeft geschreven. Blijf je in de browser, dan sla je dit over.",
-      wegwijzer: { naar: "werkwijze", id: "3" },
-      knop: "Werkwijze 3"
+      tekst: "Nu verandert er aan je tekst niets meer, dus nu mogen je sjabloon, je pdf en je slides erbij. Uit diezelfde bestanden rolt elk formaat dat je nodig hebt. Je basis ligt goed, dus nu kan je (visueel) leuke dingen beginnen maken dankzij de kracht van A.I.",
+      wegwijzers: [
+        {wegwijzer: { naar: "onderwerp", id: "lesmateriaal" }, knop: "Hoe je die opmaak maakt"},
+        { wegwijzer: { naar: "onderwerp", id: "figuren" }, knop: "Figuren, manier per manier"}
+      ]
     }
   ],
 
@@ -232,14 +221,14 @@ window.DATA = {
       nr: "5",
       onderwerp: "improve",
       titel: "improve.md",
-      tekst: "De AI noteert je correcties terwijl je ze geeft. Wat daar blijft terugkomen, zet jij bij je vaste regels, en wat over één soort taak gaat wordt een skill.",
+      tekst: "De A.I. noteert je correcties terwijl je ze geeft. Wat daar blijft terugkomen, zet jij bij je vaste regels, en wat over één soort taak gaat wordt een skill.",
       waarom: "Zodat je een fout maar één keer maakt, ook zonder dat je zelf iets bijhoudt."
     },
     {
       nr: "6",
       onderwerp: "nakijken",
       titel: "Nakijken",
-      tekst: "De getallen, de namen en de bronnen: zelf lezen. De AI zegt nooit dat ze het niet zeker weet, en dat is de enige stap hier die je met je eigen ogen doet.",
+      tekst: "De getallen, de namen en de bronnen: zelf lezen. De A.I. zegt nooit dat ze het niet zeker weet, en dat is de enige stap hier die je met je eigen ogen doet.",
       waarom: "Zodat er geen bronvermelding in je cursus staat die niet bestaat."
     }
   ],
@@ -339,7 +328,7 @@ window.DATA = {
      blijft; "letopBrowser" vervangt dan "letop", want dat gaat soms over pandoc.
      "letop" is telkens wat er stilletjes sneuvelt. */
 
-  /* Het woord markdown valt hier voor het eerst. Wie nooit met AI werkte, is het
+  /* Het woord markdown valt hier voor het eerst. Wie nooit met A.I. werkte, is het
      nog nooit tegengekomen, dus staat de uitleg op de plek zelf en niet drie
      kaarten verderop. */
   markdownUitleg: "Markdown is gewone tekst met een paar tekens erin: een # voor een titel, sterretjes voor vet. Meer is het niet. Het opent in Kladblok, elke AI-tool kent het, en er komt later met één stap weer een Word-bestand of een pdf uit.",
@@ -405,7 +394,7 @@ window.DATA = {
     {
       id: "verspreid",
       label: "verspreid over jaren en versies",
-      advies: "Kies één versie als de echte voor je iets oplaadt. Welke dat is, weet alleen jij, en dit is de enige stap hier waar de AI je niet bij helpt.",
+      advies: "Kies één versie als de echte voor je iets oplaadt. Welke dat is, weet alleen jij, en dit is de enige stap hier waar de A.I. je niet bij helpt.",
       routes: [
         ["Zonder iets te installeren", "Maak een map met de gekozen versie erin, en zet al de rest in een map “oud” die je verder met rust laat. Twijfel je tussen twee versies, neem dan de recentste en noteer in je contextmap wat er in de oude beter was."],
         ["Met versiebeheer", "Zet de gekozen versie in git voor je begint. Dan is elke wijziging die daarna komt zichtbaar en terug te draaien.", "installeren"]
@@ -437,7 +426,7 @@ window.DATA = {
     }
   ],
   bronRegels: [
-    ["Eerst omzetten, dan pas herwerken.", "Twee aparte vragen, in die volgorde. Vraag je ze tegelijk, dan weet je achteraf niet welke wijziging van de AI komt en welke van de omzetting."],
+    ["Eerst omzetten, dan pas herwerken.", "Twee aparte vragen, in die volgorde. Vraag je ze tegelijk, dan weet je achteraf niet welke wijziging van de A.I. komt en welke van de omzetting."],
     ["Begin bij één hoofdstuk.", "Neem het hoofdstuk waar je zelf het minst tevreden over bent, want daar zie je het verschil. Een hele cursus in één keer levert een stapel tekst op die je alsnog woord voor woord moet nalezen."],
     ["Gooi je origineel niet weg.", "Hou je .docx of .pptx bij tot je hoofdstuk af is. Een omzetting die tegenvalt is dan een kwestie van opnieuw beginnen, niet van herschrijven."]
   ],
@@ -467,10 +456,10 @@ window.DATA = {
     regels: [
       ["Een map per hoofdstuk, daarin een bestand per onderwerp.", "Wat je in één keer meegeeft, moet in één keer te lezen zijn. Een hele cursus in één bestand komt er half doorgelezen weer uit, en je ziet niet welk stuk overgeslagen is. Is een hoofdstuk kort, dan is dat hoofdstuk zelf al zo'n stuk en hou je het bij één bestand."],
       ["Nummer je mappen en je bestanden: 01-, 02-, 03-.", "Dan staat de volgorde vast, ook als je map alfabetisch sorteert, en kan je naar “hoofdstuk 02” verwijzen zonder uit te leggen welk bestand je bedoelt."],
-      ["Hou je cursus en je context uit elkaar.", "In content staat wat de student leest. In context staat wat de AI moet weten om te kunnen helpen: je vakbeschrijving, je beginsituatie, de feedback van vorig jaar. Door elkaar gezet belandt je vakbeschrijving vroeg of laat in je cursustekst."],
+      ["Hou je cursus en je context uit elkaar.", "In content staat wat de student leest. In context staat wat de A.I. moet weten om te kunnen helpen: je vakbeschrijving, je beginsituatie, de feedback van vorig jaar. Door elkaar gezet belandt je vakbeschrijving vroeg of laat in je cursustekst."],
       ["Werk je alleen in de browser?", "In de browser heb je geen mappen op je schijf. {projectplek} is één lijst documenten: hou het daar bij één document per hoofdstuk, met het nummer vooraan. Hetzelfde principe, één niveau platter."]
     ],
-    noot: "Deze indeling is een voorstel, geen voorschrift. Wat telt is dat je een hoofdstuk kan meegeven zonder de andere twaalf, en dat je cursus en je context niet door elkaar staan.",
+    noot: "Deze indeling is een voorstel van ondergetekende: geen moetje. Wat telt is dat je een hoofdstuk kan meegeven zonder de andere twaalf, én dat je cursus en je context niet door elkaar staan.",
 
     /* Wie in de browser blijft, heeft geen mappen op zijn schijf en dus ook geen
        boom nodig. Hetzelfde principe, in de woorden van zijn eigen tool. */
@@ -480,7 +469,7 @@ window.DATA = {
       regels: [
         ["Eén document per hoofdstuk.", "Een hoofdstuk past in één keer. Een hele cursus in één document komt er half doorgelezen weer uit, en je ziet niet welk stuk overgeslagen is."],
         ["Nummer je documenten: 01-, 02-, 03-.", "Dan staat de volgorde vast, en kan je vragen naar “hoofdstuk 02” zonder uit te leggen welk document je bedoelt."],
-        ["Hou je cursus en je context uit elkaar.", "Je cursus is wat de student leest. Je context is wat de AI moet weten om te kunnen helpen: je vakbeschrijving, je beginsituatie, de feedback van vorig jaar. Zet dat laatste soort in aparte documenten met een duidelijke naam, anders belandt je vakbeschrijving vroeg of laat in je cursustekst."]
+        ["Hou je cursus en je context uit elkaar.", "Je cursus is wat de student leest. Je context is wat de A.I. moet weten om te kunnen helpen: je vakbeschrijving, je beginsituatie, de feedback van vorig jaar. Zet dat laatste soort in aparte documenten met een duidelijke naam, anders belandt je vakbeschrijving vroeg of laat in je cursustekst."]
       ],
       noot: "Je hoeft hier niets voor te installeren en geen mappen op je schijf te maken. Je documenten opladen en ze een duidelijke naam geven volstaat."
     }
@@ -492,7 +481,7 @@ window.DATA = {
       nr: "1",
       naam: "Alles in de browser",
       pitch: "Je laadt je documenten op in {projectplek}, je vraagt je tekst in markdown, en je plakt het resultaat terug in Word.",
-      uitleg: "De omzetting op het einde laat je aan de AI zelf, of je importeert je markdown in Google Docs, dat in beide richtingen werkt.",
+      uitleg: "De omzetting op het einde laat je aan de A.I. zelf, of je importeert je markdown in Google Docs, dat in beide richtingen werkt.",
       punten: [
         "je regels staan in {regelsplek}, en een kopie bewaar je bij je cursusbestanden",
         "een skill is hier “het document dat ik erbij haal als ik figuren maak”",
@@ -509,10 +498,10 @@ window.DATA = {
       volgendestap: {
         naar: "2",
         wanneer: "Als het heen en weer plakken begint te wegen, of als je in het sjabloon van je school moet aanleveren.",
-        wat: "Werkwijze 2 is dezelfde werkwijze met één installatie erbij. Uit hetzelfde bestand rolt dan een Word-document in het sjabloon van je school, en met Quarto erbij ook een pdf of slides. Je bestanden blijven van jou, de AI schrijft er nog altijd niet in.",
+        wat: "Werkwijze 2 is dezelfde werkwijze met één installatie erbij. Uit hetzelfde bestand rolt dan een Word-document in het sjabloon van je school, en met Quarto erbij ook een pdf of slides. Je bestanden blijven van jou, de A.I. schrijft er nog altijd niet in.",
         nognietnodig: "Niet nu. Doe eerst één hoofdstuk helemaal rond in de browser. Pas als je dat twee of drie keer gedaan hebt, weet je waar je hier iets tekortkomt."
       },
-      overslaan: "Alles over installaties, versiebeheer en een AI die zelf in je bestanden schrijft, hoort bij werkwijze 2 tot 4. Dat heb je hier niet nodig.",
+      overslaan: "Alles over installaties, versiebeheer en een A.I. die zelf in je bestanden schrijft, hoort bij werkwijze 2 tot 4. Dat heb je hier niet nodig.",
       onderwerpen: {
         "plat": "Vraag je tekst in markdown en plak terug in Word. De omzetting op het einde laat je aan de AI, of je gaat via Google Docs.",
         "mapindeling": "Je “map” is {projectplek}: één document per hoofdstuk, met een duidelijke naam. Mappen op je schijf hoef je hier niet aan te maken.",
@@ -532,7 +521,7 @@ window.DATA = {
       punten: [
         "moet je verplicht in het sjabloon van je school aanleveren, dan is dit je werkwijze. Met `--reference-doc=sjabloon.docx` haalt pandoc de stijlen uit een bestaand Word-document",
         "zet je Quarto erbij, dan komen je slides en je pdf uit dezelfde bron als je cursustekst",
-        "je bestanden blijven van jou. De AI ziet ze, ze schrijft er niet in"
+        "je bestanden blijven van jou. De A.I. ziet ze, ze schrijft er niet in"
       ],
       slot: "",
 
@@ -569,10 +558,10 @@ window.DATA = {
       volgendestap: {
         naar: "3",
         wanneer: "Als je merkt dat je vooral bestanden aan het kopiëren bent in plaats van na te lezen.",
-        wat: "Bij werkwijze 3 werkt de AI rechtstreeks in de map waar je bestanden al staan. Je draagt niets meer heen en weer. Zet die map wel eerst in git, anders zie je niet wat er veranderd is.",
+        wat: "Bij werkwijze 3 werkt de A.I. rechtstreeks in de map waar je bestanden al staan. Je draagt niets meer heen en weer. Zet die map wel eerst in git, anders zie je niet wat er veranderd is.",
         nognietnodig: "Alleen zinvol op een laptop waar je zelf software mag installeren."
       },
-      overslaan: "Alles over de AI die in je map schrijft, hoort bij werkwijze 3 en 4. Jij houdt je bestanden zelf vast.",
+      overslaan: "Alles over de A.I. die in je map schrijft, hoort bij werkwijze 3 en 4. Jij houdt je bestanden zelf vast.",
       onderwerpen: {
         "plat": "Uit hetzelfde markdown-bestand komt een Word-document, en met Quarto erbij ook pdf, html of slides. Dit is de stap waarvoor je pandoc installeert.",
         "mapindeling": "Nu staat het echt als mappen op je schijf: een map per hoofdstuk, met de bestanden erin. Diezelfde indeling is wat je straks aan pandoc meegeeft.",
@@ -586,13 +575,13 @@ window.DATA = {
     },
     "3": {
       nr: "3",
-      naam: "De AI werkt in je map",
-      pitch: "De AI werkt in je eigen bestanden, in de map waar ze al stonden.",
+      naam: "De A.I. werkt in je map",
+      pitch: "De A.I. werkt in je eigen bestanden, in de map waar ze al stonden.",
       uitleg: "Je draagt niets meer heen en weer, en je kijkt na wat er veranderd is.",
       punten: [
         "je regels staan in {regelbestand} in die map",
         "vanaf hier lonen skills, want je geeft dezelfde uitleg vaker dan je denkt",
-        "zet je map in git (versiebeheer) voor je de AI erin laat schrijven. Anders zie je niet wat er veranderde",
+        "zet je map in git (versiebeheer) voor je de A.I. erin laat schrijven. Anders zie je niet wat er veranderde",
         "een commandovenster hoeft niet meer: Cowork wijst een map op je schijf aan vanuit de Claude-app zelf"
       ],
       slot: "",
@@ -605,7 +594,7 @@ window.DATA = {
           {
             naam: "Zonder commandovenster",
             wat: "Cowork, in de Claude-app",
-            hoe: "Nieuw project → “Use an existing folder on your computer”",
+            hoe: "Nieuw project → “Use an existing map on your computer”",
             uitleg: "Je maakt een project aan, wijst je cursusmap aan, en vanaf dan leest en schrijft Claude daar rechtstreeks. Opladen hoeft niet meer. Zo’n Cowork-project draagt zelf instructies, een map en een geheugen van wat je er eerder liet doen. Let op welke Claude je open hebt: aan de map op je schijf kom je met de app op je laptop, want de Cowork in je browser draait op de servers van Anthropic. En let op het woord: een Cowork-project is iets anders dan het Project uit je zijbalk, waar je bestanden oplaadt."
           },
           {
@@ -621,7 +610,7 @@ window.DATA = {
       installeren: "Cowork of Claude Code, plus git",
       voorwie: "wie op zijn eigen laptop werkt en het heen en weer plakken beu is",
       stappen: [
-        "Zet je cursusmap in git, voor je de AI er iets in laat schrijven.",
+        "Zet je cursusmap in git, voor je de A.I. er iets in laat schrijven.",
         "Zet een {regelbestand} in die map met je drie regels erin.",
         "Laat een hoofdstuk herwerken en lees wat er veranderd is. Wat je daar corrigeert, is de volgende regel in dat bestand."
       ],
@@ -633,13 +622,13 @@ window.DATA = {
       },
       overslaan: "De volledig automatische verwerking uit werkwijze 4 hoeft niet. Hier blijft het bij de bestanden die je al had.",
       onderwerpen: {
-        "plat": "De AI schrijft de markdown zelf in je bestanden. Jij leest na wat er veranderde, regel per regel.",
-        "mapindeling": "De AI opent hier zelf je bestanden. Genummerde mappen en bestandsnamen zijn wat maakt dat ze het juiste opent.",
+        "plat": "De A.I. schrijft de markdown zelf in je bestanden. Jij leest na wat er veranderde, regel per regel.",
+        "mapindeling": "De A.I. opent hier zelf je bestanden. Genummerde mappen en bestandsnamen zijn wat maakt dat ze het juiste opent.",
         "contextmap": "Je contextmap is een map op je schijf. De tool leest ze zonder dat je iets oplaadt.",
         "regels": "{regelbestand} in die map. Het geldt voor alles wat in die map gebeurt.",
         "skills": "Vanaf hier lonen skills, want je geeft dezelfde uitleg vaker dan je denkt.",
         "lesmateriaal": "Slides en oefeningen komen uit dezelfde map. Zet de controle-afspraak (kloppen de slides nog bij de tekst?) in je regelbestand.",
-        "figuren": "Nu wordt het scriptspoor haalbaar: de AI schrijft het script, voert het uit en toont je de png. Bijsturen is een getal veranderen en opnieuw laten lopen."
+        "figuren": "Nu wordt het scriptspoor haalbaar: de A.I. schrijft het script, voert het uit en toont je de png. Bijsturen is een getal veranderen en opnieuw laten lopen."
       },
       links: ["claude-cowork", "claude-cowork-projecten", "claude-md", "claude-code", "antigravity", "git", "vscode", "quarto"]
     },
@@ -698,7 +687,7 @@ window.DATA = {
     { id: "moodle-html", label: "een pagina op het leerplatform, de editor slikt html", advies: "Zet je markdown om naar html en plak dat.", links: ["quarto-html", "pandoc"] },
     { id: "moodle-geen-html", label: "een pagina op het leerplatform, de editor slikt geen html", advies: "Via Word, en aanvaard dat de opmaak daar deels sneuvelt.", links: ["quarto-docx"] },
     { id: "pdf", label: "een pdf om te printen", advies: "Quarto met typst als motor. Je moet geen LaTeX installeren.", links: ["quarto-typst", "typst"] },
-    { id: "slides", label: "slides", advies: "Vraag de AI een .pptx als je vandaag iets wil, of maak je slides uit je markdown met Marp of Quarto. Die twee hebben ook een speakerview met je notities erin.", links: ["marp", "quarto-revealjs", "quarto-presenting"] },
+    { id: "slides", label: "slides", advies: "Vraag de A.I. een .pptx als je vandaag iets wil, of maak je slides uit je markdown met Marp of Quarto. Die twee hebben ook een speakerview met je notities erin.", links: ["marp", "quarto-revealjs", "quarto-presenting"] },
     { id: "oefeningen", label: "oefeningen en examens", advies: "Zelfde contextmap, andere vraag. Vraag de foute antwoorden erbij met een reden per fout, en vraag drie moeilijkheidsgraden in één keer. Je gooit er twee weg. Welke twee, dat zie je pas als ze naast elkaar staan.", links: [] },
     { id: "schema", label: "een schema of een tijdlijn", advies: "mermaid: tekst die een figuur wordt, en die meeverandert met je cursus. Snel iets uittekenen met de hand gaat met Excalidraw, zonder installatie.", links: ["mermaid", "mermaid-live", "excalidraw"] },
     { id: "weet-ik-niet", label: "weet ik nog niet", advies: "Vraag je tekst in markdown. Dan blijft alles hierboven mogelijk.", links: [] }
@@ -793,7 +782,7 @@ window.DATA = {
     },
     {
       klacht: "het klinkt overtuigend, maar ik weet niet of het klopt",
-      fix: "Dat is de normale toestand: de AI zegt nooit dat ze het niet zeker weet, en er staat geen enkel teken bij dat zegt hoe zeker ze is. Lees de getallen, de namen en de bronnen zelf na, en klik elke bronvermelding open. Wat je corrigeert, gaat naar je `improve.md`.",
+      fix: "Dat is de normale toestand: de A.I. zegt nooit dat ze het niet zeker weet, en er staat geen enkel teken bij dat zegt hoe zeker ze is. Lees de getallen, de namen en de bronnen zelf na, en klik elke bronvermelding open. Wat je corrigeert, gaat naar je `improve.md`.",
       onderwerp: "nakijken",
       verder: [
         { naar: "onderwerp", id: "nakijken", wat: "wat je naleest, en het A(I)-team dat het voor je doorleest" },
@@ -804,7 +793,7 @@ window.DATA = {
     },
     {
       klacht: "ik moet mijn eigen correcties bijhouden en dat doe ik nooit",
-      fix: "Laat het bijhouden door de enige die er de hele sessie bij zit. Zet in je regelbestand dat de AI een `improve.md` bijhoudt met elke correctie die jij geeft, letterlijk en zonder samen te vatten.",
+      fix: "Laat het bijhouden door de enige die er de hele sessie bij zit. Zet in je regelbestand dat de A.I. een `improve.md` bijhoudt met elke correctie die jij geeft, letterlijk en zonder samen te vatten.",
       onderwerp: "improve",
       verder: [
         { naar: "onderwerp", id: "improve", wat: "hoe die lus loopt, en wat er met die lijst gebeurt" },
@@ -903,7 +892,7 @@ window.DATA = {
   ],
   toolkeuzeSlot: "Wat je ook kiest, de drie ideeën van deze site werken overal: een vaste plek voor je documenten, je afspraken in een bestand, en een document per terugkerende taak. Alleen de knopjes heten anders.",
 
-  /* ---------- Met welke AI werk je ---------- */
+  /* ---------- Met welke A.I. werk je ---------- */
   assistentNoot: "Het idee is van geen enkele tool. Overal vind je dezelfde drie dingen terug: een plek waar je bestanden blijven staan, een plek waar je regels staan, en een document dat je erbij haalt voor één soort taak. De naam verschilt, de plek verschilt. Namen veranderen ook, dus kijk na of het bij jou nog zo heet.",
 
   /* De twee tabellen van de slides, hier als data. De namen zelf staan per tool
@@ -1175,14 +1164,10 @@ window.DATA = {
       },
       titel: "Werk in platte tekst",
       kort: "platte tekst",
-      watis: "*Markdown klinkt als iets voor programmeurs. Het is een hekje voor een titel en twee sterretjes rond een woord, en daarmee ken je het zowat.* Je vraagt de tekst zonder opmaak, en je doet de opmaak op het einde, in één keer.",
-      kern: "Het *formaat* waarin je de AI laat schrijven, bepaalt hoeveel werk al de rest is.",
+      watis: "*Markdown klinkt als iets voor een programmeur*, maar het is gewoon letterlijk een plat tekstbestand, met hier en daar een aanduiding voor hoofdingen, vet en cursief. Dankzij zo'n platte tekst is het nadien eenvoudig om je cursus naar eender welk formaat te exporteren (pdf, docx, website, etc.à ",
+      kern: "Het *formaat* waarin je de A.I. laat schrijven.",
       tips: [
-        "Vraag alles in markdown, ook als je resultaat een Word-document of een pdf wordt. Markdown is platte tekst met een paar tekens erin voor titels en vet. Het opent in Kladblok.",
-        "Van markdown naar Word, pdf, html of slides gaat automatisch. Van Word terug naar iets anders gaat met de hand.",
-        "Doe de omzetting in twee stappen: eerst omzetten naar markdown, dat nakijken, en pas dan laten herwerken.",
-        "Vraag er bij elke omzetting een lijstje bij van wat niet meekon. Een tabel met samengevoegde cellen, een formule en een tekstvak halen het zelden, en anders merk je dat pas als je het hoofdstuk al herwerkt hebt.",
-        "Laat afbeeldingen buiten de tekst staan, met een verwijzing ernaar. Ingebedde afbeeldingen gaan bij elke omzetting een beetje meer kapot."
+        "Vraag aan je A.I. om alles in markdown te genereren, ook als je resultaat een Word-document of een pdf wordt.",
       ],
       gevorderd: "Zet je een bestaand Word-document zelf om, dan haalt `pandoc hoofdstuk.docx -o hoofdstuk.md --extract-media=media` je afbeeldingen er meteen uit en zet ze in een map, met een verwijzing in de tekst. Dat is [[2]] en verder.",
       verder: [
@@ -1200,15 +1185,15 @@ window.DATA = {
       },
       titel: "Zet je cursus per hoofdstuk klaar",
       kort: "per hoofdstuk",
-      watis: "*Je cursus staat in één document van tachtig bladzijden, en dat is jarenlang nooit een probleem geweest.* Hier knip je hem in stukken die je apart kan meegeven, en geef je die stukken een vaste plek.",
-      kern: "Wat je in één keer *meegeeft*, moet in één keer te lezen zijn. Die maat bepaalt of het een map per hoofdstuk wordt of één bestand.",
+      watis: "*Je cursus staat in één document van tachtig bladzijden, en dat is jarenlang nooit een probleem geweest.* Hier knip je hem in stukken die je apart kan meegeven, zodat je A.I. zich niet verslikt.",
+      kern: "Hoe kleiner de stukjes cursus, hoe eenvoudiger je de A.I. kan vertellen waar hij mee moet werken.",
       tips: [
-        "*Toegegeven, dit voelt aan als opruimen en niet als schrijven.* Doe het toch eerst. Een hoofdstuk uit `Databanken2-volledig.docx` knippen op het moment dat je een vraag wil stellen, doe je één keer met goesting en daarna niet meer.",
+        "*Als je al een cursus hebt voelt dit aan als opruimen* Doe het toch eerst. Een hoofdstuk uit `Databanken2-volledig.docx` knippen op het moment dat je een vraag wil stellen, doe je één keer met goesting en daarna nooit meer.",
         "Twijfel je of een hoofdstuk gesplitst moet worden? Kijk hoe je erover praat. Zeg je “het stuk over joins”, dan is dat stuk een bestand. Zeg je gewoon “hoofdstuk 3”, dan blijft het één bestand.",
-        "Verwijs in je vraag naar de bestandsnaam: “herwerk `02-normalisatie/02-tweede-vorm.md`”. Dan weet je drie dagen later nog welk stuk je gaf, en de AI hoeft niet te raden wat je bedoelt.",
+        "Verwijs in je vraag naar de bestandsnaam: “herwerk `02-normalisatie/02-tweede-vorm.md`”. Dan weet je drie dagen later nog welk stuk je gaf, en de A.I. hoeft niet te raden wat je bedoelt.",
         "Je oude Word-bestanden gooi je niet weg. Hou ze apart, met `origineel` in de naam. Zolang je nog geen enkel hoofdstuk helemaal rond hebt, is dat de versie waar je op terugvalt."
       ],
-      gevorderd: "Zet je bestanden in git (versiebeheer) voor je de AI eraan laat werken. Dan is elke wijziging zichtbaar en terug te draaien, en dat is precies wat het nalezen draaglijk maakt.",
+      gevorderd: "Zet je bestanden in git (versiebeheer) voor je de A.I. eraan laat werken. Dan is elke wijziging zichtbaar en terug te draaien, en dat is precies wat het nalezen draaglijk maakt.",
       verder: [
         { naar: "onderwerp", id: "contextmap", wat: "wat er in die map context/ hoort" }
       ],
@@ -1226,13 +1211,13 @@ window.DATA = {
       watis: "De map met documenten die je zou meegeven aan een collega die je vak overneemt. Ze staat naast je cursus en niet erin: in `context/` zet je wat *over* je vak gaat, in `content/` staan je hoofdstukken zelf, en later je afbeeldingen.",
       kern: "Wat er *in* die map zit, bepaalt het resultaat meer dan hoe je de vraag stelt.",
       tips: [
-        "*Toegegeven, het is verleidelijk om gewoon alles op te laden. Je hebt het toch al staan.* Vijf documenten, geen vijftig. Het selecteren is het werk. Bij dertig documenten weet het model niet meer wat het zwaarst weegt, en jij ook niet.",
-        "Hou ze proper. Elk document dat er zonder reden bij komt, maakt de andere minder zwaar, en na een maand weet je zelf niet meer waarom dat ene bestand daar lag.",
+        "*Toegegeven, het is verleidelijk om gewoon alles er in te dumpen (artikels, cursussen van andere concullega's, een toffe cheatsheet). Je hebt het toch al staan. Just don't! Beperk je tot de essentie: stel dat de collega die het overneemt op een uur moet ingewerkt zijn.",
+        "Hou de folder proper. Elk document dat er zonder reden bij komt, maakt de andere minder zwaar, en na een maand weet je zelf niet meer waarom dat ene bestand daar lag.",
         "Vanaf het derde gesprek over hetzelfde hoofdstuk loont {projectplek}. Je merkt het vanzelf, want dan ben je je ECTS-fiche voor de derde keer aan het opladen.",
-        "Denk aan: de vakbeschrijving of ECTS-fiche, het hoofdstuk zelf, je beginsituatie (wat kennen ze al), een goed en een slecht voorbeeld, en de feedback van vorig jaar.",
+        "Goede zaken voor in die folder: de vakbeschrijving of ECTS-fiche, het hoofdstuk zelf, je beginsituatie (wat kennen ze al), een goed en een slecht voorbeeld van je eigen teksten, en de feedback van vorig jaar.",
         "Zet er iets in dat niet in je cursus staat: je beginsituatie, wat studenten vorig jaar niet begrepen, de mail van een collega over wat er ontbrak.",
         "Zet er ook een slecht voorbeeld in, met een regel erbij waarom het slecht is. Een tegenvoorbeeld stuurt harder dan drie goede voorbeelden.",
-        "Laat de AI je map beoordelen: wat zou je nog willen weten voor je aan dit hoofdstuk begint? Wat er dan uitkomt, is je ontbrekende document.",
+        "Laat de A.I. je map beoordelen: wat zou je nog willen weten voor je aan dit hoofdstuk begint? Wat er dan uitkomt, is je ontbrekende document.",
         "Zet er de chat in waarin je het bedacht hebt. Die staat vol beslissingen die nergens anders opgeschreven staan."
       ],
       gevorderd: "Diezelfde map is ook wat je oefeningen en examens hun niveau geeft.",
@@ -1243,20 +1228,20 @@ window.DATA = {
       figuur: {
         bestand: "assets/regelbestand.png",
         alt: "Tekening. Een robotje met een vierkante kop, een antenne en een rode nepbril met snor wijst naar drie kaders om zich heen. Linksboven “je niet-doen-lijst” met em-dashes, een wijze slotzin en cijfers tot twintig, alle drie doorstreept. Rechtsboven “je toon”: Vlaams, je-vorm, korte zinnen, vet is wat je twee keer zegt. Rechtsonder “je contextmap” met per bestand een regel wat het is. Linksonder ligt het bestand claude.md, waar de drie in samenkomen.",
-        bijschrift: "Drie stukken op een halve bladzijde, en je AI leest ze bij elke nieuwe vraag opnieuw."
+        bijschrift: "Drie stukken op een halve bladzijde, en je A.I. leest ze bij elke nieuwe vraag opnieuw."
       },
       titel: "Je regels in een bestand",
       kort: "je regels",
-      watis: "*De handleiding voor je agents.* Een tekstbestand van een halve bladzijde dat je AI bij elke nieuwe vraag opnieuw leest. Zet erin wat je anders telkens opnieuw moet zeggen, alsof het een student is. Vergelijk het met een studiewijzer: onderaan staat hoe die plek bij jouw tool heet.",
+      watis: "*De handleiding voor je agents.* Een tekstbestand van een halve bladzijde dat je A.I. bij elke nieuwe vraag opnieuw leest. Zet erin wat je anders telkens opnieuw moet zeggen, alsof het een student is. Vergelijk het met een studiewijzer: onderaan staat hoe die plek bij jouw tool heet.",
       kern: "Je kan je eigen stijl niet *beschrijven*, maar je kan hem wel laten *afleiden* uit wat je vroeger geschreven hebt.",
       tips: [
         "Beschrijf je toon niet zelf. “Vlot en toegankelijk met een vleugje humor” levert precies niks op. Geef twee stukken die je zelf schreef en vraag: wat zijn de regels die deze tekst volgt?",
         "Twee ijkpunten: een lesstuk en een stuk waar je losser schrijft. Met één voorbeeld krijg je één register terug, en dan klinkt je hele cursus als je strengste bladzijde.",
         "De niet-doen-lijst weegt zwaarder dan de wel-doen-lijst. Geen em-dashes, geen wijze slotzin, geen “het gaat niet over X, het gaat over Y”. Daaraan herkent een lezer AI-tekst.",
-        "Zet er zeker in waar al je bestanden staan en wat hun nut is, in één regel per document. Anders zit de AI dat bij elk gesprek opnieuw te raden.",
-        "Maak elke regel testbaar. “Schrijf helder” kan je niet nakijken. “Test elke zin met een ontkenning erin: staat er een feit in de ontkende helft?” kan je wel nakijken, en de AI ook.",
+        "Zet er zeker in waar al je bestanden staan en wat hun nut is, in één regel per document. Anders zit de A.I. dat bij elk gesprek opnieuw te raden.",
+        "Maak elke regel testbaar. “Schrijf helder” kan je niet nakijken. “Test elke zin met een ontkenning erin: staat er een feit in de ontkende helft?” kan je wel nakijken, en de A.I. ook.",
         "De lijst schrijf je niet vooraf. Alles wat je een derde keer corrigeert, is een afspraak die je nooit hebt opgeschreven.",
-        "Laat de AI je regelbestand nalezen en er feedback op geven. Ze zegt je welke regel ze niet kan toepassen, en dat is meestal de regel die je te vaag geschreven hebt.",
+        "Laat de A.I. je regelbestand nalezen en er feedback op geven. Ze zegt je welke regel ze niet kan toepassen, en dat is meestal de regel die je te vaag geschreven hebt.",
         "Zet er ook je structuurafspraken in: hoe een hoofdstuk begint, wat er altijd in staat, wat vet mag zijn."
       ],
       code: {
@@ -1270,7 +1255,7 @@ window.DATA = {
         figuur: {
           breed: true,
           bestand: "assets/chatvenster.png",
-          alt: "Tekening. Het instellingenscherm van een Claude-project, met drie kaders in het rood aangeduid. Bij Instructions staat “hier komen je regels (je claude.md)”, bij Context staat “hier sleep je context/ en content/ in, ze blijven staan”, en bij Folder staat “of wijs naar een map op je eigen schijf”.",
+          alt: "Tekening. Het instellingenscherm van een Claude-project, met drie kaders in het rood aangeduid. Bij Instructions staat “hier komen je regels (je claude.md)”, bij Context staat “hier sleep je context/ en content/ in, ze blijven staan”, en bij map staat “of wijs naar een map op je eigen schijf”.",
           bijschrift: "Drie velden, en twee ervan zijn je regelbestand en je contextmap onder een andere naam."
         },
         tekst: "Dan werkt dit ook. Claude en ChatGPT hebben Projects met dezelfde twee velden, Copilot heeft notebooks, Gemini heeft Gems. Zoek in jouw venster waar je bestanden blijven staan, en waar je instructies kan typen die bij elk gesprek gelden. Hou daarnaast een kopie als gewoon bestand bij je cursus: die neem je mee naar de tool die je later kiest."
@@ -1312,36 +1297,23 @@ window.DATA = {
       figuur: {
         bestand: "assets/improvelus.png",
         alt: "Tekening. Links je regelbestand met daarin, in een rood kader, de afspraak “hou in improve.md bij wat ik corrigeer in chats, als nieuwe toekomstige regels”. Een pijl loopt naar het midden, waar jij een zin corrigeert, en vandaar naar improve.md rechts, waar vier genoteerde regels staan. Twee gestreepte pijlen lopen terug: bovenaan gaat improve.md mee in elk volgend gesprek, onderaan verhuist wat blijft terugkomen naar je vaste regels.",
-        bijschrift: "De lus begint en eindigt in je regelbestand. De AI vult het middelste bestand zelf aan."
+        bijschrift: "De lus begint en eindigt in je regelbestand. De A.I. vult het middelste bestand zelf aan."
       },
-      titel: "improve.md: de AI houdt je correcties bij",
+      titel: "improve.md: de A.I. houdt je correcties bij",
       kort: "improve.md",
       figuur2: {
         bestand: "assets/improvevb.png",
         alt: "Schermafbeelding van een echt bestand, met de titel “Checklist bij het nakijken van de PNG”. Onder de koppen Tekst, Layout, Pijlen en Inhoud staan vinkvakjes met concrete regels: geen enkele tekst raakt een boxrand of een pijl, geen titel bovenaan de figuur, elke pijl begint aan de rand van zijn vertrekelement.",
         bijschrift: "Elke regel hier stond eerst als losse correctie in een chat. Samen zijn ze een checklist geworden."
       },
-      watis: "*“Ik schrijf mijn opmerkingen op het einde van de sessie wel even op.”* Dat doe je toch nooit. Dus laat je het bijhouden door de enige die er de hele sessie bij zit.",
+      watis: "*“Ik schrijf mijn opmerkingen op het einde van de sessie wel even op.”*... doe je nooit. Laat dus de opmerkingen bijhouden door de A.I. Je persoonlijke assistant.",
       kern: "Je hoeft je correcties niet te *onthouden*, je moet er één keer om *vragen*.",
       tips: [
-        "Zet de afspraak in je regelbestand, niet in het gesprek zelf. Iets als: “hou in `improve.md` bij wat ik corrigeer in chats, als nieuwe toekomstige regels, en hou daar steeds rekening mee”. Zonder die zin gebeurt er niets.",
-        "Vraag om letterlijk te noteren en niet samen te vatten: de zin die je afkeurde, en wat je er in de plaats van vroeg. Een samenvatting van je correctie is precies zo vaag als de regel die je wilde vermijden.",
-        "Elke regel in dat bestand stond eerst als losse correctie in een chat. Je hebt er dus niets extra voor moeten doen.",
+        "Zet de afspraak in je regelbestand, niet in het gesprek zelf. Iets als: “hou in `improve.md` bij wat ik corrigeer in chats, als nieuwe toekomstige regels, en hou daar steeds rekening mee”.",
+        "Vraag om letterlijk te noteren en niet samen te vatten: de zin die je afkeurde, en wat je er in de plaats van vroeg.",
         "Er lopen twee lussen terug. De snelle: `improve.md` gaat vanaf nu mee in elk volgend gesprek, dus het is geen lijstje dat ligt te wachten tot jij het naleest. De trage: wat er blijft terugkomen, zet jij bij je vaste regels.",
-        "Neem die regels geregeld zelf door. Soms neemt de AI een vreemde beslissing over wat ze noteert, en dan moet je ze corrigeren.",
-        "Wat je bij het nakijken corrigeert, hoort hier ook in. Dat is dezelfde lus, alleen begint ze dan bij jou."
+        "Neem die regels geregeld zelf door. Soms neemt de A.I. een vreemde beslissing over wat ze noteert, en dan moet je ze corrigeren."
       ],
-      voorbeeld: {
-        kop: "Vier regels uit een echte improve.md",
-        intro: "Zo kort staat het erin. Geen uitleg, geen categorieën: de correctie zoals ze viel, in de woorden waarin ze viel.",
-        regels: [
-          "we bekijken, niet we gaan nu kijken",
-          "geen bullets in de uitleg",
-          "een voorbeeld uit de klas bij elke regel",
-          "de student is enkelvoud"
-        ],
-        knop: "Bekijk het regelbestand van deze site"
-      },
       gevorderd: "Wat er drie keer in staat over dezelfde soort taak, is geen regel meer maar een skill. Dat is het moment waarop je het er apart uit haalt.",
       verder: [
         { naar: "onderwerp", id: "skills", wat: "waar die regels naartoe verhuizen zodra ze over één taak gaan" },
@@ -1358,7 +1330,7 @@ window.DATA = {
       },
       titel: "Skills: vaste uitleg per taak",
       kort: "skills",
-      watis: "Een gewoon tekstbestand dat je zelf schrijft: het *recept* voor die ene taak. Je neemt het erbij wanneer die taak langskomt, en de rest van de tijd ligt het in de la.",
+      watis: "Een gewoon tekstbestand dat je al dan niet zelf schrijft: het *recept* voor één taak die geregeld terugkomt. De A.I. neemt dit recept er automatisch bij als het denkt het nodig te hebben.",
       kern: "Een instructie die maar bij *één* soort taak hoort, hoort niet in je algemene regelbestand.",
       figuur2: {
         bestand: "assets/watiseenskill.png",
@@ -1382,7 +1354,7 @@ window.DATA = {
           alt: "Tekening. Een robotje zit aan een tafel en schrijft met een rood potlood op een kaart. Naast hem ligt de stapel kaarten die er al zijn. De lector staat ernaast met zijn handen op zijn rug en kijkt toe.",
           bijschrift: "Zij schrijft de kaart, jij leest hem na en zet hem klaar."
         },
-        tekst: "Wanneer je jezelf dezelfde reeks commando's hoort dicteren, of wanneer de AI telkens het wiel opnieuw moet uitvinden. Vraag dan om de skill, controleer hem, en zet hem op de plek waar jouw tool ze verwacht. Bij Claude is dat een `SKILL.md` in een map die je opzet of oplaadt; in een chatvenster volstaat een document in je project dat je erbij haalt."
+        tekst: "Wanneer je jezelf dezelfde reeks commando's hoort dicteren, of wanneer de A.I. telkens het wiel opnieuw moet uitvinden. Vraag dan om de skill, controleer hem, en zet hem op de plek waar jouw tool ze verwacht. Bij Claude is dat een `SKILL.md` in een map die je opzet of oplaadt; in een chatvenster volstaat een document in je project dat je erbij haalt."
       },
       voorbeeld: {
         kop: "Zes regels uit een echte skill",
@@ -1399,8 +1371,7 @@ window.DATA = {
           "Tekst overlapt nooit met de lijn van een box of met een pijl.",
           "Bekijk de gerenderde png voor je hem oplevert. rough.js geeft geen foutmelding bij lelijke output, dus je moet echt kijken.",
           "Verwerk de figuur niet zelf in de cursus. Toon eerst de png, met het pad erbij."
-        ],
-        knop: "Bekijk de hele skill"
+        ]
       },
       gevorderd: "Hier merk je dat je afspraken in twee soorten uiteenvallen: wat altijd geldt tegenover wat bij één taak hoort. Zit een regel in de verkeerde stapel, dan krijg je hem terug op een moment dat je hem niet vroeg: je figurenregels midden in een oefening.",
       verder: [
@@ -1421,14 +1392,14 @@ window.DATA = {
       },
       titel: "Nakijken",
       kort: "nakijken",
-      watis: "*Het verschil tussen een cursus en AI-slob.* De AI antwoordt altijd overtuigend, ook wanneer ze het mis heeft, en ze zegt er nooit bij dat ze twijfelt.",
+      watis: "*Het verschil tussen een cursus en AI-slob.* De A.I. antwoordt altijd overtuigend, ook wanneer ze het mis heeft, en ze zegt er nooit bij dat ze twijfelt.",
       kern: "Wat je *niet* zelf gelezen hebt, staat straks met jouw naam erop in de handen van je studenten.",
       tips: [
         "Lees de getallen, de namen en de bronnen na. Dat zijn de drie plekken waar het misgaat, en ze zien er alle drie uit als gewone tekst.",
         "Kijk of het klopt met wat jij in de les vertelt. Een definitie die net naast de jouwe ligt, is lastiger dan een definitie die fout is: die eerste merk je pas in de les.",
         "Een bronvermelding die niet bestaat, klik je open. Een link die je niet aangeklikt hebt, heb je niet gecontroleerd.",
         "Staat er een opsomming waar een redenering hoorde, dan is dat een teken. Vraag om het als lopende tekst met een oorzaak erin.",
-        "Zit je met een tokenbudget dat het toelaat: laat de AI je codevoorbeelden zelf uitvoeren en testen. Wat draait, hoef je niet te geloven.",
+        "Zit je met een tokenbudget dat het toelaat: laat de A.I. je codevoorbeelden zelf uitvoeren en testen. ",
         "Wat je hier corrigeert, gaat naar je `improve.md`. Anders kijk je bij het volgende hoofdstuk dezelfde fout opnieuw na."
       ],
       figuur2: {
@@ -1488,7 +1459,7 @@ window.DATA = {
           noot: "In de laatste drie vertrekt de tekst uit hetzelfde markdownbestand als je syllabus. Een zin die je in je hoofdstuk verbetert, staat bij de volgende render ook op je slide.",
           opties: [
             {
-              naam: "De AI een .pptx laten maken",
+              naam: "De A.I. een .pptx laten maken",
               wanneer: "je wil vandaag iets, zonder nieuw programma",
               hoe: "Geef je hoofdstuk en vraag: “Maak hier een PowerPoint van. Eén slide per kernidee, hoogstens vijf regels per slide, en zet de sprekersnotities in het notitieveld.”",
               letop: "Bij Claude en ChatGPT moet het maken van bestanden aanstaan, bij Copilot doe je dit in PowerPoint zelf. Wat eruit komt staat in een standaardsjabloon en niet in dat van je school, en het is een eenmalige export: verandert je tekst, dan begin je opnieuw."
@@ -1551,14 +1522,14 @@ window.DATA = {
               naam: "Een bestaande afbeelding laten zoeken",
               wanneer: "een foto, een kaart, een historisch beeld",
               hoe: "Vraag: “Zoek me drie afbeeldingen over dit onderwerp op Wikimedia Commons of Openverse. Geef per afbeelding de directe link, de licentie, en de bronvermelding zoals ik ze onder de figuur moet zetten.”",
-              letop: "Klik elke link zelf open voor je ze gebruikt. Een AI die een link verzint, verzint de licentie erbij. CC BY vraagt een naamsvermelding onder je figuur, CC BY-SA vraagt er ook een voor je eigen cursus, en “gevonden via Google Afbeeldingen” is geen licentie.",
+              letop: "Klik elke link zelf open voor je ze gebruikt. Een A.I. die een link verzint, verzint de licentie erbij. CC BY vraagt een naamsvermelding onder je figuur, CC BY-SA vraagt er ook een voor je eigen cursus, en “gevonden via Google Afbeeldingen” is geen licentie.",
               links: ["commons", "openverse"]
             },
             {
               naam: "Een schema als tekst: mermaid",
               wanneer: "alles met vakjes en pijlen",
               hoe: "Vraag: “Geef dit proces als een mermaid-diagram, met de code in een codeblok.” Plak die code op mermaid.live om te zien of ze klopt, en exporteer daar je png.",
-              letop: "De AI kent mermaid goed, maar ze plaatst niet: een diagram met vijftien vakjes wordt een kluwen. Splits dan in twee figuren. In Quarto, GitHub en VS Code rendert de code vanzelf, in Word plak je de png.",
+              letop: "De A.I. kent mermaid goed, maar ze plaatst niet: een diagram met vijftien vakjes wordt een kluwen. Splits dan in twee figuren. In Quarto, GitHub en VS Code rendert de code vanzelf, in Word plak je de png.",
               links: ["mermaid", "mermaid-live"]
             },
             {
@@ -1578,7 +1549,7 @@ window.DATA = {
               naam: "Een grafiek uit je eigen cijfers",
               wanneer: "je hebt getallen en je wil er een figuur van",
               hoe: "Geef je tabel of je csv-bestand mee en vraag om de grafiek plus het script dat ze maakt. Verandert er een cijfer, dan draai je het script opnieuw in plaats van de figuur te hertekenen.",
-              letop: "Laat nooit een grafiek tekenen op cijfers die de AI zelf heeft ingevuld. Geef je eigen getallen mee, en tel er drie na in het resultaat."
+              letop: "Laat nooit een grafiek tekenen op cijfers die de A.I. zelf heeft ingevuld. Geef je eigen getallen mee, en tel er drie na in het resultaat."
             }
           ],
           slot: "Bij elke figuur horen twee dingen die je in dezelfde vraag kan meenemen: “Schrijf er een onderschrift bij van één zin dat zegt wat er te zien is, en een alt-tekst die de figuur beschrijft voor iemand die ze niet ziet.” Op een leerplatform is die alt-tekst niet vrijblijvend."
@@ -1615,7 +1586,7 @@ window.DATA = {
      Bewust één doorlopend verhaal met één hoofdstuk, geen tips naast elkaar. */
   voorbeeldgesprek: {
     kop: "Zo ziet je eerste sessie eruit",
-    intro: "Je hebt nog nooit met een AI gewerkt en je cursus staat in Word. Dit is wat er dan letterlijk gebeurt, van het openen van je laptop tot een hoofdstuk waar je tevreden over bent. Alles hieronder gebeurt in je browser; je hoeft niets te installeren.",
+    intro: "Je hebt nog nooit met een A.I. gewerkt en je cursus staat in Word. Dit is wat er dan letterlijk gebeurt, van het openen van je laptop tot een hoofdstuk waar je tevreden over bent. Alles hieronder gebeurt in je browser; je hoeft niets te installeren.",
     figuur: {
       bestand: "assets/eerstesessie.png",
       alt: "Tekening. De map kansrekenen/ als boom, met 01-inleiding/wat-is-kans.md, 02-rekenregels/ met optellen.md en vermenigvuldigen.md, en een map context/ met regels.md. In het rood staan optellen.md en de map context/ aangeduid, met het bijschrift “dit ene bestand geef je door” en onderaan “de andere twaalf blijven waar ze zijn”.",
@@ -1623,7 +1594,7 @@ window.DATA = {
     },
     plek: {
       kop: "Waar staat die plek dan?",
-      zonderTool: "Klik rechtsboven op **Met welke AI werk je?** en hier staat het klikpad van jouw tool, met de knoppen zoals ze daar heten. Elke chattool heeft zo’n plek waar je bestanden blijven staan; alleen de naam verschilt.",
+      zonderTool: "Klik rechtsboven op **Met welke A.I. werk je?** en hier staat het klikpad van jouw tool, met de knoppen zoals ze daar heten. Elke chattool heeft zo’n plek waar je bestanden blijven staan; alleen de naam verschilt.",
       boomKop: "Als stap 1 klaar is, staat dit er:",
       boom: [
         "Databanken 2/                  ← zo noem je de plek: naar je olod",
@@ -1678,7 +1649,7 @@ window.DATA = {
   },
 
   promptPlanKop: "Vandaag plakken: je eerste drie vragen",
-  promptPlanNoot: "Nog nooit met een AI gewerkt? Begin hiermee, in deze volgorde, met één hoofdstuk. Kopieer de zin, plak ze in je gesprek en zet je hoofdstuk erbij. Meer moet er de eerste keer niet gebeuren.",
+  promptPlanNoot: "Nog nooit met een A.I. gewerkt? Begin hiermee, in deze volgorde, met één hoofdstuk. Kopieer de zin, plak ze in je gesprek en zet je hoofdstuk erbij. Meer moet er de eerste keer niet gebeuren.",
   prompts: [
     {
       titel: "Omzetten, zonder herwerken",
@@ -1719,7 +1690,7 @@ window.DATA = {
       tekst: "Wat kan hier weg zonder dat er een feit verdwijnt?"
     },
     {
-      titel: "De AI je correcties laten bijhouden",
+      titel: "De A.I. je correcties laten bijhouden",
       id: "improve",
       onderwerp: "regels",
       wanneer: "plak ze in je gesprek, en zet ze daarna vast in je regelbestand",
@@ -1790,8 +1761,8 @@ window.DATA = {
     { waarvoor: "stroomschema's en tijdlijnen", wat: "mermaid", drempel: "geen", link: "mermaid-live" },
     { waarvoor: "snel iets uittekenen", wat: "Excalidraw, in de browser", drempel: "geen", link: "excalidraw" },
     { waarvoor: "huisstijl in je eigen output", wat: "_brand.yml voor kleuren en fonts, .scss voor de rest", drempel: "een bestand", link: "quarto-brand" },
-    { waarvoor: "bijhouden wat de AI veranderde", wat: "git", drempel: "installatie", link: "git" },
-    { waarvoor: "je regels bij de AI krijgen", wat: "{regelsplek}", drempel: "een bestand", link: "claude-md" }
+    { waarvoor: "bijhouden wat de A.I. veranderde", wat: "git", drempel: "installatie", link: "git" },
+    { waarvoor: "je regels bij de A.I. krijgen", wat: "{regelsplek}", drempel: "een bestand", link: "claude-md" }
   ],
   gereedschapNoot: "De volgorde is op drempel, niet op voorkeur. De bovenste rijen zijn voor wie vandaag nog iets wil proberen.",
 
@@ -1822,7 +1793,7 @@ window.DATA = {
       titel: "Slides naar sjabloon generator",
       maker: "Ward De Ridder",
       wat: "Resultaat van script (binnenkort beschikbaar) om je markdownbestanden om te zetten naar (in dit geval) de AP-layout (inclusief speakerview én pdfgenerator).",
-      url: "https://cursus.hermans.casa/sjabloon/componenten/",
+      url: "https://cursus.hermans.casa/ap/cursusontwikkeling-met-ai/#/",
       tech: ["reveal.js", "markdown", "hugo", "github pages"]
     },
     {
@@ -1893,7 +1864,7 @@ window.DATA = {
      erbij waar dat kan. */
   colofon: {
     kop: "Hoe deze site gemaakt is",
-    intro: "Deze site is gemaakt zoals ze het zelf voorschrijft: met een contextmap, met een regelbestand, en met een AI die in de map zelf werkte. Ook de slides van de talk doorliepen diezelfde zeven stappen. Hieronder staat dat regelbestand, en wat er ondertussen misging.",
+    intro: "Deze site is gemaakt zoals ze het zelf voorschrijft: met een contextmap, met een regelbestand, en met een A.I. die in de map zelf werkte. Ook de slides van de talk doorliepen diezelfde zeven stappen. Hieronder staat dat regelbestand, en wat er ondertussen misging.",
 
     delenKop: "Waar deze site uit bestaat",
     delenIntro: "Vier delen, en de eerste twee lopen in elkaar over: de startpagina geeft het antwoord, de bevrager maakt dat antwoord van jou.",
@@ -1923,14 +1894,14 @@ window.DATA = {
     nogNietKop: "Wat er nog niet af is",
     nogNiet: [
       "De galerij groeit nog. Ken je een cursus, site of cursusmap die erin hoort, laat het weten.",
-      "Grote stukken van deze teksten voelen nog AI aan. Dat is precies de fout waar de hele site over gaat, en ze staat er dus nog in.",
+      "Grote stukken van deze teksten voelen nog A.I. aan. Dat is precies de fout waar de hele site over gaat, en ze staat er dus nog in.",
       "Of de bevrager de juiste vragen stelt, weet ik niet. Dat merk ik pas wanneer iemand anders hem doorloopt met zijn eigen vak in zijn hoofd. Loop hem door en stuur me terug waar je vastliep of wat er ontbrak."
     ],
 
     misliepKop: "Wat er misging",
     misliep: [
       "Het regelbestand hieronder stond er al voor de eerste zin van deze site geschreven werd. Bij het nakijken stonden er negen em-dashes in de tekst, acht beloftes over hoe lang iets zou duren, en drie keer dezelfde zin over waar het meeste te halen valt. Alle drie staan ze met zoveel woorden in de niet-doen-lijst, een paar centimeter lager op deze pagina.",
-      "De AI die het bestand leest, is dezelfde die eroverheen schrijft. Wat je opschrijft, kijk je nadien nog altijd zelf na, met de lijst ernaast."
+      "De A.I. die het bestand leest, is dezelfde die eroverheen schrijft. Wat je opschrijft, kijk je nadien nog altijd zelf na, met de lijst ernaast."
     ],
 
     regelsKop: "Het regelbestand van deze site",
@@ -1979,7 +1950,7 @@ window.DATA = {
       },
       {
         kop: "Mensen praten in de tekst, letterlijk geciteerd.",
-        tekst: "“Drie aparte dames kwamen om rnb vragen, *dan konden ze er aan beginnen*.” Citeer wat een collega zei, wat een student vroeg, wat de AI terugstuurde."
+        tekst: "“Drie aparte dames kwamen om rnb vragen, *dan konden ze er aan beginnen*.” Citeer wat een collega zei, wat een student vroeg, wat de A.I. terugstuurde."
       },
       {
         kop: "Leg hetzelfde in lagen uit.",
@@ -2137,9 +2108,9 @@ window.DATA = {
     "copilot-web":          { naam: "Copilot-app en copilot.microsoft.com", url: "https://copilot.microsoft.com", noot: "hier zitten de knoppen “Notebooks” en “Leren”" },
     "copilot-instructions": { naam: "GitHub Copilot instructions", url: "https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot", noot: "de Copilot in je editor, niet die in Word" },
     "claude-md":            { naam: "CLAUDE.md", url: "https://docs.claude.com/en/docs/claude-code/memory", noot: "je afspraken in een bestand" },
-    "claude-code":          { naam: "Claude Code", url: "https://docs.claude.com/en/docs/claude-code/overview", noot: "de AI werkt in de map zelf" },
+    "claude-code":          { naam: "Claude Code", url: "https://docs.claude.com/en/docs/claude-code/overview", noot: "de A.I. werkt in de map zelf" },
     "skills":               { naam: "Agent Skills", url: "https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview", noot: "een instructie die bij één soort taak hoort" },
-    "claude-cowork":        { naam: "Aan de slag met Claude Cowork", url: "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork", noot: "de AI in je eigen map, zonder commandovenster" },
+    "claude-cowork":        { naam: "Aan de slag met Claude Cowork", url: "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork", noot: "de A.I. in je eigen map, zonder commandovenster" },
     "claude-cowork-projecten": { naam: "Projecten in Cowork", url: "https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork", noot: "instructies, een map van je schijf en een geheugen per project" },
     "claude-skills":        { naam: "Skills in Claude", url: "https://support.claude.com/en/articles/12512180-use-skills-in-claude", noot: "een zip met je SKILL.md, onder Customize > Skills" }
   }

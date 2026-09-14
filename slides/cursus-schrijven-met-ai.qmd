@@ -83,7 +83,19 @@ Toegegeven, het trok op niets: maar er was tenminste een basis.
 :::
 :::
 
+---
 
+## A Propos:
+
+Cronos heeft me gecontacteerd, ze gaan wel de workshop hernoemen...
+
+---
+
+## "Becoming a WrA.I.ter" {.tussentitel .center}
+
+*😏*
+
+---
 
 ## Onze eerste stapjes. Remember? {.metonder}
 
@@ -379,9 +391,10 @@ Wanneer je jezelf dezelfde reeks commando's hoort dicteren. Of A.I. telkens het 
 Het verschil tussen een cursus en A.I.-slob.
 :::
 
-* **De A.I. zegt nooit dat ze (hij?) het niet zeker weet.**
+* **De A.I. zegt nooit dat hij het niet zeker weet.**
 * Zelf lezen dus: de getallen, de namen, de bronnen, en of het klopt met wat jij
   in de les vertelt. 
+  
 * Tokens te veel? Laat A.I. de codevoorbeelden zelf runnen en testen.
 * Wat je hier corrigeert, gaat naar `improve.md` van stap vijf.
 :::
@@ -420,6 +433,11 @@ Nu begint de tokenburning ... en fun 😁.
 Maar dat is voor een andere keer...
 :::
 
+
+
+
+
+
 ## Ook deze slides doorliepen deze flow {.metonder}
 
 ![](assets/versies.png){.figuur}
@@ -434,8 +452,6 @@ Maar dat is voor een andere keer...
 ## Wat je (hopelijk) mee naar huis neemt  {.metonder}
 
 ![](assets/meenemen.png){.figuur}
-
-
 
 
 
@@ -533,7 +549,6 @@ Deze info heeft Claude verzameld...Graag feedback (nadien) of dit klopt.
 
 Drie van de vier lezen AGENTS.md, en in elke skills-map zit een SKILL.md.
 :::
-
 
 
 ## Ohja...de site {.tussentitel .center}
