@@ -1804,6 +1804,13 @@ window.DATA = {
       url: "https://it-essentials.apload.be/",
       tech: ["Docusaurus", "Marp", "markdown"]
     },
+        {
+      titel: "Fix me, human!",
+      maker: "Andie Similon",
+      wat: "Leer reactJs op een geschifte, grappige en erg leuke, interactieve manier.",
+      url: "https://fix-me-human.vercel.app/",
+      tech: ["Docusaurus", "Marp", "markdown"]
+    },
     {
       titel: "Cloudsystemen",
       maker: "David Verhulst",
