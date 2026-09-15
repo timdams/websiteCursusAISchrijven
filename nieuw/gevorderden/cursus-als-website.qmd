@@ -1,0 +1,77 @@
+---
+title: "Je cursus als website"
+subtitle: "Claude zet een cursus in Quarto klaar, en jij schrijft"
+---
+
+[Alle recepten voor gevorderden](index.qmd){.terug}
+
+*Ohja.* Een collega vroeg me: "We gaan een cursus proberen maken, en als website aanbieden." Dit recept
+is wat ik antwoordde. Het vraagt een AI die zelf in een map op je computer werkt, en dat doet Claude in
+[Cowork](../woordenlijst.qmd#cowork).
+
+## Wat je nodig hebt
+
+- een Claude-abonnement, en de Claude-app op je computer
+- een lege map op je harde schijf, met de naam van je cursus
+- wat je in [stap 1](../stappen/1-contextmap.qmd) en [stap 2](../stappen/2-regelbestand.qmd) maakte:
+  je achtergrond en je afspraken zet je later in die map
+
+## Wat je maakt
+
+Een map met een cursus in [Quarto](../woordenlijst.qmd#quarto): een plek voor je cursustekst, een plek
+voor je achtergrond, en een document *HELP* waarin Claude uitlegt hoe je verder werkt. Op het einde
+bekijk je je cursus als website, op je eigen computer. Online zetten komt later.
+
+## Doe het nu
+
+::: {.panel-tabset group="tool"}
+
+## Copilot
+
+{{< include ../stappen/_tools/copilot/geen-agent.md >}}
+
+## ChatGPT
+
+{{< include ../stappen/_tools/nog-niet.md >}}
+
+## Gemini
+
+{{< include ../stappen/_tools/nog-niet.md >}}
+
+## Claude
+
+{{< include ../stappen/_tools/claude/website.md >}}
+
+:::
+
+::: {.callout-warning}
+## De eerste keer installeert Claude programma's
+
+Om je website te bouwen heeft je computer Quarto nodig, en Claude zet dat klaar. Dat gebeurt één keer.
+Vraagt Claude iets te installeren, lees dan eerst wat het is. Op een schoollaptop waar je zelf niets
+mag installeren, vraag je dit best eerst na bij je ICT-dienst.
+:::
+
+## Klaar als
+
+- [ ] je map heeft een plek voor je cursustekst en een plek voor je achtergrond
+- [ ] in de hoofdmap staat een document HELP, en je begrijpt wat erin staat
+- [ ] je hebt je cursus als website bekeken, op je eigen computer
+- [ ] je schreef één pagina, en zag ze verschijnen op die website
+
+## Kijk na
+
+Lees *HELP* zelf, van begin tot einde. Kan je je website opnieuw openen zonder Claude iets te vragen?
+Lukt dat niet, vraag Claude dan om die stap duidelijker uit te schrijven.
+
+Vraag daarna:
+
+```{.vraag}
+Welke mappen heb je gemaakt, en wat komt er in elk?
+```
+
+Leg het antwoord naast de drie soorten documenten uit [stap 1](../stappen/1-contextmap.qmd#drie-soorten-documenten):
+je cursus, je achtergrond en je afspraken. Heeft Claude geen document voor je afspraken gemaakt, vraag
+er dan een.
+
+[Volgend recept: kennisclips en animaties](kennisclips.qmd){.btn .btn-primary}

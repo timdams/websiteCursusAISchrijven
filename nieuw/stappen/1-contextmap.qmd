@@ -1,0 +1,142 @@
+---
+title: "Stap 1: je map"
+subtitle: "Jij bepaalt wat de AI weet"
+---
+
+::: {.stapper}
+[[1]{.nr} Je map](1-contextmap.qmd){.actief} [[2]{.nr} Je afspraken](2-regelbestand.qmd)
+:::
+
+*Je cursus staat in één document van tachtig bladzijden, en dat is jarenlang nooit een probleem
+geweest.* In deze stap knip je dat document in stukken, en zet je ernaast wat een collega nodig heeft
+om je vak over te nemen. Er komt nog geen enkele vraag aan de AI aan te pas.
+
+## Drie soorten documenten
+
+Stel dat een collega je vak overneemt. Je geeft drie soorten documenten mee, en die zijn makkelijk door
+elkaar te halen. Deze stap gaat over de eerste twee, [stap 2](2-regelbestand.qmd) over de derde.
+
+| | Wat is het? | Wie leest het? | Voorbeeld |
+|---|---|---|---|
+| **Je cursus** (content) | Je hoofdstukken: wat je studenten krijgen | Je studenten, en de AI als ze eraan werkt | Het hoofdstuk over voorwaardelijke kans |
+| **Je achtergrond** (context) | Wat een collega nodig heeft om je vak over te nemen | De AI. Je studenten zien het nooit | Je leerplan, wat je klas al kent |
+| **Je afspraken** (regelbestand) | Hoe je wil dat er gewerkt wordt | De AI, bij elke vraag | "Vlaams, korte zinnen, geen wijze slotzin" |
+
+De Engelse woorden tussen haakjes kom je tegen in handleidingen en in de workshop.
+
+## Wat je maakt
+
+Eén map in OneDrive met de naam van je vak, en daarin twee mappen:
+
+::: {.mapje}
+**Kansrekenen**
+
+- **Cursus**: je hoofdstukken, een map per hoofdstuk
+- **Achtergrond**: wat een collega nodig heeft om je vak over te nemen
+:::
+
+## Je cursus: een map per hoofdstuk, een document per onderwerp
+
+![De koppen uit je document worden de mappen. Wat eronder stond, wordt een document per onderwerp.](../assets/mapindeling.png)
+
+Twijfel je of een hoofdstuk gesplitst moet worden? Kijk hoe je erover praat. Zeg je "het stuk over
+voorwaardelijke kans", dan is dat stuk een document. Zeg je gewoon "hoofdstuk 3", dan blijft het één
+document.
+
+Knippen doe je zo: maak per onderwerp een nieuw Word-document, kopieer het stuk uit je oude document
+erin, en sla het op in de map van dat hoofdstuk.
+
+Waarom zo klein? Microsoft zegt het zelf: Copilot beantwoordt vragen over een document het best als
+dat document **onder de 7.500 woorden** blijft. Een document per onderwerp zit daar ruim onder, je
+volledige cursus van tachtig bladzijden niet.
+
+Je hoofdstukken staan in **droge tekst**: je woorden en je kopjes, zonder kleuren, tekstvakken of
+sjabloon. Gebruik in Word enkel de kopstijlen (*Kop 1*, *Kop 2*). Staan je titels er als gewone
+vetgedrukte tekst, klik er dan in en kies op het tabblad *Start*, bij *Stijlen*, de stijl *Kop 1*. Een
+voorbeeld staat in [de woordenlijst](../woordenlijst.qmd#droge-tekst).
+
+::: {.callout-warning}
+## Trek je nog niets aan van je opmaak
+
+Toegegeven, het is verleidelijk om er meteen je schoolsjabloon, je logo en een mooie titelpagina in te
+zetten. Elke keer dat de AI je tekst herwerkt, zet je die opmaak dan opnieuw recht. Ze komt pas
+helemaal op het einde, als er aan je tekst niets meer verandert.
+:::
+
+Je oude Word-document gooi je niet weg. Zet het buiten je vakmap, met *origineel* in de naam, zodat de
+AI het niet meeleest. Zolang je nog geen enkel hoofdstuk helemaal rond hebt, is dat de versie waar je
+op terugvalt.
+
+## Je achtergrond: wat een collega nodig heeft om je vak over te nemen
+
+Wat geef je mee? Dit, en niets meer:
+
+| Document | Waarom het erin ligt |
+|---|---|
+| **Opbouw** | Je inhoudstafel: welke hoofdstukken, in welke volgorde, en wat er in elk komt. Zonder die opbouw schrijft de AI elk hoofdstuk alsof het het enige is. |
+| **Leerplan** (hoger onderwijs: [ECTS-fiche](../woordenlijst.qmd#ects-fiche)) | Je leerdoelen, zoals ze officieel staan. Daar meet de AI een oefening aan af. |
+| **Beginsituatie** | Wat je studenten al kennen als ze binnenkomen, en wat vorig jaar niet landde. Het staat in geen enkele cursus, en daarom moet het hier. |
+| **Toonvoorbeeld** | Twee stukken tekst die je zelf schreef: een lesstuk, en iets waar je losser schrijft. Hier haalt de AI je stem uit. |
+| **Slides** (een map) | Je bestaande slides, een bestand per hoofdstuk. Ze liggen hier omdat de AI er je cursus uit haalt. Copilot leest PowerPoint gewoon mee. |
+
+Geef elk document een naam die zegt wat erin zit. In stap 2 schrijf je bij elke naam een regel, en
+*Document1 (3)* leest daar niet goed.
+
+Toegegeven, het is ook hier verleidelijk om er alles in te dumpen: artikels, de cursus van een
+concullega, die toffe cheatsheet. Je hebt het toch al staan. Just don't. **Elk document in je map ligt er met een
+reden, en die reden zeg je in één zin.** Een document zonder reden trekt de aandacht weg van je
+leerplan en je beginsituatie.
+
+## Doe het nu
+
+::: {.panel-tabset group="tool"}
+
+## Copilot
+
+{{< include _tools/copilot/stap1.md >}}
+
+## ChatGPT
+
+{{< include _tools/nog-niet.md >}}
+
+## Gemini
+
+{{< include _tools/nog-niet.md >}}
+
+## Claude
+
+{{< include _tools/nog-niet.md >}}
+
+:::
+
+Start daarna in je notebook een nieuw gesprek, en stel deze vraag:
+
+```{.vraag}
+Wat kennen mijn studenten al als ze aan dit vak beginnen, en uit welk document haal je dat?
+```
+
+## Klaar als
+
+- [ ] je map heeft twee mappen: Cursus en Achtergrond
+- [ ] in Cursus staat minstens één hoofdstuk, geknipt per onderwerp
+- [ ] in Achtergrond staan je opbouw, je leerplan, je beginsituatie, je toonvoorbeeld en je slides
+- [ ] elk document heeft een naam die zegt wat erin zit
+- [ ] je AI beantwoordt de vraag hierboven, en noemt je document Beginsituatie
+
+## Kijk na
+
+Lees het antwoord op die vraag. Noemt de AI je document *Beginsituatie*, dan staat je map goed. Krijg
+je een beginsituatie zonder document erbij, bijvoorbeeld "de studenten hebben een basiskennis
+statistiek", dan heeft ze je document niet gevonden en vult ze het zelf in. Kijk of het document bij je
+referenties staat, en of de naam zegt wat erin zit.
+
+Vraag daarna: *Wat zou je nog willen weten voor je aan dit hoofdstuk begint?* Wat er dan uitkomt, is je
+ontbrekende document. Zet het er enkel bij als een collega die je vak overneemt het ook zou vragen.
+
+## Verder
+
+Enkel als je al met code werkt: zet dezelfde twee mappen op je eigen schijf, als gewone tekstbestanden
+([markdown](../woordenlijst.qmd#markdown)), en zet er vanaf de eerste dag
+[git](../woordenlijst.qmd#git) op. Elke wijziging van de AI is dan zichtbaar en terug te draaien.
+
+[Volgende: stap 2, je afspraken](2-regelbestand.qmd){.btn .btn-primary}

@@ -1,0 +1,59 @@
+# De nieuwe site, als Quarto-website. Ze staat voorlopig in nieuw/ en niet in de
+# root: een _quarto.yml in de root maakt van slides/ een deel van dit project,
+# en dan schrijft `npm run slides` (en de workflow) de slides niet meer naar
+# site/slides/. Bij de overschakeling verhuist deze map naar boven.
+#
+# Lokaal bekijken: `quarto preview` in deze map.
+
+project:
+  type: website
+  output-dir: _site
+  # De lettertypes staan enkel in fonts.css, en die volgt Quarto niet. Zonder
+  # deze regel komen ze niet mee naar _site.
+  resources:
+    - assets/fonts/*
+    # Bestanden om te downloaden, zoals de skill voor kennisclips als zip.
+    - downloads/*
+    # De filmpjes uit _kennisclips, gerenderd. Een <video> in rauwe html volgt Quarto niet.
+    - assets/clips/*
+
+lang: nl
+
+website:
+  title: "Jij houdt het touw vast"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Start
+      - href: stappen/1-contextmap.qmd
+        text: "1. Je map"
+      - href: stappen/2-regelbestand.qmd
+        text: "2. Je afspraken"
+      - href: gevorderden/index.qmd
+        text: Voor gevorderden
+      - href: galerij/index.qmd
+        text: Galerij
+      - href: workshops/index.qmd
+        text: Workshops
+      - href: woordenlijst.qmd
+        text: Woordenlijst
+  page-footer:
+    left: "Tim Dams, AP Hogeschool"
+    center:
+      - text: "Hoe deze site gemaakt is"
+        href: colofon.qmd
+    right: "[Deze site op GitHub](https://github.com/timdams/websiteCursusAISchrijven)"
+
+format:
+  html:
+    theme: [cosmo, theme.scss]
+    # Het handschrift. Apart van het thema, zie de uitleg in het bestand.
+    css: fonts.css
+    toc: true
+    toc-title: "Op deze pagina"
+    code-copy: true
+    link-external-newwindow: true
+    # Leest ?tool= uit de link en zet die tab open. Zie het bestand zelf.
+    include-in-header: tool-uit-url.html
+    # Maakt de vakjes onder Klaar als aanvinkbaar, en onthoudt ze.
+    include-after-body: afvinken.html

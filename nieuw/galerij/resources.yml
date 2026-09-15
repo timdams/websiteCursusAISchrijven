@@ -1,0 +1,93 @@
+# Handige resources. Elke kaart: title, description (één regel), path (de url)
+# en categories (labels; een klik op een label toont enkel die kaarten).
+# Gegroepeerd per label, in de volgorde van de drie stappen.
+
+# ---------- skills ----------
+
+- title: "skills.sh"
+  description: "Een openbare lijst van skills voor agents, met een ranglijst van de meest geïnstalleerde. Gemaakt door Vercel. Installeren gaat met een commando in de terminal, dus dit is voor wie met een agent werkt. Lees een skill voor je hem installeert."
+  path: https://skills.sh
+  categories: [skills, agent]
+
+- title: "De skills van Anthropic"
+  description: "Echte SKILL.md-bestanden om te lezen hoe zo'n recept eruitziet: Word, PowerPoint, Excel en pdf maken, en skill-creator, een skill die skills schrijft."
+  path: https://github.com/anthropics/skills
+  categories: [skills, agent]
+
+- title: "Agent Skills"
+  description: "Wat een skill is en hoe hij in elkaar zit, in de documentatie van Anthropic."
+  path: https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview
+  categories: [skills, Claude]
+
+- title: "Skills in Claude"
+  description: "Een eigen skill opladen in claude.ai: een zip met je SKILL.md, onder Customize > Skills."
+  path: https://support.claude.com/en/articles/12512180-use-skills-in-claude
+  categories: [skills, Claude]
+
+- title: "excalidraw-videoclip"
+  description: "Mijn skill voor kennisclips en reels in handgetekende stijl, als zip. Met een LEESMIJ die uitlegt hoe je ze naar je hand zet. Werkt met Claude in VS Code of Claude Code."
+  path: ../downloads/excalidraw-videoclip.zip
+  categories: [skills, agent, Claude]
+
+# ---------- Copilot ----------
+
+- title: "Copilot Notebooks"
+  description: "De handleiding van Microsoft zelf: je bestanden en je gesprekken op een plek, en ze blijven staan tussen twee gesprekken."
+  path: https://support.microsoft.com/nl-nl/microsoft-365-copilot/get-started-with-microsoft-365-copilot-notebooks
+  categories: [Copilot]
+
+- title: "Referenties toevoegen"
+  description: "Welke bestanden er in een notebook kunnen (Word, PowerPoint, Excel, pdf, txt, OneNote), en hoeveel."
+  path: https://support.microsoft.com/nl-nl/microsoft-365-copilot/add-references-to-your-microsoft-365-copilot-notebook
+  categories: [Copilot]
+
+- title: "Copilot Pages"
+  description: "Een antwoord bewaren als page, het daar bijwerken, en omzetten naar een Word-document."
+  path: https://support.microsoft.com/nl-nl/microsoft-365-copilot/get-started-with-microsoft-365-copilot-pages
+  categories: [Copilot]
+
+- title: "Welke Copilot-licentie heb ik?"
+  description: "Zelf na te kijken, zonder je ICT-dienst."
+  path: https://support.microsoft.com/nl-nl/microsoft-365-copilot/what-copilot-license-do-i-have
+  categories: [Copilot]
+
+# ---------- figuren ----------
+
+- title: "Excalidraw"
+  description: "Met de hand tekenen in je browser. Een schets van een schema is zo gemaakt."
+  path: https://excalidraw.com
+  categories: [figuren]
+
+- title: "mermaid live editor"
+  description: "Plak de tekst van een stroomschema of tijdlijn, en je ziet meteen de figuur. Geen installatie."
+  path: https://mermaid.live
+  categories: [figuren]
+
+# ---------- omzetten en opmaak ----------
+
+- title: "Google Docs"
+  description: "Importeert en exporteert markdown, in beide richtingen. De snelste weg om een document om te zetten zonder iets te installeren."
+  path: https://docs.google.com
+  categories: [omzetten]
+
+- title: "pandoc"
+  description: "De motor onder de omzetting: Word naar markdown en terug, met je eigen sjabloon als referentie."
+  path: https://pandoc.org
+  categories: [omzetten, terminal]
+
+- title: "Quarto"
+  description: "Uit dezelfde markdown een website, een pdf en slides. Deze site en de slides van de workshop zijn ermee gemaakt."
+  path: https://quarto.org
+  categories: [omzetten, terminal]
+
+- title: "Quarto gallery"
+  description: "Websites, boeken en slides die uit markdown komen, om te zien wat er op het einde uit je map kan rollen."
+  path: https://quarto.org/docs/gallery/
+  categories: [omzetten]
+
+# ---------- voorbeeld ----------
+
+- title: "Deze site, als repo"
+  description: "Het regelbestand, de contextmap en de stappen van deze site, in droge tekst. Kijk in CLAUDE.MD hoe de regels eruitzien."
+  path: https://github.com/timdams/websiteCursusAISchrijven
+  categories: [voorbeeld]

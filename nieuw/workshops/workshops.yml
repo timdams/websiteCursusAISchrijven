@@ -1,0 +1,21 @@
+# De workshops, de nieuwste bovenaan (de lijst sorteert zelf op datum).
+# Elke workshop: title (de titel van het deck, zoals het die dag heette), date,
+# subtitle (plaats en publiek), description (wat er die sessie gebeurde, en hoe
+# het deck verschilt van de site), path (de slides) en image (de titelslide).
+#
+# Een deck wordt na de sessie bevroren: een volledige kopie van de qmd, het thema
+# en enkel de beelden die het gebruikt, in een eigen map met de datum in de naam.
+# Geen include naar gedeelde stukken, anders verandert een oud deck mee met het
+# nieuwe.
+#
+# Een nieuwe workshop toevoegen:
+# 1. Kopieer de map van het laatste deck en noem ze JJJJ-MM-DD-plaats-publiek.
+# 2. Pas het deck aan in die nieuwe map.
+# 3. Zet hieronder een nieuw blok, met de titelslide als image.
+
+- title: "Een cursus ontwikkelen met behulp van A.I."
+  subtitle: "AP Hogeschool, voor IT-lectoren"
+  date: 2026-09-14
+  description: "De try-out. Een overzicht zonder hands-on, met een workflow van zeven stappen en de eerste versie van deze site, met de bevrager erin. Uit de feedback van die sessie kwam de aanpak in twee stappen die nu op deze site staat. In de zaal stond het handschrift nog in Caveat, en dat las achteraan de aula niet. In deze versie is het al vervangen door Kalam."
+  path: 2026-09-14-ap-it-lectoren/index.qmd
+  image: 2026-09-14-ap-it-lectoren/titelslide.jpg

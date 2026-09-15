@@ -1,0 +1,30 @@
+---
+title: "Tips van collega's"
+subtitle: "Wat collega's na de workshop met AI deden"
+toc: false
+listing:
+  id: tips
+  contents: tips.yml
+  type: grid
+  grid-columns: 2
+  fields: [title, subtitle, author, date, description, categories]
+  date-format: "D MMMM YYYY"
+  # Standaard knipt Quarto een beschrijving af na 175 tekens, en hier is de
+  # beschrijving het citaat zelf.
+  max-description-length: 1000
+  sort: false
+  sort-ui: false
+  filter-ui: false
+---
+
+[De hele galerij](index.qmd){.terug}
+
+De dag na de workshop van 14 september stuurde Koen, lector Professional Skills, het bericht op de
+eerste kaart. Op elke kaart staat een taak uit het werk van een collega, letterlijk in zijn of haar
+woorden.
+
+Heb je zelf zo'n geval? Stuur het naar Tim, met drie dingen erbij: welke taak, wat je de AI meegaf, en
+wat er misliep. Zet je naam en je vak eronder, zoals op de kaarten.
+
+::: {#tips}
+:::

@@ -1,5 +1,5 @@
 ---
-title: "Een cursus ontwikkelen met behulp van A.I."
+title: "Een cursus ontwikkelen met behulp van AI"
 subtitle: "Tips & tricks"
 author: "Tim Dams"
 format:
@@ -91,7 +91,7 @@ Cronos heeft me gecontacteerd, ze gaan wel de workshop hernoemen...
 
 ---
 
-## "Becoming a WrA.I.ter" {.tussentitel .center}
+## "Becoming a WrAIter" {.tussentitel .center}
 
 *😏*
 
@@ -102,7 +102,7 @@ Cronos heeft me gecontacteerd, ze gaan wel de workshop hernoemen...
 ![](assets/teleurstelling.png){.figuur}
 
 ::: {.onder .fragment}
-**Gevaar van A.I. is dat het altijd overtuigend antwoordt.**
+**Gevaar van AI is dat het altijd overtuigend antwoordt.**
 :::
 
 ## Het lag niet alleen aan je prompt
@@ -119,7 +119,7 @@ Prompten is al lang niet meer de *core competentie*.
 Akkoord, het start bij je prompt, maar veel belangrijker zijn je **ervaring en stijl als
 lesgever**.
 
-En hoe kan A.I. dat overnemen?!
+En hoe kan AI dat overnemen?!
 
 Wij zijn toch uniek. Niet vervangbaar.
 
@@ -142,7 +142,7 @@ Toch?
 Wat volgt is daarom een voorgestelde workflow (en een work-in-progress website met tips&tricks).
 :::
 
-##  A.I. agnostisch...geprobeerd  {.metonder}
+##  AI agnostisch...geprobeerd  {.metonder}
 
 ![](assets/agnostisch.png){.figuur}
 
@@ -154,6 +154,30 @@ client, VS Code. Theoretisch werkt wat volgt op elke combinatie. 🤞
 
 
 
+## Context is king {.metnaast}
+
+::: {.columns}
+::: {.column}
+![](assets/contextisking.png){.figuur}
+:::
+
+::: {.column}
+
+::: {.terzijde}
+Alles wat volgt, draait hierrond.
+:::
+
+* De AI weet enkel wat jij haar te lezen geeft: je cursus, je achtergrond, je afspraken.
+* Een betere prompt vult niet aan wat er niet in haar map ligt.
+* Stap drie tot vijf van de flow gaan over wat ze leest.
+
+::: {.fragment}
+**Elk document in je map ligt er met een reden, en die reden zeg je in één zin.**
+:::
+
+:::
+:::
+
 ## Mijn originele flow {.metonder}
 
 ![](assets/origineel.png){.figuur}
@@ -164,11 +188,11 @@ client, VS Code. Theoretisch werkt wat volgt op elke combinatie. 🤞
 
 ::: {.columns}
 ::: {.column width="50%"}
-[Eén en twee]{.kop} is grotendeels zonder A.I. (sorry!).
+[Eén en twee]{.kop} is grotendeels zonder AI (sorry!).
 :::
 
 ::: {.column width="50%"}
-[Drie tot 7]{.kop} is waar A.I. je leven fijner zal maken  😉.
+[Drie tot 7]{.kop} is waar AI je leven fijner zal maken  😉.
 :::
 :::
 
@@ -181,7 +205,7 @@ client, VS Code. Theoretisch werkt wat volgt op elke combinatie. 🤞
 ::: {.onder}
 Maak een ruwe outline en schrijf (een stuk) van je favoriete hoofdstuk. 
 
-Als je A.I. vanaf nul laat schrijven dan duwt hij de inhoud en toon. **Stay in control 🤓 !**
+Als je AI vanaf nul laat schrijven dan duwt hij de inhoud en toon. **Stay in control 🤓 !**
 :::
 
 
@@ -195,7 +219,7 @@ Als je A.I. vanaf nul laat schrijven dan duwt hij de inhoud en toon. **Stay in c
 En **trek je nog niets aan van je opmaak en afbeeldingen**.
 :::
 
-## Tijd om de A.I. te temmen {.metonder}
+## Tijd om de AI te temmen {.metonder}
 
 ![](assets/temmen.png){.figuur}
 
@@ -228,7 +252,7 @@ En **trek je nog niets aan van je opmaak en afbeeldingen**.
 :::
 
 ::: {.column}
-Een tekstbestand van een halve pagina dat je A.I. bij elke nieuwe vraag opnieuw leest.
+Een tekstbestand van een halve pagina dat je AI bij elke nieuwe vraag opnieuw leest.
 
 Zet er alles dat je telkens opnieuw moet zeggen (alsof het een student is 😉)
 
@@ -261,7 +285,7 @@ Zet er zeker een '**plan van je map**' in, waar je beschrijft waar alle bestande
 
 ::: {.onder style="text-align:left"}
 
-* Tip: Laat de A.I. het regelbestand nalezen en er feedback op geven.
+* Tip: Laat de AI het regelbestand nalezen en er feedback op geven.
 :::
 
 ## "Ja maar, ik werk in een chatvenster..." (Claude vb.) {.metnaast}
@@ -285,7 +309,7 @@ jouw venster waar je bestanden blijven staan.
 
 
 
-## [5]{.nr} Laat de A.I. bijhouden wat je corrigeert {.metonder}
+## [5]{.nr} Laat de AI bijhouden wat je corrigeert {.metonder}
 
 ![](assets/improvelus.png){.figuur}
 
@@ -301,9 +325,9 @@ jouw venster waar je bestanden blijven staan.
 ::: {.column}
 
 * Elke regel hier stond eerst als correctie in een chat.
-* `improve.md` wordt vanaf dan meegelezen zoals je regelbestand zelf: de A.I. past toe wat ze daar noteerde.
+* `improve.md` wordt vanaf dan meegelezen zoals je regelbestand zelf: de AI past toe wat ze daar noteerde.
 * Beter dan *"ik zal op het einde van de sessie al m'n remarks wel even opschrijven"*...dat doe je toch nooit.😒
-* Tip: neem de regels geregeld door (soms neemt de A.I. vreemde beslissingen, en dan moet je ze corrigeren).
+* Tip: neem de regels geregeld door (soms neemt de AI vreemde beslissingen, en dan moet je ze corrigeren).
 
 :::
 :::
@@ -337,7 +361,7 @@ Een gewoon tekstbestand dat je zelf schrijft: het **recept** voor die ene taak.
 
 * Meeste tekeningen in deze talk zijn met deze skills gemaakt.
 * Sommige zijn met behulp van ChatGpt Images 2.0 gemaakt.
-* Tip: laat je imagegen prompts door de A.I. uitschrijven.
+* Tip: laat je imagegen prompts door de AI uitschrijven.
 
 
 ::: {.fragment}
@@ -365,7 +389,7 @@ opnieuw tot het klopt."*
 ::: {.column}
 
 ::: {.terzijde}
-Wanneer je jezelf dezelfde reeks commando's hoort dicteren. Of A.I. telkens het wiel moet heruitvinden.
+Wanneer je jezelf dezelfde reeks commando's hoort dicteren. Of AI telkens het wiel moet heruitvinden.
 :::
 
 * Skills schrijf je niet zelf...Allez, ik toch niet.
@@ -392,14 +416,14 @@ Wanneer je jezelf dezelfde reeks commando's hoort dicteren. Of A.I. telkens het 
 
 ::: {.column}
 ::: {.terzijde}
-Het verschil tussen een cursus en A.I.-slob.
+Het verschil tussen een cursus en AI slop.
 :::
 
-* **De A.I. zegt nooit dat hij het niet zeker weet.**
+* **De AI zegt nooit dat hij het niet zeker weet.**
 * Zelf lezen dus: de getallen, de namen, de bronnen, en of het klopt met wat jij
   in de les vertelt. 
   
-* Tokens te veel? Laat A.I. de codevoorbeelden zelf runnen en testen.
+* Tokens te veel? Laat AI de codevoorbeelden zelf runnen en testen.
 * Wat je hier corrigeert, gaat naar `improve.md` van stap vijf.
 :::
 :::
@@ -415,7 +439,7 @@ Het verschil tussen een cursus en A.I.-slob.
 
 ::: {.column}
 
-Laat de A.I. je teksten nalezen, maar telkens in een andere rol.
+Laat de AI je teksten nalezen, maar telkens in een andere rol.
 
 ::: {.kader}
 * "*Lees dit hoofdstuk als een student met dyslexie. Waar haak je af?*"
@@ -573,7 +597,7 @@ Op vraag van mijn vrouw...en Yves 😉
 
 - De galerij groeit nog. Ken je een cursus, site of cursusmap die erin hoort,
   laat het weten.
-- Grote stukken van de teksten voelen nog A.I. aan.
+- Grote stukken van de teksten voelen nog AI aan.
 - Of de bevrager de juiste vragen stelt, weet ik niet. Dat merk ik pas wanneer
   iemand anders hem doorloopt met zijn eigen vak in zijn hoofd.
 

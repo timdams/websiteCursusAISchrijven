@@ -1,0 +1,42 @@
+---
+title: "Galerij"
+subtitle: "Cursussen, tips en resources van collega's"
+toc: false
+---
+
+Drie verzamelingen, elk op een eigen pagina. Klik op een tegel om ze te openen.
+
+::: {.stappen .column-page}
+
+::: {.stapkaart}
+[om naar te kijken]{.moeite}
+
+[Coole cursussen]{.stapkop}
+
+Cursussen en websites van collega's, met de techniek erachter. Van een handboek in markdown tot een
+robot die een lus van drie stappen meeloopt.
+
+[Naar de cursussen](cursussen.qmd){.stretched-link .naar}
+:::
+
+::: {.stapkaart}
+[uit de praktijk]{.moeite}
+
+[Tips van collega's]{.stapkop}
+
+Wat collega's na de workshop met AI deden: welke taak, wat ze meegaven, en wat er misliep.
+
+[Naar de tips](tips.qmd){.stretched-link .naar}
+:::
+
+::: {.stapkaart}
+[om bij te houden]{.moeite}
+
+[Handige resources]{.stapkop}
+
+De handleidingen van Copilot, de tools voor je figuren, en verzamelingen skills van anderen.
+
+[Naar de resources](resources.qmd){.stretched-link .naar}
+:::
+
+:::

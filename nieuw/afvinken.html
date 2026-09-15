@@ -1,0 +1,23 @@
+<script>
+// Klaar als: Quarto zet de vakjes van een takenlijst op disabled. Hier worden ze
+// aanvinkbaar, en de site onthoudt per pagina wat je al afvinkte (localStorage).
+// Een afgevinkte regel krijgt de klasse "af" (grijs en doorstreept, theme.scss).
+(function () {
+  var sleutel = "afgevinkt:" + location.pathname;
+  var af = {};
+  try { af = JSON.parse(localStorage.getItem(sleutel) || "{}"); } catch (e) {}
+
+  document.querySelectorAll("ul.task-list input[type=checkbox]").forEach(function (vakje, i) {
+    var regel = vakje.closest("li");
+    vakje.disabled = false;
+    vakje.checked = !!af[i];
+    if (regel) regel.classList.toggle("af", vakje.checked);
+
+    vakje.addEventListener("change", function () {
+      af[i] = vakje.checked;
+      if (regel) regel.classList.toggle("af", vakje.checked);
+      try { localStorage.setItem(sleutel, JSON.stringify(af)); } catch (e) {}
+    });
+  });
+})();
+</script>

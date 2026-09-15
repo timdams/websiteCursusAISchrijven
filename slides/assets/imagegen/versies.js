@@ -35,9 +35,9 @@ c.txt(RX + PW / 2, PY - 26, 'wat het werd', 34, C.RED_DARK, 700);
 // ---------- links: drie punten die niemand leest ----------
 slide(LX, 'Disclaimer');
 const punten = [
-  ['Iedereen werkt hier vermoedelijk al met A.I.', 'De ene wat meer dan de andere.'],
+  ['Iedereen werkt hier vermoedelijk al met AI.', 'De ene wat meer dan de andere.'],
   ['Alles wat hier komt is proefondervindelijk', 'gevonden. Ik reken op jullie voor feedback.'],
-  ['Practice what you preach: uiteraard heeft', 'A.I. geholpen met deze slides.'],
+  ['Practice what you preach: uiteraard heeft', 'AI geholpen met deze slides.'],
 ];
 let y = PY + 152;
 punten.forEach((regels, i) => {

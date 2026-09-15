@@ -1,0 +1,38 @@
+---
+title: "Coole cursussen"
+subtitle: "Cursussen die zo gemaakt zijn"
+toc: false
+listing:
+  id: cursussen
+  contents: cursussen.yml
+  type: grid
+  grid-columns: 3
+  image-height: 190px
+  fields: [image, title, author, description, categories]
+  sort: false
+  sort-ui: false
+  filter-ui: false
+---
+
+[De hele galerij](index.qmd){.terug}
+
+Cursussen en websites van collega's, zodat je ziet waar je naartoe werkt. Klik op een kaart om ze te
+openen. Onderaan elke kaart staat met welke techniek ze gebouwd is.
+
+::: {.callout-note}
+## Een paar van deze mensen zijn doorgeslagen
+
+*En dat is een compliment.* Cloudsystemen van David Verhulst is een eigen webapplicatie met
+oefenterminals die in de pagina zelf draaien. In Circuit Crawler van Andie Similon schrijft een student
+een lus van drie stappen, en zet een robot op het scherm drie stappen. Daar zit een technische
+achtergrond achter die de meesten van ons niet hebben. Je hoeft daar niet naartoe om hier iets aan te
+hebben.
+
+Onder elk van deze projecten liggen dezelfde bestanden als in [stap 1](../stappen/1-contextmap.qmd) en
+[stap 2](../stappen/2-regelbestand.qmd): een map met een handvol documenten, en een document met afspraken. Staat
+er *markdown* op de kaart, dan is de tekst het werk en komt de website er achteraf uit. Staat er *eigen
+webapplicatie*, dan is er iemand beginnen programmeren.
+:::
+
+::: {#cursussen}
+:::

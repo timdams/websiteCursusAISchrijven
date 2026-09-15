@@ -1,0 +1,15 @@
+# Tips van collega's. Elke kaart: title (de taak), subtitle (waarvoor en in welke
+# tool), author (naam en vak), date (wanneer ze het zeiden), description (hun
+# woorden, letterlijk, niet rechtgezet) en categories (de taak en de tool als
+# labels, met dezelfde toolnamen als in resources.yml). Geen path: een kaart linkt
+# nergens naartoe. Vraag toestemming voor de naam.
+#
+# Wat er bij een nieuwe tip hoort: welke taak, wat ze de AI meegaven, en wat er
+# misliep.
+
+- title: "Een FAQ schrijven"
+  subtitle: "Voor zijn vak, in een notebook in Copilot"
+  author: "Koen, lector Professional Skills"
+  date: 2026-09-15
+  description: 'Workshop van gisteren doet me echt anders denken. Niet alleen achteraf laten nakijken. Neem bv FAQ schrijven...dien bot kan dat geweldig he. Je moet wel context meegeven en sturen maar dat is niet "achteraf nakijken"'
+  categories: [FAQ, Copilot]

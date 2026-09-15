@@ -1,0 +1,412 @@
+/*-- scss:defaults --*/
+
+// Dezelfde kleuren en hetzelfde font als de site. De waarden komen letterlijk
+// uit site/styles.css, zodat een slide en een pagina naast elkaar niet vloeken.
+$papier:       #fafaf7;
+$kaart:        #ffffff;
+$inkt:         #2b2b33;
+$inkt-kop:     #1a1a22;
+$inkt-stil:    #62626e;
+$accent:       #B30000;
+$accent-diep:  #8F0000;
+$accent-zacht: #FFE5E5;
+$lijn:         #e3e3dd;
+$lijn-hard:    #cfcfc7;
+
+// De achtergrond van de tekeningen. Iets koeler dan het papier van de site,
+// dus de figuren krijgen hun eigen vlakje in plaats van te botsen.
+$tekenpapier:  #f8f9fa;
+
+$body-bg:    $papier;
+$body-color: $inkt;
+$link-color: $accent-diep;
+$link-color-hover: $accent;
+$selection-bg: $accent-zacht;
+$selection-color: $accent-diep;
+
+$font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$font-family-monospace: "Cascadia Code", Consolas, SFMono-Regular, Menlo, monospace;
+
+$presentation-font-size-root: 32px;
+$presentation-line-height: 1.5;
+$presentation-heading-font: $font-family-sans-serif;
+$presentation-heading-color: $inkt-kop;
+$presentation-heading-font-weight: 700;
+$presentation-heading-line-height: 1.2;
+$presentation-h1-font-size: 2.1em;
+$presentation-h2-font-size: 1.4em;
+$presentation-h3-font-size: 1.1em;
+
+$code-block-font-size: 0.6em;
+$code-color: $accent-diep;
+
+/*-- scss:rules --*/
+
+.reveal .slides section {
+  text-align: left;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  letter-spacing: -.01em;
+  text-transform: none;
+}
+
+// De kop draagt een dun rood lijntje, zoals de deuren in het naslagwerk.
+.reveal h2 {
+  margin-bottom: .5em;
+  padding-bottom: .28em;
+  border-bottom: 2px solid $lijn;
+}
+
+// ---------- het stapnummer in de kop ----------
+// Hetzelfde bolletje als in de tekening met de zeven stappen, zodat je aan de
+// kop ziet waar in de volgorde je zit.
+.reveal h2 .nr {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: .4em;
+  vertical-align: -.32em;
+  border-radius: 50%;
+  background: $accent-zacht;
+  color: $accent-diep;
+  font-size: .78em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+// ---------- figuren ----------
+// De tekening is het punt van de slide, dus ze krijgt alle ruimte die overblijft.
+.reveal .figuur {
+  margin: 0;
+  text-align: center;
+}
+
+.reveal .figuur img,
+.reveal p > img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 640px;
+  width: auto;
+  border: 1px solid $lijn;
+  border-radius: 10px;
+  background: $tekenpapier;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .05);
+}
+
+// Een slide met kop, tekening en één regel eronder. 640 is wat er overblijft
+// onder een kop en boven een onderschrift van twee regels; hoger en de laatste
+// regel valt van de slide. De tekeningen zijn 1560 breed getekend, dus bij deze
+// hoogte renderen ze op 0,94: bijna 1 op 1, en dat is wat ze leesbaar houdt op
+// een beamer. Zie MAATVOERING.md.
+.reveal .metonder .figuur img,
+.reveal .metonder p > img {
+  max-height: 640px;
+}
+
+// De agenda-slide draagt de tekening én twee kolommen tekst, dus daar mag de
+// tekening kleiner.
+.reveal .metkolommen .figuur img,
+.reveal .metkolommen p > img {
+  max-height: 420px;
+}
+
+// Een tekening die naast tekst in een kolom staat, draagt de slide niet alleen.
+// Iets lager, anders duwt ze de tekst ernaast naar een streepje breed.
+.reveal .columns .figuur img,
+.reveal .columns p > img {
+  max-height: 540px;
+}
+
+// De tekst ernaast begint op de hoogte van het midden van de tekening. Quarto
+// zet de kolommen naast elkaar als inline-block met vertical-align: top, en dan
+// hangen drie bolletjes tegen de kop terwijl de tekening tot halfweg de slide
+// doorloopt.
+.reveal .columns:has(.figuur) > .column,
+.reveal .columns:has(p > img) > .column {
+  vertical-align: middle;
+}
+
+// ---------- een tekening naast tekst, op volle hoogte ----------
+// Voor de slide waar de tekening het punt is en de tekst het bijschrift: een
+// schermafdruk van een bestand, of de stapel papier van Fair warning. Op 540
+// hoog bleef in een kolom van de helft rechts een halve kolom leeg staan en
+// onderaan een strook van een derde slide. Op .metnaast begint de tekening op
+// 103 en loopt ze tot 825 van de 900, en haar kolom krimpt tot de breedte die
+// ze op die hoogte nodig heeft: 476 voor de skill, 722 voor de stapel. De tekst
+// krijgt wat overblijft, dus in de qmd staat bij die kolommen geen width.
+//
+// Quarto zet de twee kolommen naast elkaar als inline-block. Voor een kolom
+// zonder width rekent de browser dan met de volle slide en niet met wat er
+// naast de tekening overblijft: de tekst past niet en valt eronder. Hier dus
+// wel flexbox.
+.reveal .metnaast .columns {
+  display: flex;
+  align-items: center;
+}
+
+.reveal .metnaast .columns > .column {
+  width: auto !important;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+// De kolom van de tekening vraagt haar eigen breedte, de tekst neemt de rest.
+.reveal .metnaast .columns > .column:has(img) {
+  flex: 0 0 auto;
+}
+
+// De hoogte staat vast en de breedte volgt eruit: daardoor vraagt de kolom
+// hierboven de breedte van de tekening op 720 hoog, en niet die van het
+// bestand. Zet je hier een liggende tekening, dan is 720 te hoog en houdt
+// object-fit haar in verhouding in plaats van ze uit te rekken.
+.reveal .metnaast .columns .figuur img,
+.reveal .metnaast .columns p > img {
+  height: 720px;
+  max-height: 720px;
+  width: auto;
+  object-fit: contain;
+}
+
+// ---------- de regel onder een figuur ----------
+.reveal .onder {
+  margin-top: .7em;
+  color: $inkt-stil;
+  font-size: .8em;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.reveal .onder strong {
+  color: $accent-diep;
+}
+
+// ---------- het terzijde ----------
+// Handgeschreven, zoals de tekeningen. Voor de grap of de bekentenis waarmee
+// een slide opent, en verder nergens voor. Kalam en niet Caveat zoals op de
+// site: Caveat las achteraan de aula niet.
+.reveal .terzijde {
+  font-family: Kalam, cursive;
+  font-size: 1.32em;
+  line-height: 1.25;
+  color: $accent-diep;
+  margin-bottom: .7em;
+}
+
+.reveal .groot {
+  font-size: 1.25em;
+  line-height: 1.35;
+}
+
+.reveal .klein {
+  font-size: .60em;
+  line-height: 1.35;
+}
+
+.reveal .stil {
+  color: $inkt-stil;
+}
+
+.reveal strong {
+  color: $inkt-kop;
+}
+
+// ---------- de termentabel ----------
+// Op *Hoe heet het bij jou?* staat een echte tabel en geen tekening: de lezer
+// zoekt daar zijn eigen rij op, en dat gaat niet in een png. Ze staat twee keer
+// met dezelfde vier kolommen: eerst wat je in je venster ziet, dan wat er in
+// een map op je schijf staat. Die twee stonden ooit naast elkaar op één slide,
+// met een groepskop erboven; op 1472 bruikbare pixels werden dat vijf kolommen
+// en las de rechterhelft achteraan de aula niet meer. Vijf rijen van vier
+// kolommen vullen op deze grootte de slide; zet je er een kolom of een rij bij,
+// dan moet de grootte hieronder mee omlaag.
+.reveal table.termen {
+  width: 100%;
+  margin: .3em 0 0;
+  border-collapse: collapse;
+  // De breedtes staan in de colgroup in de qmd: zonder table-layout kiest de
+  // browser ze zelf en breekt het pad van copilot-instructions.md in twee.
+  table-layout: fixed;
+  font-size: 1.15em;
+  line-height: 1.25;
+}
+
+.reveal table.termen th,
+.reveal table.termen td {
+  padding: .65em .5em;
+  border: none;
+  border-bottom: 1px solid $lijn;
+  text-align: left;
+  vertical-align: top;
+}
+
+// De kop noemt de drie dingen die elke tool anders noemt. Het rode lijntje
+// eronder loopt niet onder het lege hoekje links: daar staat geen kop.
+.reveal table.termen thead th {
+  border-bottom: 2px solid $accent;
+  color: $inkt-kop;
+  font-weight: 700;
+}
+
+.reveal table.termen thead th.hoek {
+  border-bottom: none;
+}
+
+// De naam van de tool is de ingang van de rij.
+.reveal table.termen tbody th {
+  color: $accent-diep;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.reveal table.termen tbody tr:last-child th,
+.reveal table.termen tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.reveal table.termen code {
+  padding: .05em .2em;
+  font-size: .86em;
+}
+
+// Wat er in die tool niet zit.
+.reveal table.termen .leeg {
+  color: $inkt-stil;
+}
+
+// Het programma waar de cel over gaat, of de tweede naam van hetzelfde
+// bestand. Hoort bij de regel erboven, dus geen eigen kolom maar een regel
+// eronder.
+.reveal table.termen .via {
+  display: block;
+  margin-top: .2em;
+  color: $inkt-stil;
+  font-size: .86em;
+}
+
+// ---------- kadertje ----------
+.reveal .kader {
+  padding: .7em 1em;
+  border: 1px solid $lijn;
+  border-left: 4px solid $accent;
+  border-radius: 8px;
+  background: $kaart;
+  font-size: .82em;
+}
+
+// ---------- de titelslide en de tussentitel ----------
+// De optocht uit assets/titel.png ligt over de hele titelslide (zie
+// `title-slide-attributes` in de qmd) en laat boven de antennes ongeveer 210
+// pixels lucht over. Daar moet het titelblok in passen, dus staat het bovenaan
+// (`center-title-slide: false`) en een maat kleiner dan een gewone h1. Schuif je
+// de achtergrond met `data-background-position`, kijk dan of deze maten nog
+// kloppen.
+#title-slide h1.title {
+  margin-top: .5em;
+  margin-bottom: .2em;
+  font-size: 1.5em;
+  line-height: 1.15;
+}
+
+#title-slide .subtitle,
+.reveal .quarto-title-block .subtitle {
+  color: $accent-diep;
+  font-size: 1.05em;
+  margin-bottom: 1.2em;
+}
+
+#title-slide .subtitle {
+  font-size: .8em;
+  margin-bottom: .35em;
+}
+
+#title-slide .author,
+#title-slide .quarto-title-authors {
+  color: $inkt-stil;
+  font-size: .8em;
+}
+
+#title-slide .quarto-title-authors {
+  font-size: .68em;
+}
+
+.reveal section.tussentitel h1,
+.reveal section.tussentitel h2 {
+  border: none;
+  color: $accent-diep;
+  font-size: 2em;
+}
+
+// ---------- kolommen ----------
+.reveal .columns {
+  gap: 1.6em;
+}
+
+.reveal .kop {
+  color: $accent-diep;
+  font-weight: 700;
+}
+
+// ---------- lijsten ----------
+.reveal ol,
+.reveal ul {
+  margin-left: .4em;
+}
+
+.reveal li {
+  margin-bottom: .45em;
+}
+
+.reveal ol li::marker {
+  color: $accent;
+  font-weight: 700;
+}
+
+.reveal ul li::marker {
+  color: $accent;
+}
+
+.reveal code:not(.sourceCode) {
+  background: $accent-zacht;
+  color: $accent-diep;
+  padding: .1em .35em;
+  border-radius: 4px;
+  font-size: .85em;
+}
+
+// ---------- voetregel en voortgang ----------
+.reveal .slide-number {
+  background: transparent;
+  color: $inkt-stil;
+  font-size: .5em;
+}
+
+.reveal .progress {
+  color: $accent;
+  height: 4px;
+}
+
+// ---------- de qr-code naar de site ----------
+// De code hangt naast het kadertje met het adres erin, en is dus geen figuur:
+// geen kader, geen schaduw, geen afgeronde hoeken. Een scanner leest het
+// rustigst met een witte rand rondom en zonder lijn eromheen. Op 300 breed
+// scant ze vanaf de achterste rij; kleiner dan 240 en de camera van een gsm
+// begint te zoeken.
+.reveal .qr,
+.reveal p > img.qr,
+.reveal .columns p > img.qr {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
+}

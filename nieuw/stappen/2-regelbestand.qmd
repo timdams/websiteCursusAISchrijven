@@ -1,0 +1,159 @@
+---
+title: "Stap 2: je afspraken"
+subtitle: "Jij bepaalt hoe de AI werkt"
+---
+
+::: {.stapper}
+[[1]{.nr} Je map](1-contextmap.qmd) [[2]{.nr} Je afspraken](2-regelbestand.qmd){.actief}
+:::
+
+*Vlot en toegankelijk, met een vleugje humor.* Zo beschrijft bijna iedereen zijn eigen toon, en de AI
+kan er precies niks mee. In deze stap schrijf je op wat altijd geldt: hoe je klinkt, wat je nooit wil
+zien, en wat elk document in je map is. Op een halve bladzijde.
+
+## Wat je maakt
+
+![Je map en je afspraken staan op dezelfde plek. Elk gesprek dat je daar voert, vertrekt van allebei.](../assets/kernidee.png)
+
+Eén Word-document met de naam *Afspraken*, naast de twee mappen uit stap 1:
+
+::: {.mapje}
+**Kansrekenen**
+
+- **Afspraken**: hoe je wil dat er gewerkt wordt
+- **Cursus**: je hoofdstukken, een map per hoofdstuk
+- **Achtergrond**: wat een collega nodig heeft om je vak over te nemen
+:::
+
+Er staan drie stukken in: **Toon**, **Niet doen** en **Waar staat wat**. Maak van die drie woorden een
+*Kop 2*. Onderaan komt nog één regel over je AI-gebruik. In handleidingen heet zo'n document een
+regelbestand. Het veld in Copilot waar je het plakt, heet *Custom instructions*.
+
+## Toon: laat hem afleiden
+
+Je kan je eigen stijl moeilijk *beschrijven*, maar de AI kan hem wel *afleiden* uit wat je vroeger
+geschreven hebt. Daar ligt je *Toonvoorbeeld* uit stap 1 voor klaar: een lesstuk, en iets waar je
+losser schrijft. Met één soort tekst krijg je één register terug, en dan klinkt je hele cursus als je
+strengste bladzijde.
+
+Vraag dan:
+
+```{.vraag}
+De teksten in mijn document Toonvoorbeeld heb ik zelf geschreven en ik weet dat ze goed zijn. Wat zijn de regels die deze teksten volgen? Geef ze als een lijst waar ik het mee oneens kan zijn, en maak elke regel zo dat ik ze kan nakijken.
+```
+
+Lees de lijst en schrap wat niet klopt. Wat overblijft, gaat onder **Toon**.
+
+## Niet doen: de lijst die het zwaarst weegt
+
+Een lezer herkent een tekst van een AI aan wat erin staat dat er niet hoort: een lang
+[gedachtestreepje](../woordenlijst.qmd#gedachtestreepje) in elke alinea, een wijze slotzin, "het gaat
+niet over X, het gaat over Y". Samen heet dat [AI slop](../woordenlijst.qmd#ai-slop). **Je
+niet-doen-lijst stuurt harder dan alles wat je wél wil.**
+
+Maak elke regel testbaar. "Schrijf helder" kan je niet nakijken. "Geen wijze slotzin: stop na het
+laatste feit" kan je wel nakijken, en de AI ook.
+
+Begin met drie regels en niet met twintig. De rest schrijf je niet vooraf: alles wat je twee keer moet
+verbeteren, is een afspraak die je nooit hebt opgeschreven. Daar gaat
+[je verbeterlijst](../gevorderden/verbeterlijst.qmd) over, een recept voor gevorderden.
+
+## Waar staat wat: een regel per document
+
+Hier komt je map uit stap 1 terug. Schrijf bij elk document wat erin zit, en wat de AI ermee moet
+doen. Zonder die regels zit ze bij elk gesprek opnieuw te raden waarom je *Beginsituatie* er ligt.
+
+## Je AI-gebruik: vraag de zin erbij
+
+Op [de startpagina](../index.qmd#zeg-hoe-je-ai-gebruikte) staat waarom je vermeldt hoe je AI
+gebruikte. Die zin heet je [AI-verklaring](../woordenlijst.qmd#ai-verklaring). Laat de AI ze
+voorstellen: zij weet in het gesprek waarvoor je haar gebruikte. Het nalezen doe je zelf.
+
+Zo ziet een volledig document met afspraken eruit:
+
+```{.kopieer}
+Toon
+- Vlaams, je-vorm, korte zinnen.
+- Vet is voor de zin die ik in de les twee keer zou zeggen.
+
+Niet doen
+- Geen lange gedachtestreepjes. Een dubbele punt of een nieuwe zin.
+- Geen wijze slotzin: stop na het laatste feit.
+- Getallen tot twintig voluit.
+
+Waar staat wat
+- Opbouw: de volgorde van de hoofdstukken. Lees dit voor je aan een hoofdstuk begint.
+- Leerplan: de leerdoelen. Elke oefening hoort bij minstens één leerdoel.
+- Beginsituatie: wat mijn studenten al kennen. Leg niets uit wat hierin staat.
+- Toonvoorbeeld: twee stukken die ik zelf schreef. Hier zit mijn stem in.
+- Slides: mijn bestaande slides, een bestand per hoofdstuk.
+- Cursus: mijn hoofdstukken, een map per hoofdstuk en een document per onderwerp.
+
+AI-gebruik
+- Vraag ik om een AI-verklaring, geef dan een zin die ik onder mijn hoofdstuk kan zetten: welke tool, waarvoor je in dit gesprek gebruikt werd, en dat ik alles nalas.
+```
+
+## Doe het nu
+
+::: {.panel-tabset group="tool"}
+
+## Copilot
+
+{{< include _tools/copilot/stap2.md >}}
+
+## ChatGPT
+
+{{< include _tools/nog-niet.md >}}
+
+## Gemini
+
+{{< include _tools/nog-niet.md >}}
+
+## Claude
+
+{{< include _tools/nog-niet.md >}}
+
+:::
+
+Start daarna in je notebook een nieuw gesprek, en stel deze vraag:
+
+```{.vraag}
+Lees mijn instructies. Welke regel kan je niet toepassen, of begrijp je niet?
+```
+
+De regel die de AI dan noemt, is meestal de regel die je te vaag geschreven hebt.
+
+## Klaar als
+
+- [ ] het document Afspraken staat in je map, naast Cursus en Achtergrond
+- [ ] er staan drie stukken in: Toon, Niet doen en Waar staat wat
+- [ ] je toon komt uit je eigen teksten, en je schrapte wat niet klopte
+- [ ] je niet-doen-lijst heeft minstens drie regels die je kan nakijken
+- [ ] elk document uit stap 1 heeft een regel
+- [ ] onderaan staat de regel over je AI-gebruik
+- [ ] de tekst staat in de instructies van je notebook
+
+## Kijk na
+
+Laat de AI een alinea uit je cursus herschrijven en leg ze naast je niet-doen-lijst. Zoek zelf: staat
+er een lang gedachtestreepje in, eindigt ze op een wijze zin? Vind je er een, dan staat die regel te
+vaag, of hij staat niet in je instructies.
+
+Heb je een stuk tekst dat je ooit afgekeurd hebt, gebruik het dan:
+
+```{.vraag}
+Hier is een stuk tekst dat ik afgekeurd heb, en hier zijn mijn regels. Welke van die regels vangen deze fout niet? Stel een scherpere formulering voor.
+```
+
+Vraag op het einde van het gesprek om je AI-verklaring, en lees ook die na: klopt wat erin staat met
+wat je de AI echt liet doen?
+
+## Verder
+
+Enkel als je al met code werkt: met een [agent](../woordenlijst.qmd#agent) in een map op je eigen
+schijf zijn je afspraken een gewoon tekstbestand met de naam CLAUDE.md of AGENTS.md. Claude Code of
+Codex leest het vanzelf, bij elke taak.
+
+Werkt dit bij jou? Ohja, kijk dan zeker eens naar de recepten voor gevorderden.
+
+[Naar de recepten voor gevorderden](../gevorderden/index.qmd){.btn .btn-outline-primary}

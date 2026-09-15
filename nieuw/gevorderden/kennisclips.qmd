@@ -1,0 +1,136 @@
+---
+title: "Kennisclips en animaties"
+subtitle: "Claude maakt een korte animatie bij een cursusbegrip"
+---
+
+[Alle recepten voor gevorderden](index.qmd){.terug}
+
+*Ohja.* Een collega wou kennisclips maken van cursusbegrippen, bijvoorbeeld voor Instagram. Dit recept
+is wat ik antwoordde. Het werkt met Claude in [VS Code](../woordenlijst.qmd#vs-code), en met een
+[vaste werkwijze (skill)](werkwijzen.qmd) die ik al schreef en die je hier kan downloaden.
+
+## Wat je nodig hebt
+
+- een Claude-abonnement
+- VS Code, gratis te downloaden op [code.visualstudio.com](https://code.visualstudio.com/download)
+- een map op je computer waarin je gaat werken
+- een skill die animaties maakt. Je kan de mijne downloaden:
+  [excalidraw-videoclip (zip)](../downloads/excalidraw-videoclip.zip). Ik schreef ze voor de
+  kennisclips en reels bij mijn handboek Zie Scherp Scherper.
+- de huisstijl van je school: kleuren, lettertype, logo
+
+::: {.callout-warning}
+## Een filmpje blaast door je tokens
+
+Voor een animatie schrijft Claude code, rendert het beelden, bekijkt die zelf na en verbetert ze, en
+dat telkens opnieuw. Dat vraagt veel meer dan een gewone vraag, en je
+[abonnement](../woordenlijst.qmd#abonnement) heeft een limiet. Probeer dit dus op een stevig
+abonnement, zoals Claude Max, of wanneer je er vrede mee hebt dat Claude daarna niets meer doet tot
+je limiet weer vrijkomt.
+:::
+
+## Wat je maakt
+
+Een demoanimatie, een how-to over hoe je in de toekomst zelf animaties maakt, en een eigen skill die de
+huisstijl van je school volgt.
+
+Zo ziet het resultaat eruit. Deze reel maakte Claude met de skill uit dit recept:
+
+::: {.reel}
+[Demo]{.reel-label}
+
+<video controls playsinline preload="metadata" poster="../assets/clips/reel-kennisclips-cover.jpg" src="../assets/clips/reel-kennisclips.mp4"></video>
+
+In de kleuren en het handschrift van deze site. De robots komen uit de tekening bovenaan de
+startpagina.
+:::
+
+## Doe het nu
+
+::: {.panel-tabset group="tool"}
+
+## Copilot
+
+{{< include ../stappen/_tools/copilot/geen-agent.md >}}
+
+## ChatGPT
+
+{{< include ../stappen/_tools/nog-niet.md >}}
+
+## Gemini
+
+{{< include ../stappen/_tools/nog-niet.md >}}
+
+## Claude
+
+{{< include ../stappen/_tools/claude/kennisclips.md >}}
+
+:::
+
+::: {.callout-warning}
+## De eerste keer installeert Claude programma's
+
+De skill heeft tools nodig om een animatie te maken, en die zet Claude eerst op je computer. Dat
+gebeurt één keer. Vraagt Claude iets te installeren, lees dan eerst wat het is. Op een schoollaptop
+waar je zelf niets mag installeren, vraag je dit best eerst na bij je ICT-dienst.
+:::
+
+## De skill naar je hand zetten
+
+Een skill is een map met gewone tekstbestanden. Pak de zip uit, en je ziet dit:
+
+::: {.mapje}
+**excalidraw-videoclip**
+
+- **SKILL.md**: het recept dat Claude leest. Wat het eerst vraagt, welke soorten filmpjes er zijn, en
+  de huisstijl.
+- **references**: naslag voor Claude: hoe het een project opzet, wat er in de stijl zit, de valkuilen
+  en een checklist om na te kijken.
+- **assets**: de startkit, de code waarmee Claude een nieuw filmpjesproject opzet.
+- **LEESMIJ.md**: de uitleg voor jou, met wat hieronder staat en iets meer.
+:::
+
+Wat je aanpast, en waar:
+
+| Wat | Waar |
+|---|---|
+| De kleuren van je school | `kleuren.ts` in de startkit, en het stuk *Huisstijl* onderaan `SKILL.md` |
+| Het lettertype | `fonts.ts` in de startkit. Elk lettertype van Google Fonts kan. |
+| De naam van je vak, je website, een verteller | `project.ts` in je filmpjesproject. Claude vraagt ernaar bij de opzet. |
+| Wat Claude eerst vraagt, en hoe lang een filmpje mag duren | `SKILL.md`, stuk 1 |
+| Een fout die bij jou terugkomt | `valkuilen.md`: de [verbeterlijst](verbeterlijst.qmd) van deze skill |
+
+Je hoeft die bestanden niet zelf te openen. Vraag het Claude, in de map waar de skill staat:
+
+```{.kopieer}
+Lees de skill excalidraw-videoclip en zet ze naar mijn hand. De huisstijl van [naam van je school]: [kleuren, bijvoorbeeld donkerblauw #1F3A5F en geel #F2C300], lettertype [naam]. Mijn schrijfregels staan in [mijn document Afspraken]. Pas enkel de kleuren, het lettertype en het stuk Huisstijl aan, en toon me eerst wat je wil veranderen.
+```
+
+Wil je de skill in al je projecten gebruiken, zet de map dan in de skills-map van Claude op je
+computer: `C:\Users\<jouw naam>\.claude\skills\`. Voor één project zet je ze in de map
+`.claude\skills\` van dat project. Claude haalt ze er dan zelf bij als je om een filmpje vraagt.
+
+Kies je een ander handschrift, laat Claude dan een testbeeld renderen. De skill schat de breedte van
+handgeschreven tekst op basis van Caveat, en met een ander lettertype kan een onderlijn of titel
+verschuiven.
+
+## Klaar als
+
+- [ ] VS Code staat op je computer, met de extensie van Claude, en je bent aangemeld
+- [ ] je map is open in VS Code, met de skill erin
+- [ ] Claude maakte een demoanimatie die je kan afspelen
+- [ ] er staat een how-to in je map, en je begrijpt wat erin staat
+- [ ] je eigen skill volgt de huisstijl van je school
+
+## Kijk na
+
+Speel de animatie af en kijk ze na zoals een figuur in je cursus: klopt de tekst, is ze leesbaar op een
+gsm, en staat er iets in dat je niet vroeg?
+
+Open daarna de how-to en probeer een tweede animatie te maken met enkel die uitleg. Loop je vast, vraag
+Claude dan om die stap bij te schrijven.
+
+Kijk in je eigen skill of de kleuren en het lettertype van je school erin staan. Staan die van de
+originele skill er nog, vraag dan om ze te vervangen.
+
+[Alle recepten voor gevorderden](index.qmd){.btn .btn-primary}

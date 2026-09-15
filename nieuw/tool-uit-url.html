@@ -1,0 +1,22 @@
+<script>
+// ?tool=gemini in de link zet de tab van die tool open, op deze pagina en op
+// elke volgende. Bedoeld voor de QR-code op de eerste slide van een workshop:
+// de hele zaal landt dan in dezelfde tool.
+//
+// Quarto onthoudt een gekozen tab zelf (tabsets.js), in localStorage onder
+// "quarto-persistent-tabsets-data", met per groep de tekst op de tab. Het leest
+// die pas bij pageshow, dus wat dit script in de head wegschrijft, is op tijd.
+// De namen hieronder moeten dus letterlijk de koppen van de tabs zijn.
+(function () {
+  var namen = { copilot: "Copilot", chatgpt: "ChatGPT", gemini: "Gemini", claude: "Claude" };
+  var tool = (new URLSearchParams(location.search).get("tool") || "").toLowerCase();
+  if (!namen[tool]) return;
+  try {
+    var data = JSON.parse(localStorage.getItem("quarto-persistent-tabsets-data") || "{}");
+    data.tool = namen[tool];
+    localStorage.setItem("quarto-persistent-tabsets-data", JSON.stringify(data));
+  } catch (e) {
+    // Geen localStorage (privévenster, geblokkeerd): dan staat Copilot open.
+  }
+})();
+</script>

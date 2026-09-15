@@ -1,0 +1,26 @@
+---
+title: "Workshops"
+subtitle: "De slides van elke sessie, zoals ze die dag getoond werden"
+toc: false
+listing:
+  id: decks
+  contents: workshops.yml
+  type: default
+  sort: "date desc"
+  fields: [image, date, title, subtitle, description]
+  date-format: "D MMMM YYYY"
+  max-description-length: 600
+  sort-ui: false
+  filter-ui: false
+  categories: false
+---
+
+Elke workshop krijgt hier zijn eigen slides, met de datum, de plaats en voor wie ze was. Na de sessie
+verandert een deck niet meer. Wat later veranderde, staat op de rest van deze site, dus hoe ouder het
+deck, hoe meer het ervan verschilt.
+
+Klik op een workshop om de slides te openen. Je bladert met de pijltjestoetsen, en met **F** zet je
+ze op volledig scherm.
+
+::: {#decks}
+:::

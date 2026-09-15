@@ -1,0 +1,22 @@
+---
+title: "Handige resources"
+subtitle: "Wat je nodig hebt bij de twee stappen, en erna"
+toc: false
+listing:
+  id: resources
+  contents: resources.yml
+  type: grid
+  grid-columns: 3
+  fields: [title, description, categories]
+  sort: false
+  sort-ui: false
+  filter-ui: false
+---
+
+[De hele galerij](index.qmd){.terug}
+
+Klik op een label onderaan een kaart, bijvoorbeeld *skills* of *Copilot*, en je ziet enkel de kaarten
+met dat label.
+
+::: {#resources}
+:::

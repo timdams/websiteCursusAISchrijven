@@ -1,0 +1,733 @@
+/*-- scss:defaults --*/
+
+// Dezelfde kleuren als site/styles.css en slides/theme/site.scss, zodat een
+// slide en een pagina naast elkaar niet vloeken.
+$papier:       #fafaf7;
+$kaart:        #ffffff;
+$inkt:         #2b2b33;
+$inkt-kop:     #1a1a22;
+$inkt-stil:    #62626e;
+$accent:       #B30000;
+$accent-diep:  #8F0000;
+$accent-zacht: #FFE5E5;
+$lijn:         #e3e3dd;
+$lijn-hard:    #cfcfc7;
+$groen:        #2f6b3f;
+$groen-zacht:  #E3F0E6;
+$blauw:        #1f5b78;
+$blauw-zacht:  #E4F0F6;
+$tekenpapier:  #f8f9fa;
+$schaduw:      0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
+$schaduw-hoog: 0 2px 4px rgba(0,0,0,.05), 0 16px 36px rgba(0,0,0,.09);
+
+$body-bg:          $papier;
+$body-color:       $inkt;
+$primary:          $accent;
+$link-color:       $accent-diep;
+$headings-color:   $inkt-kop;
+$navbar-bg:        $kaart;
+$navbar-fg:        $inkt;
+$navbar-hl:        $accent-diep;
+$footer-bg:        $papier;
+$footer-fg:        $inkt-stil;
+
+$font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$font-family-monospace:  "Cascadia Code", Consolas, SFMono-Regular, Menlo, monospace;
+
+// De prompts om te kopiëren: wit kaartje met een rode rand links, zoals het
+// kader op de slides.
+$code-block-bg:          $kaart;
+$code-block-border-left: $accent;
+
+$callout-color-note:    $blauw;
+$callout-color-warning: #8a6a00;
+
+/*-- scss:rules --*/
+
+// Het handschrift (Kalam) wordt geladen in fonts.css, niet hier. Zie daar.
+
+// ---------- kop en voet ----------
+.navbar {
+  border-bottom: 1px solid $lijn;
+}
+
+.navbar-brand .navbar-title {
+  font-family: Kalam, cursive;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: $accent-diep;
+}
+
+.navbar .nav-link.active {
+  color: $accent-diep;
+  font-weight: 600;
+}
+
+.nav-footer {
+  border-top: 1px solid $lijn;
+  font-size: .85rem;
+}
+
+// ---------- titels ----------
+h1.title {
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.quarto-title .subtitle {
+  font-family: Kalam, cursive;
+  color: $accent-diep;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+// Een kort rood streepje onder elke kop, in plaats van een lijn over de hele
+// breedte.
+h2 {
+  margin-top: 2.2rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 2.6rem;
+  height: 3px;
+  margin-top: .4rem;
+  border-radius: 2px;
+  background: $accent;
+}
+
+// ---------- tekeningen ----------
+.quarto-figure img,
+#quarto-document-content p > img {
+  border: 1px solid $lijn;
+  border-radius: 12px;
+  background: $tekenpapier;
+  box-shadow: $schaduw;
+}
+
+code:not(.sourceCode) {
+  background: $accent-zacht;
+  color: $accent-diep;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  border-radius: 10px;
+  box-shadow: $schaduw;
+}
+
+// Een prompt moet in zijn geheel leesbaar zijn, ook op een smal scherm: de
+// tekst breekt af in plaats van rechts van de kaart te lopen. Een codeblok
+// zonder taal zit niet in div.sourceCode, dus dat krijgt hier zelf het kaartje.
+#quarto-document-content pre,
+#quarto-document-content pre code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+#quarto-document-content pre:not(.sourceCode) {
+  padding: .8rem 1rem;
+  border: 1px solid $lijn;
+  border-left: 4px solid $accent;
+  border-radius: 10px;
+  background: $kaart;
+  box-shadow: $schaduw;
+}
+
+#quarto-document-content pre code {
+  background: none;
+  color: $inkt-kop;
+}
+
+// Een mapstructuur (```{.boom}) breekt niet af: op een smal scherm viel de
+// uitleg achter content/ anders op een regel onder de boom. Die scrolt dan
+// liever opzij.
+#quarto-document-content pre.boom,
+#quarto-document-content pre.boom code,
+#quarto-document-content .boom pre,
+#quarto-document-content .boom pre code {
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
+// ---------- het nummerbolletje ----------
+// Hetzelfde als in de koppen van de slides.
+.nr {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: $accent-zacht;
+  color: $accent-diep;
+  font-weight: 800;
+  line-height: 1;
+}
+
+// ---------- de keuze van je tool ----------
+// Tabs worden pillen: het is een keuze, en die draagt de hele site.
+.panel-tabset .nav-tabs {
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: .9rem;
+  border-bottom: none;
+}
+
+.panel-tabset .nav-tabs .nav-link {
+  padding: .4rem 1.15rem;
+  border: 1px solid $lijn-hard;
+  border-radius: 999px;
+  background: $kaart;
+  color: $inkt;
+  font-weight: 600;
+}
+
+.panel-tabset .nav-tabs .nav-link:hover {
+  border-color: $accent;
+  color: $accent-diep;
+}
+
+.panel-tabset .nav-tabs .nav-link.active {
+  border-color: $accent;
+  background: $accent;
+  color: #fff;
+}
+
+.panel-tabset .tab-content {
+  padding: 1.1rem 1.4rem .4rem;
+  border: 1px solid $lijn;
+  border-radius: 14px;
+  background: $kaart;
+  box-shadow: $schaduw;
+}
+
+// ---------- de startpagina ----------
+.hero {
+  position: relative;
+  margin: 0 0 2.5rem;
+  overflow: hidden;
+  border: 1px solid $lijn;
+  border-radius: 18px;
+  background: #fbfbf9;
+  box-shadow: $schaduw;
+}
+
+.hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+// De optocht vult titel.jpg tot bovenaan, dus de titel staat boven de
+// tekening en niet erover: anders valt ze over de koppen van de robots.
+.hero {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.hero-tekst {
+  padding: 2rem 1rem .2rem;
+  text-align: center;
+}
+
+.hero-tekst p {
+  margin: 0 0 .5rem;
+}
+
+.hero-titel {
+  display: block;
+  color: $inkt-kop;
+  font-size: clamp(1.7rem, 3.6vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+}
+
+.hero-sub {
+  display: block;
+  color: $accent-diep;
+  font-family: Kalam, cursive;
+  font-size: clamp(1.1rem, 2.1vw, 1.55rem);
+}
+
+@media (max-width: 700px) {
+  .hero-tekst {
+    padding: 1.2rem 1rem .2rem;
+  }
+}
+
+.rodedraad {
+  display: block;
+  margin: 1.6rem 0;
+  padding: .9rem 1.3rem;
+  border-left: 4px solid $accent;
+  border-radius: 0 12px 12px 0;
+  background: $kaart;
+  color: $inkt-kop;
+  font-family: Kalam, cursive;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  box-shadow: $schaduw;
+}
+
+.rodedraad strong {
+  font-weight: 700;
+}
+
+// De drie stappen als kaarten. De hele kaart is de link (stretched-link).
+.stappen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin: 1.4rem 0 1.6rem;
+}
+
+// minmax(0, 1fr) en niet 1fr: anders mag een kaart breder worden dan het
+// scherm zodra er iets in staat dat niet afbreekt.
+@media (max-width: 850px) {
+  .stappen {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.stapkaart {
+  min-width: 0;
+}
+
+.stapkaart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid $lijn;
+  border-radius: 16px;
+  background: $kaart;
+  box-shadow: $schaduw;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.stapkaart:hover {
+  transform: translateY(-4px);
+  border-color: $accent;
+  box-shadow: $schaduw-hoog;
+}
+
+.stapkaart p {
+  margin-bottom: .55rem;
+  font-size: .95rem;
+}
+
+.stapkaart p > img,
+.stapkaart .quarto-figure img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  margin: .3rem 0 .2rem;
+  box-shadow: none !important;
+}
+
+.stapkaart .quarto-figure {
+  margin: 0;
+}
+
+.stapkop {
+  display: block;
+  color: $inkt-kop;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.moeite {
+  margin-left: .5rem;
+  color: $accent-diep;
+  font-family: Kalam, cursive;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+.stapkaart .naar {
+  margin-top: auto;
+  color: $accent-diep;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+// De kaart voor gevorderden staat naast de twee stappen, maar hoort er niet
+// bij: stippellijn, geen schaduw, een grijs plusje in plaats van een nummer.
+.stapkaart.gevorderd {
+  border-style: dashed;
+  border-color: $lijn-hard;
+  background: $papier;
+  box-shadow: none;
+}
+
+.stapkaart.gevorderd .nr {
+  background: $lijn;
+  color: $inkt-stil;
+}
+
+.btn-outline-primary {
+  font-weight: 700;
+  border-radius: 999px;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+}
+
+// De recepten voor gevorderden staan twee aan twee: vier tegels, geen volgorde.
+.stappen.recepten {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 850px) {
+  .stappen.recepten {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// Het linkje terug naar alle recepten, bovenaan een recept.
+.terug {
+  display: inline-block;
+  margin-bottom: 1.2rem;
+  color: $inkt-stil;
+  font-size: .92rem;
+  text-decoration: none;
+}
+
+.terug::before {
+  content: "\2190\00a0";
+}
+
+.terug:hover {
+  color: $accent-diep;
+}
+
+// ---------- de stappenbalk bovenaan elke stap ----------
+.stapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0 0 1.8rem;
+}
+
+.stapper p {
+  display: contents;
+}
+
+.stapper a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem .9rem .25rem .3rem;
+  border: 1px solid $lijn;
+  border-radius: 999px;
+  background: $kaart;
+  color: $inkt-stil;
+  font-size: .92rem;
+  text-decoration: none;
+}
+
+.stapper a .nr {
+  width: 1.7rem;
+  height: 1.7rem;
+  font-size: .85rem;
+}
+
+.stapper a:hover {
+  border-color: $accent;
+  color: $accent-diep;
+}
+
+.stapper a.actief {
+  border-color: $accent;
+  color: $accent-diep;
+  font-weight: 700;
+}
+
+.stapper a.actief .nr {
+  background: $accent;
+  color: #fff;
+}
+
+// ---------- de vaste blokken van een stap ----------
+// Quarto zet elke h2 in een section met een id uit de kop. Doe het nu, Klaar
+// als en Kijk na staan op elke stap met dezelfde kop, dus hier hangt hun kader
+// aan, zonder extra markup in de qmd.
+section#doe-het-nu,
+section#klaar-als,
+section#kijk-na {
+  margin: 2.4rem 0;
+  padding: .3rem 1.5rem 1rem;
+  border: 1px solid $lijn;
+  border-radius: 16px;
+  background: $kaart;
+  box-shadow: $schaduw;
+}
+
+section#doe-het-nu .panel-tabset .tab-content {
+  background: $papier;
+  box-shadow: none;
+}
+
+section#klaar-als {
+  border-left: 6px solid $groen;
+}
+
+section#klaar-als h2 {
+  color: $groen;
+}
+
+section#klaar-als h2::after {
+  background: $groen;
+}
+
+section#kijk-na {
+  border-left: 6px solid $accent;
+  background: #fffafa;
+}
+
+section#kijk-na h2 {
+  color: $accent-diep;
+}
+
+// ---------- een map, zonder code ----------
+// Een leek leest een boomstructuur met ├── als code. Een map staat daarom als
+// kaartje met een naam en een lijstje (::: {.mapje} in de qmd). Het randje
+// voor de naam is een getekend mapje, geen emoji.
+.mapje {
+  margin: 1rem 0 1.5rem;
+  padding: .9rem 1.3rem .3rem;
+  border: 1px solid $lijn;
+  border-radius: 12px;
+  background: $kaart;
+  box-shadow: $schaduw;
+}
+
+.mapje > p:first-child {
+  margin-bottom: .4rem;
+  color: $inkt-kop;
+  font-size: 1.05rem;
+}
+
+.mapje > p:first-child::before {
+  content: "";
+  display: inline-block;
+  width: 1.15em;
+  height: .85em;
+  margin-right: .5em;
+  vertical-align: -.08em;
+  border: 2px solid $accent;
+  border-top-width: 4px;
+  border-radius: 3px;
+}
+
+// ---------- een vraag om te kopiëren ----------
+// ```{.vraag} en ```{.kopieer} in de qmd. Gewone letters en geen code-letters,
+// met erboven in het handschrift wat je ermee doet. Quarto zet een codeblok
+// met een klasse in div.sourceCode, dus de regels dekken beide vormen.
+#quarto-document-content pre.vraag,
+#quarto-document-content pre.kopieer {
+  position: relative;
+  padding-top: 2.1rem;
+}
+
+#quarto-document-content pre.vraag code,
+#quarto-document-content pre.kopieer code {
+  font-family: $font-family-sans-serif !important;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: $inkt-kop;
+}
+
+#quarto-document-content pre.vraag::before,
+#quarto-document-content pre.kopieer::before {
+  position: absolute;
+  top: .45rem;
+  left: 1rem;
+  color: $accent-diep;
+  font-family: Kalam, cursive;
+  font-size: 1.05rem;
+}
+
+#quarto-document-content pre.vraag::before {
+  content: "Kopieer deze vraag";
+}
+
+#quarto-document-content pre.kopieer::before {
+  content: "Kopieer en pas aan";
+}
+
+// ---------- Klaar als: aan te vinken ----------
+ul.task-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+ul.task-list li {
+  padding: .5rem 0;
+  border-bottom: 1px dashed $lijn;
+}
+
+ul.task-list li:last-child {
+  border-bottom: none;
+}
+
+// Quarto hangt het vakje met een negatieve marge links buiten de lijst, en
+// zet het klein. Hier staat het in de lijst en groot genoeg om op te klikken.
+ul.task-list li input[type="checkbox"] {
+  position: static !important;
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  margin: 0 .65rem 0 0 !important;
+  vertical-align: -.22rem;
+  accent-color: $groen;
+  cursor: pointer;
+}
+
+ul.task-list li.af {
+  color: $inkt-stil;
+  text-decoration: line-through;
+}
+
+// De knop onderaan een stap.
+.btn-primary {
+  font-weight: 700;
+  border-radius: 999px;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+}
+
+// ---------- een reel ----------
+// Een staand filmpje (1080x1920) staat smal en gecentreerd, zo groot als een gsm.
+.reel {
+  max-width: 320px;
+  margin: 1.4rem auto 2rem;
+  text-align: center;
+}
+
+.reel video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 1px solid $lijn;
+  border-radius: 18px;
+  background: $papier;
+  box-shadow: $schaduw-hoog;
+}
+
+.reel p {
+  margin: .7rem 0 0;
+  color: $inkt-stil;
+  font-size: .88rem;
+  line-height: 1.4;
+}
+
+// Het labeltje boven het filmpje, in het handschrift, zoals boven een prompt.
+.reel p:first-child {
+  margin: 0 0 .4rem;
+}
+
+.reel .reel-label {
+  color: $accent-diep;
+  font-family: Kalam, cursive;
+  font-size: 1.3rem;
+}
+
+// ---------- de galerij ----------
+.quarto-grid-item.card {
+  overflow: hidden;
+  border: 1px solid $lijn;
+  border-radius: 16px;
+  background: $kaart;
+  box-shadow: $schaduw;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+a.quarto-grid-link:hover .quarto-grid-item.card {
+  transform: translateY(-4px);
+  border-color: $accent;
+  box-shadow: $schaduw-hoog;
+}
+
+.quarto-grid-item .card-img-top {
+  margin: 0;
+  border-bottom: 1px solid $lijn;
+}
+
+.quarto-grid-item .card-img-top img,
+#quarto-document-content .quarto-grid-item p > img {
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.quarto-grid-item .listing-title {
+  color: $inkt-kop;
+  font-size: 1.12rem;
+  font-weight: 800;
+}
+
+.quarto-grid-item .listing-category {
+  padding: .12rem .6rem;
+  border: none;
+  border-radius: 999px;
+  background: $accent-zacht;
+  color: $accent-diep;
+  font-size: .72rem;
+  // Quarto zet labels en makers zelf in hoofdletters, met een regel die van
+  // deze wint. Vandaar !important.
+  text-transform: none !important;
+}
+
+.quarto-grid-item .listing-author {
+  color: $inkt-stil;
+  font-family: Kalam, cursive;
+  font-size: 1rem;
+  text-transform: none !important;
+}
+
+// De resources hebben geen schermafdruk. Een blauwe rand bovenaan en blauwe
+// labels houden ze apart van de cursussen.
+#listing-resources .quarto-grid-item.card {
+  border-top: 5px solid $blauw;
+}
+
+#listing-resources .quarto-grid-item .listing-category {
+  background: $blauw-zacht;
+  color: $blauw;
+}
+
+#listing-resources a.quarto-grid-link:hover .quarto-grid-item.card {
+  border-color: $blauw;
+}
+
+// De tips zijn citaten zonder link: een rode rand bovenaan, en de tekst iets
+// groter dan op een gewone kaart, want hij is het hele punt.
+#listing-tips .quarto-grid-item.card {
+  border-top: 5px solid $accent;
+}
+
+#listing-tips .quarto-grid-item .listing-description {
+  font-size: 1.02rem;
+}
+
+// ---------- afdrukken ----------
+@media print {
+  .navbar, #quarto-margin-sidebar, .nav-footer, .stapper, .btn {
+    display: none !important;
+  }
+  section#doe-het-nu, section#klaar-als, section#kijk-na, .stapkaart {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}

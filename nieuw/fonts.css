@@ -1,0 +1,28 @@
+/* Het handschrift: Kalam, zoals op de slides. Het zit zelf in assets/fonts, met
+   de OFL-licentie erbij, dus er gaat geen verzoek naar Google.
+
+   Dit staat in een los css-bestand en niet in theme.scss. De css uit het thema
+   belandt in site_libs/bootstrap/, en Quarto schrijft het pad naar een
+   lettertype daarin niet om: "assets/fonts/..." wees vandaar naar niets. Dit
+   bestand komt in de root van _site terecht, naast assets/, dus hier klopt het
+   pad wel.
+
+   Schrijf in dit commentaar nooit het woord url met haakjes erachter: Quarto
+   leest dat als een lege verwijzing naar de projectmap en stopt de render met
+   "Cannot copy ... to a subdirectory of itself". */
+
+@font-face {
+  font-family: "Kalam";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/kalam-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Kalam";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/kalam-latin-700-normal.woff2") format("woff2");
+}

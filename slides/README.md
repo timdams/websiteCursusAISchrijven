@@ -1,6 +1,6 @@
 # Slides
 
-Een deck van vierendertig slides over hoe je aan een cursus begint met AI, met de
+Een deck van vijfendertig slides over hoe je aan een cursus begint met AI, met de
 site als afsluiter.
 
 De qmd blijft hier staan, maar het gerenderde deck gaat wel mee op GitHub Pages.
@@ -34,10 +34,10 @@ Vier stukken, in deze volgorde:
 
 | Slides | Wat |
 |---|---|
-| 1 tot 7 | wie er zit, waar de talk vandaan komt, en waarom het de vorige keer tegenviel |
-| 8 tot 25 | de zeven stappen, met de nummers in het rood voor de kop |
-| 26 tot 30 | deze slides zelf, wat je meeneemt, en de twee termentabellen |
-| 31 tot 34 | de site, wat er nog niet af is, en bedankt |
+| 1 tot 8 | wie er zit, waar de talk vandaan komt, waarom het de vorige keer tegenviel, en *Context is king* |
+| 9 tot 26 | de zeven stappen, met de nummers in het rood voor de kop |
+| 27 tot 31 | deze slides zelf, wat je meeneemt, en de twee termentabellen |
+| 32 tot 35 | de site, wat er nog niet af is, en bedankt |
 
 De nummers voor een kop (`[5]{.nr}`) zijn de stap uit `volgorde.png`. Stap vier
 en vijf hebben er elk vier slides, want daar zit het werk; stap één, twee en
@@ -169,11 +169,11 @@ cd slides/assets/imagegen
 for f in *.js; do case "$f" in excal.js|strip.js|vrijstaand.js) ;; *) node "$f";; esac; done
 ```
 
-### Negenentwintig tekeningen op vierendertig slides
+### Dertig tekeningen op vijfendertig slides
 
 Vijf slides dragen er geen: de origin story, het voorbeeldje van een
-regelbestand, de twee termentabellen en de tussentitel. Van de negenentwintig
-komen er negentien uit een script hier, acht uit een beeldgenerator en twee zijn
+regelbestand, de twee termentabellen en de tussentitel. Van de dertig
+komen er negentien uit een script hier, negen uit een beeldgenerator en twee zijn
 schermafdrukken (`skillvb` en `improvevb`). `zaal.js` telt voor twee: het schrijft
 zowel `zaal.png` als `zaal-kristof.png`.
 
@@ -218,7 +218,8 @@ het plan, met diezelfde nummers.
 deel, dus schrijven, droge tekst en nakijken, alle drie grijs. Het nakijken heet
 daar drie en niet zes, want zonder de AI-stappen komt het meteen na twee. Canvas,
 bolletjes en letters zijn die van `volgorde`, zodat de twee slides na elkaar op
-dezelfde schaal staan; wijzig je de ene, pas de andere mee aan.
+dezelfde schaal staan; wijzig je de ene, pas de andere mee aan. *Context is
+king* staat daarom voor `origineel` en niet tussen de twee.
 
 `allessamen` is de verkenner van deze repo zelf, overgetekend rij per rij, met
 de vier dingen in het rood aangeduid. De rommel staat er bewust bij:
@@ -260,7 +261,7 @@ machinerie er nog.
 
 ### De tekeningen die geen script hebben
 
-Acht beelden op een slide komen uit een beeldgenerator en niet uit rough.js, en
+Negen beelden op een slide komen uit een beeldgenerator en niet uit rough.js, en
 daaronder liggen er nog twee als onderlaag. Er is geen script om aan te passen,
 dus wil je er iets aan wijzigen dan moeten ze opnieuw gegenereerd worden, en dan
 is het een andere tekening. Waar er een prompt van bewaard is, staat die ernaast:
@@ -271,7 +272,8 @@ is het een andere tekening. Waar er een prompt van bewaard is, staat die ernaast
 | `imagegen/zaal-bron.png` | de onderlaag van `zaal` | [PROMPT-zaal.md](PROMPT-zaal.md) |
 | `imagegen/kristof-bron.png` | Kristof op de tweede zaalslide | [PROMPT-zaal.md](PROMPT-zaal.md) |
 | `mimic.png` | *Het lag niet alleen aan je prompt* | geen |
-| `temmen.png` | *Tijd om de A.I. te temmen* | geen |
+| `contextisking.png` | *Context is king* | [PROMPT-contextisking.md](PROMPT-contextisking.md) |
+| `temmen.png` | *Tijd om de AI te temmen* | geen |
 | `vermomming.png` | *Regelbestand inhoud?* | [PROMPT-vermomming.md](PROMPT-vermomming.md) |
 | `laatzeschrijven.png` | *Wanneer maak je een skill?* | [PROMPT-laatzeschrijven.md](PROMPT-laatzeschrijven.md) |
 | `zekerweten.png` | *Kijk na* | [PROMPT-zekerweten.md](PROMPT-zekerweten.md) |

@@ -1,0 +1,66 @@
+---
+title: "Voor gevorderden"
+subtitle: "Recepten voor als stap 1 en 2 bij jou werken"
+toc: false
+---
+
+*Ohja.* Werken [stap 1](../stappen/1-contextmap.qmd) en [stap 2](../stappen/2-regelbestand.qmd) bij
+jou, kijk dan zeker eens naar deze recepten. Elk recept staat op zichzelf: kies wat je nodig hebt. De
+eerste twee hebben een klikpad voor Copilot, het derde werkt in elk venster dat beelden maakt. De
+laatste twee vragen een AI die zelf in een map op je computer werkt, zoals Claude.
+
+::: {.stappen .recepten .column-page}
+
+::: {.stapkaart}
+[klikpad voor Copilot]{.moeite}
+
+[Je verbeterlijst]{.stapkop}
+
+De AI leert van je verbeteringen: wat je twee keer verbetert, wordt een regel die ze bij elke vraag
+leest.
+
+[Naar het recept](verbeterlijst.qmd){.stretched-link .naar}
+:::
+
+::: {.stapkaart}
+[klikpad voor Copilot]{.moeite}
+
+[Vaste werkwijzen]{.stapkop}
+
+Een taak die terugkomt, zoals figuren of examenvragen, krijgt haar eigen document met de stappen erin.
+
+[Naar het recept](werkwijzen.qmd){.stretched-link .naar}
+:::
+
+::: {.stapkaart}
+[in elk venster dat beelden maakt]{.moeite}
+
+[Kaartjes bij je kernbegrippen]{.stapkop}
+
+Een kaartje per kernbegrip, met een citaat, een tekening en de les, gemaakt uit je eigen achtergrond.
+
+[Naar het recept](kaartjes.qmd){.stretched-link .naar}
+:::
+
+::: {.stapkaart}
+[klikpad voor Claude]{.moeite}
+
+[Je cursus als website]{.stapkop}
+
+Claude zet in Cowork een cursus in Quarto klaar, met een website die je op je eigen computer bekijkt.
+
+[Naar het recept](cursus-als-website.qmd){.stretched-link .naar}
+:::
+
+::: {.stapkaart}
+[klikpad voor Claude]{.moeite}
+
+[Kennisclips en animaties]{.stapkop}
+
+Claude maakt in VS Code een korte animatie bij een cursusbegrip, bijvoorbeeld voor Instagram, in de
+huisstijl van je school.
+
+[Naar het recept](kennisclips.qmd){.stretched-link .naar}
+:::
+
+:::

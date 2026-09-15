@@ -1,0 +1,77 @@
+# Coole cursussen. Overgenomen uit `voorbeelden` in site/data.js.
+# Elke kaart: title, author (de maker), description (één regel), path (de url),
+# image (een schermafdruk in beelden/, 640 op 400) en categories (de techniek
+# erachter, als labels op de kaart). De volgorde hier is de volgorde op de pagina.
+#
+# De schermafdrukken zijn gemaakt met Edge zonder venster, op 1280 op 800, en
+# verkleind. Verandert een site van uitzicht, maak de afdruk dan opnieuw.
+
+- title: "Programmeren & OOP"
+  author: "Stephane Van Rossem & Vincent Van Camp"
+  description: "Een cursus C# als website, gebouwd met Docusaurus. Knap detail: er zit een AI-assistent in de pagina zelf, die studenten verder helpt terwijl ze aan de oefeningen zitten."
+  path: https://vincentvcap.github.io/graduaat-csharp-programmeren/
+  image: beelden/programmeren-oop.jpg
+  categories: [Docusaurus, markdown, GitHub Pages, Gemini]
+
+- title: "Zie Scherp Scherper"
+  author: "Tim Dams"
+  description: "Een cursus C# waarbij het handboek, de slides en de website uit dezelfde markdown-bestanden komen. Verbeter je een zin in het hoofdstuk over casting, dan staat ze in alle drie."
+  path: https://timdams.github.io/ziescherpscherper/
+  image: beelden/zie-scherp-scherper.jpg
+  categories: [Quarto, markdown, GitHub Pages]
+
+- title: "Webontwikkeling"
+  author: "Andie Similon"
+  description: "Een cursus webontwikkeling als website, opgebouwd uit markdown-bestanden met Docusaurus. Onder elke pagina staat een link om ze te verbeteren, en na het opslaan staat de nieuwe versie vanzelf online."
+  path: https://webontwikkeling.cloud-ap.be/
+  image: beelden/webontwikkeling.jpg
+  categories: [Docusaurus, markdown, Vercel]
+
+- title: "IT Essentials"
+  author: "Jannes Peeters"
+  description: "Een cursus waar de studenten in de pagina zelf werken: een terminal en een editor die in de browser draaien, quizjes tussendoor, en een stappenplan dat pas verder gaat als het vorige stuk af is."
+  path: https://it-essentials.apload.be/
+  image: beelden/it-essentials.jpg
+  categories: [Docusaurus, Marp, markdown]
+
+- title: "Slides naar sjabloon"
+  author: "Ward De Ridder"
+  description: "Slides uit markdown-bestanden, omgezet naar de AP-layout, met een speakerview en een pdf erbij."
+  path: https://cursus.hermans.casa/ap/cursusontwikkeling-met-ai/#/
+  image: beelden/slides-naar-sjabloon.jpg
+  categories: [reveal.js, markdown, Hugo, GitHub Pages]
+
+- title: "Fix me, human!"
+  author: "Andie Similon"
+  description: "Leer React op een geschifte, grappige en interactieve manier."
+  path: https://fix-me-human.vercel.app/
+  image: beelden/fix-me-human.jpg
+  categories: [Docusaurus, Marp, markdown]
+
+- title: "Git Quest"
+  author: "Jannes Peeters"
+  description: "Git leren als een spel, met opdrachten die je een voor een afwerkt."
+  path: https://jplectorap.github.io/git-quest/
+  image: beelden/git-quest.jpg
+  categories: [React, Gemini]
+
+- title: "Cloudsystemen"
+  author: "David Verhulst"
+  description: "Interactieve leerstof over webinfrastructuur, met oefenterminals in de pagina en stukken die pas opengaan als je het vorige afgewerkt hebt. Gebouwd als een eigen webapplicatie."
+  path: https://cloudsystemen.ap.be/
+  image: beelden/cloudsystemen.jpg
+  categories: [Next.js of React, Vercel, eigen webapplicatie]
+
+- title: "Circuit Crawler"
+  author: "Andie Similon"
+  description: "Het oefenplatform bij de eerste lessen TypeScript. Schrijft een student een lus van drie stappen, dan zet de robot op het scherm drie stappen."
+  path: https://cc.assimilate.be/
+  image: beelden/circuit-crawler.jpg
+  categories: [TypeScript, eigen webapplicatie]
+
+- title: "R for Data Science"
+  author: "Hadley Wickham e.a."
+  description: "Een handboek dat als website en als boek uit dezelfde bronbestanden komt. Het grote voorbeeld van één bron, alle formaten."
+  path: https://r4ds.hadley.nz
+  image: beelden/r4ds.jpg
+  categories: [Quarto, markdown, R]

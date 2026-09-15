@@ -1,0 +1,92 @@
+---
+title: "Je verbeterlijst"
+subtitle: "De AI leert van jouw verbeteringen"
+---
+
+[Alle recepten voor gevorderden](index.qmd){.terug}
+
+*Ohja.* Dit recept is voor wie [stap 1](../stappen/1-contextmap.qmd) en
+[stap 2](../stappen/2-regelbestand.qmd) al in de vingers heeft. In stap 2 schreef je drie regels onder
+*Niet doen*. De rest komt hier, uit je eigen verbeteringen. Je kent het wel: dezelfde "we gaan nu
+kijken" die je voor de zoveelste keer schrapt (lees: de afspraak die je nooit opschreef).
+
+## Wat je maakt
+
+Een **verbeterlijst**, waar je verbeteringen als regels op komen. De AI leest ze bij elke vraag, net
+als je afspraken. In handleidingen heet zo'n lijst vaak *improve*. Waar ze staat, hangt af van je
+tool: dat staat hieronder bij *Doe het nu*.
+
+## De lus: van verbetering naar regel
+
+Je werkt gewoon, en je verbetert in het gesprek. Verbeter je de AI twee keer op hetzelfde punt, dan is
+dat een regel, en die komt op je verbeterlijst. Vanaf dan gaat ze mee in elk volgend gesprek.
+
+Toegegeven, het is verleidelijk om te denken: mijn opmerkingen schrijf ik op het einde wel even op. Dat
+doe je nooit. **Laat de AI dus zelf zeggen wanneer er een regel klaar is.** Die afspraak zet je in je
+document *Afspraken*, onder een nieuw stuk *Over mijn verbeterlijst*.
+
+Een goede regel op je verbeterlijst noemt het geval waar ze uit komt:
+
+```{.kopieer}
+- Schrap "we gaan nu kijken". Schrijf "we bekijken".
+- Een voorbeeld komt uit de klas: een student, een oefening, een examenvraag.
+- "De student" is enkelvoud. Het werkwoord ook.
+```
+
+Lees je verbeterlijst zelf eens door. Soms maakt de AI van een opmerking die maar één keer gold een
+vaste regel, en die schrap je. Je verbeterlijst is een kladblok: ze groeit, en jij ruimt ze op. Een
+regel die blijft kloppen, zet je in je *Afspraken*, want dat Word-document neem je mee als je van tool
+wisselt.
+Staan er drie regels over dezelfde taak, dan is dat een [vaste werkwijze](werkwijzen.qmd).
+
+## Doe het nu
+
+::: {.panel-tabset group="tool"}
+
+## Copilot
+
+{{< include ../stappen/_tools/copilot/verbeterlijst.md >}}
+
+## ChatGPT
+
+{{< include ../stappen/_tools/nog-niet.md >}}
+
+## Gemini
+
+{{< include ../stappen/_tools/nog-niet.md >}}
+
+## Claude
+
+{{< include ../stappen/_tools/nog-niet.md >}}
+
+:::
+
+## Klaar als
+
+- [ ] je Afspraken hebben een stuk Over mijn verbeterlijst, en ze staan in de instructies van je notebook
+- [ ] er is een verbeterlijst, en je AI leest ze bij elke vraag
+- [ ] op je verbeterlijst staat minstens één regel die uit je eigen verbetering komt
+
+## Kijk na
+
+Vraag na een antwoord:
+
+```{.vraag}
+Welke regels van mijn verbeterlijst heb je in dit antwoord toegepast?
+```
+
+Kijk er zelf één na in de tekst. Noemt de AI een regel die je er niet in terugvindt, dan leest ze je
+verbeterlijst niet. Kijk dan of de pagina Verbeterlijst in je notebook staat, en of de afspraak in je
+instructies staat.
+
+Wat je in je hoofdstukken nakijkt, telt ook als verbetering. Een getal dat niet klopt, een naam die net
+verkeerd gespeld is, een bron die niet bestaat: zeg het in het gesprek, dan kan er een regel van komen.
+De AI zegt nooit dat ze het niet zeker weet.
+
+## Verder
+
+Een [agent](../woordenlijst.qmd#agent) als Claude Code of Codex, die in een map op je eigen schijf
+werkt, houdt de verbeterlijst zelf bij, in een tekstbestand met de naam `improve.md`: je vraagt het in
+je afspraken, en hij schrijft elke verbetering weg.
+
+[Volgend recept: vaste werkwijzen](werkwijzen.qmd){.btn .btn-primary}

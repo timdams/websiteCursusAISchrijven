@@ -1,0 +1,29 @@
+---
+title: "Colofon"
+subtitle: "Hoe deze site gemaakt is, en waarvoor AI gebruikt werd"
+---
+
+Wat ik van mijn studenten vraag, doe ik hier zelf: zeggen welke tool ik gebruikte, waarvoor, en wie
+het nakeek.
+
+## Welke tool
+
+Deze site is geschreven en gebouwd met Claude van Anthropic, via Claude Code, in een map op mijn
+laptop. De meeste tekeningen maakte de computer volgens een eigen vaste werkwijze (skill), een paar
+komen uit ChatGPT Images. De schermafdrukken in de galerij zijn automatisch gemaakt.
+
+## Waarvoor
+
+- De opbouw van de site: de twee stappen, de recepten voor gevorderden, de galerij en de woordenlijst.
+- De teksten, vertrekkend van mijn slides, mijn huisregels voor collega's en de feedback op de
+  workshops.
+- De vormgeving, en de bestanden achter de site.
+
+## Wie het nakeek
+
+Ik. Ik koos de opbouw, testte de klikpaden in Copilot op mijn eigen account, las de teksten na en
+stuurde bij waar ze niet klopten of niet als mij klonken. Collega's gaven feedback op de workshop,
+en een AI las de site na met de ogen van een leerkracht zonder IT-achtergrond. Mijn afspraken met de AI staan in het document CLAUDE.MD, bij
+[de bestanden achter deze site, op GitHub](https://github.com/timdams/websiteCursusAISchrijven).
+
+De inhoud en de fouten zijn van mij.

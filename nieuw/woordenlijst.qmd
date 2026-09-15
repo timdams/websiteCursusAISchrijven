@@ -1,0 +1,213 @@
+---
+title: "Woordenlijst"
+subtitle: "De woorden die op deze site en in de workshop vallen, in gewone taal"
+# De woorden zelf zijn h3. Zonder deze twee toont Op deze pagina enkel de groepen.
+toc-depth: 3
+toc-expand: true
+---
+
+*Toegegeven, de AI-wereld gooit graag met Engelse woorden.* Hieronder staan ze, telkens met een
+voorbeeld. Zoek het woord in de lijst *Op deze pagina*.
+
+## Over AI
+
+### AI {#ai}
+
+Artificiële intelligentie. Op deze site bedoelen we er de taalmodellen mee waar je mee chat: Copilot,
+ChatGPT, Gemini, Claude. In het Nederlands schrijf je het zonder puntjes.
+
+### Model {#model}
+
+Het programma dat achter het venster de antwoorden schrijft. Het venster heet Copilot, het model
+erachter is bijvoorbeeld GPT-5.6. In Copilot staat bij je promptvenster een keuzeknop met *Auto*,
+*Quick response* en *Think deeper*: daarmee kies je hoe het model antwoordt.
+
+### Chatvenster {#chatvenster}
+
+De plek waar je een vraag typt en een antwoord terugkrijgt, zoals copilot.microsoft.com of
+chatgpt.com. Wat je daar zegt, blijft in dat ene gesprek. Open je een nieuw gesprek, dan begint de AI
+opnieuw van nul, tenzij je in een [notebook](#notebook) werkt (in ChatGPT en Claude heet dat een
+project).
+
+### Prompt {#prompt}
+
+De vraag of opdracht die je typt. "Maak vijf meerkeuzevragen bij dit hoofdstuk" is een prompt.
+Prompten is tien procent van het werk. De rest zit in wat je de AI meegeeft: je map en je afspraken.
+
+### Context {#context}
+
+Alles wat de AI meekrijgt bij je vraag: de documenten die je toevoegt, je afspraken, en wat er eerder
+in het gesprek gezegd is. Hoe meer er in die context staat, hoe minder de AI zelf moet invullen. Op
+deze site heet de map met die documenten [je achtergrond](#contextmap).
+
+### Hallucineren {#hallucineren}
+
+De AI verzint iets dat er overtuigend uitziet: een bron die niet bestaat, een getal dat nergens staat,
+een leerdoel dat niet in je leerplan zit. Ze zegt er niet bij dat ze twijfelt. Daarom staat onder elke
+stap een blok *Kijk na*.
+
+### AI slop {#ai-slop}
+
+Tekst die vlot leest, correct lijkt en niets zegt. Je herkent hem aan een lang
+[gedachtestreepje](#gedachtestreepje) in elke alinea, een wijze slotzin, en zinnen als "het gaat niet
+over X, het gaat over Y". Je
+[niet-doen-lijst](stappen/2-regelbestand.qmd#niet-doen-de-lijst-die-het-zwaarst-weegt) houdt dat
+tegen.
+
+### Lang gedachtestreepje {#gedachtestreepje}
+
+Het lange streepje waarmee Engelse teksten een zin onderbreken, in het Engels een *em-dash*. Een AI
+zet het er graag in, ook in Nederlandse tekst, en daar valt het op. Gebruik een gewoon streepje, een
+dubbele punt of een nieuwe zin.
+
+### AI-agnostisch {#ai-agnostisch}
+
+Je werkwijze werkt in elke AI-tool. Je map en je afspraken zijn gewone Word-documenten: wisselt je
+school van Copilot naar Gemini, dan neem je ze mee en plak je je afspraken in het instructieveld van de
+nieuwe tool.
+
+### Agent {#agent}
+
+Een AI die zelf aan de slag gaat in een map op je computer: ze opent bestanden, past ze aan en maakt
+nieuwe. Claude Code, Codex en GitHub Copilot in VS Code zijn agents. Copilot in een notebook leest je
+documenten, maar kan er niets in schrijven. Voor de twee basisstappen heb je geen agent nodig.
+
+### Abonnement en licentie {#abonnement}
+
+Met een gewoon school- of werkaccount heb je bij Microsoft **Copilot Chat**, zonder dat er iets bij
+betaald wordt. Met de betalende **Microsoft 365 Copilot**-licentie kan Copilot daarnaast ook je mail,
+je Teams-gesprekken en je SharePoint doorzoeken. Voor de twee stappen volstaat Copilot Chat. In een notebook passen met Copilot Chat 50 referenties, met de
+licentie 300. Welke je hebt, kijk je zelf na:
+[Welke Copilot-licentie heb ik?](https://support.microsoft.com/nl-nl/microsoft-365-copilot/what-copilot-license-do-i-have)
+
+### AI-verklaring {#ai-verklaring}
+
+Een korte zin onder je hoofdstuk, opgave of slides waarin je zegt hoe je AI gebruikte: welke tool,
+waarvoor, en wie het nakeek. We vragen het van onze studenten, dus we doen het zelf ook. Een voorbeeld
+staat op [de startpagina](index.qmd#zeg-hoe-je-ai-gebruikte).
+
+Voor cursusmateriaal dat je zelf nakeek, is het meestal geen wettelijke plicht. De transparantieregels
+van de Europese AI-verordening (artikel 50) gelden sinds 2 augustus 2026. Die plicht geldt voor tekst
+van een AI over zaken van algemeen belang. Heeft een mens de tekst nagekeken en staat die ervoor in,
+dan hoeft het niet. Zie
+[artikel 50](https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50) en
+[de uitleg van de Europese Commissie](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act).
+Kijk ook wat het AI-beleid van je school vraagt.
+
+## Over je vak
+
+### Olod {#olod}
+
+Opleidingsonderdeel: een vak in het hoger onderwijs, zoals *Kansrekenen* of *Programmeren 1*. Geef je
+les in het middelbaar, lees dan overal *je vak*.
+
+### ECTS-fiche {#ects-fiche}
+
+De officiële beschrijving van een olod in het hoger onderwijs, met de leerdoelen erin. In het
+middelbaar neem je je leerplan, of de leerplandoelen die bij je vak horen.
+
+## Over je documenten
+
+### Je cursus (content) {#content}
+
+De map *Cursus* uit [stap 1](stappen/1-contextmap.qmd): wat je studenten krijgen. Een map per
+hoofdstuk, en daarin een document per onderwerp.
+
+### Je achtergrond (context) {#contextmap}
+
+De map *Achtergrond* uit [stap 1](stappen/1-contextmap.qmd): wat een collega nodig heeft om je vak
+over te nemen. Je opbouw, je leerplan of ECTS-fiche, je beginsituatie, een toonvoorbeeld en je
+slides. Je studenten zien die documenten nooit.
+
+### Je afspraken (regelbestand) {#regelbestand}
+
+Eén document met wat altijd geldt: je toon, je niet-doen-lijst, en een regel per document in je map.
+Zie [stap 2](stappen/2-regelbestand.qmd). In Copilot plak je het in de
+[custom instructions](#custom-instructions) van je notebook.
+
+### Droge tekst {#droge-tekst}
+
+Tekst zonder opmaak: je woorden en je kopjes, zonder kleuren, tekstvakken of sjabloon. Werk je in
+Word, dan is droge tekst een document met enkel *Kop 1* en *Kop 2* als opmaak.
+
+De AI leest zo'n tekst beter, en als ze hem herwerkt, zet je daarna geen opmaak opnieuw recht. Je
+schoolsjabloon komt helemaal op het einde, als er aan je tekst niets meer verandert.
+
+### Markdown {#markdown}
+
+Voor wie verder wil: droge tekst in een gewoon tekstbestand, met een paar tekens voor de opmaak. Een
+hekje voor een titel, sterretjes voor vet:
+
+```{.boom}
+# Voorwaardelijke kans            een titel
+## Een voorbeeld uit de klas      een tussenkop
+Dit is **vet** en dit is *cursief*.
+- een opsomming
+```
+
+Het opent in Kladblok, elke AI-tool kent het, en met één stap maak je er later een Word-document, een
+pdf of een website van. Deze site is in markdown geschreven. Voor de twee basisstappen volstaat Word
+met kopstijlen.
+
+## In Copilot
+
+### Notebook {#notebook}
+
+Een vaste plek in Copilot voor één vak: je documenten en je afspraken blijven er staan tussen twee
+gesprekken. Je vindt het linksboven onder *Apps*, en dan *Notebooks* (in een Nederlandstalige Copilot:
+*Notitieblokken*).
+
+### Referentie {#referentie}
+
+Een document dat je aan een notebook toevoegt, zodat Copilot het bij elke vraag kan lezen. Word,
+PowerPoint, Excel, pdf en txt kunnen erin.
+
+### Custom instructions {#custom-instructions}
+
+Het tekstveld van je notebook waar je afspraken in komen. Je vindt het door linksboven op je notebook
+te klikken, bij de instellingen.
+
+### Copilot Page {#copilot-page}
+
+Een pagina in je notebook waar je een antwoord van Copilot bewaart en verder bewerkt. Copilot kan ze
+lezen. Aanvullen doe je zelf.
+
+## Voor gevorderden
+
+### Verbeterlijst (improve) {#improve}
+
+Een lijst waar je verbeteringen als regels op komen, en die de AI bij elke vraag leest. Verbeter je
+haar twee keer op hetzelfde punt, dan komt er een regel bij. Zie
+[het recept](gevorderden/verbeterlijst.qmd). Wie met een agent werkt, noemt dat
+bestand vaak `improve.md`.
+
+### Vaste werkwijze (skill) {#skill}
+
+Het recept voor één taak die terugkomt, in een eigen document: *Werkwijze figuren*, *Werkwijze
+examenvragen*. De AI leest het enkel bij die taak. Zie [het recept](gevorderden/werkwijzen.qmd).
+
+### Quarto {#quarto}
+
+Een gratis programma dat van gewone tekstbestanden een website, een pdf of slides maakt. Deze site en
+de slides van de workshops zijn ermee gemaakt. Zie het recept
+[je cursus als website](gevorderden/cursus-als-website.qmd).
+
+### Cowork {#cowork}
+
+Een modus in de Claude-app waarin Claude zelf in een map op je computer werkt: het maakt bestanden aan,
+past ze aan en zet programma's klaar, zonder dat je een commandovenster opent.
+
+### VS Code {#vs-code}
+
+Een gratis programma van Microsoft om de bestanden in een map te bekijken en te bewerken. Met de
+[extensie](#extensie) van Claude werkt Claude er als [agent](#agent) in. Zie het recept
+[kennisclips en animaties](gevorderden/kennisclips.qmd).
+
+### Extensie {#extensie}
+
+Een uitbreiding die je in een programma installeert. In VS Code vind je ze links, onder *Extensions*.
+
+### Git {#git}
+
+Versiebeheer voor een map op je computer. Elke wijziging die de AI maakt, zie je regel per regel, en
+je kan ze terugdraaien. Je hebt het enkel nodig als je met een [agent](#agent) in een map werkt.
