@@ -5,9 +5,10 @@ subtitle: "Claude maakt een korte animatie bij een cursusbegrip"
 
 [Alle recepten voor gevorderden](index.qmd){.terug}
 
-*Ohja.* Een collega wou kennisclips maken van cursusbegrippen, bijvoorbeeld voor Instagram. Dit recept
-is wat ik antwoordde. Het werkt met Claude in [VS Code](../woordenlijst.qmd#vs-code), en met een
-[vaste werkwijze (skill)](werkwijzen.qmd) die ik al schreef en die je hier kan downloaden.
+Voor de kennisclips en reels bij mijn handboek Zie Scherp Scherper schreef ik een
+[vaste werkwijze (skill)](werkwijzen.qmd) die animaties maakt. Een collega wou kennisclips maken van
+cursusbegrippen, bijvoorbeeld voor Instagram, en dit recept is wat ik antwoordde. Het werkt met Claude
+in [VS Code](../woordenlijst.qmd#vs-code), en mijn skill kan je hier downloaden.
 
 ## Wat je nodig hebt
 
@@ -15,8 +16,7 @@ is wat ik antwoordde. Het werkt met Claude in [VS Code](../woordenlijst.qmd#vs-c
 - VS Code, gratis te downloaden op [code.visualstudio.com](https://code.visualstudio.com/download)
 - een map op je computer waarin je gaat werken
 - een skill die animaties maakt. Je kan de mijne downloaden:
-  [excalidraw-videoclip (zip)](../downloads/excalidraw-videoclip.zip). Ik schreef ze voor de
-  kennisclips en reels bij mijn handboek Zie Scherp Scherper.
+  [excalidraw-videoclip (zip)](../downloads/excalidraw-videoclip.zip).
 - de huisstijl van je school: kleuren, lettertype, logo
 
 ::: {.callout-warning}

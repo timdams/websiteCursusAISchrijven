@@ -5,8 +5,8 @@ subtitle: "Een taak die terugkomt, krijgt haar eigen recept"
 
 [Alle recepten voor gevorderden](index.qmd){.terug}
 
-*Ohja.* Dit recept bouwt verder op [je verbeterlijst](verbeterlijst.qmd). Daar komen je verbeteringen
-als regels op. Gaan er drie over dezelfde taak, dan verhuizen ze naar hier.
+Op [je verbeterlijst](verbeterlijst.qmd) komen je verbeteringen als regels. Gaan er drie over dezelfde
+taak, dan verhuizen ze naar hier.
 
 ## Wat je maakt
 

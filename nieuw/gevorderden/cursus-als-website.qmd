@@ -5,7 +5,7 @@ subtitle: "Claude zet een cursus in Quarto klaar, en jij schrijft"
 
 [Alle recepten voor gevorderden](index.qmd){.terug}
 
-*Ohja.* Een collega vroeg me: "We gaan een cursus proberen maken, en als website aanbieden." Dit recept
+Een collega vroeg me: "We gaan een cursus proberen maken, en als website aanbieden." Dit recept
 is wat ik antwoordde. Het vraagt een AI die zelf in een map op je computer werkt, en dat doet Claude in
 [Cowork](../woordenlijst.qmd#cowork).
 

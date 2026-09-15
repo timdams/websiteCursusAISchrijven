@@ -5,10 +5,10 @@ subtitle: "De AI leert van jouw verbeteringen"
 
 [Alle recepten voor gevorderden](index.qmd){.terug}
 
-*Ohja.* Dit recept is voor wie [stap 1](../stappen/1-contextmap.qmd) en
+*Daar staat het weer: "we gaan nu kijken".* En je schrapt het voor de zoveelste keer (lees: de
+afspraak die je nooit opschreef). Dit recept is voor wie [stap 1](../stappen/1-contextmap.qmd) en
 [stap 2](../stappen/2-regelbestand.qmd) al in de vingers heeft. In stap 2 schreef je drie regels onder
-*Niet doen*. De rest komt hier, uit je eigen verbeteringen. Je kent het wel: dezelfde "we gaan nu
-kijken" die je voor de zoveelste keer schrapt (lees: de afspraak die je nooit opschreef).
+*Niet doen*. De rest komt hier, uit je eigen verbeteringen.
 
 ## Wat je maakt
 

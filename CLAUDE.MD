@@ -43,7 +43,8 @@ Start (`nieuw/index.qmd`), dan:
 2. **Stap 2, je afspraken** (`stappen/2-regelbestand.qmd`): je toon, je niet-doen-lijst, en wat elk
    document in je map is.
 3. **Voor gevorderden** (`gevorderden/index.qmd`), aangekondigd als "ohja, voor gevorderden": een hub met
-   tegels, elk een recept dat op zichzelf staat. In deze volgorde: verbeterlijst, vaste werkwijzen
+   tegels, elk een recept dat op zichzelf staat. "Ohja" hoort bij die aankondiging en de hub; een recept
+   zelf opent er niet mee, en elk recept opent anders dan het vorige. In deze volgorde: verbeterlijst, vaste werkwijzen
    (allebei met een klikpad voor Copilot), kaartjes bij je kernbegrippen (in elk venster dat beelden
    maakt), je cursus als website en kennisclips (allebei met Claude). Komt er een recept bij, pas dan ook
    de tegel op de startpagina en de knoppen *Volgend recept* aan.
