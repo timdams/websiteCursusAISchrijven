@@ -1,7 +1,8 @@
-# Zet de map site/ op GitHub Pages. De site zelf is index.html, styles.css,
-# data.js, app.js en assets/, en die gaan er ongewijzigd op. Eén ding wordt wel
-# gebouwd: de slides uit slides/ komen als site/slides/index.html mee, zodat ze
-# vanaf de site te bekijken zijn. Ze staan niet in git; deze stap maakt ze.
+# Zet de site uit nieuw/ op GitHub Pages. Quarto rendert ze naar nieuw/_site, en
+# de live slides uit slides/ komen daar als slides/index.html bij, zodat /slides/
+# blijft werken voor wie de link of de QR-code van de talk heeft. Niets daarvan
+# staat in git; deze stappen maken het. De oude site in site/ gaat niet meer
+# online.
 name: Pages
 
 on:
@@ -29,18 +30,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Dezelfde versie als lokaal, zodat online hetzelfde verschijnt als in
+      # quarto preview.
       - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.9.35
 
-      # In de qmd staat geen code die uitgevoerd moet worden, dus R noch Python
-      # hoeft erbij. Het resultaat heet index.html, zodat de map zelf het adres
-      # is: /slides/ en niet /slides/cursus-schrijven-met-ai.html.
+      # In geen enkele qmd staat code die uitgevoerd moet worden, dus R noch
+      # Python hoeft erbij.
+      - name: Site renderen
+        working-directory: nieuw
+        run: quarto render
+
+      # Na de site, anders veegt die render de map slides/ weer weg. Het
+      # resultaat heet index.html, zodat de map zelf het adres is: /slides/ en
+      # niet /slides/cursus-schrijven-met-ai.html.
       - name: Slides renderen
         working-directory: slides
-        run: quarto render cursus-schrijven-met-ai.qmd --output index.html --output-dir ../site/slides
+        run: quarto render cursus-schrijven-met-ai.qmd --output index.html --output-dir ../nieuw/_site/slides
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: nieuw/_site
       - id: deployment
         uses: actions/deploy-pages@v4

@@ -24,8 +24,9 @@ slides en in tekst in tekeningen. Enkel de bevroren decks (zie Workshops) blijve
 | `site/` | de oude site (JS, bevrager). Ze wordt vervangen door `nieuw/`; schrijf er niets nieuws meer in |
 
 `nieuw/` staat niet in de root: een `_quarto.yml` in de root maakt van `slides/` een deel van het
-project, en dan breken `npm run slides` en de Pages-workflow. Bij de overschakeling verhuist `nieuw/`
-naar boven. Tot dan zet de workflow enkel `site/` online, met de slides in `site/slides/`.
+project, en dan breken `npm run slides` en de Pages-workflow. Daarom blijft `nieuw/` waar ze staat, en
+zet de Pages-workflow `nieuw/_site` online, met de live slides eronder op `/slides/`. `site/` gaat niet
+meer online.
 
 **De slides zijn de waarheid voor wat er beweerd wordt.** Loopt de site uit de pas met wat in de talk
 verteld wordt, dan volgt de site. De opbouw kiest de site zelf: de slides tellen zeven stappen, de site

@@ -6,9 +6,10 @@ site als afsluiter.
 De qmd blijft hier staan, maar het gerenderde deck gaat wel mee op GitHub Pages.
 De stap *Slides renderen* in
 [.github/workflows/pages.yml](../.github/workflows/pages.yml) zet het als
-`site/slides/index.html` naast de site, zodat de knop **De slides** in de kop van
-[de site](../site/README.md) ergens op uitkomt. Lokaal maak je diezelfde map met
-`npm run slides` vanuit de repo-root. Ze staat in `.gitignore`.
+`slides/index.html` in de gerenderde site van `nieuw/`, zodat `/slides/` blijft
+werken voor wie de link of de QR-code van de talk heeft. `npm run slides` vanuit
+de repo-root maakt lokaal nog `site/slides/`, de map van de oude site. Ze staat
+in `.gitignore`.
 
 De slides zijn de waarheid: loopt de site uit de pas met wat hier verteld wordt,
 dan volgt de site. Wat er van dit deck naar de site is overgekomen, en welke
